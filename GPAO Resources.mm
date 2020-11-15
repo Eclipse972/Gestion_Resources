@@ -1,6 +1,6 @@
-<map version="freeplane 1.6.0">
+<map version="freeplane 1.7.0">
 <!--To view this file, download free mind mapping software Freeplane from http://freeplane.sourceforge.net -->
-<node TEXT="GPAO Resources" LOCALIZED_STYLE_REF="AutomaticLayout.level.root" FOLDED="false" ID="ID_864505857" CREATED="1556938679364" MODIFIED="1562880012482"><hook NAME="MapStyle">
+<node TEXT="GPAO Resources" LOCALIZED_STYLE_REF="AutomaticLayout.level.root" FOLDED="false" ID="ID_864505857" CREATED="1556938679364" MODIFIED="1562880012482"><hook NAME="MapStyle" zoom="0.754">
     <properties edgeColorConfiguration="#808080ff,#ff0000ff,#0000ffff,#00ff00ff,#ff00ffff,#00ffffff,#7c0000ff,#00007cff,#007c00ff,#7c007cff,#007c7cff,#7c7c00ff" show_note_icons="true" fit_to_viewport="false"/>
 
 <map_styles>
@@ -62,7 +62,7 @@
 </stylenode>
 </map_styles>
 </hook>
-<hook NAME="AutomaticEdgeColor" COUNTER="21" RULE="ON_BRANCH_CREATION"/>
+<hook NAME="AutomaticEdgeColor" COUNTER="23" RULE="ON_BRANCH_CREATION"/>
 <node TEXT="Vue" POSITION="right" ID="ID_975396167" CREATED="1562878226641" MODIFIED="1563906682898" STYLE="bubble" HGAP_QUANTITY="15.499999955296518 pt" VSHIFT_QUANTITY="-15.749999530613437 pt">
 <font SIZE="18"/>
 <edge STYLE="bezier" COLOR="#00007c"/>
@@ -1000,10 +1000,10 @@
 </node>
 </node>
 </node>
-<node TEXT="Mod&#xe8;le" POSITION="left" ID="ID_1298497703" CREATED="1562878216700" MODIFIED="1563901743611" STYLE="bubble">
+<node TEXT="Mod&#xe8;le" FOLDED="true" POSITION="left" ID="ID_1298497703" CREATED="1562878216700" MODIFIED="1563901743611" STYLE="bubble">
 <font SIZE="18"/>
 <edge COLOR="#7c0000"/>
-<node TEXT="donn&#xe9;es &#xe0; impl&#xe9;menter" ID="ID_1949028927" CREATED="1563901711074" MODIFIED="1564075264001" HGAP_QUANTITY="33.49999941885473 pt" VSHIFT_QUANTITY="-43.49999870359901 pt">
+<node TEXT="donn&#xe9;es &#xe0; impl&#xe9;menter" FOLDED="true" ID="ID_1949028927" CREATED="1563901711074" MODIFIED="1564075264001" HGAP_QUANTITY="33.49999941885473 pt" VSHIFT_QUANTITY="-43.49999870359901 pt">
 <edge STYLE="horizontal"/>
 <richcontent TYPE="NOTE">
 
@@ -1020,10 +1020,10 @@
 </richcontent>
 <node TEXT="&#xe9;tat du joueur" ID="ID_1893794396" CREATED="1563901074281" MODIFIED="1563904800934" HGAP_QUANTITY="13.250000022351742 pt" VSHIFT_QUANTITY="-29.249999128282095 pt">
 <edge STYLE="horizontal"/>
-<node TEXT="donn&#xe9;es du joueur" ID="ID_579657359" CREATED="1563901504356" MODIFIED="1563901514970"/>
-<node TEXT="entrep&#xf4;ts" ID="ID_1525415267" CREATED="1563901529244" MODIFIED="1563901542849"/>
-<node TEXT="usines" ID="ID_39636463" CREATED="1563901546617" MODIFIED="1563901549196"/>
-<node TEXT="mines" ID="ID_283745153" CREATED="1563901549799" MODIFIED="1563904499074"><richcontent TYPE="NOTE">
+<node TEXT="informations sur le joueur" ID="ID_579657359" CREATED="1563901504356" MODIFIED="1587494100917"/>
+<node TEXT="liste des entrep&#xf4;ts" ID="ID_1525415267" CREATED="1563901529244" MODIFIED="1587493161509"/>
+<node TEXT="liste des usines" ID="ID_39636463" CREATED="1563901546617" MODIFIED="1587494359988"/>
+<node TEXT="liste des mines" ID="ID_283745153" CREATED="1563901549799" MODIFIED="1587493207614"><richcontent TYPE="NOTE">
 
 <html>
   <head>
@@ -1031,16 +1031,36 @@
   </head>
   <body>
     <p>
-      On s'int&#233;resse ici &#224; l'ensemble des mine pour une ressource donn&#233;e
+      On s'int&#233;resse ici &#224; l'ensemble des mine pour une ressource donn&#233;e et pas &#224; chaque mine individuellement.
     </p>
   </body>
 </html>
 </richcontent>
 </node>
-<node TEXT="b&#xe2;timents sp&#xe9;ciaux" ID="ID_1609364694" CREATED="1563901589533" MODIFIED="1563901597038"/>
-<node TEXT="QG" ID="ID_1233384801" CREATED="1563901602675" MODIFIED="1563901607042"/>
+<node TEXT="liste b&#xe2;timents sp&#xe9;ciaux" ID="ID_1609364694" CREATED="1563901589533" MODIFIED="1587494335759"/>
+<node TEXT="QG" ID="ID_1233384801" CREATED="1563901602675" MODIFIED="1563901607042">
+<node TEXT="niveau" ID="ID_1154815651" CREATED="1587494720820" MODIFIED="1587494724172"/>
+<node TEXT="les 4 mat&#xe9;riaux investis" ID="ID_587086274" CREATED="1587494726187" MODIFIED="1587495326972"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Ce nombre est &#224; v&#233;rifier pour tous les niveaux
+    </p>
+  </body>
+</html>
+</richcontent>
+<node TEXT="mati&#xe8;re" ID="ID_1844257312" CREATED="1587495269961" MODIFIED="1587495274622"/>
+<node TEXT="quantit&#xe9; investie" ID="ID_1762915306" CREATED="1587495276684" MODIFIED="1587495284321"/>
 </node>
-<node TEXT="actions" ID="ID_787613227" CREATED="1563901107345" MODIFIED="1563901269724">
+</node>
+</node>
+<node TEXT="les r&#xe8;gles du jeu" ID="ID_710184836" CREATED="1563901271882" MODIFIED="1563901308330">
+<edge STYLE="horizontal"/>
+<node TEXT="actions des joueur" ID="ID_787613227" CREATED="1563901107345" MODIFIED="1587494853287">
 <edge STYLE="horizontal"/>
 <richcontent TYPE="NOTE">
 
@@ -1055,11 +1075,7 @@
   </body>
 </html>
 </richcontent>
-<node TEXT="achat/am&#xe9;liorations de b&#xe2;timent" ID="ID_1960217881" CREATED="1563903156855" MODIFIED="1564075169993">
-<node TEXT="usines" ID="ID_1533310123" CREATED="1563903168124" MODIFIED="1563903172137"/>
-<node TEXT="mines" ID="ID_188409201" CREATED="1563903174366" MODIFIED="1563903179954"/>
-<node TEXT="b&#xe2;timents sp&#xe9;ciaux" ID="ID_770926379" CREATED="1563903182340" MODIFIED="1563903190826"/>
-<node TEXT="QG" ID="ID_1776987295" CREATED="1563902800337" MODIFIED="1564075186619"><richcontent TYPE="NOTE">
+<node TEXT="cas des mines" ID="ID_1023712263" CREATED="1587493396808" MODIFIED="1587493733355"><richcontent TYPE="NOTE">
 
 <html>
   <head>
@@ -1067,31 +1083,57 @@
   </head>
   <body>
     <p>
-      le QG n'est pas achet&#233;
+      Elle se fait avec des tech upgrade pour chaque mine. Non pris en compte car trop de donn&#233;es &#224; entrer.
+    </p>
+    <p>
+      On ne s'int&#233;ressera qu'au nombre et &#224; la production globale.
     </p>
   </body>
 </html>
+</richcontent>
+</node>
+<node TEXT="achat de b&#xe2;timent" ID="ID_1960217881" CREATED="1563903156855" MODIFIED="1587493458050">
+<node TEXT="usines" ID="ID_1533310123" CREATED="1563903168124" MODIFIED="1563903172137"/>
+<node TEXT="b&#xe2;timents sp&#xe9;ciaux" ID="ID_770926379" CREATED="1563903182340" MODIFIED="1563903190826"/>
+<node TEXT="entrep&#xf4;t?" ID="ID_1444996582" CREATED="1587493763300" MODIFIED="1587493822526"><richcontent TYPE="NOTE">
 
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Est-ce qu'un d&#233;but du jeu on a tous les entrep&#244;ts?
+    </p>
+  </body>
+</html>
 </richcontent>
 </node>
 </node>
+<node TEXT="am&#xe9;lioration de batiment" ID="ID_252518027" CREATED="1587493373337" MODIFIED="1587493384993">
+<node TEXT="usine" ID="ID_1670985305" CREATED="1587493406705" MODIFIED="1587493411840"/>
+<node TEXT="entrep&#xf4;t" ID="ID_629729690" CREATED="1587493831956" MODIFIED="1587493838270"/>
+<node TEXT="b&#xe2;timent sp&#xe9;cial" ID="ID_1069946774" CREATED="1587493421915" MODIFIED="1587493430484"/>
+<node TEXT="QG" ID="ID_523031210" CREATED="1587493434327" MODIFIED="1587493439679"/>
+</node>
 <node TEXT="missions" ID="ID_811845386" CREATED="1563902853594" MODIFIED="1563902858792"/>
 <node TEXT="production" ID="ID_744370526" CREATED="1564075205841" MODIFIED="1564075211187"/>
-</node>
-<node TEXT="les r&#xe8;gles du jeu" ID="ID_710184836" CREATED="1563901271882" MODIFIED="1563901308330">
-<edge STYLE="horizontal"/>
-<node TEXT="recettes de production" ID="ID_820589147" CREATED="1563902643266" MODIFIED="1563902652903"/>
-<node TEXT="recette d&apos;am&#xe9;lioration d&apos;usine" ID="ID_1737094426" CREATED="1563902655732" MODIFIED="1563902666551"/>
 <node TEXT="recrutement" ID="ID_647041026" CREATED="1563902818305" MODIFIED="1563902824298">
 <node TEXT="chiens" ID="ID_704314536" CREATED="1563902827103" MODIFIED="1563902830603"/>
 <node TEXT="unit&#xe9; d&apos;&#xe9;lite" ID="ID_1353658734" CREATED="1563902833039" MODIFIED="1563902838837"/>
 <node TEXT="forces d&apos;&#xe9;lite" ID="ID_1912774453" CREATED="1563902839724" MODIFIED="1563902844447"/>
 </node>
 </node>
+<node TEXT="les marchandises" ID="ID_1227456822" CREATED="1587494807405" MODIFIED="1587494816592">
+<node TEXT="nom" ID="ID_1664253446" CREATED="1587575981555" MODIFIED="1587575985945"/>
+<node TEXT="nature" ID="ID_1088074561" CREATED="1587575998795" MODIFIED="1587576003178">
+<node TEXT="ressource" ID="ID_1623399619" CREATED="1587575928814" MODIFIED="1587575964746"/>
+<node TEXT="produit" ID="ID_155081243" CREATED="1587575934476" MODIFIED="1587575970681"/>
+<node TEXT="butin" ID="ID_828435422" CREATED="1587575948216" MODIFIED="1587575953737"/>
+<node TEXT="unit&#xe9;" ID="ID_148447814" CREATED="1587575954364" MODIFIED="1587575957794"/>
 </node>
-<node TEXT="base de donn&#xe9;es" ID="ID_1659089206" CREATED="1563901758300" MODIFIED="1563904358771">
-<edge STYLE="horizontal"/>
-<richcontent TYPE="NOTE">
+</node>
+<node TEXT="les recettes" ID="ID_482459365" CREATED="1587494205064" MODIFIED="1587575926340"><richcontent TYPE="NOTE">
 
 <html>
   <head>
@@ -1099,7 +1141,156 @@
   </head>
   <body>
     <p>
-      Pour cette 1e impl&#233;mentation il n'y aura pas d'optimisation des donn&#233;ess.
+      J'appelle recette tous processus permettant d'obtenir une marchandise &#224; partir d'autre(s) marchandise(s) et d'argent.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      Certaines actions du joueur repose sur une recette &#224; laquelle est appliqu&#233;e un coefficient relatif au niveau de l'action.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      Ces actions sont:
+    </p>
+    <p>
+      achat/am&#233;lioration d'un b&#226;timent au sens large: usine, b&#226;timent sp&#233;ciaux QG)
+    </p>
+    <p>
+      recrutement d'unit&#233;
+    </p>
+    <p>
+      recyclage
+    </p>
+  </body>
+</html>
+</richcontent>
+<node TEXT="am&#xe9;lioration de b&#xe2;timent" ID="ID_1737094426" CREATED="1563902655732" MODIFIED="1587576187878"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Quel mat&#233;riaux de construction et en quelle quantit&#233; sont n&#233;cessaire pour am&#233;liorer un b&#226;timent?
+    </p>
+  </body>
+</html>
+</richcontent>
+<node TEXT="usine" ID="ID_749092613" CREATED="1587575495603" MODIFIED="1587575499824"/>
+<node TEXT="enrep&#xf4;t" ID="ID_1138196937" CREATED="1587575503272" MODIFIED="1587575508548"/>
+<node TEXT="QG" ID="ID_722109620" CREATED="1587575509257" MODIFIED="1587575515008"/>
+<node TEXT="b&#xe2;timents sp&#xe9;ciaux" ID="ID_1741860560" CREATED="1587575516033" MODIFIED="1587575531941"/>
+</node>
+<node TEXT="production" ID="ID_820589147" CREATED="1563902643266" MODIFIED="1587576094402"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Que faut il pour produire telle marchandise et en quelle quantit&#233;.
+    </p>
+    <p>
+      Les mines produisent &#224; partir de rien car le ressources sont extraites du sol
+    </p>
+  </body>
+</html>
+</richcontent>
+<node TEXT="usine" ID="ID_1024296413" CREATED="1587493277424" MODIFIED="1587493286054"/>
+<node TEXT="recrutement" ID="ID_1094564511" CREATED="1587493288501" MODIFIED="1587493293224"/>
+</node>
+<node TEXT="les mat&#xe9;riaux &#xe0; investire dans un QG suivant le niveau" ID="ID_1662203266" CREATED="1587494994504" MODIFIED="1587495022029">
+<node TEXT="nature" ID="ID_402544510" CREATED="1587495186703" MODIFIED="1587495191806"/>
+<node TEXT="quantit&#xe9; &#xe0; investir" ID="ID_100741351" CREATED="1587495193953" MODIFIED="1587495201408"/>
+</node>
+<node TEXT="recyclage" ID="ID_163863538" CREATED="1587496528229" MODIFIED="1587496532464"/>
+</node>
+<node TEXT="les type de b&#xe2;timents" ID="ID_1342520365" CREATED="1587576933267" MODIFIED="1587577091931"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      caract&#233;ristiques de base pour un b&#226;timent communes aux b&#226;timent de tous le joueurs comme:
+    </p>
+    <p>
+      nom
+    </p>
+    <p>
+      image
+    </p>
+    <p>
+      produit
+    </p>
+    <p>
+      recette
+    </p>
+  </body>
+</html>
+</richcontent>
+<node TEXT="les types d&apos;usine" ID="ID_1810254120" CREATED="1587576809333" MODIFIED="1587576819237"/>
+<node TEXT="les types de mines" ID="ID_383521840" CREATED="1587576820000" MODIFIED="1587576826986"/>
+<node TEXT="les type de b&#xe2;timent sp&#xe9;ciaux" ID="ID_533562771" CREATED="1587576830194" MODIFIED="1587576844608"/>
+<node TEXT="type d&apos;entrep&#xf4;t" ID="ID_602267772" CREATED="1587576916207" MODIFIED="1587576929262"/>
+</node>
+</node>
+</node>
+<node TEXT="classes" FOLDED="true" ID="ID_1162781799" CREATED="1563901884010" MODIFIED="1587576478373"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      du point de vue PHP
+    </p>
+  </body>
+</html>
+</richcontent>
+<node TEXT="joueur" ID="ID_1231301698" CREATED="1563912301982" MODIFIED="1563912307120"/>
+<node TEXT="b&#xe2;timent" ID="ID_374090369" CREATED="1587575209791" MODIFIED="1587575217149">
+<node TEXT="attributs" ID="ID_357642190" CREATED="1587575345462" MODIFIED="1587575357936"/>
+<node TEXT="m&#xe9;thodes" ID="ID_834126577" CREATED="1587575363830" MODIFIED="1587575368363"/>
+<node TEXT="classes filles" ID="ID_702256359" CREATED="1587575368749" MODIFIED="1587575373889">
+<node TEXT="usine" ID="ID_1822505925" CREATED="1563912310229" MODIFIED="1563912313914"/>
+<node TEXT="ensemble des mines" ID="ID_1431207977" CREATED="1563912325039" MODIFIED="1587575311680"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      pour le moment l'ensemble des mines est consid&#233;r&#233; comme une seule entit&#233;
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node TEXT="entrepot" ID="ID_702622087" CREATED="1563912330073" MODIFIED="1563912334335"/>
+<node TEXT="b&#xe2;timent sp&#xe9;ciaux" ID="ID_1792408846" CREATED="1587576774788" MODIFIED="1587576784478"/>
+</node>
+</node>
+<node TEXT="mission" ID="ID_98059085" CREATED="1563916951776" MODIFIED="1563916955009"/>
+</node>
+</node>
+<node TEXT="base de donn&#xe9;es" POSITION="left" ID="ID_1659089206" CREATED="1563901758300" MODIFIED="1590027585070"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Pour cette 1e impl&#233;mentation il n'y aura pas d'optimisation des donn&#233;es.
     </p>
     <p>
       Exemple:une tabl pour les usine et une autre pour les mines
@@ -1107,6 +1298,7 @@
   </body>
 </html>
 </richcontent>
+<edge STYLE="horizontal" COLOR="#ff0000"/>
 <node TEXT="tables" ID="ID_124247338" CREATED="1563911157509" MODIFIED="1563911161071">
 <node TEXT="marchandise" ID="ID_1866151871" CREATED="1563903865535" MODIFIED="1563905806904"><richcontent TYPE="NOTE">
 
@@ -1123,7 +1315,7 @@
 </richcontent>
 <node TEXT="nom" ID="ID_322408069" CREATED="1563903919524" MODIFIED="1563903922051"/>
 <node TEXT="unit&#xe9;" ID="ID_1176784205" CREATED="1564081112641" MODIFIED="1564081115664"/>
-<node TEXT="nature" ID="ID_1568968419" CREATED="1563903924169" MODIFIED="1564081345298"><richcontent TYPE="NOTE">
+<node TEXT="nature" FOLDED="true" ID="ID_1568968419" CREATED="1563903924169" MODIFIED="1564081345298"><richcontent TYPE="NOTE">
 
 <html>
   <head>
@@ -1144,9 +1336,8 @@
     </p>
   </body>
 </html>
-
 </richcontent>
-<node TEXT="autre" FOLDED="true" ID="ID_945362405" CREATED="1564081287937" MODIFIED="1564081290958">
+<node TEXT="autre" ID="ID_945362405" CREATED="1564081287937" MODIFIED="1564081290958">
 <node TEXT="argent" ID="ID_583937421" CREATED="1563913704157" MODIFIED="1563913708132"/>
 <node TEXT="caisse" ID="ID_1087361934" CREATED="1563911345420" MODIFIED="1563911382510"><richcontent TYPE="NOTE">
 
@@ -1167,20 +1358,6 @@
 <node TEXT="produit" ID="ID_505953109" CREATED="1563904889093" MODIFIED="1563904894640"/>
 <node TEXT="butin" ID="ID_191100099" CREATED="1563904895043" MODIFIED="1563904897907"/>
 <node TEXT="unit&#xe9;" ID="ID_1071858586" CREATED="1563904898383" MODIFIED="1563904900588"/>
-</node>
-<node TEXT="producteur" ID="ID_1825969051" CREATED="1563907153220" MODIFIED="1563914525169"><richcontent TYPE="NOTE">
-
-<html>
-  <head>
-    
-  </head>
-  <body>
-    <p>
-      nom entreprise/mine associ&#233;
-    </p>
-  </body>
-</html>
-</richcontent>
 </node>
 <node TEXT="cours KImarket" ID="ID_285372205" CREATED="1563905309777" MODIFIED="1563905399507"/>
 <node TEXT="ench&#xe8;re la plus &#xe9;lev&#xe9;e" ID="ID_267739925" CREATED="1563905399648" MODIFIED="1563905407835"/>
@@ -1218,7 +1395,7 @@
   </body>
 </html>
 </richcontent>
-<node TEXT="joueur" ID="ID_1455333583" CREATED="1563901997359" MODIFIED="1563902000849">
+<node TEXT="joueur" FOLDED="true" ID="ID_1455333583" CREATED="1563901997359" MODIFIED="1563902000849">
 <node TEXT="pseudo" ID="ID_630216503" CREATED="1563905527161" MODIFIED="1563905531374"/>
 <node TEXT="mot de passe" ID="ID_664131337" CREATED="1564075552460" MODIFIED="1564075559902"/>
 <node TEXT="courriel" ID="ID_1357007728" CREATED="1563907509266" MODIFIED="1563907514128"/>
@@ -1240,12 +1417,12 @@
 </node>
 <node TEXT="dans le futur: cl&#xe9; pour r&#xe9;cup&#xe9;rer les donn&#xe9;es au format CSV" ID="ID_310458578" CREATED="1563917590733" MODIFIED="1563917612042"/>
 </node>
-<node TEXT="entrepots" ID="ID_224465134" CREATED="1563904386997" MODIFIED="1563904395366">
+<node TEXT="entrepots" FOLDED="true" ID="ID_224465134" CREATED="1563904386997" MODIFIED="1563904395366">
 <node TEXT="marchandise ID" ID="ID_1644456195" CREATED="1563905078076" MODIFIED="1563905096146"/>
 <node TEXT="joueur ID" ID="ID_324238520" CREATED="1563905463271" MODIFIED="1564074502843"/>
 <node TEXT="niveau" ID="ID_1664889707" CREATED="1563905103304" MODIFIED="1563905106496"/>
 <node TEXT="quantit&#xe9;" ID="ID_1050935743" CREATED="1563905108480" MODIFIED="1563905210554"/>
-<node TEXT="t0" ID="ID_1053918489" CREATED="1563905211384" MODIFIED="1563905280655"><richcontent TYPE="NOTE">
+<node TEXT="T0" ID="ID_1053918489" CREATED="1563905211384" MODIFIED="1587492809715"><richcontent TYPE="NOTE">
 
 <html>
   <head>
@@ -1260,14 +1437,14 @@
 </richcontent>
 </node>
 </node>
-<node TEXT="marchandises investies dans le QG" ID="ID_272899873" CREATED="1564074444800" MODIFIED="1564074458321">
+<node TEXT="marchandises investies dans le QG" FOLDED="true" ID="ID_272899873" CREATED="1564074444800" MODIFIED="1564074458321">
 <node TEXT="marchandise ID" ID="ID_41569453" CREATED="1563905078076" MODIFIED="1563905096146"/>
 <node TEXT="joueur ID" ID="ID_41188265" CREATED="1563905463271" MODIFIED="1564074496313"/>
 <node TEXT="quantit&#xe9;" ID="ID_836457670" CREATED="1563905108480" MODIFIED="1563905210554"/>
 </node>
-<node TEXT="usine" ID="ID_1978662114" CREATED="1563904397791" MODIFIED="1563904401264">
+<node TEXT="usine" FOLDED="true" ID="ID_1978662114" CREATED="1563904397791" MODIFIED="1563904401264">
 <node TEXT="joueur ID" ID="ID_49697311" CREATED="1563907204586" MODIFIED="1563910302011"/>
-<node TEXT="marchandise ID" ID="ID_1637976139" CREATED="1563907194895" MODIFIED="1563907201640"/>
+<node TEXT="type_usines ID" ID="ID_1637976139" CREATED="1563907194895" MODIFIED="1564826161467"/>
 <node TEXT="niveau" ID="ID_1504851396" CREATED="1563907307466" MODIFIED="1563907318319"/>
 <node TEXT="fin de production" ID="ID_148290100" CREATED="1563907318818" MODIFIED="1563907843042"><richcontent TYPE="NOTE">
 
@@ -1293,20 +1470,23 @@
 </richcontent>
 </node>
 </node>
-<node TEXT="mines" ID="ID_533202298" CREATED="1563904402017" MODIFIED="1563904405740">
+<node TEXT="mines" FOLDED="true" ID="ID_533202298" CREATED="1563904402017" MODIFIED="1563904405740">
 <node TEXT="joueur ID" ID="ID_256446975" CREATED="1563907204586" MODIFIED="1563910296845"/>
-<node TEXT="marchandise ID" ID="ID_852270904" CREATED="1563907194895" MODIFIED="1563907201640"/>
+<node TEXT="type_mines ID" ID="ID_852270904" CREATED="1563907194895" MODIFIED="1564826148938"/>
 <node TEXT="production maxi" ID="ID_1480124042" CREATED="1563904030699" MODIFIED="1563904036704"/>
 <node TEXT="&#xe9;tat en %" ID="ID_146229684" CREATED="1563902961260" MODIFIED="1563904052415"/>
 </node>
-<node TEXT="marchandises investies dans le QG" ID="ID_1265478189" CREATED="1563913967459" MODIFIED="1563915010986">
+<node TEXT="marchandises investies dans le QG" FOLDED="true" ID="ID_1265478189" CREATED="1563913967459" MODIFIED="1563915010986">
 <node TEXT="joueur ID" ID="ID_1030420600" CREATED="1563907204586" MODIFIED="1563910296845"/>
 <node TEXT="marchandise ID" ID="ID_1420967975" CREATED="1563907194895" MODIFIED="1563907201640"/>
 <node TEXT="quantit&#xe9;" ID="ID_669630326" CREATED="1563914016855" MODIFIED="1563914023075"/>
 </node>
-<node TEXT="misions pr&#xe9;f&#xe9;r&#xe9;es" ID="ID_563833027" CREATED="1563915531447" MODIFIED="1563915540101"/>
+<node TEXT="missions pr&#xe9;f&#xe9;r&#xe9;es" FOLDED="true" ID="ID_563833027" CREATED="1563915531447" MODIFIED="1565899807928">
+<node TEXT="joueur_ID" ID="ID_1655795449" CREATED="1565899776557" MODIFIED="1565899782928"/>
+<node TEXT="mission_ID" ID="ID_354576214" CREATED="1565899789552" MODIFIED="1565899795056"/>
 </node>
-<node TEXT="les &#xe9;volutions" ID="ID_1657796905" CREATED="1563912434958" MODIFIED="1563913522634"><richcontent TYPE="NOTE">
+</node>
+<node TEXT="les &#xe9;volutions du joueur" ID="ID_1657796905" CREATED="1563912434958" MODIFIED="1565893356752"><richcontent TYPE="NOTE">
 
 <html>
   <head>
@@ -1314,24 +1494,48 @@
   </head>
   <body>
     <p>
-      Ce qui fait &#233;voluer la situation
+      Ce qui fait &#233;voluer la situation d'un joueur
     </p>
   </body>
 </html>
 </richcontent>
-<node TEXT="actions des joueurs" ID="ID_1342075064" CREATED="1563910167105" MODIFIED="1563911223720">
+<node TEXT="actions_joueurs" ID="ID_1342075064" CREATED="1563910167105" MODIFIED="1564826393578">
 <node TEXT="action possible ID" ID="ID_423143070" CREATED="1563910245805" MODIFIED="1563913542629"/>
 <node TEXT="joueur ID" ID="ID_963285592" CREATED="1563910273246" MODIFIED="1563910284625"/>
 <node TEXT="date de fin" ID="ID_1621926169" CREATED="1563911111641" MODIFIED="1563911116009"/>
 </node>
-<node TEXT="consommation" ID="ID_1126521144" CREATED="1563912451190" MODIFIED="1563912460089">
-<node TEXT="action ID" ID="ID_686173828" CREATED="1563912501992" MODIFIED="1563912508255"/>
+<node TEXT="consommation" ID="ID_1126521144" CREATED="1563912451190" MODIFIED="1564822997483"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      contient les donn&#233;es de la table ingr&#233;dients affect&#233;s d'un coefficient multiplicateur
+    </p>
+  </body>
+</html>
+</richcontent>
+<node TEXT="action_joueur_ID" ID="ID_686173828" CREATED="1563912501992" MODIFIED="1564826374134"/>
 <node TEXT="marchandide ID" ID="ID_1798818787" CREATED="1563912510668" MODIFIED="1563912521408"/>
 <node TEXT="quantit&#xe9;" ID="ID_1588699588" CREATED="1563912647240" MODIFIED="1563912652710"/>
 </node>
 </node>
-<node TEXT="les r&#xe8;gles" ID="ID_1978278339" CREATED="1563910951627" MODIFIED="1563913443807">
-<node TEXT="actions possibles" ID="ID_600923795" CREATED="1563910984022" MODIFIED="1563910989125">
+<node TEXT="les r&#xe8;gles du jeu" ID="ID_1978278339" CREATED="1563910951627" MODIFIED="1590027867532"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      r&#232;gles ind&#233;pendantes des joueurs
+    </p>
+  </body>
+</html>
+</richcontent>
+<node TEXT="mod&#xe8;le_actions" ID="ID_600923795" CREATED="1563910984022" MODIFIED="1564828993550">
 <node TEXT="nom" ID="ID_199009308" CREATED="1563911082103" MODIFIED="1563911085083">
 <node TEXT="type achat/am&#xe9;lioration de b&#xe2;timent" ID="ID_369906224" CREATED="1563911252479" MODIFIED="1563914329950"><richcontent TYPE="NOTE">
 
@@ -1360,10 +1564,10 @@
 <node TEXT="QG" ID="ID_1184886418" CREATED="1563911488459" MODIFIED="1563911495813"/>
 <node TEXT="batiment sp&#xe9;cial" ID="ID_46713689" CREATED="1563911496820" MODIFIED="1563911502812"/>
 </node>
-<node TEXT="type mission" ID="ID_1076197669" CREATED="1563911433076" MODIFIED="1563911439377"/>
-<node TEXT="production d&apos;usine" ID="ID_408385430" CREATED="1563913791597" MODIFIED="1563913797938"/>
+<node TEXT="missions" ID="ID_1076197669" CREATED="1563911433076" MODIFIED="1565898496929"/>
+<node TEXT="productions d&apos;usine" ID="ID_408385430" CREATED="1563913791597" MODIFIED="1565898503372"/>
 </node>
-<node TEXT="consommation instantan&#xe9;e?" ID="ID_516625227" CREATED="1563911583144" MODIFIED="1563911843788"><richcontent TYPE="NOTE">
+<node TEXT="consommation instantan&#xe9;e?" ID="ID_516625227" CREATED="1563911583144" MODIFIED="1564823257685"><richcontent TYPE="NOTE">
 
 <html>
   <head>
@@ -1374,7 +1578,7 @@
       Pour am&#233;liorer un b&#226;timent on consomme instantan&#233;ment la quantit&#233;.
     </p>
     <p>
-      Pour une mission la consommatio peut &#234;tre progressive
+      Pour une mission la consommation peut &#234;tre progressive
     </p>
   </body>
 </html>
@@ -1382,7 +1586,7 @@
 </node>
 </node>
 <node TEXT="ingr&#xe9;dients" ID="ID_1188910081" CREATED="1563910232473" MODIFIED="1563910241406">
-<node TEXT="action ID" ID="ID_1850224403" CREATED="1563910325757" MODIFIED="1563910330040"/>
+<node TEXT="mod&#xe8;ie_action ID" ID="ID_1850224403" CREATED="1563910325757" MODIFIED="1564829011796"/>
 <node TEXT="marchandise ID" ID="ID_445098053" CREATED="1563910484738" MODIFIED="1563910490114"/>
 <node TEXT="consomation?" ID="ID_900895219" CREATED="1563910333757" MODIFIED="1563910385335"><richcontent TYPE="NOTE">
 
@@ -1398,7 +1602,7 @@
 </html>
 </richcontent>
 </node>
-<node TEXT="quantit&#xe9;" ID="ID_1806140372" CREATED="1563910357822" MODIFIED="1563910456079"><richcontent TYPE="NOTE">
+<node TEXT="quantit&#xe9;" ID="ID_1806140372" CREATED="1563910357822" MODIFIED="1564844370005"><richcontent TYPE="NOTE">
 
 <html>
   <head>
@@ -1409,25 +1613,59 @@
       entier naturel ou vide si inconnu
     </p>
     <p>
-      ex: pour les mission type besoin de .. la quantit&#233; &#224; vendre varie avec le temps
+      ex: pour les mission type besoin de .. la quantit&#233; &#224; vendre varie avec le temps est n'est donc pas connue &#224; l'avance
     </p>
   </body>
 </html>
 </richcontent>
 </node>
 </node>
+<node TEXT="type_mine" ID="ID_436689775" CREATED="1564822264950" MODIFIED="1564826135009">
+<node TEXT="nom" ID="ID_1834766632" CREATED="1564822276394" MODIFIED="1564822279886"/>
+<node TEXT="marchandise_ID" ID="ID_1726862163" CREATED="1564822282093" MODIFIED="1564822297309"/>
+</node>
+<node TEXT="type_usine" ID="ID_1489487018" CREATED="1564822264950" MODIFIED="1564826124401">
+<node TEXT="nom" ID="ID_1619904507" CREATED="1564822276394" MODIFIED="1564822279886"/>
+<node TEXT="marchandise_ID" ID="ID_1902958484" CREATED="1564822282093" MODIFIED="1564822297309"/>
+<node TEXT="production_ID" ID="ID_295867600" CREATED="1564825115170" MODIFIED="1565893137863"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      identifiant dans la table action possible pour la recette de production
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node TEXT="am&#xe9;lioration_ID" ID="ID_759646410" CREATED="1564825185379" MODIFIED="1565893682223"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      recette pour l'am&#233;lioration.
+    </p>
+    <p>
+      identifiant dans la table action possible
+    </p>
+  </body>
+</html>
+</richcontent>
 </node>
 </node>
-<node TEXT="jointures" ID="ID_1910418998" CREATED="1563901960726" MODIFIED="1563901969315"/>
+<node TEXT="infos_batiment_sp&#xe9;ciaux" ID="ID_822042684" CREATED="1564825573137" MODIFIED="1564825587450">
+<node TEXT="nom" ID="ID_505641421" CREATED="1564825612164" MODIFIED="1564825615313"/>
+</node>
+</node>
+</node>
+<node TEXT="relations entre les tables" ID="ID_1910418998" CREATED="1563901960726" MODIFIED="1587492886619"/>
 <node TEXT="requ&#xea;tes" ID="ID_1577915599" CREATED="1563901868933" MODIFIED="1563901873948"/>
-</node>
-<node TEXT="classes" ID="ID_1162781799" CREATED="1563901884010" MODIFIED="1563901893290">
-<node TEXT="joueur" ID="ID_1231301698" CREATED="1563912301982" MODIFIED="1563912307120"/>
-<node TEXT="usine" ID="ID_1822505925" CREATED="1563912310229" MODIFIED="1563912313914"/>
-<node TEXT="mine" ID="ID_1431207977" CREATED="1563912325039" MODIFIED="1563912328715"/>
-<node TEXT="entrepot" ID="ID_702622087" CREATED="1563912330073" MODIFIED="1563912334335"/>
-<node TEXT="mission" ID="ID_98059085" CREATED="1563916951776" MODIFIED="1563916955009"/>
-</node>
 </node>
 </node>
 </map>
