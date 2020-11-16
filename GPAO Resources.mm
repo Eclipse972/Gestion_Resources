@@ -66,7 +66,62 @@
 <node TEXT="Vue" POSITION="right" ID="ID_975396167" CREATED="1562878226641" MODIFIED="1563906682898" STYLE="bubble" HGAP_QUANTITY="15.499999955296518 pt" VSHIFT_QUANTITY="-15.749999530613437 pt">
 <font SIZE="18"/>
 <edge STYLE="bezier" COLOR="#00007c"/>
-<node TEXT="interface" ID="ID_901215627" CREATED="1562878262309" MODIFIED="1563906041485">
+<node TEXT="interface" ID="ID_1589628912" CREATED="1605489575328" MODIFIED="1605489994915"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Objectif: cr&#233;er une interface qui ressemble le plus possible &#224; celle du jeu.
+    </p>
+  </body>
+</html>
+
+</richcontent>
+<node TEXT="apparence" ID="ID_350653927" CREATED="1605489642041" MODIFIED="1605491826753"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      m'inspirer des sites d&#233;di&#233;s au jeu qui existent.
+    </p>
+  </body>
+</html>
+
+</richcontent>
+<node TEXT="fond" ID="ID_139114860" CREATED="1605491834460" MODIFIED="1605491850811">
+<node TEXT="totalement noir" ID="ID_156030783" CREATED="1605491919238" MODIFIED="1605491925582"/>
+<node TEXT="partiellement noir avec une image comme sur le site commnt jouer" ID="ID_1282092213" CREATED="1605491933101" MODIFIED="1605491991187"/>
+</node>
+<node TEXT="palette de couleurs" ID="ID_419907294" CREATED="1605491860607" MODIFIED="1605491869461">
+<node TEXT="caract&#xe8;res blanc, police et taille?" ID="ID_1934143573" CREATED="1605492150109" MODIFIED="1605492389216"/>
+<node TEXT="onglet" FOLDED="true" ID="ID_1162170124" CREATED="1605492162416" MODIFIED="1605492302978">
+<node TEXT="non s&#xe9;llectionn&#xe9;: image blanche sur fond noir" ID="ID_1676136432" CREATED="1605492271666" MODIFIED="1605492311250"/>
+<node TEXT="s&#xe9;lectionn&#xe9;: carr&#xe9; bleu avec coin arrondis" ID="ID_1691799471" CREATED="1605492213841" MODIFIED="1605492363638"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      &#160;et au passage de la souris
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
+</node>
+<node TEXT="les lignes pour chaque &#xe9;l&#xe9;ment: voir onglet entrep&#xf4;ts et usine" ID="ID_1338554665" CREATED="1605492805406" MODIFIED="1605492864838"/>
+</node>
+</node>
+<node TEXT="les onglets" ID="ID_901215627" CREATED="1562878262309" MODIFIED="1605489625603">
 <edge STYLE="horizontal"/>
 <richcontent TYPE="NOTE">
 
@@ -85,40 +140,7 @@
 </html>
 </richcontent>
 <font SIZE="14"/>
-<node TEXT="page d&apos;accueil" ID="ID_24291204" CREATED="1556938816454" MODIFIED="1562879800272">
-<font SIZE="14"/>
-<node TEXT="pr&#xe9;sentation" ID="ID_178092924" CREATED="1556938836370" MODIFIED="1562879800278">
-<font SIZE="14"/>
-</node>
-<node TEXT="les onglet" ID="ID_1592580609" CREATED="1563917465737" MODIFIED="1563917472270"/>
-<node TEXT="joueur lambda" ID="ID_854619818" CREATED="1563917472980" MODIFIED="1563917525042"><richcontent TYPE="NOTE">
-
-<html>
-  <head>
-    
-  </head>
-  <body>
-    <p>
-      si non connect&#233; l'internaute vois les caract&#233;ristique du joueur lambda
-    </p>
-  </body>
-</html>
-</richcontent>
-</node>
-</node>
-<node TEXT="joueur" ID="ID_1736105272" CREATED="1563906106678" MODIFIED="1563906479930"><richcontent TYPE="NOTE">
-
-<html>
-  <head>
-    
-  </head>
-  <body>
-    <p>
-      fusionner avec la page d'accueil?
-    </p>
-  </body>
-</html>
-</richcontent>
+<node TEXT="joueur" FOLDED="true" ID="ID_1736105272" CREATED="1563906106678" MODIFIED="1605492989333">
 <node TEXT="cr&#xe9;ation de compte" ID="ID_923956847" CREATED="1556938845642" MODIFIED="1562879800278">
 <font SIZE="14"/>
 </node>
@@ -138,12 +160,26 @@
 <font SIZE="14"/>
 </node>
 <node TEXT="modifier ses infos personelles" ID="ID_1606473115" CREATED="1563906175563" MODIFIED="1563906452286"/>
-<node TEXT="listes de toutes les actions en cours" ID="ID_881089433" CREATED="1563913215156" MODIFIED="1563913225649"/>
+<node TEXT="listes de toutes les actions en cours" ID="ID_881089433" CREATED="1563913215156" MODIFIED="1605492989332"/>
 <node TEXT="envoi d&apos;un rapport complet par email" ID="ID_1473580058" CREATED="1563907248966" MODIFIED="1563915500102"/>
+<node TEXT="joueur lambda" ID="ID_854619818" CREATED="1563917472980" MODIFIED="1563917525042"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      si non connect&#233; l'internaute vois les caract&#233;ristique du joueur lambda
+    </p>
+  </body>
+</html>
+</richcontent>
 </node>
-<node TEXT="Entrep&#xf4;ts" FOLDED="true" ID="ID_1186094358" CREATED="1556938778035" MODIFIED="1562879800279">
+</node>
+<node TEXT="Entrep&#xf4;ts" ID="ID_1186094358" CREATED="1556938778035" MODIFIED="1562879800279">
 <font SIZE="14"/>
-<node TEXT="produit existant" ID="ID_112495763" CREATED="1556947098865" MODIFIED="1562880237124"><richcontent TYPE="NOTE">
+<node TEXT="produit existant" FOLDED="true" ID="ID_112495763" CREATED="1556947098865" MODIFIED="1562880237124"><richcontent TYPE="NOTE">
 
 <html>
   <head>
@@ -228,7 +264,7 @@
 </richcontent>
 </node>
 </node>
-<node TEXT="bouton d&#xe9;tail" ID="ID_1458453222" CREATED="1556943463262" MODIFIED="1556943506587"><richcontent TYPE="NOTE">
+<node TEXT="bouton d&#xe9;tail" ID="ID_1458453222" CREATED="1556943463262" MODIFIED="1605490992182"><richcontent TYPE="NOTE">
 
 <html>
   <head>
@@ -236,10 +272,11 @@
   </head>
   <body>
     <p>
-      enclenche l'affichage du rapport sou la ligne
+      enclenche l'affichage du rapport sou la ligne. Ce bouton peut &#234;tre tout simplement l'image de l'usine ou son nom
     </p>
   </body>
 </html>
+
 </richcontent>
 </node>
 </node>
@@ -368,9 +405,30 @@
 <font SIZE="14"/>
 </node>
 </node>
+<node TEXT="Achat-vente" FOLDED="true" ID="ID_1921651660" CREATED="1605490721878" MODIFIED="1605491444943"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Les marchandises sont class&#233;es suivant leur type (ressources, produit, ..) puis par leur nom. Dans le code ASCII (?) le &quot;&#233;&quot; est class&#233; apr&#232;s les lettres. Cons&#233;quence: b&#233;ton vient apr&#232;s briques.
+    </p>
+  </body>
+</html>
+
+</richcontent>
+<node TEXT="prix actuel" ID="ID_20280863" CREATED="1605490787106" MODIFIED="1605490792358"/>
+<node TEXT="prix Ki-market" ID="ID_1933284900" CREATED="1605490794516" MODIFIED="1605490805818"/>
+<node TEXT="op&#xe9;rations &#xe0; pr&#xe9;voir" ID="ID_1732193919" CREATED="1605490821626" MODIFIED="1605492618681">
+<node TEXT="achat pour &#xe9;viter d&apos;avoir un entrepot vide" ID="ID_629717883" CREATED="1605492542425" MODIFIED="1605492569517"/>
+<node TEXT="ventes pour &#xe9;viter un trop plein" ID="ID_1163560824" CREATED="1605492571983" MODIFIED="1605492587479"/>
+</node>
+</node>
 <node TEXT="Usines" FOLDED="true" ID="ID_1938459071" CREATED="1556939765740" MODIFIED="1562879800281">
 <font SIZE="14"/>
-<node TEXT="usine existante" ID="ID_312571701" CREATED="1556946757815" MODIFIED="1562879800294"><richcontent TYPE="NOTE">
+<node TEXT="usine existante" FOLDED="true" ID="ID_312571701" CREATED="1556946757815" MODIFIED="1562879800294"><richcontent TYPE="NOTE">
 
 <html>
   <head>
@@ -493,7 +551,7 @@
 </node>
 </node>
 </node>
-<node TEXT="acheter une nouvelle usine" ID="ID_862750268" CREATED="1556946698627" MODIFIED="1556946906704"><richcontent TYPE="NOTE">
+<node TEXT="acheter une nouvelle usine" ID="ID_862750268" CREATED="1556946698627" MODIFIED="1605491688318"><richcontent TYPE="NOTE">
 
 <html>
   <head>
@@ -501,10 +559,14 @@
   </head>
   <body>
     <p>
-      <font size="5">niveau = 0</font>
+      <font size="5">Au d&#233;part toutes les usine ne sont pas accessible &#224; l'achat. </font>
+    </p>
+    <p>
+      <font size="5">Un achat est le passage du niveau = 0 au niveau 1.</font>
     </p>
   </body>
 </html>
+
 </richcontent>
 <node TEXT="prix" ID="ID_1571591944" CREATED="1556946802798" MODIFIED="1556946806740"/>
 <node TEXT="mat&#xe9;riaux n&#xe9;cessaire" ID="ID_635407091" CREATED="1556946811127" MODIFIED="1556946820600"/>
@@ -553,39 +615,8 @@
 <font SIZE="14"/>
 </node>
 </node>
-<node TEXT="B&#xe2;timent sp&#xe9;ciaux" FOLDED="true" ID="ID_1471153631" CREATED="1556939094965" MODIFIED="1562879800283">
-<font SIZE="14"/>
-<node TEXT="b&#xe2;timent existant" ID="ID_255117686" CREATED="1556947279815" MODIFIED="1562879800290"><richcontent TYPE="NOTE">
-
-<html>
-  <head>
-    
-  </head>
-  <body>
-    <p>
-      <font size="5">niveau &gt; 0</font>
-    </p>
-  </body>
-</html>
-</richcontent>
-<font SIZE="14"/>
 </node>
-<node TEXT="b&#xe2;timent inexistant" ID="ID_1955953511" CREATED="1556947279815" MODIFIED="1562879910116"><richcontent TYPE="NOTE">
-
-<html>
-  <head>
-    
-  </head>
-  <body>
-    <p>
-      <font size="5">niveau = 0</font>
-    </p>
-  </body>
-</html>
-</richcontent>
-<font SIZE="14"/>
-</node>
-</node>
+<node TEXT="les futurs onglets" FOLDED="true" ID="ID_1098924642" CREATED="1605489695973" MODIFIED="1605491760165">
 <node TEXT="Quartier g&#xe9;n&#xe9;ral" ID="ID_1227828820" CREATED="1556939116781" MODIFIED="1562879800284">
 <font SIZE="14"/>
 <node TEXT="niveau" ID="ID_669726459" CREATED="1556947347580" MODIFIED="1562879800290">
@@ -598,7 +629,7 @@
 <font SIZE="14"/>
 </node>
 </node>
-<node TEXT="Missions" ID="ID_663750520" CREATED="1556939137539" MODIFIED="1563917334306"><richcontent TYPE="NOTE">
+<node TEXT="Missions" ID="ID_663750520" CREATED="1556939137539" MODIFIED="1605491760163"><richcontent TYPE="NOTE">
 
 <html>
   <head>
@@ -659,6 +690,41 @@
 </node>
 <node TEXT="mission favorite" ID="ID_1479317794" CREATED="1563917362301" MODIFIED="1563917371278"/>
 </node>
+</node>
+<node TEXT="B&#xe2;timent sp&#xe9;ciaux" ID="ID_1471153631" CREATED="1556939094965" MODIFIED="1562879800283">
+<font SIZE="14"/>
+<node TEXT="b&#xe2;timent existant" ID="ID_255117686" CREATED="1556947279815" MODIFIED="1562879800290"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <font size="5">niveau &gt; 0</font>
+    </p>
+  </body>
+</html>
+</richcontent>
+<font SIZE="14"/>
+</node>
+<node TEXT="b&#xe2;timent inexistant" ID="ID_1955953511" CREATED="1556947279815" MODIFIED="1562879910116"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <font size="5">niveau = 0</font>
+    </p>
+  </body>
+</html>
+</richcontent>
+<font SIZE="14"/>
+</node>
+</node>
+<node TEXT="Achats et ventes" ID="ID_540894618" CREATED="1605490094765" MODIFIED="1605490103142"/>
 </node>
 </node>
 <node TEXT="feuilles de style" ID="ID_1860236681" CREATED="1562878323240" MODIFIED="1562879740943" HGAP_QUANTITY="12.500000044703482 pt" VSHIFT_QUANTITY="1.4999999552965178 pt">
