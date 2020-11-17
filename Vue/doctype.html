@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand:400,700&effect=outline">
+	<link rel="stylesheet" href="Vue/commun.css" />
+	<!-- <link rel="stylesheet" href="Vue/<?=$CONFIG['css']?>.css" /> -->
+	<title>Gestion de production du jeu Resources</title>
+</head>
+
+<body>
+
+<header>
+	<p class="font-effect-outline">Gestion de production du jeu Resources<</p>
+</header>
+
+<main role="main"> <!--remarque: <main> suffit à Chrome pour tenir compte de la feuille de style.-->
+<nav>
+<ul>
+<?php 
+	$T_script = array ('index', 'entrepots', 'marchandises', 'usines', 'mines'); // index est la page de connexion
+	for ($i = 0; $i<5; $i++) {
+		echo "\t",'<li><a ';
+		if ($i == ONGLET_ACTIF)
+			echo 'id="onglet_actif" ';
+		echo 'href="',$T_script[$i],'.php">','<img src="Vue/images/onglet_',$T_script[$i],'.png" alt="onglet ',$T_script[$i],'"></a></li>',"\n";
+	}
+?>
+</ul>
+</nav>
+
+<section>
+	<h1>En construction</h1>
+</section>
+</main>
+
+<footer>
+	<p>Site optimis&eacute; pour <img src="Vue/images/chrome.png" alt="Chrome"> et <img src="Vue/images/firefox.png" alt="Firefox"> - derni&egrave;re mise à jour: 17 novembre 2020</p>
+</footer>
+
+</body>
+
+</html>
