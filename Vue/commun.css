@@ -67,7 +67,6 @@ nav li {
 }
 nav a {
 	background-color:var(--couleur2);
-	color:black; /* le texte des onglets est noir */
 	padding: 10px;
 	display:block;
 	border-radius: 10px 10px 10px 10px;
