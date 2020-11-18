@@ -1,0 +1,21 @@
+#Traitement de erreurs serveur ignorées pour le moment
+#ErrorDocument 403 http://faq.sw.free.fr/?erreur=403
+#ErrorDocument 404 http://faq.sw.free.fr/?erreur=404
+#ErrorDocument 500 http://faq.sw.free.fr/?erreur=500
+
+<IfDefine Free>
+php56 1
+</IfDefine>
+Options -Indexes
+
+#protection du fichier de connexion
+<files connexion.php>
+order allow,deny
+deny from all
+</files>
+
+<Files ".ht*">
+Order allow,deny
+Deny from all
+Satisfy all
+</Files>
