@@ -5,7 +5,7 @@ private $BD; // PDO initialisé dans connexion.php
 
 public function __construct() {
 	try	{
-		include 'connexion.php'; // les variable de conexion sont définies dans ce script non suivi par git
+		include 'connexion.php'; // les variables de connexion sont définies dans ce script non suivi par git
 		$this->BD = new PDO($dsn, $utilisateur, $mdp); // On se connecte au serveur MySQL
 	}
 	catch (PDOException $e) { // En cas d'erreur, on affiche un message et on arrête tout
@@ -21,4 +21,15 @@ private function Requete($requete, array $T_parametre, $fonction) {
 		trigger_error('Erreur de requête dans la fonction '.$fonction, E_USER_ERROR);
 }
 private function Fermer() { $this->resultat->closeCursor(); }	 // Termine le traitement de la requête
+
+public function Marchandise() {
+	$T_code = null;
+	$i = 0;
+	$this->resultat = $this->BD->query('SELECT * FROM Vue_marchandise');
+	while ($ligne = $this->resultat->fetch()) {	// récupère et agrège le code
+		$T_code[$i] = $ligne;
+		$i++;
+	}
+	return $T_code;
+}
 }

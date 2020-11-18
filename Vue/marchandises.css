@@ -1,1 +1,11 @@
 /* feuille de style de l'onglet marchandises */
+section img {
+	height:45px;
+	vertical-align:middle;
+	margin-right:3px;
+}
+
+section a {
+	color:white;
+	text-decoration:none;  /* aucun lien n'est souligné */
+}
