@@ -1,29 +1,33 @@
+<?php 
+	// les onglets
+	$T_onglet = array ('index', 'entrepots', 'marchandises', 'usines', 'mines'); // index est la page de connexion
+	// ONGLET_ACTIF est une constante définie dans chaque script associé à l'onglet
+?>
 <!doctype html>
 <html lang="fr">
 <head>
 	<meta charset="UTF-8" />
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand:400,700&effect=outline">
 	<link rel="stylesheet" href="Vue/commun.css" />
-	<!-- <link rel="stylesheet" href="Vue/<?=$CONFIG['css']?>.css" /> -->
+	<link rel="stylesheet" href="Vue/<?=$T_onglet[ONGLET_ACTIF]?>.css" />
 	<title>Gestion de production du jeu Resources</title>
 </head>
 
 <body>
 
 <header>
-	<p class="font-effect-outline">Gestion de production du jeu Resources<</p>
+	<p class="font-effect-outline">Gestion de production du jeu Resources</p>
 </header>
 
 <main role="main"> <!--remarque: <main> suffit à Chrome pour tenir compte de la feuille de style.-->
 <nav>
 <ul>
 <?php 
-	$T_script = array ('index', 'entrepots', 'marchandises', 'usines', 'mines'); // index est la page de connexion
 	for ($i = 0; $i<5; $i++) {
 		echo "\t",'<li><a ';
 		if ($i == ONGLET_ACTIF)
 			echo 'id="onglet_actif" ';
-		echo 'href="',$T_script[$i],'.php">','<img src="Vue/images/onglet_',$T_script[$i],'.png" alt="onglet ',$T_script[$i],'"></a></li>',"\n";
+		echo 'href="',$T_onglet[$i],'.php">','<img src="Vue/images/onglet_',$T_onglet[$i],'.png" alt="onglet ',$T_onglet[$i],'"></a></li>',"\n";
 	}
 ?>
 </ul>
