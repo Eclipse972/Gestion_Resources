@@ -9,7 +9,6 @@
 	</thead>
 	<tbody>
 <?php
-	include("Modele/classe_BD.php");
 	$base = new base2donnees;
 	$T_ligne = $base->Marchandise();
 	for($i=0;$i<count($T_ligne);$i++) {
