@@ -1,7 +1,14 @@
 <?php 
 	// les onglets
 	$T_onglet = array ('index', 'entrepots', 'marchandises', 'usines', 'mines'); // index est la page de connexion
-	// ONGLET_ACTIF est une constante définie dans chaque script associé à l'onglet
+	/*
+	 * ONGLET_ACTIF est une constante définie dans chaque script associé à l'onglet
+	 * pour ajouter un onglet nommé X il faut créer 4 fichiers
+	 * X.php à la racine voir index.php pour l'exemple
+	 * X.css dans Vue
+	 * onglet_X.png dans Vue/images
+	 * X.php dans Vue pour l'affichage de la page correspondant à l'onglet
+	*/
 ?>
 <!doctype html>
 <html lang="fr">
@@ -23,12 +30,8 @@
 <nav>
 	<ul>
 <?php 
-	for ($i = 0; $i<5; $i++) {
-		echo "\t\t",'<li><a ';
-		if ($i == ONGLET_ACTIF)
-			echo 'id="onglet_actif" ';
-		echo 'href="',$T_onglet[$i],'.php">','<img src="Vue/images/onglet_',$T_onglet[$i],'.png" alt="onglet ',$T_onglet[$i],'"></a></li>',"\n";
-	}
+	for ($i = 0; $i<count($T_onglet); $i++)
+		echo "\t\t",'<li><a ',($i == ONGLET_ACTIF) ? 'id="onglet_actif" ' : '','href="',$T_onglet[$i],'.php">','<img src="Vue/images/onglet_',$T_onglet[$i],'.png" alt="onglet ',$T_onglet[$i],'"></a></li>',"\n";
 ?>
 	</ul>
 </nav>
