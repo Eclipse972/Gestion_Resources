@@ -9,9 +9,7 @@ body {
 	
 	--largeur_page:900px;
 	/* fin de déclaraion de variables */
-	background-image:url("http://gestion.resources.free.fr/Vue/images/fond_resources.png");
-	background-repeat: no-repeat;
-	background-position: center center;
+	background-color:var(--couleur1);
 	font-family: 'Quicksand', sans-serif;
 }
 
