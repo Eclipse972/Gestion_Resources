@@ -19,22 +19,22 @@
 	<p>Gestion de production pour le jeu Resources</p>
 </header>
 
-<main role="main"> <!--remarque: <main> suffit à Chrome pour tenir compte de la feuille de style.-->
+<main>
 <nav>
-<ul>
+	<ul>
 <?php 
 	for ($i = 0; $i<5; $i++) {
-		echo "\t",'<li><a ';
+		echo "\t\t",'<li><a ';
 		if ($i == ONGLET_ACTIF)
 			echo 'id="onglet_actif" ';
 		echo 'href="',$T_onglet[$i],'.php">','<img src="Vue/images/onglet_',$T_onglet[$i],'.png" alt="onglet ',$T_onglet[$i],'"></a></li>',"\n";
 	}
 ?>
-</ul>
+	</ul>
 </nav>
 
 <section>
-	<h1>En construction</h1>
+	<?php include('Vue/'.$T_onglet[ONGLET_ACTIF].'.php'); ?>
 </section>
 </main>
 
