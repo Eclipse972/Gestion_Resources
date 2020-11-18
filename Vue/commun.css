@@ -10,7 +10,7 @@ body {
 	--largeur_page:900px;
 	/* fin de déclaraion de variables */
 	background-color:var(--couleur1);
-	background-image:url("http://gestion.resources.free.fr/Vue/images/fond_resources.png");
+	background-image:url("/Vue/images/fond_resources.png");
 	font-family: 'Quicksand', sans-serif;
 	color:white;
 }
@@ -61,7 +61,7 @@ nav li {
 	margin-right:5px;
 }
 nav a {
-	background-color:var(--couleur2);
+	background-color:black;
 	padding: 10px;
 	display:block;
 	border-radius:5px 5px 5px 5px;
