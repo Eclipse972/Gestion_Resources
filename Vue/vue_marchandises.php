@@ -12,7 +12,7 @@
 	$base = new base2donnees;
 	$T_ligne = $base->Marchandise();
 	for($i=0;$i<count($T_ligne);$i++) {
-		echo "\t",($T_ligne[$i]['ID'] == $id_selectionné) ? '<tr  id="selection">' : '<tr>',"\n"; // pose d'une ancre sur la ligne
+		echo "\t",($T_ligne[$i]['ID'] == $id_selectionné) ? '<tr id="selection">' : '<tr>',"\n"; // pose d'une ancre sur la ligne sélectionnée
 		echo "\t\t",'<td>',$T_ligne[$i]['marchandise'],'</td>',"\n";
 		echo "\t\t",'<td>',$T_ligne[$i]['cours_ki'],'</td>',"\n";
 		echo "\t\t",'<td>',$T_ligne[$i]['cours_max'],'</td>',"\n";
