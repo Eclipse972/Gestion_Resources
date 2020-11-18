@@ -1,15 +1,8 @@
 body {
 	/* déclaration des variables */
-	/* palette de couleurs Source http://www.code-couleur.com/palettes.html */
-	--couleur1: #E6E2AF;
-	--couleur2: #A7A37E;
-	--couleur3: #EFECCA;
-	--couleur4: #046380;
-	--couleur5: #002F2F;
-	
+	--couleur_fond:#021116;
 	--largeur_page:900px;
 	/* fin de déclaraion de variables */
-	background-color:var(--couleur1);
 	background-image:url("/Vue/images/fond_resources.png");
 	font-family: 'Quicksand', sans-serif;
 	color:white;
@@ -19,7 +12,7 @@ header, main, footer {
 	width:var(--largeur_page);
 	margin:auto;
 	padding:5px;
-	background-color:black;
+	background-color:var(--couleur_fond);
 	font-weight: bold;
 }
 /* En-tête ------------------------------------------------------------------------------- */
@@ -61,12 +54,12 @@ nav li {
 	margin-right:5px;
 }
 nav a {
-	background-color:black;
+	background-color:var(--couleur_fond);
 	padding: 10px;
 	display:block;
 	border-radius:5px 5px 5px 5px;
 }
-nav li a:hover, #onglet_actif { background-color:white; } /* couleur de l'onglet sélectionné et celui sous la souris */
+nav li a:hover, #onglet_actif { background-color:#245070; } /* couleur de l'onglet sélectionné et celui sous la souris */
 
 nav ul img { height:45px; }
 
