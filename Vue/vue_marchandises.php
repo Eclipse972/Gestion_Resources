@@ -1,4 +1,4 @@
-<h1>Page marchandises en construction</h1>
+<p align="right">Derni&egrave;re mise à jour le :</p>
 	<table>
 	<thead>
 	<tr>
@@ -17,7 +17,9 @@
 		echo "\t\t",'<td>',number_format($T_ligne[$i]['cours_ki'],0, ',', ' '),'&euro;</td>',"\n";
 		echo "\t\t",'<td>',number_format($T_ligne[$i]['cours_max'],0, ',', ' '),'&euro;</td>',"\n";
 		if ($T_ligne[$i]['ID'] == $id_selectionné) {
-			echo  "\t",'<tr><td colspan="3">Marchandise s&eacute;lectionn&eacute;e</td></tr>',"\n";
+			echo  "\t",'<tr><td colspan="3" id="rapport">';
+			echo'd&eacute;tails en construction';
+			echo'</td></tr>',"\n";
 		}
 		echo "\t",'</tr>',"\n";
 	}
