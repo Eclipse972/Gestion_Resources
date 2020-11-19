@@ -18,7 +18,7 @@
 		echo "\t\t",'<td>',number_format($T_ligne[$i]['cours_max'],0, ',', ' '),'&euro;</td>',"\n";
 		if ($T_ligne[$i]['ID'] == $id_selectionné) {
 			echo  "\t",'<tr><td colspan="3" id="rapport">';
-			echo'd&eacute;tails en construction';
+			echo Rapport_marchandise($id_selectionné);
 			echo'</td></tr>',"\n";
 		}
 		echo "\t",'</tr>',"\n";
