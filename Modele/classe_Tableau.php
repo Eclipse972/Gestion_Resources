@@ -1,9 +1,7 @@
 <?php
 class Tableau {
-protected $ID_joueur;
 protected $Vue_BD;	// vue associé à la table. Elle prépare les données de la table pour l'affichage
 protected $T_en_tete;	// tableau contenant les en-têtes du tableau à afficher
-protected $T_champ;	// tableau contenant les champs de la vue
 // dans le futur protected $Table_BD;	// table pour la MAJ des données
 
 public function __construct($date) {
