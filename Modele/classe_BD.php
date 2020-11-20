@@ -20,12 +20,12 @@ private function Requete($requete, array $T_parametre, $fonction) {
 	if ($this->resultat->errorCode() != '00000')
 		trigger_error('Erreur de requête dans la fonction '.$fonction, E_USER_ERROR);
 }
-private function Fermer() { $this->resultat->closeCursor(); }	 // Termine le traitement de la requête
+private function Fermer() { $this->resultat->closeCursor(); }	 // Termine le traitement de la requête paramétrée
 
-public function Marchandise() {
+public function Récupère_Vue($vueBD, $WHERE = '1') { // récupère les données de la vue de la BD
 	$T_code = null;
 	$i = 0;
-	$this->resultat = $this->BD->query('SELECT * FROM Vue_marchandise');
+	$this->resultat = $this->BD->query('SELECT * FROM '.$vueBD.' WHERE '.$WHERE);
 	while ($ligne = $this->resultat->fetch()) {	// récupère et agrège le code
 		$T_code[$i] = $ligne;
 		$i++;
