@@ -1,22 +1,4 @@
 /* feuille de style de l'onglet marchandises */
-section img {
-	height:45px;
-	vertical-align:middle;
-	margin-right:3px;
-}
-
-section a {
-	color:white;
-	text-decoration:none;  /* aucun lien n'est souligné */
-}
-
-section a:hover { text-decoration:underline; }
-
-section table {
-	margin-left: auto;
-	margin-right: auto;
-}
-
 section thead tr th:nth-child(1), section tbody tr td:nth-child(1) { width:350px; }
 section thead tr th:nth-child(2), section tbody tr td:nth-child(2), section thead tr th:nth-child(3), section tbody tr td:nth-child(3) { width:200px; }
 
@@ -24,9 +6,3 @@ section thead tr th:nth-child(1) { text-align: center; }
 
 section tbody tr td:nth-child(1) { text-align: left; }
 section tbody tr td:nth-child(2), section tbody tr td:nth-child(3), section thead tr th:nth-child(2),section thead tr th:nth-child(3)  { text-align: right; }
-
-#rapport {
-	color:black;
-	background-color:white;
-	margin:5px
-}

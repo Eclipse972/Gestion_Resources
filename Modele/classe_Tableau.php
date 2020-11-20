@@ -57,7 +57,7 @@ public function __construct($date) { parent::__construct($date); }
 
 public function Afficher_tete() { parent::Afficher_tete(array('Marchandise', 'cours Ki-market',	'cours max')); }
 
-public function Afficher_corps($Vue,$nb_col_rapport,$id_selectionné) { parent::Afficher_corps($Vue, $nb_col_rapport, $id_selectionné); }
+public function Afficher_corps($id_selectionné) { parent::Afficher_corps('Vue_marchandise',3, $id_selectionné); }
 
 public function Afficher_rapport($id, $nom_ligne) {
 ?>		<p>Rapport <?=$nom_ligne?> en construction</p>
@@ -66,4 +66,14 @@ public function Afficher_rapport($id, $nom_ligne) {
 } // fin de classe TMarchandise
 
 class TMine extends Tableau {
+public function __construct($date) { parent::__construct($date); }
+
+public function Afficher_tete() { parent::Afficher_tete(array('Mines')); }
+
+public function Afficher_corps($id_selectionné) { parent::Afficher_corps('Vue_mine',1, $id_selectionné); }
+
+public function Afficher_rapport($id, $nom_ligne) {
+?>		<p>Rapport <?=$nom_ligne?> en construction</p>
+<?php
+}
 } // fin de clase TMine

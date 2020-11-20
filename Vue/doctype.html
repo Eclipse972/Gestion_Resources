@@ -1,14 +1,19 @@
 <?php 
-	// les onglets
-	$T_onglet = array ('index', 'entrepots', 'marchandises', 'usines', 'mines'); // index est la page de connexion
 	/*
-	 * ONGLET_ACTIF est une constante définie dans chaque script associé à l'onglet
+	 * ONGLET_ACTIF est une constante définie dans chaque script associé à l'onglet (qui incsopore appelle ce script)
 	 * pour ajouter un onglet nommé X il faut créer 4 fichiers
 	 * X.php à la racine voir index.php pour l'exemple
 	 * X.css dans Vue
 	 * onglet_X.png dans Vue/images
 	 * X.php dans Vue pour l'affichage de la page correspondant à l'onglet
 	*/
+	require'Modele/classe_BD.php';
+	require'Modele/classe_Tableau.php';
+
+	// les onglets utilisé dans les sections head, nav et section
+	$T_onglet = array ('index', 'entrepots', 'marchandises', 'usines', 'mines'); // index est la page de connexion
+	$id_selectionné = (int) $_GET['id']; // ID objet de l'onglet sélectionné
+
 ?>
 <!doctype html>
 <html lang="fr">
@@ -18,6 +23,7 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand:400,700">
 	<link rel="stylesheet" href="Vue/commun.css" />
 	<link rel="stylesheet" href="Vue/<?=$T_onglet[ONGLET_ACTIF]?>.css" />
+	<link rel="stylesheet" href="Vue/table.css" />
 	<title>Gestion de production pour le jeu Resources</title>
 </head>
 
@@ -38,7 +44,14 @@
 </nav>
 
 <section>
-	<?php include('Vue/vue_'.$T_onglet[ONGLET_ACTIF].'.php'); ?>
+<?php
+	if ((ONGLET_ACTIF>0) && (ONGLET_ACTIF<count($T_onglet))) {	// page de l'onglet structuré sous forme de table
+		$T_classe = array ('TEntrepot', 'TMarchandise',		'TUsine',	'TMine');
+		$Tableau = new $T_classe[ONGLET_ACTIF-1]('ind&eacute;termin&eacute;e');
+		$Tableau->Afficher_tete();
+		$Tableau->Afficher_corps($id_selectionné); // paramètre id_selectionné 
+	} else echo'Page en construction';
+?>
 </section>
 </main>
 
