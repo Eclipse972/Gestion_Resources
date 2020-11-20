@@ -11,7 +11,7 @@ public function __construct($date) {
 <?php
 }
 
-protected function Afficher_tete() { // déclare le tableau et affiche l'en-tête
+public function Afficher_tete() { // déclare le tableau et affiche l'en-tête
 ?>
 	<thead>
 	<tr>
@@ -32,11 +32,7 @@ protected function Afficher_corps($id_selectionné) {
 		echo "\t",($T_Vue[$i]['ID'] == $id_selectionné) ? '<tr id="selection">' : '<tr>',"\n"; // pose d'une ancre sur la ligne sélectionnée
 		echo $T_Vue[$i]['code'],"\t";
 		echo '</tr>',"\n";
-		if ($T_Vue[$i]['ID'] == $id_selectionné) {
-			echo "\t",'<tr>',"\n\t\t",'<td colspan="3" id="rapport">',"\n";
-			$this->Afficher_rapport($id_selectionné,$T_Vue[$i]['nom_ligne']); // le 2e paramètre permet de récupérer le nom sans refaire une requête
-			echo "\t\t",'</td>',"\n\t",'</tr>',"\n";
-		}
+		if ($T_Vue[$i]['ID'] == $id_selectionné) $this->Afficher_rapport($id_selectionné,$T_Vue[$i]['nom_ligne']); // le 2e paramètre permet de récupérer le nom sans refaire une requête
 	}
 ?>
 	</tbody>
@@ -52,12 +48,16 @@ public function __construct($date) {
 	parent::__construct($date);
 }
 
-public function Afficher_tete() { parent::Afficher_tete(); }
+//public function Afficher_tete() { parent::Afficher_tete(); }
 public function Afficher_corps($id_selectionné) { parent::Afficher_corps($id_selectionné); }
 
 public function Afficher_rapport($id, $nom_ligne) {
 ?>
+	<tr>
+		<td colspan="<?=count($this->T_en_tete)?>" id="rapport">
 		<p>Rapport <?=$nom_ligne?> en construction</p>
+		</td>
+	</tr>
 <?php	
 }
 }
