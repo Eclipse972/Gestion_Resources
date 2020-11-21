@@ -23,4 +23,10 @@ public function Récupère_Vue($vueBD, $WHERE = '1') { // récupère les donnée
 	}
 	return $T_code;
 }
+
+public function Récupère_début_recette($id) {
+	$this->resultat = $this->BD->query('SELECT * FROM Vue_début_recette WHERE ID='.$id);
+	$résultat = $this->resultat->fetch();
+	return $résultat['code'];
+}
 }

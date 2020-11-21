@@ -91,8 +91,8 @@ public function Afficher_tete() { parent::Afficher_tete(array('Usine', 'Niveau',
 public function Afficher_corps($id_selectionné) { parent::Afficher_corps('Vue_usine', $id_selectionné); }
 
 public function Afficher_rapport($id, $nom_ligne) {
-?>		<p>Rapport <?=$nom_ligne?> en construction</p>
-<?php
+	$BD = new base2donnees;
+	echo $BD->Récupère_début_recette($id);
 }
 }
 // classe TEntrepot -------------------------------------------------------------------------------------------------------------------
