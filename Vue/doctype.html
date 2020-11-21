@@ -37,7 +37,7 @@
 <nav>
 	<ul>
 <?php
-	$T_onglet = array ('index', 'entrepots', 'marchandises', 'usines', 'mines');	// les onglets
+	$T_onglet = array ('index', 'usines', 'mines', 'entrepots', 'marchandises');	// les onglets
 	foreach($T_onglet as $valeur)
 		echo "\t\t",'<li><a ',($valeur == $SCRIPT) ? 'id="onglet_actif" ' : '','href="',$valeur,'.php">','<img src="Vue/images/onglet_',$valeur,'.png" alt="onglet ',$valeur,'"></a></li>',"\n";
 ?>
