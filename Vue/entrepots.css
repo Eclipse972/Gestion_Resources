@@ -2,4 +2,5 @@
 section thead tr th:nth-child(2), section tbody tr td:nth-child(2) { width:450px; }
 section thead tr th:nth-child(3), section tbody tr td:nth-child(3) { width:90px; }
 section thead tr th:nth-child(4), section tbody tr td:nth-child(4) { width:300px; }
-section tbody tr td:nth-child(3), section tbody tr td:nth-child(4), section thead tr th:nth-child(3),section thead tr th:nth-child(4)  { text-align: right; }
+section tbody tr td:nth-child(3), section tbody tr td:nth-child(4) { text-align: right; }
+section thead tr th:nth-child(3), section thead tr th:nth-child(4) { text-align: center; }

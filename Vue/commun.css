@@ -13,10 +13,12 @@ header, main, footer {
 	margin:auto;
 	padding:5px;
 	background-color:var(--couleur_fond);
-	font-weight: bold;
 }
 /* En-tête ------------------------------------------------------------------------------- */
-header { font-size:30px; }
+header {
+	font-size:30px;
+	font-weight:bold;
+}
 header p { margin:0; }
 
 /* zone centrale ------------------------------------------------------------------------------- */

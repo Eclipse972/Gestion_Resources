@@ -4,9 +4,18 @@ section tbody tr td:nth-child(1) img {
 	vertical-align:middle;
 }
 
+section thead tr {
+	background-color:#245070;
+	padding:2px;
+}
+
 section tbody tr td:nth-child(1) { width:50px; }
 section thead tr th:nth-child(2) { text-align: center; }
-section tbody tr td:nth-child(2) { text-align: left; }
+
+section tbody tr td:nth-child(2) {
+	text-align: left;
+	vertical-align:top;
+}
 
 section a {
 	color:white;
