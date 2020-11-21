@@ -81,4 +81,15 @@ public function Afficher_rapport($id, $nom_ligne) {
 }
 }
 // classe TUsine -------------------------------------------------------------------------------------------------------------------
+class TUsine extends Tableau {
+
+public function Afficher_tete() { parent::Afficher_tete(array('Usine', 'Niveau', 'production')); }
+
+public function Afficher_corps($id_selectionné) { parent::Afficher_corps('Vue_usine',3, $id_selectionné); }
+
+public function Afficher_rapport($id, $nom_ligne) {
+?>		<p>Rapport <?=$nom_ligne?> en construction</p>
+<?php
+}
+}
 // classe TEntrepot -------------------------------------------------------------------------------------------------------------------
