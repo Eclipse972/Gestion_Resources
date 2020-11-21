@@ -5,6 +5,8 @@ section tbody tr td:nth-child(1) img {
 }
 
 section tbody tr td:nth-child(1) { width:50px; }
+section thead tr th:nth-child(2) { text-align: center; }
+section tbody tr td:nth-child(2) { text-align: left; }
 
 section a {
 	color:white;
