@@ -1,9 +1,9 @@
 /* feuille de style de l'onglet entrepôts */
-section thead tr th:nth-child(1), section tbody tr td:nth-child(1) { width:450px; }
-section thead tr th:nth-child(2), section tbody tr td:nth-child(2) { width:90px; }
-section thead tr th:nth-child(3), section tbody tr td:nth-child(3) { width:300px; }
+section thead tr th:nth-child(2), section tbody tr td:nth-child(2) { width:450px; }
+section thead tr th:nth-child(3), section tbody tr td:nth-child(3) { width:90px; }
+section thead tr th:nth-child(4), section tbody tr td:nth-child(4) { width:300px; }
 
-section thead tr th:nth-child(1) { text-align: center; }
+section thead tr th:nth-child(2) { text-align: center; }
 
-section tbody tr td:nth-child(1) { text-align: left; }
-section tbody tr td:nth-child(2), section tbody tr td:nth-child(3), section thead tr th:nth-child(2),section thead tr th:nth-child(3)  { text-align: right; }
+section tbody tr td:nth-child(2) { text-align: left; }
+section tbody tr td:nth-child(3), section tbody tr td:nth-child(4), section thead tr th:nth-child(3),section thead tr th:nth-child(4)  { text-align: right; }

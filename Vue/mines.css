@@ -1,9 +1,9 @@
 /* feuille de style de l'onglet mines */
-section thead tr th:nth-child(1), section tbody tr td:nth-child(1) {
+section thead tr th:nth-child(2), section tbody tr td:nth-child(2) {
 	width:600px;
 	text-align: left;
 }
-section thead tr th:nth-child(2), section tbody tr td:nth-child(2) {
+section thead tr th:nth-child(3), section tbody tr td:nth-child(3) {
 	width:200px;
 	text-align: left;
 }

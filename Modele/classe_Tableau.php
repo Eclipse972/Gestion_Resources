@@ -1,21 +1,24 @@
 <?php
 class Tableau {
+protected $nb_col_tableau;
 public function __construct() {
 ?>	<table>
 <?php
 }
 
 protected function Afficher_tete($T_en_tete) { // déclare le tableau avec en paramètres un tableau contenant les en-têtes à afficher
+	$this->nb_col_tableau = count($T_en_tete)+1; // +celle pour l'image
 ?>
 	<thead>
 	<tr>
+		<td><!-- colonne pour l'image --></td>
 <?php	for($i=0;$i<count($T_en_tete);$i++) {	echo "\t\t",'<th>',$T_en_tete[$i],'</th>',"\n";	}	?>
 	</tr>
 	</thead>
 <?php
 }
 	
-protected function Afficher_corps($Vue_BD, $nb_col_rapport, $id_selectionné) {
+protected function Afficher_corps($Vue_BD, $id_selectionné) {
 ?>
 	<tbody>
 <?php
@@ -27,7 +30,7 @@ protected function Afficher_corps($Vue_BD, $nb_col_rapport, $id_selectionné) {
 		echo $T_Vue[$i]['code'],"\t";
 		echo '</tr>',"\n";
 		if ($T_Vue[$i]['ID'] == $id_selectionné) {
-			$this->Début_rapport($nb_col_rapport);
+			$this->Début_rapport($this->nb_col_tableau);
 			$this->Afficher_rapport($id_selectionné,$T_Vue[$i]['nom_ligne']); // le 2e paramètre permet de récupérer le nom sans refaire une requête
 			$this->Fin_rapport();
 		}
@@ -40,7 +43,7 @@ protected function Afficher_corps($Vue_BD, $nb_col_rapport, $id_selectionné) {
 
 protected function Début_rapport($nb_col_rapport) {
 ?>	<tr>
-		<td colspan="<?=$nb_col_rapport?>" id="rapport">
+		<td colspan="<?=$this->nb_col_tableau?>" id="rapport">
 <?php
 }
 protected function Fin_rapport() {
@@ -60,7 +63,7 @@ public function __construct() {
 
 public function Afficher_tete() { parent::Afficher_tete(array('Marchandise', 'cours Ki-market',	'cours max')); }
 
-public function Afficher_corps($id_selectionné) { parent::Afficher_corps('Vue_marchandise',3, $id_selectionné); }
+public function Afficher_corps($id_selectionné) { parent::Afficher_corps('Vue_marchandise', $id_selectionné); }
 
 public function Afficher_rapport($id, $nom_ligne) {
 ?>		<p>Rapport <?=$nom_ligne?> en construction</p>
@@ -73,7 +76,7 @@ class TMine extends Tableau {
 
 public function Afficher_tete() { parent::Afficher_tete(array('Mines', 'Production')); }
 
-public function Afficher_corps($id_selectionné) { parent::Afficher_corps('Vue_mine',2, $id_selectionné); }
+public function Afficher_corps($id_selectionné) { parent::Afficher_corps('Vue_mine', $id_selectionné); }
 
 public function Afficher_rapport($id, $nom_ligne) {
 ?>		<p>Rapport <?=$nom_ligne?> en construction</p>
@@ -85,7 +88,7 @@ class TUsine extends Tableau {
 
 public function Afficher_tete() { parent::Afficher_tete(array('Usine', 'Niveau', 'Production')); }
 
-public function Afficher_corps($id_selectionné) { parent::Afficher_corps('Vue_usine',3, $id_selectionné); }
+public function Afficher_corps($id_selectionné) { parent::Afficher_corps('Vue_usine', $id_selectionné); }
 
 public function Afficher_rapport($id, $nom_ligne) {
 ?>		<p>Rapport <?=$nom_ligne?> en construction</p>
@@ -97,7 +100,7 @@ class TEntrepot extends Tableau {
 
 public function Afficher_tete() { parent::Afficher_tete(array('Usine', 'Niveau', 'Stock')); }
 
-public function Afficher_corps($id_selectionné) { parent::Afficher_corps('Vue_entrepot',3, $id_selectionné); }
+public function Afficher_corps($id_selectionné) { parent::Afficher_corps('Vue_entrepot', $id_selectionné); }
 
 public function Afficher_rapport($id, $nom_ligne) {
 ?>		<p>Rapport <?=$nom_ligne?> en construction</p>

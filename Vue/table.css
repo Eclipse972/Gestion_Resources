@@ -1,9 +1,10 @@
 /* feuille de style commune pour les onglets marchandises, mine, usines et entrepôts */
-section img {
+section tbody tr td:nth-child(1) img {
 	height:45px;
 	vertical-align:middle;
-	margin-right:3px;
 }
+
+section tbody tr td:nth-child(1) { width:50px; }
 
 section a {
 	color:white;
