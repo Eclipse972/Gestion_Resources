@@ -1,9 +1,7 @@
 <?php
 class Tableau {
-public function __construct($date) {
-?>
-<p align="right">Derni&egrave;re mise à jour le: <?=$date?></p>
-	<table>
+public function __construct() {
+?>	<table>
 <?php
 }
 
@@ -51,9 +49,14 @@ protected function Fin_rapport() {
 <?php	
 }
 }
-// Les classes fille utilisées dans les onglets
+// classe TMarchandise -------------------------------------------------------------------------------------
 class TMarchandise extends Tableau {
-public function __construct($date) { parent::__construct($date); }
+private $date_MAJ;
+public function __construct() {
+	$this->date_MAJ = 'ind&eacute;termin&eacute;e'; // il va faloir trouver cette date lors de la MAJ des prix des marchandises
+?><p align="right">Derni&egrave;re mise à jour le: <?=$this->date_MAJ?></p><?php
+	parent::__construct();
+}
 
 public function Afficher_tete() { parent::Afficher_tete(array('Marchandise', 'cours Ki-market',	'cours max')); }
 
@@ -63,10 +66,10 @@ public function Afficher_rapport($id, $nom_ligne) {
 ?>		<p>Rapport <?=$nom_ligne?> en construction</p>
 <?php
 }
-} // fin de classe TMarchandise
+}
 
+// classe TMine -------------------------------------------------------------------------------------------------------------------
 class TMine extends Tableau {
-public function __construct($date) { parent::__construct($date); }
 
 public function Afficher_tete() { parent::Afficher_tete(array('Mines')); }
 
@@ -76,4 +79,6 @@ public function Afficher_rapport($id, $nom_ligne) {
 ?>		<p>Rapport <?=$nom_ligne?> en construction</p>
 <?php
 }
-} // fin de clase TMine
+}
+// classe TUsine -------------------------------------------------------------------------------------------------------------------
+// classe TEntrepot -------------------------------------------------------------------------------------------------------------------

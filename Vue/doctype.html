@@ -10,9 +10,8 @@
 	*/
 	require'Modele/classe_BD.php';
 	require'Modele/classe_Tableau.php';
+	$SCRIPT = substr($_SERVER['PHP_SELF'],1,strlen($_SERVER['PHP_SELF'])-5);	// script associé à l'onglet qui a téléchargé cette page
 
-	// les onglets utilisé dans les sections head, nav et section
-	$T_onglet = array ('index', 'entrepots', 'marchandises', 'usines', 'mines'); // index est la page de connexion
 	$id_selectionné = (int) $_GET['id']; // ID objet de l'onglet sélectionné
 
 ?>
@@ -23,7 +22,7 @@
 	<link rel="shortcut icon" type="image/png" href="Vue/images/resources.ico">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand:400,700">
 	<link rel="stylesheet" href="Vue/commun.css" />
-	<link rel="stylesheet" href="Vue/<?=$T_onglet[ONGLET_ACTIF]?>.css" />
+	<link rel="stylesheet" href="Vue/<?=$SCRIPT?>.css" />
 	<link rel="stylesheet" href="Vue/table.css" />
 	<title>Gestion de production pour le jeu Resources</title>
 </head>
@@ -37,18 +36,24 @@
 <main>
 <nav>
 	<ul>
-<?php 
-	for ($i = 0; $i<count($T_onglet); $i++)
-		echo "\t\t",'<li><a ',($i == ONGLET_ACTIF) ? 'id="onglet_actif" ' : '','href="',$T_onglet[$i],'.php">','<img src="Vue/images/onglet_',$T_onglet[$i],'.png" alt="onglet ',$T_onglet[$i],'"></a></li>',"\n";
+<?php
+	$T_onglet = array ('index', 'entrepots', 'marchandises', 'usines', 'mines');	// les onglets
+	foreach($T_onglet as $valeur)
+		echo "\t\t",'<li><a ',($valeur == $SCRIPT) ? 'id="onglet_actif" ' : '','href="',$valeur,'.php">','<img src="Vue/images/onglet_',$valeur,'.png" alt="onglet ',$valeur,'"></a></li>',"\n";
 ?>
 	</ul>
 </nav>
 
 <section>
 <?php
-	if ((ONGLET_ACTIF>0) && (ONGLET_ACTIF<count($T_onglet))) {	// page de l'onglet structuré sous forme de table
-		$T_classe = array ('TEntrepot', 'TMarchandise',		'TUsine',	'TMine');
-		$Tableau = new $T_classe[ONGLET_ACTIF-1]('ind&eacute;termin&eacute;e');
+	$T_classe = array (
+//		script onglet	=>  classe associée
+		'entrepots'		=> 'TEntrepot',
+		'marchandises'	=> 'TMarchandise',		
+		'usines'		=> 'TUsine',
+		'mines'			=> 'TMine');
+	if (isset($T_classe[$SCRIPT])) {
+		$Tableau = new $T_classe[$SCRIPT];
 		$Tableau->Afficher_tete();
 		$Tableau->Afficher_corps($id_selectionné); // paramètre id_selectionné 
 	} else echo'Page en construction';
