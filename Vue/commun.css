@@ -1,7 +1,7 @@
 body {
 	/* déclaration des variables */
 	--couleur_fond:#021116;
-	--largeur_page:900px;
+	--largeur_page:1000px;
 	/* fin de déclaraion de variables */
 	background-image:url("/Vue/images/fond_resources.png");
 	font-family: 'Quicksand', sans-serif;
@@ -19,8 +19,11 @@ header {
 	font-size:30px;
 	font-weight:bold;
 }
-header p { margin:0; }
-
+header p { margin:5px; }
+header img {
+	height:90px;
+	vertical-align:middle;
+}
 /* zone centrale ------------------------------------------------------------------------------- */
 section {
 	font-size: 20px;
