@@ -13,15 +13,6 @@ public function __construct() {
 	}
 }
 
-private function Requete($requete, array $T_parametre, $fonction) {
-	$this->resultat = $this->BD->prepare($requete);
-	// la liste de paramètres sous forme d'un tableau dans le même ordre que les ? dans la requête
-	$this->resultat->execute($T_parametre);
-	if ($this->resultat->errorCode() != '00000')
-		trigger_error('Erreur de requête dans la fonction '.$fonction, E_USER_ERROR);
-}
-private function Fermer() { $this->resultat->closeCursor(); }	 // Termine le traitement de la requête paramétrée
-
 public function Récupère_Vue($vueBD, $WHERE = '1') { // récupère les données de la vue de la BD
 	$T_code = null;
 	$i = 0;
