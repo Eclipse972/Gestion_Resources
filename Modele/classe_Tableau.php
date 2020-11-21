@@ -11,7 +11,7 @@ protected function Afficher_tete($T_en_tete) { // déclare le tableau avec en pa
 ?>
 	<thead>
 	<tr>
-		<td><!-- colonne pour l'image --></td>
+		<th><!-- colonne pour l'image --></th>
 <?php	foreach($T_en_tete as $valeur) {	echo "\t\t",'<th>',$valeur,'</th>',"\n";	}	?>
 	</tr>
 	</thead>
