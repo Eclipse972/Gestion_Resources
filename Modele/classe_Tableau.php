@@ -71,9 +71,9 @@ public function Afficher_rapport($id, $nom_ligne) {
 // classe TMine -------------------------------------------------------------------------------------------------------------------
 class TMine extends Tableau {
 
-public function Afficher_tete() { parent::Afficher_tete(array('Mines')); }
+public function Afficher_tete() { parent::Afficher_tete(array('Mines', 'Production')); }
 
-public function Afficher_corps($id_selectionné) { parent::Afficher_corps('Vue_mine',1, $id_selectionné); }
+public function Afficher_corps($id_selectionné) { parent::Afficher_corps('Vue_mine',2, $id_selectionné); }
 
 public function Afficher_rapport($id, $nom_ligne) {
 ?>		<p>Rapport <?=$nom_ligne?> en construction</p>
