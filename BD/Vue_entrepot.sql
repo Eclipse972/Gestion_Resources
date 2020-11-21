@@ -1,6 +1,6 @@
 CREATE VIEW Vue_entrepot AS
 SELECT 
-	marchandise.ID AS ID,
+	marchandise.ID,
 	CONCAT(
 		'\t\t<td><a href="?id=',marchandise.ID,'#selection"><img src="Vue/images/',marchandise.image, '.png" alt ="',marchandise.nom,'">',marchandise.nom,'</a></td>\n',
 		'\t\t<td>',REPLACE(FORMAT(0 ,0),',', ' '),'</td>\n',
