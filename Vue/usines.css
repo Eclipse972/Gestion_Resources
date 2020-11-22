@@ -6,7 +6,7 @@ section tbody tr td:nth-child(3), section tbody tr td:nth-child(4) { text-align:
 section thead tr th:nth-child(3), section thead tr th:nth-child(4) { text-align: center; }
 section tbody tr td:nth-child(2) { vertical-align:top; }
 
-section #rapport img {
+section tbody tr td:nth-child(2) img, section #rapport img {
 	height:22px;
 	vertical-align:middle;
 }

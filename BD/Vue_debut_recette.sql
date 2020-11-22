@@ -1,10 +1,8 @@
 CREATE VIEW Vue_début_recette AS
 SELECT 
 	type_usine.ID,
-	CONCAT('<img src="Vue/images/',marchandise.image, '.png" alt ="',marchandise.nom,'"> 
-	Produit: ',marchandise.nom,' ',
-	recette.production_base,' ',unites.nom,
-	' pour un co&ucirc;t de ',ingredients.quantité,'&euro;') AS code
+	CONCAT('En produire: ',recette.production_base,unites.nom,
+	' co&ucirc;te ',REPLACE(FORMAT(ingredients.quantité ,0),',', ' '),'&euro;') AS code
 FROM type_usine, marchandise, recette, unites, ingredients
 WHERE type_usine.marchandise_ID = marchandise.ID
 AND type_usine.production_ID = recette.ID

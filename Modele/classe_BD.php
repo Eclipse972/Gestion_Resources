@@ -14,7 +14,7 @@ public function __construct() {
 }
 
 public function Récupère_Vue($vueBD, $WHERE = '1') { // récupère les données de la vue de la BD
-	$T_code = null;
+	$T_code = '';
 	$i = 0;
 	$this->resultat = $this->BD->query('SELECT * FROM '.$vueBD.' WHERE '.$WHERE);
 	while ($ligne = $this->resultat->fetch()) {	// récupère et agrège le code
@@ -24,9 +24,14 @@ public function Récupère_Vue($vueBD, $WHERE = '1') { // récupère les donnée
 	return $T_code;
 }
 
-public function Récupère_début_recette($id) {
-	$this->resultat = $this->BD->query('SELECT * FROM Vue_début_recette WHERE ID='.$id);
-	$résultat = $this->resultat->fetch();
-	return $résultat['code'];
+public function Récupère_recette($type_usineID) {
+	$i = 0;
+	$T_code = '';
+	$this->resultat = $this->BD->query('SELECT Vue_recette.code FROM Vue_recette, type_usine WHERE type_usine.production_ID = Vue_recette.ID AND type_usine.ID = '.$type_usineID);
+	while ($ligne = $this->resultat->fetch()) {	// récupère et agrège le code
+		$T_code .= $ligne['code'];
+		$i++;
+	}
+	return $T_code;
 }
 }

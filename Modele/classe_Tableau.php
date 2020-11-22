@@ -30,7 +30,7 @@ protected function Afficher_corps($Vue_BD, $id_selectionné) {
 		echo $valeur['code'],"\t";
 		echo '</tr>',"\n";
 		if ($valeur['ID'] == $id_selectionné) {
-			$this->Début_rapport($this->nb_col_tableau);
+			$this->Début_rapport();
 			$this->Afficher_rapport($id_selectionné,$valeur['nom_ligne']); // le 2e paramètre permet de récupérer le nom sans refaire une requête
 			$this->Fin_rapport();
 		}
@@ -41,7 +41,7 @@ protected function Afficher_corps($Vue_BD, $id_selectionné) {
 <?php
 }
 
-protected function Début_rapport($nb_col_rapport) {
+protected function Début_rapport() {
 ?>	<tr>
 		<td colspan="<?=$this->nb_col_tableau?>" id="rapport">
 <?php
@@ -88,11 +88,32 @@ class TUsine extends Tableau {
 
 public function Afficher_tete() { parent::Afficher_tete(array('Usine', 'Niveau', 'Production')); }
 
-public function Afficher_corps($id_selectionné) { parent::Afficher_corps('Vue_usine', $id_selectionné); }
+public function Afficher_corps($id_selectionné) {
+?>
+	<tbody>
+<?php
+	$BD = new base2donnees;
+	$T_Vue = $BD->Récupère_Vue('Vue_usine'); // récupère la vue
+	foreach($T_Vue as $valeur) {
+		echo "\t",($valeur['ID'] == $id_selectionné) ? '<tr id="selection">' : '<tr>',"\n"; // pose d'une ancre sur la ligne sélectionnée
+		echo $valeur['debut_code'];
+		echo '<br>',$BD->Récupère_recette($valeur['ID']);
+		echo $valeur['fin_code'];
+		echo '</tr>',"\n";
+		if ($valeur['ID'] == $id_selectionné) {
+			$this->Début_rapport();
+			$this->Afficher_rapport($id_selectionné,$valeur['nom_ligne']); // le 2e paramètre permet de récupérer le nom sans refaire une requête
+			$this->Fin_rapport();
+		}
+	}
+?>
+	</tbody>
+	</table>
+<?php
+}
 
 public function Afficher_rapport($id, $nom_ligne) {
-	$BD = new base2donnees;
-	echo $BD->Récupère_début_recette($id);
+	echo 'Rapport ',$nom_ligne,' en construction',"\n";
 }
 }
 // classe TEntrepot -------------------------------------------------------------------------------------------------------------------
