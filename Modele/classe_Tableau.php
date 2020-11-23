@@ -97,7 +97,7 @@ public function Afficher_corps($id_selectionné) {
 	foreach($T_Vue as $valeur) {
 		echo "\t",($valeur['ID'] == $id_selectionné) ? '<tr id="selection">' : '<tr>',"\n"; // pose d'une ancre sur la ligne sélectionnée
 		echo $valeur['debut_code'];
-		echo '<br>',$BD->Récupère_recette($valeur['ID']);
+		echo '<p>',$BD->Récupère_recette($valeur['ID']),'</p>';
 		echo $valeur['fin_code'];
 		echo '</tr>',"\n";
 		if ($valeur['ID'] == $id_selectionné) {

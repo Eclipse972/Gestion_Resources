@@ -3,7 +3,7 @@ SELECT
 	type_usine.ID,
 	CONCAT(
 		'\t\t<td><a href="?id=',type_usine.ID,'#selection"><img src="Vue/images/',type_usine.image, '.png" alt ="',type_usine.nom,'"></a></td>',
-		'\t\t<td><a href="?id=',type_usine.ID,'#selection">',type_usine.nom,'</a>'
+		'\t\t<td><a href="?id=',type_usine.ID,'#selection"><h1>',type_usine.nom,'</h1></a>'
 	) AS debut_code,
 
 	-- coupure pour mettre la recette de production de l'usine
