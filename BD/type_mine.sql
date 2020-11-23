@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: gestion.resources.sql.free.fr
--- Généré le : Sam 21 Novembre 2020 à 03:45
+-- Généré le : Lun 23 Novembre 2020 à 01:53
 -- Version du serveur: 5.0.83
 -- Version de PHP: 5.3.9
 
@@ -45,8 +45,8 @@ INSERT INTO `type_mine` (`ID`, `nom`, `marchandise_ID`) VALUES
 (6, 'mine de diamants', 8),
 (7, 'mine de graviers', 9),
 (8, 'mine d&apos;ilem&eacute;nite', 10),
-(9, 'mine d&aposargent', 11),
-(10, 'mine d&aposor', 12),
+(9, 'mine d&apos;argent', 11),
+(10, 'mine d&apos;or', 12),
 (11, 'mine de fer', 13),
 (12, 'mine de lithium', 14),
 (13, 'puits de p&eacute;trole', 15),
