@@ -3,7 +3,7 @@ SELECT
 	type_mine.ID,
 	CONCAT(
 		'\t\t<td><a href="?id=',type_mine.ID,'#selection"><img src="Vue/images/',marchandise.image, '.png" alt ="',type_mine.nom,'"></a></td>\n',
-		'\t\t<td><a href="?id=',type_mine.ID,'#selection">',type_mine.nom,'</a></td>\n',
+		'\t\t<td><a href="?id=',type_mine.ID,'#selection">',UCASE(LEFT(type_mine.nom,1)),SUBSTRING(type_mine.nom,2,LENGTH(type_mine.nom)),'</a></td>\n',
 		'\t\t<td>(production) ',unites.nom,'/h</td>\n'
 	) AS code,
 	type_mine.nom AS nom_ligne
