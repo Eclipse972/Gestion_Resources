@@ -25,13 +25,16 @@ protected function Afficher_corps($Vue_BD, $id_selectionné) {
 	$BD = new base2donnees;
 	$T_Vue = $BD->Récupère_Vue($Vue_BD); // récupère la vue
 	
-	foreach($T_Vue as $valeur) {
-		echo "\t",($valeur['ID'] == $id_selectionné) ? '<tr id="selection">' : '<tr>',"\n"; // pose d'une ancre sur la ligne sélectionnée
-		echo $valeur['code'],"\t";
+	foreach($T_Vue as $réponseBD) {
+		echo "\t",($réponseBD['ID'] == $id_selectionné) ? '<tr id="selection">' : '<tr>',"\n"; // pose d'une ancre sur la ligne sélectionnée
+		$code = $réponseBD['code'];
+		$T_remplacement = $this->Remplacement_variables($Vue_BD,$réponseBD['ID']);
+		foreach($T_remplacement as $nom => $valeur) $code = str_replace('('.$nom.')', $valeur, $code);
+		echo $code,"\t";
 		echo '</tr>',"\n";
-		if ($valeur['ID'] == $id_selectionné) {
+		if ($réponseBD['ID'] == $id_selectionné) {
 			$this->Début_rapport();
-			$this->Afficher_rapport($id_selectionné,$valeur['nom_ligne']); // le 2e paramètre permet de récupérer le nom sans refaire une requête
+			$this->Afficher_rapport($id_selectionné,$réponseBD['nom_ligne']); // le 2e paramètre permet de récupérer le nom sans refaire une requête
 			$this->Fin_rapport();
 		}
 	}
@@ -39,6 +42,23 @@ protected function Afficher_corps($Vue_BD, $id_selectionné) {
 	</tbody>
 	</table>
 <?php
+}
+
+private function Remplacement_variables($vue,$id) {
+	switch($vue) {
+	case 'Vue_usine':
+		$TVariables = [];
+		break;
+	case 'Vue_entrepot':
+		$TVariables = [];
+		break;
+	case 'Vue_mine': // détermination des variables de la id-ième mine
+		$TVariables['production'] = $id*12345;
+		break;
+	case 'Vue_marchandise':
+		$TVariables = [];
+	}
+	return $TVariables;
 }
 
 protected function Début_rapport() {
