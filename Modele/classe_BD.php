@@ -1,7 +1,8 @@
 <?php
 class base2donnees { // chaque requête doit commencer par une nouvelle connexion. =< utilisation de new à chaque appael
 private $resultat;
-private $BD; // PDO initialisé dans connexion.php
+private $BD;
+private $IDjoueur;
 
 public function __construct() {
 	try	{
@@ -11,6 +12,7 @@ public function __construct() {
 	catch (PDOException $e) { // En cas d'erreur, on affiche un message et on arrête tout
 		die('Erreur : '.$e->getMessage());
 	}
+	$this->IDjoueur = (isset($_SESSION['ID'])) ? $_SESSION['ID'] : 1; // joueur exemple
 }
 
 public function Récupère_Vue($vueBD, $WHERE = '1') { // récupère les données de la vue de la BD
@@ -30,27 +32,27 @@ public function Récupère_recette_usine($type_usineID) {
 	return $ligne['code'];
 }
 
-public function Niveau_usine($IDjoueur, $IDusine) {
+public function Niveau_usine($IDusine) {
 
 	return $IDusine;
 }
 
-public function Production_usine($IDjoueur, $IDusine) {
+public function Production_usine($IDusine) {
 
 	return number_format($IDusine*4823,0,',',' ');
 }
 
-public function Stock($IDjoueur, $IDentrepot) {
+public function Stock($IDentrepot) {
 
 	return number_format($IDentrepot*10000,0,',',' ');
 }
 
-public function Niveau_entrepot($IDjoueur, $IDentrepot) {
+public function Niveau_entrepot($IDentrepot) {
 	
 	return $IDentrepot+8;
 }
 
-public function Production_mine($IDjoueur, $IDmine) {
+public function Production_mine($IDmine) {
 	
 	return number_format($IDmine*5000,0,',',' ');
 }
