@@ -45,9 +45,14 @@ protected function Afficher_corps($Vue_BD, $id_selectionné) {
 }
 
 private function Remplacement_variables($vue,$id) {
+	$BD = new base2donnees;
 	switch($vue) {
 	case 'Vue_usine':
-		$TVariables = [];
+		$TVariables = [
+			'recette' => $BD->Récupère_recette($id),
+			'niveau' => $id*$id,
+			'production' => $id*$id*$id*4823
+		];
 		break;
 	case 'Vue_entrepot':
 		$TVariables = ['niveau' => $id*$id, 'stock' => $id*$id*$id*4563];
@@ -108,29 +113,7 @@ class TUsine extends Tableau {
 
 public function Afficher_tete() { parent::Afficher_tete(array('Usine', 'Niveau', 'Production')); }
 
-public function Afficher_corps($id_selectionné) {
-?>
-	<tbody>
-<?php
-	$BD = new base2donnees;
-	$T_Vue = $BD->Récupère_Vue('Vue_usine'); // récupère la vue
-	foreach($T_Vue as $valeur) {
-		echo "\t",($valeur['ID'] == $id_selectionné) ? '<tr id="selection">' : '<tr>',"\n"; // pose d'une ancre sur la ligne sélectionnée
-		echo $valeur['debut_code'];
-		echo '<p>',$BD->Récupère_recette($valeur['ID']),'</p>';
-		echo $valeur['fin_code'];
-		echo '</tr>',"\n";
-		if ($valeur['ID'] == $id_selectionné) {
-			$this->Début_rapport();
-			$this->Afficher_rapport($id_selectionné,$valeur['nom_ligne']); // le 2e paramètre permet de récupérer le nom sans refaire une requête
-			$this->Fin_rapport();
-		}
-	}
-?>
-	</tbody>
-	</table>
-<?php
-}
+public function Afficher_corps($id_selectionné) { parent::Afficher_corps('Vue_usine', $id_selectionné); }
 
 public function Afficher_rapport($id, $nom_ligne) {
 	echo 'Rapport ',$nom_ligne,' en construction',"\n";
