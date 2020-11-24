@@ -39,12 +39,12 @@ public function Niveau_usine($IDjoueur, $IDusine) {
 
 public function Production_usine($IDjoueur, $IDusine) {
 
-	return $IDusine*4823;
+	return number_format($IDusine*4823,0,',',' ');
 }
 
 public function Stock($IDjoueur, $IDentrepot) {
 
-	return $IDentrepot*10000;
+	return number_format($IDentrepot*10000,0,',',' ');
 }
 
 public function Niveau_entrepot($IDjoueur, $IDentrepot) {
@@ -54,7 +54,7 @@ public function Niveau_entrepot($IDjoueur, $IDentrepot) {
 
 public function Production_mine($IDjoueur, $IDmine) {
 	
-	return $IDmine*5000;
+	return number_format($IDmine*5000,0,',',' ');
 }
 
 }
