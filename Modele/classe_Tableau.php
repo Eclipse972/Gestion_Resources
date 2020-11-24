@@ -50,7 +50,7 @@ private function Remplacement_variables($vue,$id) {
 		$TVariables = [];
 		break;
 	case 'Vue_entrepot':
-		$TVariables = [];
+		$TVariables = ['niveau' => $id*$id, 'stock' => $id*$id*$id*4563];
 		break;
 	case 'Vue_mine': // détermination des variables de la id-ième mine
 		$TVariables['production'] = $id*12345;
