@@ -89,7 +89,7 @@ public function Afficher_corps($id_selectionné) { parent::Afficher_corps('Vue_m
 
 protected function Remplacement_variables($vue,$id) {
 	$BD = new base2donnees;
-	$TVariables['production'] = $id*12345; // recherche données du joueur dans la base
+	$TVariables['production'] = $BD->Production_mine(1,$id); // recherche données du joueur dans la base
 	return parent::Mise_en_forme($TVariables);
 }
 
@@ -108,8 +108,8 @@ public function Afficher_corps($id_selectionné) { parent::Afficher_corps('Vue_u
 protected function Remplacement_variables($vue,$id) {
 	$BD = new base2donnees;
 	$TVariables['recette'] = $BD->Récupère_recette($id); // recherche données du joueur dans la base
-	$TVariables['niveau'] = $id*$id;
-	$TVariables['production'] = $id*$id*$id*4823;
+	$TVariables['niveau'] = $BD->Niveau_usine(1,$id);
+	$TVariables['production'] = $BD->Production_usine(1,$id);
 	return parent::Mise_en_forme($TVariables);
 }
 
@@ -126,8 +126,8 @@ public function Afficher_corps($id_selectionné) { parent::Afficher_corps('Vue_e
 
 protected function Remplacement_variables($vue,$id) {
 	$BD = new base2donnees;
-	$TVariables['niveau'] = $id*$id; // recherche données du joueur dans la base
-	$TVariables['stock'] = $id*$id*$id*4563;
+	$TVariables['niveau'] = $BD->Niveau_entrepot(1,$id);
+	$TVariables['stock'] = $BD->Stock(1,$id);
 	return parent::Mise_en_forme($TVariables);
 }
 

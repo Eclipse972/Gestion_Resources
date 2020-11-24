@@ -31,4 +31,30 @@ public function Récupère_recette($type_usineID) {
 	$ligne = $this->resultat->fetch();
 	return $ligne['code'];
 }
+
+public function Niveau_usine($IDjoueur, $IDusine) {
+
+	return $IDusine;
+}
+
+public function Production_usine($IDjoueur, $IDusine) {
+
+	return $IDusine*4823;
+}
+
+public function Stock($IDjoueur, $IDentrepot) {
+
+	return $IDentrepot*10000;
+}
+
+public function Niveau_entrepot($IDjoueur, $IDentrepot) {
+	
+	return $IDentrepot+8;
+}
+
+public function Production_mine($IDjoueur, $IDmine) {
+	
+	return $IDmine*5000;
+}
+
 }
