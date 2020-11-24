@@ -28,7 +28,7 @@ protected function Afficher_corps($Vue_BD, $id_selectionné) {
 	foreach($T_Vue as $réponseBD) {
 		echo "\t",($réponseBD['ID'] == $id_selectionné) ? '<tr id="selection">' : '<tr>',"\n"; // pose d'une ancre sur la ligne sélectionnée
 		$code = $réponseBD['code'];
-		$T_remplacement = $this->Remplacement_variables($Vue_BD,$réponseBD['ID']);
+		$T_remplacement = $this->Remplacement_variables($réponseBD['ID']);
 		foreach($T_remplacement as $nom => $valeur) $code = str_replace($nom, $valeur, $code);
 		echo $code,"\t";
 		echo '</tr>',"\n";
@@ -70,7 +70,7 @@ public function Afficher_tete() { parent::Afficher_tete(array('Marchandise', 'co
 
 public function Afficher_corps($id_selectionné) { parent::Afficher_corps('Vue_marchandise', $id_selectionné); }
 
-protected function Remplacement_variables($vue,$id) {
+protected function Remplacement_variables($id) {
 	return parent::Mise_en_forme([]); // pas de données de joueur pour les marchandises
 }
 
@@ -87,7 +87,7 @@ public function Afficher_tete() { parent::Afficher_tete(array('Mines', 'Producti
 
 public function Afficher_corps($id_selectionné) { parent::Afficher_corps('Vue_mine', $id_selectionné); }
 
-protected function Remplacement_variables($vue,$id) {
+protected function Remplacement_variables($id) {
 	$BD = new base2donnees;
 	$TVariables['production'] = $BD->Production_mine($id); // recherche données du joueur dans la base
 	return parent::Mise_en_forme($TVariables);
@@ -105,7 +105,7 @@ public function Afficher_tete() { parent::Afficher_tete(array('Usine', 'Niveau',
 
 public function Afficher_corps($id_selectionné) { parent::Afficher_corps('Vue_usine', $id_selectionné); }
 
-protected function Remplacement_variables($vue,$id) {
+protected function Remplacement_variables($id) {
 	$BD = new base2donnees;
 	$TVariables['recette'] = $BD->Récupère_recette_usine($id); // recherche données du joueur dans la base
 	$TVariables['niveau'] = $BD->Niveau_usine($id);
@@ -124,7 +124,7 @@ public function Afficher_tete() { parent::Afficher_tete(array('Entrep&ocirc;t', 
 
 public function Afficher_corps($id_selectionné) { parent::Afficher_corps('Vue_entrepot', $id_selectionné); }
 
-protected function Remplacement_variables($vue,$id) {
+protected function Remplacement_variables($id) {
 	$BD = new base2donnees;
 	$TVariables['niveau'] = $BD->Niveau_entrepot($id);
 	$TVariables['stock'] = $BD->Stock($id);
