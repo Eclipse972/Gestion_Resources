@@ -33,9 +33,13 @@ protected function Afficher_corps($Vue_BD, $id_selectionné) {
 		echo $code,"\t";
 		echo '</tr>',"\n";
 		if ($réponseBD['ID'] == $id_selectionné) {
-			$this->Début_rapport();
+		?>	<tr>
+				<td colspan="<?=$this->nb_col_tableau?>" id="rapport">
+		<?php
 			$this->Afficher_rapport($id_selectionné,$réponseBD['nom_ligne']); // le 2e paramètre permet de récupérer le nom sans refaire une requête
-			$this->Fin_rapport();
+		?>		</td>
+			</tr>
+		<?php		
 		}
 	}
 ?>
@@ -66,17 +70,8 @@ private function Remplacement_variables($vue,$id) {
 	return $TVariables;
 }
 
-protected function Début_rapport() {
-?>	<tr>
-		<td colspan="<?=$this->nb_col_tableau?>" id="rapport">
-<?php
 }
-protected function Fin_rapport() {
-?>		</td>
-	</tr>
-<?php	
-}
-}
+
 // classe TMarchandise -------------------------------------------------------------------------------------
 class TMarchandise extends Tableau {
 private $date_MAJ;
