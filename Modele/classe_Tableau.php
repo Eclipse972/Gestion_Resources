@@ -29,7 +29,7 @@ protected function Afficher_corps($Vue_BD, $id_selectionné) {
 		echo "\t",($réponseBD['ID'] == $id_selectionné) ? '<tr id="selection">' : '<tr>',"\n"; // pose d'une ancre sur la ligne sélectionnée
 		$code = $réponseBD['code'];
 		$T_remplacement = $this->Remplacement_variables($Vue_BD,$réponseBD['ID']);
-		foreach($T_remplacement as $nom => $valeur) $code = str_replace('('.$nom.')', $valeur, $code);
+		foreach($T_remplacement as $nom => $valeur) $code = str_replace($nom, $valeur, $code);
 		echo $code,"\t";
 		echo '</tr>',"\n";
 		if ($réponseBD['ID'] == $id_selectionné) {
@@ -48,26 +48,11 @@ protected function Afficher_corps($Vue_BD, $id_selectionné) {
 <?php
 }
 
-private function Remplacement_variables($vue,$id) {
-	$BD = new base2donnees;
-	switch($vue) {
-	case 'Vue_usine':
-		$TVariables = [
-			'recette' => $BD->Récupère_recette($id),
-			'niveau' => $id*$id,
-			'production' => $id*$id*$id*4823
-		];
-		break;
-	case 'Vue_entrepot':
-		$TVariables = ['niveau' => $id*$id, 'stock' => $id*$id*$id*4563];
-		break;
-	case 'Vue_mine': // détermination des variables de la id-ième mine
-		$TVariables['production'] = $id*12345;
-		break;
-	case 'Vue_marchandise':
-		$TVariables = [];
-	}
-	return $TVariables;
+protected function Mise_en_forme($Tvariables) { // rajoute les balises à reperer dans le code donné par chaque vue
+	$T_balisé = [];
+	foreach($Tvariables as $nom => $valeur)
+		$T_balisé['('.$nom.')'] = $valeur;
+	return $T_balisé;
 }
 
 }
@@ -85,6 +70,10 @@ public function Afficher_tete() { parent::Afficher_tete(array('Marchandise', 'co
 
 public function Afficher_corps($id_selectionné) { parent::Afficher_corps('Vue_marchandise', $id_selectionné); }
 
+protected function Remplacement_variables($vue,$id) {
+	return parent::Mise_en_forme([]); // pas de données de joueur pour les marchandises
+}
+
 public function Afficher_rapport($id, $nom_ligne) {
 ?>		<p>Rapport <?=$nom_ligne?> en construction</p>
 <?php
@@ -98,6 +87,12 @@ public function Afficher_tete() { parent::Afficher_tete(array('Mines', 'Producti
 
 public function Afficher_corps($id_selectionné) { parent::Afficher_corps('Vue_mine', $id_selectionné); }
 
+protected function Remplacement_variables($vue,$id) {
+	$BD = new base2donnees;
+	$TVariables['production'] = $id*12345; // recherche données du joueur dans la base
+	return parent::Mise_en_forme($TVariables);
+}
+
 public function Afficher_rapport($id, $nom_ligne) {
 ?>		<p>Rapport <?=$nom_ligne?> en construction</p>
 <?php
@@ -110,6 +105,14 @@ public function Afficher_tete() { parent::Afficher_tete(array('Usine', 'Niveau',
 
 public function Afficher_corps($id_selectionné) { parent::Afficher_corps('Vue_usine', $id_selectionné); }
 
+protected function Remplacement_variables($vue,$id) {
+	$BD = new base2donnees;
+	$TVariables['recette'] = $BD->Récupère_recette($id); // recherche données du joueur dans la base
+	$TVariables['niveau'] = $id*$id;
+	$TVariables['production'] = $id*$id*$id*4823;
+	return parent::Mise_en_forme($TVariables);
+}
+
 public function Afficher_rapport($id, $nom_ligne) {
 	echo 'Rapport ',$nom_ligne,' en construction',"\n";
 }
@@ -120,6 +123,13 @@ class TEntrepot extends Tableau {
 public function Afficher_tete() { parent::Afficher_tete(array('Entrep&ocirc;t', 'Niveau', 'Stock')); }
 
 public function Afficher_corps($id_selectionné) { parent::Afficher_corps('Vue_entrepot', $id_selectionné); }
+
+protected function Remplacement_variables($vue,$id) {
+	$BD = new base2donnees;
+	$TVariables['niveau'] = $id*$id; // recherche données du joueur dans la base
+	$TVariables['stock'] = $id*$id*$id*4563;
+	return parent::Mise_en_forme($TVariables);
+}
 
 public function Afficher_rapport($id, $nom_ligne) {
 ?>		<p>Rapport <?=$nom_ligne?> en construction</p>
