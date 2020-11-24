@@ -24,11 +24,9 @@ public function Récupère_Vue($vueBD, $WHERE = '1') { // récupère les donnée
 	return $T_code;
 }
 
-public function Récupère_recette($type_usineID) {
-	$i = 0;
-	$T_code = '';
+public function Récupère_recette_usine($type_usineID) {
 	$this->resultat = $this->BD->query('SELECT code FROM Vue_recette_usine WHERE ID = '.$type_usineID);
-	$ligne = $this->resultat->fetch();
+	$ligne = $this->resultat->fetch(); // un seul résultat
 	return $ligne['code'];
 }
 
