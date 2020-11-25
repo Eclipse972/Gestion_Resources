@@ -1,18 +1,28 @@
 <?php 
-	session_start(); // On démarre la session
-	/*
-	 * ONGLET_ACTIF est une constante définie dans chaque script associé à l'onglet (qui incsopore appelle ce script)
-	 * pour ajouter un onglet nommé X il faut créer 4 fichiers
-	 * X.php à la racine voir index.php pour l'exemple
-	 * X.css dans Vue
-	 * onglet_X.png dans Vue/images
-	 * X.php dans Vue pour l'affichage de la page correspondant à l'onglet
-	*/
-	require'Modele/classe_BD.php';
-	require'Modele/classe_Tableau.php';
-	$SCRIPT = substr($_SERVER['PHP_SELF'],1,strlen($_SERVER['PHP_SELF'])-5);	// script associé à l'onglet qui a téléchargé cette page
+session_start(); // On démarre la session
+/*
+ * ONGLET_ACTIF est une constante définie dans chaque script associé à l'onglet (qui incsopore appelle ce script)
+ * pour ajouter un onglet nommé X il faut créer 4 fichiers
+ * X.php à la racine voir index.php pour l'exemple
+ * X.css dans Vue
+ * onglet_X.png dans Vue/images
+ * X.php dans Vue pour l'affichage de la page correspondant à l'onglet
+*/
+require'Modele/classe_BD.php';
+require'Modele/classe_Tableau.php';
+$SCRIPT = substr($_SERVER['PHP_SELF'],1,strlen($_SERVER['PHP_SELF'])-5);	// script associé à l'onglet qui a téléchargé cette page
 
-	$id_selectionné = (int) $_GET['id']; // ID objet de l'onglet sélectionné
+$id_selectionné = (int) $_GET['id']; // ID objet de l'onglet sélectionné
+
+// construction des onglets
+ob_start();
+echo "\t<ul>";
+$T_onglet = array ('index', 'usines', 'mines', 'entrepots', 'marchandises');	// les onglets
+foreach($T_onglet as $valeur)
+	echo "\t\t",'<li><a ',($valeur == $SCRIPT) ? 'id="onglet_actif" ' : '','href="',$valeur,'.php">','<img src="Vue/images/onglet_',$valeur,'.png" alt="onglet ',$valeur,'"></a></li>',"\n";
+echo "\t</ul>";
+$NAV = ob_get_contents();
+ob_end_clean();
 
 ?>
 <!doctype html>
@@ -40,13 +50,7 @@
 </div>
 
 <nav>
-	<ul>
-<?php
-	$T_onglet = array ('index', 'usines', 'mines', 'entrepots', 'marchandises');	// les onglets
-	foreach($T_onglet as $valeur)
-		echo "\t\t",'<li><a ',($valeur == $SCRIPT) ? 'id="onglet_actif" ' : '','href="',$valeur,'.php">','<img src="Vue/images/onglet_',$valeur,'.png" alt="onglet ',$valeur,'"></a></li>',"\n";
-?>
-	</ul>
+	<?=$NAV?>
 </nav>
 
 <section>
