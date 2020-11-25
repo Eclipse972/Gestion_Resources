@@ -36,7 +36,8 @@ if (isset($T_classe[$SCRIPT])) {
 	$Tableau = new $T_classe[$SCRIPT];
 	$Tableau->Afficher_tete();
 	$Tableau->Afficher_corps($id_selectionné);
-} else echo"<p>Page de connexion en construction</p>\n";
+} elseif ($SCRIPT == 'index') echo"<p>Page de connexion en construction</p>\n";
+	else echo"<p>Page inexistante</p>\n";
 $SECTION = ob_get_contents();
 ob_end_clean();
 
