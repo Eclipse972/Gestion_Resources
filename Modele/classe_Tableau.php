@@ -89,7 +89,18 @@ protected function Remplacement_variables($id) {
 }
 
 protected function Afficher_rapport($id) {
-?>		<p>Rapport <?=$nom_ligne?> en construction</p>
+?>
+	<p>Rapport en construction</p>
+	<h1>Liste des besoins</h1>
+	<p>liste</p>
+	<h1>Achats à pr&eacute;voir</h1>
+	<p>Pour ne pas &ecirc;tre en rupture de stock<br>liste</p>
+	<h1>Ventes &agrave; pr&eacute;voir</h1>
+	<p>pour ne pas d&eacute;border<br>liste</p>
+	<h1>Utile pour</h1>
+	<p>liste</p>
+	<h1>A besoin de</h1>
+	<p>liste</p>
 <?php
 }
 }
@@ -184,7 +195,7 @@ protected function Afficher_rapport($id) {
 	<p>co&ucirc;t pour am&eacute;liorer d'un niveau</p>
 	<H1>Utile pour</H1>
 	<p>liste</p>
-	<h1>A besoin de </h1>
+	<h1>A besoin de</h1>
 	<p>liste</p>
 <?php
 }
