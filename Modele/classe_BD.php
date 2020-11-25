@@ -57,4 +57,13 @@ public function Production_mine($IDmine) {
 	return number_format($IDmine*5000,0,',',' ');
 }
 
+public function Etat_mine($IDmine) {
+	
+	return number_format($IDmine*4,0,',',' ');
+}
+
+public function Nombre_mine($IDmine) {
+	
+	return number_format($IDmine*23,0,',',' ');
+}
 }
