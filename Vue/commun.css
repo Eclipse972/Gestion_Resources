@@ -69,8 +69,15 @@ nav li a:hover, #onglet_actif { background-color:#245070; } /* couleur de l'ongl
 nav ul img { height:45px; }
 
 /* Joueur -------------------------------------------------------------------------------------------*/
+#joueur {
+	text-align:right;
+}
+#joueur a {
+	color:white;
+	text-decoration:none;
+}
 
-#joueur p {text-align:right;}
+#joueur a:hover { text-decoration:underline; }
 
 /* pied de page -------------------------------------------------------------------------------- */
 footer {

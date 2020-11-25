@@ -10,20 +10,41 @@ session_start(); // On démarre la session
 */
 require'Modele/classe_BD.php';
 require'Modele/classe_Tableau.php';
-$SCRIPT = substr($_SERVER['PHP_SELF'],1,strlen($_SERVER['PHP_SELF'])-5);	// script associé à l'onglet qui a téléchargé cette page
 
 $id_selectionné = (int) $_GET['id']; // ID objet de l'onglet sélectionné
+$SCRIPT = substr($_SERVER['PHP_SELF'],1,strlen($_SERVER['PHP_SELF'])-5);	// script associé à l'onglet qui a téléchargé cette page
 
 // construction des onglets
 ob_start();
-echo "\t<ul>";
+echo '<ul>';
 $T_onglet = array ('index', 'usines', 'mines', 'entrepots', 'marchandises');	// les onglets
 foreach($T_onglet as $valeur)
 	echo "\t\t",'<li><a ',($valeur == $SCRIPT) ? 'id="onglet_actif" ' : '','href="',$valeur,'.php">','<img src="Vue/images/onglet_',$valeur,'.png" alt="onglet ',$valeur,'"></a></li>',"\n";
-echo "\t</ul>";
+echo "\t</ul>\n";
 $NAV = ob_get_contents();
 ob_end_clean();
 
+// construction de la page
+$T_classe = array (
+//		script onglet	=>  classe associée
+	'entrepots'		=> 'TEntrepot',
+	'marchandises'	=> 'TMarchandise',		
+	'usines'		=> 'TUsine',
+	'mines'			=> 'TMine');
+ob_start();
+if (isset($T_classe[$SCRIPT])) {
+	$Tableau = new $T_classe[$SCRIPT];
+	$Tableau->Afficher_tete();
+	$Tableau->Afficher_corps($id_selectionné);
+} else echo'Page de connexion en construction';
+$SECTION = ob_get_contents();
+ob_end_clean();
+
+// joueur
+ob_start();
+	echo '<a href="index.php">Connexion</a>';
+$JOUEUR = ob_get_contents();
+ob_end_clean();
 ?>
 <!doctype html>
 <html lang="fr">
@@ -46,7 +67,7 @@ ob_end_clean();
 <main>
 
 <div id="joueur">
-	<p>Connectez-vous ou cr&eacute;ez un compte</p>
+	<?=$JOUEUR?>	
 </div>
 
 <nav>
@@ -54,19 +75,7 @@ ob_end_clean();
 </nav>
 
 <section>
-<?php
-	$T_classe = array (
-//		script onglet	=>  classe associée
-		'entrepots'		=> 'TEntrepot',
-		'marchandises'	=> 'TMarchandise',		
-		'usines'		=> 'TUsine',
-		'mines'			=> 'TMine');
-	if (isset($T_classe[$SCRIPT])) {
-		$Tableau = new $T_classe[$SCRIPT];
-		$Tableau->Afficher_tete();
-		$Tableau->Afficher_corps($id_selectionné);
-	} else echo'Page de connexion en construction';
-?>
+	<?=$SECTION?>
 </section>
 </main>
 
