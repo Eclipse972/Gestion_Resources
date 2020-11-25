@@ -110,7 +110,14 @@ protected function Remplacement_variables($id) {
 }
 
 protected function Afficher_rapport($id) {
-?>			<p>Rapport <?=$nom_ligne?> en construction</p>
+?>
+	<p>Rapport en construction</p>
+	<h1>Mise &agrave; jour des donn&eacute;es</h1>
+	<p>&eacute;tat</p>
+	<p>production maxi</p>
+	<p>nombre</p>
+	<h1>Utile pour</h1>
+	<p>liste</p>
 <?php
 }
 }
@@ -131,7 +138,7 @@ protected function Remplacement_variables($id) {
 
 protected function Afficher_rapport($id) {
 ?>
-	<p align=center>Ce rapport est en construction</p>
+	<p>Ce rapport est en construction</p>
 	<h1>Mise &agrave; jour des donn&eacute;es</h1>
 	<p>niveau</p>
 	<p>dur&eacute;e de production restante: jour - heures - minutes<br>recharger la page mettra &agrave; jour cette info</p>
