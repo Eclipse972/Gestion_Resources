@@ -8,6 +8,6 @@ SELECT
 		'\t\t<td>(production) ',unites.nom,'/h</td>\n'
 	) AS code,
 	type_usine.nom AS nom_ligne
-FROM type_usine, marchandise, unites
-WHERE type_usine.marchandise_ID = marchandise.ID
-AND marchandise.unité_ID = unites.ID
+FROM type_usine
+INNER JOIN marchandise ON type_usine.marchandise_ID = marchandise.ID
+INNER JOIN unites ON marchandise.unité_ID = unites.ID

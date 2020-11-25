@@ -9,7 +9,6 @@ SELECT
 		IF(ingredients.nature = 0,' + ',IF(ingredients.nature =1,' -> ',''))
 		ORDER BY ingredients.nature ASC SEPARATOR ''
 	) as code
-FROM ingredients, marchandise
-WHERE ingredients.marchandise_ID = marchandise.ID
+FROM ingredients
+INNER JOIN marchandise ON ingredients.marchandise_ID = marchandise.ID
 GROUP BY ingredients.recette_ID
-

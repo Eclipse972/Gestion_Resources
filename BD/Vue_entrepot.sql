@@ -8,6 +8,6 @@ SELECT
 		'\t\t<td>(stock) ',unites.nom,'/h</td>\n'
 	) AS code,
 	marchandise.nom AS nom_ligne
-FROM marchandise, unites
-WHERE marchandise.unité_ID = unites.ID AND
-marchandise.nature_ID BETWEEN 1 AND 2
+FROM marchandise
+INNER JOIN unites ON marchandise.unité_ID = unites.ID
+WHERE marchandise.nature_ID BETWEEN 1 AND 2
