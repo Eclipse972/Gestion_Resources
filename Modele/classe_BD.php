@@ -16,13 +16,9 @@ public function __construct() {
 }
 
 public function Récupère_Vue($vueBD, $WHERE = '1') { // récupère les données de la vue de la BD
-	$T_code = '';
-	$i = 0;
+	$T_code = [];
 	$this->resultat = $this->BD->query('SELECT * FROM '.$vueBD.' WHERE '.$WHERE);
-	while ($ligne = $this->resultat->fetch()) {	// récupère et agrège le code
-		$T_code[$i] = $ligne;
-		$i++;
-	}
+	while ($ligne = $this->resultat->fetch()) $T_code[] = $ligne;	// récupère le code
 	return $T_code;
 }
 
