@@ -128,7 +128,25 @@ protected function Remplacement_variables($id) {
 }
 
 protected function Afficher_rapport($id, $nom_ligne) {
-	echo 'Rapport ',$nom_ligne,' en construction',"\n";
+?>
+	<p align=center>Ce rapport est en construction</p>
+	<h1>Mise &agrave; jour des donn&eacute;es</h1>
+	<p>niveau</p>
+	<p>dur&eacute;e de production restante: jour - heures - minutes<br>recharger la page metrra &agrave; jour cette info</p>
+
+	<h1>Production</h1>
+	<p>dur&eacute;e de production souhait&eacute;e</p>
+	<p>Besoins pour la production souhait&eacute;e</p>
+
+	<h1>Autosuffisance</h1>
+	<p>Tendance</p>
+	<p>la production suffit-elle pour les besoins internes</p>
+	<p>les usines peuvent elles assurer les besoins pour produire</p>
+
+	<h1>Am&eacute;lioration</h1>
+	<p>co&ucirc;t d&apos;am&eacute;lioration d'un niveau</p>
+	<p>ordre am&eacute;lioration</p>
+<?php
 }
 }
 // classe TEntrepot -------------------------------------------------------------------------------------------------------------------
