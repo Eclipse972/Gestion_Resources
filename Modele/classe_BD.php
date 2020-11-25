@@ -62,4 +62,10 @@ public function Nombre_mine($IDmine) {
 	
 	return number_format($IDmine*23,0,',',' ');
 }
+
+public function MarchandiseUtilePour($id) {
+	$this->resultat = $this->BD->query('SELECT code FROM Vue_marchandiseUtilePour WHERE ID = '.$id);
+	$ligne = $this->resultat->fetch(); // un seul résultat
+	return (isset($ligne['code'])) ? "<ul>\n".$ligne['code']."\t</ul>\n" : "<p>Gagner des sous!</p>\n";
+}
 }

@@ -89,6 +89,7 @@ protected function Remplacement_variables($id) {
 }
 
 protected function Afficher_rapport($id) {
+	$BD = new base2donnees;
 ?>
 	<p>Rapport en construction</p>
 	<h1>Liste des besoins</h1>
@@ -98,7 +99,7 @@ protected function Afficher_rapport($id) {
 	<h1>Ventes &agrave; pr&eacute;voir</h1>
 	<p>pour ne pas d&eacute;border<br>liste</p>
 	<h1>Utile pour</h1>
-	<p>liste</p>
+	<?=$BD->MarchandiseUtilePour($id)?>
 	<h1>A besoin de</h1>
 	<p>liste</p>
 <?php
@@ -121,6 +122,7 @@ protected function Remplacement_variables($id) {
 }
 
 protected function Afficher_rapport($id) {
+	$BD = new base2donnees;
 ?>
 	<p>Rapport en construction</p>
 	<h1>Mise &agrave; jour des donn&eacute;es</h1>
@@ -128,7 +130,8 @@ protected function Afficher_rapport($id) {
 	<p>production maxi</p>
 	<p>nombre</p>
 	<h1>Utile pour</h1>
-	<p>liste</p>
+	<!-- il faut retrouer l'ID marchandise -->
+	<?=$BD->MarchandiseUtilePour($id)?>
 <?php
 }
 }
@@ -184,6 +187,7 @@ protected function Remplacement_variables($id) {
 }
 
 protected function Afficher_rapport($id) {
+	$BD = new base2donnees;
 ?>
 	<p>Rapport en construction</p>
 	<h1>Mise &agrave; jour des donn&eacute;es</h1>
@@ -193,8 +197,8 @@ protected function Afficher_rapport($id) {
 	<p>listes des consomations ordonn&eacute;es par date croissante</p>
 	<h1>Am&eacute;lioration</h1>
 	<p>co&ucirc;t pour am&eacute;liorer d'un niveau</p>
-	<H1>Utile pour</H1>
-	<p>liste</p>
+	<h1>Utile pour</h1>
+	<?=$BD->MarchandiseUtilePour($id)?>
 	<h1>A besoin de</h1>
 	<p>liste</p>
 <?php
