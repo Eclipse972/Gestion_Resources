@@ -44,9 +44,11 @@ protected function Afficher_tbody($Vue_BD, $id_selectionné) {
 ?>
 	<tr>
 		<td colspan="<?=$this->nb_col_tableau?>" id="rapport">
+<!-- Début du rapport -->
 <?php
 			$this->Afficher_rapport($id_selectionné,$réponseBD['nom_ligne']); // le 2e paramètre permet de récupérer le nom sans refaire une requête
 ?>
+<!-- Fin du rapport -->
 		</td>
 	</tr>
 <?php		
