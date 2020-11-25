@@ -131,7 +131,7 @@ protected function Afficher_rapport($id) {
 	<p>nombre</p>
 	<h1>Utile pour</h1>
 	<!-- il faut retrouer l'ID marchandise -->
-	<?=$BD->MarchandiseUtilePour($id)?>
+	<?=$BD->MineUtilePour($id)?>
 <?php
 }
 }
