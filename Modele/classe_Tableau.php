@@ -1,12 +1,20 @@
 <?php
-class Tableau {
+abstract class Tableau {
 protected $nb_col_tableau;
+
 public function __construct() {
 ?>	<table>
 <?php
 }
 
-protected function Afficher_tete($T_en_tete) { // déclare le tableau avec en paramètres un tableau contenant les en-têtes à afficher
+// pour les développements futurs
+abstract public function Afficher_tete();					// en-tête du tableau
+abstract public function Afficher_corps($id_selectionné);	// corps du tableau
+abstract protected function Remplacement_variables($id);		// variable de remplacement pour le code donné par le vue
+abstract protected function Afficher_rapport($id, $nom_ligne);// affichage détaillé de la ligne
+//---------------------------------------------------------
+
+protected function Afficher_thead($T_en_tete) { // déclare le tableau avec en paramètres un tableau contenant les en-têtes à afficher
 	$this->nb_col_tableau = count($T_en_tete)+1; // +celle pour l'image
 ?>
 	<thead>
@@ -18,7 +26,7 @@ protected function Afficher_tete($T_en_tete) { // déclare le tableau avec en pa
 <?php
 }
 	
-protected function Afficher_corps($Vue_BD, $id_selectionné) {
+protected function Afficher_tbody($Vue_BD, $id_selectionné) {
 ?>
 	<tbody>
 <?php
@@ -57,6 +65,8 @@ protected function Mise_en_forme($Tvariables) { // rajoute les balises à repere
 
 }
 
+// Remarque: chaque classe fille est associée à un CSS et doit définir les classes abstraites
+
 // classe TMarchandise -------------------------------------------------------------------------------------
 class TMarchandise extends Tableau {
 private $date_MAJ;
@@ -66,9 +76,9 @@ public function __construct() {
 	parent::__construct();
 }
 
-public function Afficher_tete() { parent::Afficher_tete(array('Marchandise', 'cours Ki-market',	'cours max')); }
+public function Afficher_tete() { parent::Afficher_thead(array('Marchandise', 'cours Ki-market',	'cours max')); }
 
-public function Afficher_corps($id_selectionné) { parent::Afficher_corps('Vue_marchandise', $id_selectionné); }
+public function Afficher_corps($id_selectionné) { parent::Afficher_tbody('Vue_marchandise', $id_selectionné); }
 
 protected function Remplacement_variables($id) {
 	return parent::Mise_en_forme([]); // pas de données de joueur pour les marchandises
@@ -83,9 +93,9 @@ public function Afficher_rapport($id, $nom_ligne) {
 // classe TMine -------------------------------------------------------------------------------------------------------------------
 class TMine extends Tableau {
 
-public function Afficher_tete() { parent::Afficher_tete(array('Mines', 'Production')); }
+public function Afficher_tete() { parent::Afficher_thead(array('Mines', 'Production')); }
 
-public function Afficher_corps($id_selectionné) { parent::Afficher_corps('Vue_mine', $id_selectionné); }
+public function Afficher_corps($id_selectionné) { parent::Afficher_tbody('Vue_mine', $id_selectionné); }
 
 protected function Remplacement_variables($id) {
 	$BD = new base2donnees;
@@ -101,9 +111,9 @@ public function Afficher_rapport($id, $nom_ligne) {
 // classe TUsine -------------------------------------------------------------------------------------------------------------------
 class TUsine extends Tableau {
 
-public function Afficher_tete() { parent::Afficher_tete(array('Usine', 'Niveau', 'Production')); }
+public function Afficher_tete() { parent::Afficher_thead(array('Usine', 'Niveau', 'Production')); }
 
-public function Afficher_corps($id_selectionné) { parent::Afficher_corps('Vue_usine', $id_selectionné); }
+public function Afficher_corps($id_selectionné) { parent::Afficher_tbody('Vue_usine', $id_selectionné); }
 
 protected function Remplacement_variables($id) {
 	$BD = new base2donnees;
@@ -120,9 +130,9 @@ public function Afficher_rapport($id, $nom_ligne) {
 // classe TEntrepot -------------------------------------------------------------------------------------------------------------------
 class TEntrepot extends Tableau {
 
-public function Afficher_tete() { parent::Afficher_tete(array('Entrep&ocirc;t', 'Niveau', 'Stock')); }
+public function Afficher_tete() { parent::Afficher_thead(array('Entrep&ocirc;t', 'Niveau', 'Stock')); }
 
-public function Afficher_corps($id_selectionné) { parent::Afficher_corps('Vue_entrepot', $id_selectionné); }
+public function Afficher_corps($id_selectionné) { parent::Afficher_tbody('Vue_entrepot', $id_selectionné); }
 
 protected function Remplacement_variables($id) {
 	$BD = new base2donnees;
