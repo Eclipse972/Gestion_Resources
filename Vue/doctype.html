@@ -16,7 +16,7 @@ $SCRIPT = substr($_SERVER['PHP_SELF'],1,strlen($_SERVER['PHP_SELF'])-5);	// scri
 
 // construction des onglets
 ob_start();
-echo '<ul>';
+echo "<ul>\n";
 $T_onglet = array ('index', 'usines', 'mines', 'entrepots', 'marchandises');	// les onglets
 foreach($T_onglet as $valeur)
 	echo "\t\t",'<li><a ',($valeur == $SCRIPT) ? 'id="onglet_actif" ' : '','href="',$valeur,'.php">','<img src="Vue/images/onglet_',$valeur,'.png" alt="onglet ',$valeur,'"></a></li>',"\n";
@@ -36,7 +36,7 @@ if (isset($T_classe[$SCRIPT])) {
 	$Tableau = new $T_classe[$SCRIPT];
 	$Tableau->Afficher_tete();
 	$Tableau->Afficher_corps($id_selectionné);
-} else echo'Page de connexion en construction';
+} else echo"<p>Page de connexion en construction</p>\n";
 $SECTION = ob_get_contents();
 ob_end_clean();
 
