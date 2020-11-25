@@ -8,10 +8,10 @@ public function __construct() {
 }
 
 // pour les développements futurs
-abstract public function Afficher_tete();					// en-tête du tableau
-abstract public function Afficher_corps($id_selectionné);	// corps du tableau
+abstract public function Afficher_tete();						// en-tête du tableau
+abstract public function Afficher_corps($id_selectionné);		// corps du tableau
 abstract protected function Remplacement_variables($id);		// variable de remplacement pour le code donné par le vue
-abstract protected function Afficher_rapport($id, $nom_ligne);// affichage détaillé de la ligne
+abstract protected function Afficher_rapport($id, $nom_ligne);	// affichage détaillé de la ligne
 //---------------------------------------------------------
 
 protected function Afficher_thead($T_en_tete) { // déclare le tableau avec en paramètres un tableau contenant les en-têtes à afficher
@@ -41,13 +41,15 @@ protected function Afficher_tbody($Vue_BD, $id_selectionné) {
 		echo $code,"\t";
 		echo '</tr>',"\n";
 		if ($réponseBD['ID'] == $id_selectionné) {
-		?>	<tr>
-				<td colspan="<?=$this->nb_col_tableau?>" id="rapport">
-		<?php
+?>
+	<tr>
+		<td colspan="<?=$this->nb_col_tableau?>" id="rapport">
+<?php
 			$this->Afficher_rapport($id_selectionné,$réponseBD['nom_ligne']); // le 2e paramètre permet de récupérer le nom sans refaire une requête
-		?>		</td>
-			</tr>
-		<?php		
+?>
+		</td>
+	</tr>
+<?php		
 		}
 	}
 ?>
@@ -84,7 +86,7 @@ protected function Remplacement_variables($id) {
 	return parent::Mise_en_forme([]); // pas de données de joueur pour les marchandises
 }
 
-public function Afficher_rapport($id, $nom_ligne) {
+protected function Afficher_rapport($id, $nom_ligne) {
 ?>		<p>Rapport <?=$nom_ligne?> en construction</p>
 <?php
 }
@@ -103,8 +105,8 @@ protected function Remplacement_variables($id) {
 	return parent::Mise_en_forme($TVariables);
 }
 
-public function Afficher_rapport($id, $nom_ligne) {
-?>		<p>Rapport <?=$nom_ligne?> en construction</p>
+protected function Afficher_rapport($id, $nom_ligne) {
+?>			<p>Rapport <?=$nom_ligne?> en construction</p>
 <?php
 }
 }
@@ -123,7 +125,7 @@ protected function Remplacement_variables($id) {
 	return parent::Mise_en_forme($TVariables);
 }
 
-public function Afficher_rapport($id, $nom_ligne) {
+protected function Afficher_rapport($id, $nom_ligne) {
 	echo 'Rapport ',$nom_ligne,' en construction',"\n";
 }
 }
@@ -141,7 +143,7 @@ protected function Remplacement_variables($id) {
 	return parent::Mise_en_forme($TVariables);
 }
 
-public function Afficher_rapport($id, $nom_ligne) {
+protected function Afficher_rapport($id, $nom_ligne) {
 ?>		<p>Rapport <?=$nom_ligne?> en construction</p>
 <?php
 }
