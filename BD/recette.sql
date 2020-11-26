@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: gestion.resources.sql.free.fr
--- Généré le : Mer 25 Novembre 2020 à 14:36
+-- Généré le : Jeu 26 Novembre 2020 à 06:41
 -- Version du serveur: 5.0.83
 -- Version de PHP: 5.3.9
 
@@ -28,9 +28,9 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 CREATE TABLE IF NOT EXISTS `recette` (
   `ID` int(5) NOT NULL auto_increment,
   `nature_ID` int(5) NOT NULL COMMENT 'voir nature recette',
-  `nom` varchar(30) collate latin1_general_ci NOT NULL,
+  `nom` text collate latin1_general_ci NOT NULL,
   PRIMARY KEY  (`ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=37 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=58 ;
 
 --
 -- Contenu de la table `recette`
@@ -72,7 +72,28 @@ INSERT INTO `recette` (`ID`, `nature_ID`, `nom`) VALUES
 (33, 1, 'silicium'),
 (34, 1, 'technologie médicale'),
 (35, 1, 'titane'),
-(36, 1, 'verre');
+(36, 1, 'verre'),
+(37, 2, 'aci&eacute;rie'),
+(38, 2, 'usine d&apos;aluminium'),
+(39, 2, 'rafinerie d&apos;argent'),
+(40, 2, 'usine d&apos;armement'),
+(41, 2, 'usine de batterie'),
+(42, 2, 'usine de b&eacute;ton'),
+(43, 2, 'orf&egrave;vre'),
+(44, 2, 'usine de briques'),
+(45, 2, 'usine de camions'),
+(46, 2, 'raffinerie de p&eacute;trole'),
+(47, 2, 'usine de composants &eacute;lectroniques'),
+(48, 2, 'usine de cuivre'),
+(49, 2, 'usine de drones'),
+(50, 2, 'usine d&apos;engrais'),
+(51, 2, 'usine d&apos;insecticides'),
+(52, 2, 'raffinerie de lithium'),
+(53, 2, 'raffinerie d&apos;or'),
+(54, 2, 'usine de plastique'),
+(55, 2, 'raffinerie de silicium'),
+(56, 2, 'raffinerie de titane'),
+(57, 2, 'verrerie');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

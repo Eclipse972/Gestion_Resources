@@ -22,24 +22,23 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `nature_marchandise`
+-- Structure de la table `mine`
 --
 
-CREATE TABLE IF NOT EXISTS `nature_marchandise` (
+CREATE TABLE IF NOT EXISTS `mine` (
   `ID` int(11) NOT NULL auto_increment,
-  `nom` varchar(11) collate latin1_general_ci NOT NULL,
-  PRIMARY KEY  (`ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci COMMENT='nature de la marchandise' AUTO_INCREMENT=9 ;
+  `joueur_ID` int(11) NOT NULL,
+  `type_mine_ID` int(11) NOT NULL,
+  `prod_max` int(11) NOT NULL,
+  `etat%` int(11) NOT NULL,
+  PRIMARY KEY  (`ID`),
+  UNIQUE KEY `joueur_ID` (`joueur_ID`,`type_mine_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=1 ;
 
 --
--- Contenu de la table `nature_marchandise`
+-- Contenu de la table `mine`
 --
 
-INSERT INTO `nature_marchandise` (`ID`, `nom`) VALUES
-(1, 'ressource'),
-(2, 'produit'),
-(3, 'butin'),
-(4, 'unité');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: gestion.resources.sql.free.fr
--- Généré le : Lun 23 Novembre 2020 à 01:52
+-- Généré le : Jeu 26 Novembre 2020 à 06:39
 -- Version du serveur: 5.0.83
 -- Version de PHP: 5.3.9
 
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `marchandise` (
   `nom` varchar(40) collate latin1_general_ci NOT NULL,
   `image` varchar(30) collate latin1_general_ci NOT NULL COMMENT 'nom du fichier sans l''extension',
   `unité_ID` int(11) NOT NULL default '1',
-  `nature_ID` tinyint(1) unsigned NOT NULL,
+  `nature_ID` tinyint(1) unsigned NOT NULL COMMENT 'facilite la recherche: 0=resource, 1=produit, 2butin, 3unité',
   `cours_ki` int(10) unsigned NOT NULL,
   `cours_max` int(10) unsigned NOT NULL default '0',
   `moment` timestamp NOT NULL default CURRENT_TIMESTAMP,

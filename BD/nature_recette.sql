@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: gestion.resources.sql.free.fr
--- Généré le : Mer 25 Novembre 2020 à 15:18
+-- Généré le : Jeu 26 Novembre 2020 à 06:41
 -- Version du serveur: 5.0.83
 -- Version de PHP: 5.3.9
 
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `nature_recette` (
 
 INSERT INTO `nature_recette` (`ID`, `nom`) VALUES
 (1, 'production'),
-(2, 'amélioration'),
+(2, 'am&eacute;lioration'),
 (3, 'recrutement'),
 (4, 'extraction');
 

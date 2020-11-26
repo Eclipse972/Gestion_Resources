@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: gestion.resources.sql.free.fr
--- Généré le : Lun 23 Novembre 2020 à 01:51
+-- Généré le : Jeu 26 Novembre 2020 à 06:39
 -- Version du serveur: 5.0.83
 -- Version de PHP: 5.3.9
 
@@ -152,7 +152,15 @@ INSERT INTO `ingredients` (`recette_ID`, `nature`, `marchandise_ID`, `quantité`
 (36, 0, 16, -6),
 (36, 0, 26, -8),
 (36, 0, 5, -4),
-(22, 2, 23, 2);
+(22, 2, 23, 2),
+(37, 0, 5, -3000),
+(37, 0, 23, -500),
+(37, 0, 24, -9000),
+(37, 0, 1, 10000000),
+(38, 2, 24, -25000),
+(38, 2, 38, -1500),
+(38, 2, 17, -2500),
+(38, 2, 1, 40000000);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

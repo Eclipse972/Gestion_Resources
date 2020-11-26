@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: gestion.resources.sql.free.fr
--- Généré le : Mer 18 Novembre 2020 à 10:51
+-- Généré le : Jeu 26 Novembre 2020 à 06:39
 -- Version du serveur: 5.0.83
 -- Version de PHP: 5.3.9
 
