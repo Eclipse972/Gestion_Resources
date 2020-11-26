@@ -69,6 +69,12 @@ public function MarchandiseUtilePour($IDmarchandise) {
 	return (isset($ligne['code'])) ? "<ul>\n".$ligne['code']."\t</ul>\n" : "<p>Gagner des sous!</p>\n";
 }
 
+public function MarchandiseAbesoin($IDmarchandise) {
+	$this->resultat = $this->BD->query('SELECT code FROM Vue_marchandiseAbesoin WHERE ID = '.$IDmarchandise);
+	$ligne = $this->resultat->fetch(); // un seul résultat
+	return (isset($ligne['code'])) ? "<ul>\n".$ligne['code']."\t</ul>\n" : "<p>Gagner des sous!</p>\n";	
+}
+
 public function MineUtilePour($IDmine) {
 	// recherche de l'ID de la marchandise associée à la mine
 	$this->resultat = $this->BD->query('SELECT marchandise_ID FROM type_mine WHERE ID = '.$IDmine);

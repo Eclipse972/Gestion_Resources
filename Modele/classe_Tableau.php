@@ -101,7 +101,7 @@ protected function Afficher_rapport($id) {
 	<h1>Utile pour</h1>
 	<?=$BD->MarchandiseUtilePour($id)?>
 	<h1>A besoin de</h1>
-	<p>liste</p>
+	<?=$BD->MarchandiseAbesoin($id)?>
 <?php
 }
 }
@@ -200,7 +200,7 @@ protected function Afficher_rapport($id) {
 	<h1>Utile pour</h1>
 	<?=$BD->MarchandiseUtilePour($id)?>
 	<h1>A besoin de</h1>
-	<p>liste</p>
+	<?=$BD->MarchandiseAbesoin($id)?>
 <?php
 }
 }
