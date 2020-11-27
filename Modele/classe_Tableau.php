@@ -44,10 +44,10 @@ protected function Afficher_tbody($Vue_BD, $id_selectionné) {
 ?>
 	<tr>
 		<td colspan="<?=$this->nb_col_tableau?>" id="rapport">
+		<a href="#">Remonter en haut de la page</a>
 <!-- Début du rapport -->
-		<a href="#">D&eacute;but de page</a>
 <?php
-			$this->Afficher_rapport($id_selectionné); // le 2e paramètre permet de récupérer le nom sans refaire une requête
+		$this->Afficher_rapport($id_selectionné); // le 2e paramètre permet de récupérer le nom sans refaire une requête
 ?>
 <!-- Fin du rapport -->
 		</td>
