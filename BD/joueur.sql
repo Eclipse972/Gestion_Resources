@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: gestion.resources.sql.free.fr
--- Généré le : Jeu 26 Novembre 2020 à 06:39
+-- Généré le : Jeu 26 Novembre 2020 à 17:53
 -- Version du serveur: 5.0.83
 -- Version de PHP: 5.3.9
 
@@ -27,14 +27,13 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 CREATE TABLE IF NOT EXISTS `joueur` (
   `ID` int(11) unsigned NOT NULL auto_increment,
-  `pseudo` varchar(20) collate latin1_general_ci NOT NULL,
+  `pseudo` text collate latin1_general_ci NOT NULL,
   `connecté?` tinyint(1) NOT NULL,
   `mdp_chiffré` varchar(256) collate latin1_general_ci NOT NULL,
-  `email` varchar(64) collate latin1_general_ci NOT NULL,
+  `email` text collate latin1_general_ci NOT NULL,
   `niveau` int(11) NOT NULL,
   `niveauQG` tinyint(1) unsigned NOT NULL,
-  UNIQUE KEY `ID` (`ID`),
-  UNIQUE KEY `unicité_joueur` (`pseudo`,`email`)
+  UNIQUE KEY `ID` (`ID`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=3 ;
 
 --
