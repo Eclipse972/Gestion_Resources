@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: gestion.resources.sql.free.fr
--- Généré le : Jeu 26 Novembre 2020 à 06:40
+-- Généré le : Ven 27 Novembre 2020 à 19:39
 -- Version du serveur: 5.0.83
 -- Version de PHP: 5.3.9
 
@@ -26,10 +26,10 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 
 CREATE TABLE IF NOT EXISTS `marchandise_QG` (
-  `ID` int(11) NOT NULL auto_increment,
-  `joueur_ID` int(11) NOT NULL,
-  `marchandise_ID` int(11) NOT NULL,
-  `quantité` int(11) NOT NULL,
+  `ID` tinyint(3) unsigned NOT NULL auto_increment,
+  `joueur_ID` tinyint(3) unsigned NOT NULL,
+  `marchandise_ID` tinyint(3) unsigned NOT NULL,
+  `quantité` bigint(20) NOT NULL,
   PRIMARY KEY  (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=1 ;
 

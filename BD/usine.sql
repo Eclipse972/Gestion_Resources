@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: gestion.resources.sql.free.fr
--- Généré le : Jeu 26 Novembre 2020 à 06:42
+-- Généré le : Ven 27 Novembre 2020 à 19:49
 -- Version du serveur: 5.0.83
 -- Version de PHP: 5.3.9
 
@@ -26,10 +26,10 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 
 CREATE TABLE IF NOT EXISTS `usine` (
-  `ID` int(11) NOT NULL auto_increment,
-  `joueur_ID` int(11) NOT NULL,
-  `type_usine_ID` int(11) NOT NULL,
-  `niveau` int(11) NOT NULL,
+  `ID` tinyint(3) unsigned NOT NULL auto_increment,
+  `joueur_ID` tinyint(3) unsigned NOT NULL,
+  `type_usine_ID` tinyint(3) unsigned NOT NULL,
+  `niveau` tinyint(3) unsigned NOT NULL,
   `t_fin_production` timestamp NOT NULL default CURRENT_TIMESTAMP,
   PRIMARY KEY  (`ID`),
   UNIQUE KEY `joueur_ID` (`joueur_ID`,`type_usine_ID`)

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: gestion.resources.sql.free.fr
--- Généré le : Jeu 26 Novembre 2020 à 06:40
+-- Généré le : Ven 27 Novembre 2020 à 19:42
 -- Version du serveur: 5.0.83
 -- Version de PHP: 5.3.9
 
@@ -26,7 +26,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 
 CREATE TABLE IF NOT EXISTS `nature_marchandise` (
-  `ID` int(11) NOT NULL auto_increment,
+  `ID` tinyint(3) unsigned NOT NULL auto_increment,
   `nom` varchar(11) collate latin1_general_ci NOT NULL,
   PRIMARY KEY  (`ID`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci COMMENT='nature de la marchandise' AUTO_INCREMENT=9 ;

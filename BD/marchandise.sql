@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: gestion.resources.sql.free.fr
--- Généré le : Jeu 26 Novembre 2020 à 06:39
+-- Généré le : Ven 27 Novembre 2020 à 19:37
 -- Version du serveur: 5.0.83
 -- Version de PHP: 5.3.9
 
@@ -26,13 +26,13 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 
 CREATE TABLE IF NOT EXISTS `marchandise` (
-  `ID` int(11) NOT NULL auto_increment,
-  `nom` varchar(40) collate latin1_general_ci NOT NULL,
+  `ID` tinyint(3) unsigned NOT NULL auto_increment,
+  `nom` text collate latin1_general_ci NOT NULL,
   `image` varchar(30) collate latin1_general_ci NOT NULL COMMENT 'nom du fichier sans l''extension',
-  `unité_ID` int(11) NOT NULL default '1',
+  `unité_ID` tinyint(3) unsigned NOT NULL default '1',
   `nature_ID` tinyint(1) unsigned NOT NULL COMMENT 'facilite la recherche: 0=resource, 1=produit, 2butin, 3unité',
-  `cours_ki` int(10) unsigned NOT NULL,
-  `cours_max` int(10) unsigned NOT NULL default '0',
+  `cours_ki` bigint(20) unsigned NOT NULL,
+  `cours_max` bigint(20) unsigned NOT NULL default '0',
   `moment` timestamp NOT NULL default CURRENT_TIMESTAMP,
   PRIMARY KEY  (`ID`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=61 ;

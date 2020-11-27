@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: gestion.resources.sql.free.fr
--- Généré le : Jeu 26 Novembre 2020 à 06:38
+-- Généré le : Ven 27 Novembre 2020 à 19:33
 -- Version du serveur: 5.0.83
 -- Version de PHP: 5.3.9
 
@@ -26,11 +26,11 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 
 CREATE TABLE IF NOT EXISTS `entrepot` (
-  `ID` int(11) NOT NULL auto_increment,
-  `marchandise_ID` int(11) NOT NULL,
-  `joueur_ID` int(11) NOT NULL,
-  `niveau` int(11) NOT NULL default '1',
-  `quantité` int(11) NOT NULL default '0',
+  `ID` tinyint(3) unsigned NOT NULL auto_increment,
+  `marchandise_ID` tinyint(3) unsigned NOT NULL,
+  `joueur_ID` tinyint(3) unsigned NOT NULL,
+  `niveau` tinyint(3) unsigned NOT NULL default '0',
+  `quantité` bigint(20) NOT NULL,
   `moment` timestamp NOT NULL default CURRENT_TIMESTAMP,
   PRIMARY KEY  (`ID`),
   UNIQUE KEY `unicité_entrepot` (`marchandise_ID`,`joueur_ID`)

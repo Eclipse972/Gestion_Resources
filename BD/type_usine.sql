@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: gestion.resources.sql.free.fr
--- Généré le : Jeu 26 Novembre 2020 à 06:42
+-- Généré le : Ven 27 Novembre 2020 à 19:47
 -- Version du serveur: 5.0.83
 -- Version de PHP: 5.3.9
 
@@ -26,12 +26,12 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 
 CREATE TABLE IF NOT EXISTS `type_usine` (
-  `ID` int(11) NOT NULL auto_increment,
+  `ID` tinyint(3) unsigned NOT NULL auto_increment,
   `nom` varchar(40) collate latin1_general_ci NOT NULL,
   `image` varchar(30) collate latin1_general_ci NOT NULL,
-  `marchandise_ID` int(11) NOT NULL COMMENT 'marchandise associée',
-  `production_ID` int(11) NOT NULL COMMENT 'identifiant recette',
-  `amelioration_ID` int(11) NOT NULL COMMENT 'identifiant recette',
+  `marchandise_ID` tinyint(3) unsigned NOT NULL COMMENT 'marchandise associée',
+  `production_ID` tinyint(3) unsigned NOT NULL COMMENT 'identifiant recette',
+  `amelioration_ID` tinyint(3) unsigned NOT NULL COMMENT 'identifiant recette',
   PRIMARY KEY  (`ID`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=23 ;
 
@@ -40,9 +40,9 @@ CREATE TABLE IF NOT EXISTS `type_usine` (
 --
 
 INSERT INTO `type_usine` (`ID`, `nom`, `image`, `marchandise_ID`, `production_ID`, `amelioration_ID`) VALUES
-(1, 'aci&eacute;rie', 'acierie', 17, 15, 0),
-(2, 'usine d&apos;aluminium', 'usine_aluminium', 18, 16, 0),
-(3, 'rafinerie d&apos;argent', 'raffinerie_argent', 19, 17, 0),
+(1, 'aci&eacute;rie', 'acierie', 17, 15, 37),
+(2, 'usine d&apos;aluminium', 'usine_aluminium', 18, 16, 38),
+(3, 'rafinerie d&apos;argent', 'raffinerie_argent', 19, 17, 39),
 (4, 'usine d&apos;armement', 'usineDarmes', 20, 18, 0),
 (5, 'usine de batteries', 'usine_batterie', 21, 19, 0),
 (6, 'orf&egrave;vre', 'orfevre', 22, 21, 0),
