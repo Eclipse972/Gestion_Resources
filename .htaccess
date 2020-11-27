@@ -1,7 +1,7 @@
-#Traitement de erreurs serveur ignorées pour le moment
-#ErrorDocument 403 http://faq.sw.free.fr/?erreur=403
-#ErrorDocument 404 http://faq.sw.free.fr/?erreur=404
-#ErrorDocument 500 http://faq.sw.free.fr/?erreur=500
+#Traitement de erreurs serveur
+ErrorDocument 403 http://gestion.resources.free.fr/erreur_serveur.php?erreur=403
+ErrorDocument 404 http://gestion.resources.free.fr/erreur_serveur.php?erreur=404
+ErrorDocument 500 http://gestion.resources.free.fr/erreur_serveur.php?erreur=500
 
 <IfDefine Free>
 php56 1

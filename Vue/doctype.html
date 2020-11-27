@@ -21,35 +21,33 @@ $T_onglet = array(
 	'entrepots'		=> 'TEntrepot',
 	'marchandises'	=> 'TMarchandise'
 );
-// construction des onglets
-ob_start();
-echo "<ul>\n";
-foreach($T_onglet as $onglet => $valeur)
-	echo "\t\t",'<li><a ',($onglet == $SCRIPT) ? 'id="onglet_actif" ' : '','href="',$onglet,'.php">','<img src="Vue/images/onglet_',$onglet,'.png" alt="onglet ',$onglet,'"></a></li>',"\n";
-echo "\t</ul>\n";
-$NAV = ob_get_contents();
-ob_end_clean();
 
-if (isset($T_onglet[$SCRIPT]) && ($SCRIPT!='index')) require'Modele/classe_'.$T_onglet[$SCRIPT].'.php'; // chargement de la classe associée à l'onglet
-else {
-	// erreur à traiter
-}
+// chargement de la classe associée à l'onglet. dans certains cas aucune n'est nécessaire
+if (isset($T_onglet[$SCRIPT]) && ($SCRIPT!='index')) require'Modele/classe_'.$T_onglet[$SCRIPT].'.php'; 
 
 // joueur
-require'Modele/classe_Joueur.php';
+require'Modele/classe_Joueur.php'; // nécessaire quelque soit l'onglet
+// stocker l'objet joueur dans la session
 $Joueur=new Joueur;
 $CONNEXION_JOUEUR = $Joueur->Cadre_connexion();
 
 // construction de la page
 ob_start();
-if ($SCRIPT=='index') {
-	$Joueur->Présentation();
-	// traitement
-} elseif (isset($T_onglet[$SCRIPT])) {
-	$Tableau = new $T_onglet[$SCRIPT];
-	$Tableau->Afficher_tete();
-	$Tableau->Afficher_corps($id_selectionné);
-} else echo"<p>Page inexistante</p>\n";
+if (isset($T_onglet[$SCRIPT])) { // un des onglets appelle cette page
+	if ($SCRIPT=='index') {
+		$Joueur->Présentation();
+		// traitement
+	} else { // onglet de type table
+		$Tableau = new $T_onglet[$SCRIPT];
+		$Tableau->Afficher_tete();
+		$Tableau->Afficher_corps($id_selectionné);
+	}
+} else { // aucun des onglets sélectionnés
+	$CODE_ERREUR = (isset($_SESSION['erreur'])) ? (int) $_SESSION['erreur'] : 0;
+?>	<h1>Erreur <?=$CODE_ERREUR?>: <?=$DICO[$CODE_ERREUR]?></h1>
+	<p>S&eacute;lectionnez un des onglets en haut de cette page.</p>
+<?php
+}
 $SECTION = ob_get_contents();
 ob_end_clean();
 ?>
@@ -79,7 +77,12 @@ ob_end_clean();
 </div>
 
 <nav>
-	<?=$NAV?>
+	<ul>
+<?php
+	foreach($T_onglet as $onglet => $valeur)
+		echo "\t\t",'<li><a ',($onglet == $SCRIPT) ? 'id="onglet_actif" ' : '','href="',$onglet,'.php">','<img src="Vue/images/onglet_',$onglet,'.png" alt="onglet ',$onglet,'"></a></li>',"\n";
+?>
+	</ul>
 </nav>
 
 <section>
