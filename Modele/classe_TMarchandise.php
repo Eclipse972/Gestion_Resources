@@ -28,7 +28,7 @@ protected function Afficher_rapport($id) {
 	<p>pour ne pas d&eacute;border<br>liste</p>
 	<h1>Utile pour</h1>
 	<?=$BD->MarchandiseUtilePour($id)?>
-	<h1>A besoin de</h1>
+	<h1>N&eacute;cessite</h1>
 	<?=$BD->MarchandiseAbesoin($id)?>
 <?php
 }
