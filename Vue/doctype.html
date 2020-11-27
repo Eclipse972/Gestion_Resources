@@ -9,7 +9,6 @@ session_start(); // On démarre la session
  * X.php dans Vue pour l'affichage de la page correspondant à l'onglet
 */
 require'Modele/classe_BD.php';
-//require'Modele/classe_Tableau.php';
 
 $id_selectionné = (int) $_GET['id']; // ID objet de l'onglet sélectionné
 $SCRIPT = substr($_SERVER['PHP_SELF'],1,strlen($_SERVER['PHP_SELF'])-5);	// script associé à l'onglet qui a téléchargé cette page
@@ -39,8 +38,7 @@ else {
 // construction de la page
 ob_start();
 if ($SCRIPT=='index') {
-	echo"<p>Page de connexion en construction</p>\n";
-	//$Joueur=new Joueur;
+	$Joueur=new Joueur;
 	// traitement
 } elseif (isset($T_onglet[$SCRIPT])) {
 	$Tableau = new $T_onglet[$SCRIPT];
@@ -52,7 +50,7 @@ ob_end_clean();
 
 // joueur
 ob_start();
-	echo '<a href="index.php">Connexion</a>';
+echo '<a href="index.php">Connexion</a>';
 $JOUEUR = ob_get_contents();
 ob_end_clean();
 ?>
