@@ -9,35 +9,44 @@ session_start(); // On démarre la session
  * X.php dans Vue pour l'affichage de la page correspondant à l'onglet
 */
 require'Modele/classe_BD.php';
-require'Modele/classe_Tableau.php';
+//require'Modele/classe_Tableau.php';
 
 $id_selectionné = (int) $_GET['id']; // ID objet de l'onglet sélectionné
 $SCRIPT = substr($_SERVER['PHP_SELF'],1,strlen($_SERVER['PHP_SELF'])-5);	// script associé à l'onglet qui a téléchargé cette page
 
+$T_onglet = array(
+//	onglet			=> classe associée
+	'index'			=> 'Joueur',
+	'usines'		=> 'TUsine',
+	'mines'			=> 'TMine',
+	'entrepots'		=> 'TEntrepot',
+	'marchandises'	=> 'TMarchandise'
+);
 // construction des onglets
 ob_start();
 echo "<ul>\n";
-$T_onglet = array ('index', 'usines', 'mines', 'entrepots', 'marchandises');	// les onglets
-foreach($T_onglet as $valeur)
-	echo "\t\t",'<li><a ',($valeur == $SCRIPT) ? 'id="onglet_actif" ' : '','href="',$valeur,'.php">','<img src="Vue/images/onglet_',$valeur,'.png" alt="onglet ',$valeur,'"></a></li>',"\n";
+foreach($T_onglet as $onglet => $valeur)
+	echo "\t\t",'<li><a ',($onglet == $SCRIPT) ? 'id="onglet_actif" ' : '','href="',$onglet,'.php">','<img src="Vue/images/onglet_',$onglet,'.png" alt="onglet ',$onglet,'"></a></li>',"\n";
 echo "\t</ul>\n";
 $NAV = ob_get_contents();
 ob_end_clean();
 
+if (isset($T_onglet[$SCRIPT])) require'Modele/classe_'.$T_onglet[$SCRIPT].'.php'; // chargement de la classe associée à l'onglet
+else {
+	// erreur à traiter
+}
+
 // construction de la page
-$T_classe = array (
-//		script onglet	=>  classe associée
-	'entrepots'		=> 'TEntrepot',
-	'marchandises'	=> 'TMarchandise',		
-	'usines'		=> 'TUsine',
-	'mines'			=> 'TMine');
 ob_start();
-if (isset($T_classe[$SCRIPT])) {
-	$Tableau = new $T_classe[$SCRIPT];
+if ($SCRIPT=='index') {
+	echo"<p>Page de connexion en construction</p>\n";
+	//$Joueur=new Joueur;
+	// traitement
+} elseif (isset($T_onglet[$SCRIPT])) {
+	$Tableau = new $T_onglet[$SCRIPT];
 	$Tableau->Afficher_tete();
 	$Tableau->Afficher_corps($id_selectionné);
-} elseif ($SCRIPT == 'index') echo"<p>Page de connexion en construction</p>\n";
-	else echo"<p>Page inexistante</p>\n";
+} else echo"<p>Page inexistante</p>\n";
 $SECTION = ob_get_contents();
 ob_end_clean();
 
