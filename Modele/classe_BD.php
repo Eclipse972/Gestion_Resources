@@ -15,9 +15,9 @@ public function __construct() {
 	$this->IDjoueur = (isset($_SESSION['ID'])) ? $_SESSION['ID'] : 1; // joueur exemple
 }
 
-public function Récupère_Vue($vueBD, $WHERE = '1') { // récupère les données de la vue de la BD
+public function Récupère_Vue($vueBD) { // récupère les données de la vue de la BD
 	$T_code = [];
-	$this->resultat = $this->BD->query('SELECT * FROM '.$vueBD.' WHERE '.$WHERE);
+	$this->resultat = $this->BD->query('SELECT * FROM '.$vueBD);
 	while ($ligne = $this->resultat->fetch()) $T_code[] = $ligne;	// récupère le code
 	return $T_code;
 }
