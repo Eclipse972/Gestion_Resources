@@ -1,6 +1,7 @@
 CREATE VIEW Vue_marchandiseUtilePour AS
 SELECT
 	marchandise.ID,
+	marchandise.nom,
 	GROUP_CONCAT('\t\t<li>',
 		nature_recette.nom, 
 		IF (LEFT(recette.nom,1) IN ( 'a', 'e', 'i', 'o', 'u'),' d&apos;',' de '),

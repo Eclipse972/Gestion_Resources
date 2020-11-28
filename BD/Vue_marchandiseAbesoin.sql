@@ -1,6 +1,7 @@
 CREATE VIEW Vue_marchandiseAbesoin AS
 SELECT
 	marchandise.ID,
+	marchandise.nom,
 	GROUP_CONCAT('\t\t<li>',marS.nom,'</li>\n' SEPARATOR '') AS code
 FROM recette
 INNER JOIN ingredients		ON ingredients.recette_ID		= recette.ID
