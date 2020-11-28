@@ -16,6 +16,7 @@ protected function Remplacement_variables($id) {
 }
 
 protected function Afficher_rapport($id) {
+	global $BDD;
 ?>
 	<h1>Mise &agrave; jour des donn&eacute;es</h1>
 	<p>niveau</p>
@@ -31,7 +32,8 @@ protected function Afficher_rapport($id) {
 	<p>les usines peuvent elles assurer les besoins pour produire</p>
 
 	<h1>Am&eacute;lioration</h1>
-	<p>co&ucirc;t d&apos;am&eacute;lioration d'un niveau</p>
+	<ul><?=$BDD->Amélioration_usine($id)?>
+	</ul>
 	<p>ordre am&eacute;lioration</p>
 <?php
 }

@@ -82,4 +82,10 @@ public function MineUtilePour($IDmine) {
 	$IDmarchandise = $ligne['marchandise_ID'];
 	return $this->MarchandiseUtilePour($IDmarchandise);
 }
+
+public function Amélioration_usine($IDusine) {
+	$this->resultat = $this->BD->query('SELECT code FROM Vue_amélioration_usine WHERE ID = '.$IDusine);
+	$ligne = $this->resultat->fetch(); // un seul résultat
+	return (isset($ligne['code'])) ? "<ul>\n".$ligne['code']."\t</ul>\n" : "<p>Rien</p>\n";	
+}
 }

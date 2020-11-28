@@ -47,7 +47,7 @@ protected function Afficher_tbody($Vue_BD, $id_selectionné) {
 		<a href="#">Remonter en haut de la page</a>
 <!-- Début du rapport -->
 <?php
-		$this->Afficher_rapport($id_selectionné); // le 2e paramètre permet de récupérer le nom sans refaire une requête
+		$this->Afficher_rapport($id_selectionné);
 ?>
 <!-- Fin du rapport -->
 		</td>

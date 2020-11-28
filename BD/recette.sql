@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: gestion.resources.sql.free.fr
--- Généré le : Sam 28 Novembre 2020 à 07:14
+-- Généré le : Sam 28 Novembre 2020 à 10:40
 -- Version du serveur: 5.0.83
 -- Version de PHP: 5.3.9
 
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `recette` (
   `nature_ID` tinyint(1) unsigned NOT NULL COMMENT 'voir nature recette',
   `nom` text collate latin1_general_ci NOT NULL,
   PRIMARY KEY  (`ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=58 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=59 ;
 
 --
 -- Contenu de la table `recette`
@@ -93,7 +93,8 @@ INSERT INTO `recette` (`ID`, `nature_ID`, `nom`) VALUES
 (54, 2, 'usine de plastique'),
 (55, 2, 'raffinerie de silicium'),
 (56, 2, 'raffinerie de titane'),
-(57, 2, 'verrerie');
+(57, 2, 'verrerie'),
+(58, 2, 'usine de techologies m&eacute;dicale');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
