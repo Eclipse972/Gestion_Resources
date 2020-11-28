@@ -8,10 +8,10 @@ public function Afficher_tete() { parent::Afficher_thead(array('Usine', 'Niveau'
 public function Afficher_corps($id_selectionné) { parent::Afficher_tbody('Vue_usine', $id_selectionné); }
 
 protected function Remplacement_variables($id) {
-	$BD = new base2donnees;
-	$TVariables['recette'] = $BD->Récupère_recette_usine($id); // recherche données du joueur dans la base
-	$TVariables['niveau'] = $BD->Niveau_usine($id);
-	$TVariables['production'] = $BD->Production_usine($id);
+	global $BDD;
+	$TVariables['recette'] = $BDD->Récupère_recette_usine($id); // recherche données du joueur dans la base
+	$TVariables['niveau'] = $BDD->Niveau_usine($id);
+	$TVariables['production'] = $BDD->Production_usine($id);
 	return parent::Mise_en_forme($TVariables);
 }
 

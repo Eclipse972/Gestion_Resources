@@ -30,8 +30,8 @@ protected function Afficher_tbody($Vue_BD, $id_selectionné) {
 ?>
 	<tbody>
 <?php
-	$BD = new base2donnees;
-	$T_Vue = $BD->Récupère_Vue($Vue_BD); // récupère la vue
+	global $BDD;
+	$T_Vue = $BDD->Récupère_Vue($Vue_BD); // récupère la vue
 	
 	foreach($T_Vue as $réponseBD) {
 		echo "\t",($réponseBD['ID'] == $id_selectionné) ? '<tr id="selection">' : '<tr>',"\n"; // pose d'une ancre sur la ligne sélectionnée

@@ -38,6 +38,7 @@ if (isset($T_onglet[$SCRIPT])) { // un des onglets appelle cette page
 		$Joueur->Présentation();
 		// traitement
 	} else { // onglet de type table
+		$BDD = new base2donnees; // variable globaLe utilisée par l'objet Tableau
 		$Tableau = new $T_onglet[$SCRIPT];
 		$Tableau->Afficher_tete();
 		$Tableau->Afficher_corps($id_selectionné);

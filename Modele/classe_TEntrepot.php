@@ -8,14 +8,14 @@ public function Afficher_tete() { parent::Afficher_thead(array('Entrep&ocirc;t',
 public function Afficher_corps($id_selectionné) { parent::Afficher_tbody('Vue_entrepot', $id_selectionné); }
 
 protected function Remplacement_variables($id) {
-	$BD = new base2donnees;
-	$TVariables['niveau'] = $BD->Niveau_entrepot($id);
-	$TVariables['stock'] = $BD->Stock($id);
+	global $BDD;
+	$TVariables['niveau'] = $BDD->Niveau_entrepot($id);
+	$TVariables['stock'] = $BDD->Stock($id);
 	return parent::Mise_en_forme($TVariables);
 }
 
 protected function Afficher_rapport($id) {
-	$BD = new base2donnees;
+	global $BDD;
 ?>
 	<h1>Mise &agrave; jour des donn&eacute;es</h1>
 	<p>niveau</p>
@@ -25,9 +25,9 @@ protected function Afficher_rapport($id) {
 	<h1>Am&eacute;lioration</h1>
 	<p>co&ucirc;t pour am&eacute;liorer d'un niveau</p>
 	<h1>Utile pour</h1>
-	<?=$BD->MarchandiseUtilePour($id)?>
+	<?=$BDD->MarchandiseUtilePour($id)?>
 	<h1>N&eacute;cessite</h1>
-	<?=$BD->MarchandiseAbesoin($id)?>
+	<?=$BDD->MarchandiseAbesoin($id)?>
 <?php
 }
 }

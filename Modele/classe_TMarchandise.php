@@ -18,7 +18,7 @@ protected function Remplacement_variables($id) {
 }
 
 protected function Afficher_rapport($id) {
-	$BD = new base2donnees;
+	global $BDD;
 ?>
 	<h1>Liste des besoins</h1>
 	<p>liste</p>
@@ -27,9 +27,9 @@ protected function Afficher_rapport($id) {
 	<h1>Ventes &agrave; pr&eacute;voir</h1>
 	<p>pour ne pas d&eacute;border<br>liste</p>
 	<h1>Utile pour</h1>
-	<?=$BD->MarchandiseUtilePour($id)?>
+	<?=$BDD->MarchandiseUtilePour($id)?>
 	<h1>N&eacute;cessite</h1>
-	<?=$BD->MarchandiseAbesoin($id)?>
+	<?=$BDD->MarchandiseAbesoin($id)?>
 <?php
 }
 }
