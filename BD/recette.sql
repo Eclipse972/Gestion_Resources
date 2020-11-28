@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: gestion.resources.sql.free.fr
--- Généré le : Jeu 26 Novembre 2020 à 06:41
+-- Généré le : Sam 28 Novembre 2020 à 07:14
 -- Version du serveur: 5.0.83
 -- Version de PHP: 5.3.9
 
@@ -26,8 +26,8 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 
 CREATE TABLE IF NOT EXISTS `recette` (
-  `ID` int(5) NOT NULL auto_increment,
-  `nature_ID` int(5) NOT NULL COMMENT 'voir nature recette',
+  `ID` tinyint(3) unsigned NOT NULL auto_increment,
+  `nature_ID` tinyint(1) unsigned NOT NULL COMMENT 'voir nature recette',
   `nom` text collate latin1_general_ci NOT NULL,
   PRIMARY KEY  (`ID`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=58 ;
