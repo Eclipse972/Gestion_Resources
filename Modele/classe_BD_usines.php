@@ -1,7 +1,8 @@
 <?php
 require'Modele/classe_BD.php';
 class BD_usines extends base2donnees {
-	
+
+// méthodes nécessaires pour l'affichage du tableau	
 public function Récupère_recette_usine($type_usineID) {
 	$this->resultat = $this->BD->query('SELECT code FROM Vue_recette_usine WHERE ID = '.$type_usineID);
 	$ligne = $this->resultat->fetch(); // un seul résultat
@@ -18,6 +19,7 @@ public function Production_usine($IDusine) {
 	return number_format($IDusine*4823,0,',',' ');
 }
 
+// méthodes nécessaires pour l'affichage du rapport
 public function Amélioration_usine($IDusine) {
 	$this->resultat = $this->BD->query('SELECT code FROM Vue_amélioration_usine WHERE ID = '.$IDusine);
 	$ligne = $this->resultat->fetch(); // un seul résultat

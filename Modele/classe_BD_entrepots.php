@@ -2,6 +2,7 @@
 require'Modele/classe_BD.php';
 class BD_entrepots extends base2donnees {
 
+// méthodes nécessaires pour l'affichage du tableau	
 public function Stock($IDentrepot) {
 
 	return number_format($IDentrepot*10000,0,',',' ');
@@ -12,6 +13,7 @@ public function Niveau_entrepot($IDentrepot) {
 	return $IDentrepot+8;
 }
 
+// méthodes nécessaires pour l'affichage du rapport
 public function MarchandiseUtilePour($IDmarchandise) {
 	$this->resultat = $this->BD->query('SELECT code FROM Vue_marchandiseUtilePour WHERE ID = '.$IDmarchandise);
 	$ligne = $this->resultat->fetch(); // un seul résultat

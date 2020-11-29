@@ -3,6 +3,9 @@ require'Modele/classe_BD.php';
 
 class BD_marchandise extends base2donnees {
 
+// méthodes nécessaires pour l'affichage du tableau	
+
+// méthodes nécessaires pour l'affichage du rapport
 public function MarchandiseUtilePour($IDmarchandise) {
 	$this->resultat = $this->BD->query('SELECT code FROM Vue_marchandiseUtilePour WHERE ID = '.$IDmarchandise);
 	$ligne = $this->resultat->fetch(); // un seul résultat
