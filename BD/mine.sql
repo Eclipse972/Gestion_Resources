@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: gestion.resources.sql.free.fr
--- Généré le : Ven 27 Novembre 2020 à 19:41
+-- Généré le : Dim 29 Novembre 2020 à 01:25
 -- Version du serveur: 5.0.83
 -- Version de PHP: 5.3.9
 
@@ -31,6 +31,7 @@ CREATE TABLE IF NOT EXISTS `mine` (
   `type_mine_ID` tinyint(3) unsigned NOT NULL,
   `prod_max` bigint(20) unsigned NOT NULL,
   `etat%` tinyint(3) unsigned NOT NULL,
+  `ordre_affichage` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`ID`),
   UNIQUE KEY `joueur_ID` (`joueur_ID`,`type_mine_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=1 ;
