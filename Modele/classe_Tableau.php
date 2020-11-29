@@ -1,6 +1,6 @@
 <?php
-abstract class Tableau {
-protected $nb_col_tableau;
+abstract class Tableau { // Remarque: chaque classe fille est associée à un CSS et doit définir les classes abstraites
+	protected $nb_col_tableau;
 
 public function __construct() {
 ?>	<table>
@@ -10,9 +10,7 @@ public function __construct() {
 // pour les développements futurs
 abstract public function Afficher_tete();					// en-tête du tableau
 abstract public function Afficher_corps($id_selectionné);	// corps du tableau
-abstract protected function Remplacement_variables($id);	// variable de remplacement pour le code donné par le vue
 abstract protected function Afficher_rapport($id);			// affichage détaillé de la ligne
-//---------------------------------------------------------
 
 protected function Afficher_thead($T_en_tete) { // déclare le tableau avec en paramètres un tableau contenant les en-têtes à afficher
 	$this->nb_col_tableau = count($T_en_tete)+1; // +celle pour l'image
@@ -31,15 +29,11 @@ protected function Afficher_tbody($Vue_BD, $id_selectionné) {
 	<tbody>
 <?php
 	global $BDD;
-	$T_Vue = $BDD->Récupère_Vue($Vue_BD); // récupère la vue
+	$T_Vue = $BDD->Récupère_Vue(); // récupère la vue
 	
 	foreach($T_Vue as $réponseBD) {
 		echo "\t",($réponseBD['ID'] == $id_selectionné) ? '<tr id="selection">' : '<tr>',"\n"; // pose d'une ancre sur la ligne sélectionnée
-		$code = $réponseBD['code'];
-		$T_remplacement = $this->Remplacement_variables($réponseBD['ID']);
-		foreach($T_remplacement as $nom => $valeur) $code = str_replace($nom, $valeur, $code);
-		echo $code,"\t";
-		echo '</tr>',"\n";
+		echo $réponseBD['code'],"\t</tr>\n";
 		if ($réponseBD['ID'] == $id_selectionné) {
 ?>
 	<tr>
@@ -53,21 +47,11 @@ protected function Afficher_tbody($Vue_BD, $id_selectionné) {
 		</td>
 	</tr>
 <?php		
-		}
+		} // fin du if
 	}
 ?>
 	</tbody>
 	</table>
 <?php
 }
-
-protected function Mise_en_forme($Tvariables) { // rajoute les balises à reperer dans le code donné par chaque vue
-	$T_balisé = [];
-	foreach($Tvariables as $nom => $valeur)
-		$T_balisé['('.$nom.')'] = $valeur;
-	return $T_balisé;
 }
-
-}
-
-// Remarque: chaque classe fille est associée à un CSS et doit définir les classes abstraites

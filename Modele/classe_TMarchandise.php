@@ -13,10 +13,6 @@ public function Afficher_tete() { parent::Afficher_thead(array('Marchandise', 'c
 
 public function Afficher_corps($id_selectionné) { parent::Afficher_tbody('Vue_marchandise', $id_selectionné); }
 
-protected function Remplacement_variables($id) {
-	return parent::Mise_en_forme([]); // pas de données de joueur pour les marchandises
-}
-
 protected function Afficher_rapport($id) {
 	global $BDD;
 ?>

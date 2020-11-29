@@ -7,14 +7,6 @@ public function Afficher_tete() { parent::Afficher_thead(array('Usine', 'Niveau'
 
 public function Afficher_corps($id_selectionné) { parent::Afficher_tbody('Vue_usine', $id_selectionné); }
 
-protected function Remplacement_variables($id) {
-	global $BDD;
-	$TVariables['recette'] = $BDD->Récupère_recette_usine($id); // recherche données du joueur dans la base
-	$TVariables['niveau'] = $BDD->Niveau_usine($id);
-	$TVariables['production'] = $BDD->Production_usine($id);
-	return parent::Mise_en_forme($TVariables);
-}
-
 protected function Afficher_rapport($id) {
 	global $BDD;
 ?>
@@ -32,8 +24,7 @@ protected function Afficher_rapport($id) {
 	<p>les usines peuvent elles assurer les besoins pour produire</p>
 
 	<h1>Am&eacute;lioration</h1>
-	<ul><?=$BDD->Amélioration_usine($id)?>
-	</ul>
+	<?=$BDD->Amélioration_usine($id)?>
 	<p>ordre am&eacute;lioration</p>
 <?php
 }

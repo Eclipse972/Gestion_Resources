@@ -7,13 +7,6 @@ public function Afficher_tete() { parent::Afficher_thead(array('Entrep&ocirc;t',
 
 public function Afficher_corps($id_selectionné) { parent::Afficher_tbody('Vue_entrepot', $id_selectionné); }
 
-protected function Remplacement_variables($id) {
-	global $BDD;
-	$TVariables['niveau'] = $BDD->Niveau_entrepot($id);
-	$TVariables['stock'] = $BDD->Stock($id);
-	return parent::Mise_en_forme($TVariables);
-}
-
 protected function Afficher_rapport($id) {
 	global $BDD;
 ?>

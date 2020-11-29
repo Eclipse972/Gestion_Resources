@@ -7,14 +7,6 @@ public function Afficher_tete() { parent::Afficher_thead(array('Mines', '&Eacute
 
 public function Afficher_corps($id_selectionné) { parent::Afficher_tbody('Vue_mine', $id_selectionné); }
 
-protected function Remplacement_variables($id) {
-	global $BDD;
-	$TVariables['production'] = $BDD->Production_mine($id); // recherche données du joueur dans la base
-	$TVariables['état'] = $BDD->Etat_mine($id);
-	$TVariables['nombre'] = $BDD->Nombre_mine($id);
-	return parent::Mise_en_forme($TVariables);
-}
-
 protected function Afficher_rapport($id) {
 	global $BDD;
 ?>
