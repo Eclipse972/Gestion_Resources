@@ -8,11 +8,6 @@ session_start(); // On démarre la session
  * onglet_X.png dans Vue/images
  * X.php dans Vue pour l'affichage de la page correspondant à l'onglet
 */
-require'Modele/classe_BD.php';
-
-$id_selectionné = (int) $_GET['id']; // ID objet de l'onglet sélectionné
-$SCRIPT = substr($_SERVER['PHP_SELF'],1,strlen($_SERVER['PHP_SELF'])-5);	// script associé à l'onglet qui a téléchargé cette page
-
 $T_onglet = array(
 //	onglet			=> classe associée
 	'index'			=> 'Joueur',
@@ -23,6 +18,7 @@ $T_onglet = array(
 );
 
 // chargement de la classe associée à l'onglet. dans certains cas aucune n'est nécessaire
+$SCRIPT = substr($_SERVER['PHP_SELF'],1,strlen($_SERVER['PHP_SELF'])-5);	// script associé à l'onglet qui a téléchargé cette page
 if (isset($T_onglet[$SCRIPT]) && ($SCRIPT!='index')) require'Modele/classe_'.$T_onglet[$SCRIPT].'.php'; 
 
 // joueur
@@ -33,11 +29,13 @@ $CONNEXION_JOUEUR = $Joueur->Cadre_connexion();
 
 // construction de la page
 ob_start();
+require'Modele/classe_BD.php';
 if (isset($T_onglet[$SCRIPT])) { // un des onglets appelle cette page
 	if ($SCRIPT=='index') {
 		$Joueur->Présentation();
 		// traitement
 	} else { // onglet de type table
+		$id_selectionné = (int) $_GET['id']; // ID objet de l'onglet sélectionné
 		$Tableau = new $T_onglet[$SCRIPT];
 		$Tableau->Afficher_tete();
 		$Tableau->Afficher_corps($id_selectionné);
