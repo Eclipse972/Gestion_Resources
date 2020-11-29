@@ -1,17 +1,17 @@
 /* feuille de style de l'onglet usines */
-section thead tr th:nth-child(2), section tbody tr td:nth-child(2) { width:450px; }
-section thead tr th:nth-child(3), section tbody tr td:nth-child(3) { width:90px; }
-section thead tr th:nth-child(4), section tbody tr td:nth-child(4) { width:300px; }
+section thead tr th:nth-child(1), section tbody tr td:nth-child(1) { width:450px; }
+section thead tr th:nth-child(2), section tbody tr td:nth-child(2) { width:90px; }
+section thead tr th:nth-child(3), section tbody tr td:nth-child(3) { width:300px; }
 
-section tbody tr td:nth-child(3), section tbody tr td:nth-child(4) { text-align: right; }
-section tbody tr td:nth-child(2) { vertical-align:top; }
+section tbody tr td:nth-child(2), section tbody tr td:nth-child(3) { text-align: right; }
+section tbody tr td:nth-child(1) { vertical-align:top; }
 
-section tbody tr td:nth-child(2) img {
+section tbody tr td:nth-child(1) img {
 	height:22px;
 	vertical-align:middle;
 }
 
-section tbody tr td:nth-child(2) h1 {
+section tbody tr td:nth-child(1) h1 {
 	text-decoration:none;
 	font-size:22px;
 	text-align:left;
@@ -19,8 +19,7 @@ section tbody tr td:nth-child(2) h1 {
 	margin-bottom:5px;
 }
 
-section tbody tr td:nth-child(2) p {
+section tbody tr td:nth-child(1) p {
 	font-size:16px;
 	margin:0;
-	margin-left:20px;
 }
