@@ -7,7 +7,6 @@ section tbody tr td:nth-child(2), section tbody tr td:nth-child(3) { text-align:
 section tbody tr td:nth-child(1) { vertical-align:top; }
 
 section tbody tr td:nth-child(1) img {
-	height:22px;
 	vertical-align:middle;
 }
 
@@ -23,3 +22,7 @@ section tbody tr td:nth-child(1) p {
 	font-size:16px;
 	margin:0;
 }
+
+#petite_image img { height:22px;}
+
+#gauche { float:left; }
