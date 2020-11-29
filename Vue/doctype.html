@@ -1,17 +1,5 @@
 <?php 
-session_start(); // On démarre la session
-/*
- * ONGLET_ACTIF est une constante définie dans chaque script associé à l'onglet (qui incsopore appelle ce script)
- * pour ajouter un onglet nommé X il faut créer 4 fichiers
- * X.php à la racine voir index.php pour l'exemple
- * X.css dans Vue
- * onglet_X.png dans Vue/images
- * X.php dans Vue pour l'affichage de la page correspondant à l'onglet
-*/
-
-$id_selectionné = (int) $_GET['id']; // ID objet de l'onglet sélectionné
-$SCRIPT = substr($_SERVER['PHP_SELF'],1,strlen($_SERVER['PHP_SELF'])-5);	// script associé à l'onglet qui a téléchargé cette page
-
+session_start();
 $T_onglet = array(
 //	onglet			=> classe associée
 	'index'			=> 'Joueur',
@@ -23,11 +11,13 @@ $T_onglet = array(
 /* Fichiers à créer pour un développement d'un futur onglet Ex: batiment spéciaux, missions
  * Soit X le nom du nouvel onglet 
  * X.php à la racine
+ * ajouter X dans le tableau $T_onglet
  * Vue/X.css feuille de style en plus de commun.css
  * Vue/images/onglet_X.png image de l'onglet
  * Modele/classe_TX.php classe associée au tableau 
  * Modele/classe_BD_X la BDD 
  * */
+$SCRIPT = substr($_SERVER['PHP_SELF'],1,strlen($_SERVER['PHP_SELF'])-5);	// script associé à l'onglet qui a téléchargé cette page
 if (isset($T_onglet[$SCRIPT]) && ($SCRIPT!='index')) {
 	require'Modele/classe_'.$T_onglet[$SCRIPT].'.php'; // chargement de la classe associée à l'onglet
 	require'Modele/classe_BD_'.$SCRIPT.'.php'; // chargement de la classe de BD associée à l'onglet autre que index
@@ -46,6 +36,7 @@ if (isset($T_onglet[$SCRIPT])) { // un des onglets appelle cette page
 		$Joueur->Présentation();
 		// traitement
 	} else { // onglet de type table
+		$id_selectionné = (int) $_GET['id']; // ID objet de l'onglet sélectionné
 		$classeBDD= 'BD_'.$SCRIPT;
 		$BDD = new $classeBDD; // variable globaLe utilisée par l'objet Tableau
 		$Tableau = new $T_onglet[$SCRIPT];
