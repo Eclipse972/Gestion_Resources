@@ -8,7 +8,6 @@ session_start(); // On démarre la session
  * onglet_X.png dans Vue/images
  * X.php dans Vue pour l'affichage de la page correspondant à l'onglet
 */
-require'Modele/classe_BD.php';
 
 $id_selectionné = (int) $_GET['id']; // ID objet de l'onglet sélectionné
 $SCRIPT = substr($_SERVER['PHP_SELF'],1,strlen($_SERVER['PHP_SELF'])-5);	// script associé à l'onglet qui a téléchargé cette page
@@ -21,13 +20,22 @@ $T_onglet = array(
 	'entrepots'		=> 'TEntrepot',
 	'marchandises'	=> 'TMarchandise'
 );
+/* Fichiers à créer pour un développement d'un futur onglet Ex: batiment spéciaux, missions
+ * Soit X le nom du nouvel onglet 
+ * X.php à la racine
+ * Vue/X.css feuille de style en plus de commun.css
+ * Vue/images/onglet_X.png image de l'onglet
+ * Modele/classe_TX.php classe associée au tableau 
+ * Modele/classe_BD_X la BDD 
+ * */
+if (isset($T_onglet[$SCRIPT]) && ($SCRIPT!='index')) {
+	require'Modele/classe_'.$T_onglet[$SCRIPT].'.php'; // chargement de la classe associée à l'onglet
+	require'Modele/classe_BD_'.$SCRIPT.'.php'; // chargement de la classe de BD associée à l'onglet autre que index
+}// gérer le sinon
 
-// chargement de la classe associée à l'onglet. dans certains cas aucune n'est nécessaire
-if (isset($T_onglet[$SCRIPT]) && ($SCRIPT!='index')) require'Modele/classe_'.$T_onglet[$SCRIPT].'.php'; 
-
-// joueur
-require'Modele/classe_Joueur.php'; // nécessaire quelque soit l'onglet
-// stocker l'objet joueur dans la session
+// joueur stocker l'objet joueur dans la session
+require'Modele/classe_Joueur.php';
+require'Modele/classe_BD_joueur.php';
 $Joueur=new Joueur;
 $CONNEXION_JOUEUR = $Joueur->Cadre_connexion();
 
@@ -38,7 +46,8 @@ if (isset($T_onglet[$SCRIPT])) { // un des onglets appelle cette page
 		$Joueur->Présentation();
 		// traitement
 	} else { // onglet de type table
-		$BDD = new base2donnees; // variable globaLe utilisée par l'objet Tableau
+		$classeBDD= 'BD_'.$SCRIPT;
+		$BDD = new $classeBDD; // variable globaLe utilisée par l'objet Tableau
 		$Tableau = new $T_onglet[$SCRIPT];
 		$Tableau->Afficher_tete();
 		$Tableau->Afficher_corps($id_selectionné);
