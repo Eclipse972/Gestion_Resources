@@ -1,13 +1,5 @@
 <?php 
 session_start();
-$T_onglet = array(
-//	onglet			=> classe associée
-	'index'			=> 'Joueur',
-	'usines'		=> 'TUsine',
-	'mines'			=> 'TMine',
-	'entrepots'		=> 'TEntrepot',
-	'marchandises'	=> 'TMarchandise'
-);
 /* Fichiers à créer pour un développement d'un futur onglet Ex: batiment spéciaux, missions
  * Soit X le nom du nouvel onglet 
  * X.php à la racine
@@ -17,20 +9,33 @@ $T_onglet = array(
  * Modele/classe_TX.php classe associée au tableau 
  * Modele/classe_BD_X la BDD 
  * */
+ $T_onglet = array(
+//	onglet			=> classe associée
+	'index'			=> 'Joueur',
+	'usines'		=> 'TUsine',
+	'mines'			=> 'TMine',
+	'entrepots'		=> 'TEntrepot',
+	'marchandises'	=> 'TMarchandise'
+);
 $SCRIPT = substr($_SERVER['PHP_SELF'],1,strlen($_SERVER['PHP_SELF'])-5);	// script associé à l'onglet qui a téléchargé cette page
 if (isset($T_onglet[$SCRIPT]) && ($SCRIPT!='index')) {
 	require'Modele/classe_'.$T_onglet[$SCRIPT].'.php'; // chargement de la classe associée à l'onglet
 	require'Modele/classe_BD_'.$SCRIPT.'.php'; // chargement de la classe de BD associée à l'onglet autre que index
 }// gérer le sinon
 
-// joueur stocker l'objet joueur dans la session
-require'Modele/classe_Joueur.php';
-require'Modele/classe_BD_joueur.php';
+// chargement de la classe associée à l'onglet. dans certains cas aucune n'est nécessaire
+if (isset($T_onglet[$SCRIPT]) && ($SCRIPT!='index')) require'Modele/classe_'.$T_onglet[$SCRIPT].'.php'; 
+
+// joueur
+require'Modele/classe_Joueur.php'; // nécessaire quelque soit l'onglet
+// stocker l'objet joueur dans la session
+
 $Joueur=new Joueur;
 $CONNEXION_JOUEUR = $Joueur->Cadre_connexion();
 
 // construction de la page
 ob_start();
+require'Modele/classe_BD.php';
 if (isset($T_onglet[$SCRIPT])) { // un des onglets appelle cette page
 	if ($SCRIPT=='index') {
 		$Joueur->Présentation();

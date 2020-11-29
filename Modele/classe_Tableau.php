@@ -13,11 +13,10 @@ abstract public function Afficher_corps($id_selectionné);	// corps du tableau
 abstract protected function Afficher_rapport($id);			// affichage détaillé de la ligne
 
 protected function Afficher_thead($T_en_tete) { // déclare le tableau avec en paramètres un tableau contenant les en-têtes à afficher
-	$this->nb_col_tableau = count($T_en_tete)+1; // +celle pour l'image
+	$this->nb_col_tableau = count($T_en_tete);
 ?>
 	<thead>
 	<tr>
-		<th><!-- colonne pour l'image --></th>
 <?php	foreach($T_en_tete as $valeur) {	echo "\t\t",'<th>',$valeur,'</th>',"\n";	}	?>
 	</tr>
 	</thead>

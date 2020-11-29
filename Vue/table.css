@@ -2,7 +2,7 @@
 section tbody tr td:nth-child(1) img {
 	height:70px;
 	vertical-align:middle;
-	margin-bottom:5px;
+	margin-right:5px;
 }
 
 section thead tr {
@@ -10,8 +10,6 @@ section thead tr {
 	padding:2px;
 	text-align:center;
 }
-
-section tbody tr td:nth-child(1) { width:80px; }
 
 section a {
 	color:white;
