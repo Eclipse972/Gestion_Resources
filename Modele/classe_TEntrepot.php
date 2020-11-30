@@ -18,9 +18,9 @@ protected function Afficher_rapport($id) {
 	<h1>Am&eacute;lioration</h1>
 	<p>co&ucirc;t pour am&eacute;liorer d'un niveau</p>
 	<h1>Utile pour</h1>
-	<?=$BDD->MarchandiseUtilePour($id)?>
+	<p>liste</p>
 	<h1>N&eacute;cessite</h1>
-	<?=$BDD->MarchandiseAbesoin($id)?>
+	<p>liste</p>
 <?php
 }
 }
