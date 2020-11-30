@@ -8,4 +8,4 @@ SELECT
 		'\t\t<td>',REPLACE(FORMAT(cours_max ,0),',', ' '),'&euro;</td>\n'
 	) AS code,
 	nom AS nom_ligne
-FROM marchandise WHERE nature_ID BETWEEN 1 AND 2
+FROM marchandise WHERE nature_ID BETWEEN 1 AND 2	#ressourcs et marchandises pour le moment

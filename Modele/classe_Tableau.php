@@ -30,8 +30,12 @@ protected function Afficher_tbody($vueBD, $id_selectionné) {
 	try	{ // code inspiré du site de P.Giraud
 		include 'connexion.php'; // les variables de connexion sont définies dans ce script non suivi par git
 		$BD = new PDO($dsn, $utilisateur, $mdp); // On se connecte au serveur MySQL
-		$requete=$BD->prepare('SELECT ID, IDjoueur, code FROM '.$vueBD.' WHERE IDjoueur = :ID'); // FROM :vue WHERE  avec bindValue(':vue',$vue) provoque une erreur de syntaxe
-		$requete->bindValue(':ID',$IDjoueur, PDO::PARAM_INT);
+		if ($vueBD == 'Vue_marchandise') // la vue marchandise est indépendante du joueur
+			$requete=$BD->prepare('SELECT ID, code FROM Vue_marchandise');
+		else {
+			$requete=$BD->prepare('SELECT ID, IDjoueur, code FROM '.$vueBD.' WHERE IDjoueur = :ID'); // FROM :vue WHERE  avec bindValue(':vue',$vue) provoque une erreur de syntaxe
+			$requete->bindValue(':ID',$IDjoueur, PDO::PARAM_INT);
+		}
 		$requete->execute();
 		$T_Vue = $requete->fetchAll(PDO::FETCH_ASSOC);
 	}

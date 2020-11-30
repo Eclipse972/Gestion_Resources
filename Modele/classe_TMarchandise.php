@@ -14,7 +14,6 @@ public function Afficher_tete() { parent::Afficher_thead(array('Marchandise', 'c
 public function Afficher_corps($id_selectionné) { parent::Afficher_tbody('Vue_marchandise', $id_selectionné); }
 
 protected function Afficher_rapport($id) {
-	global $BDD;
 ?>
 	<h1>Liste des besoins</h1>
 	<p>liste</p>
@@ -23,9 +22,9 @@ protected function Afficher_rapport($id) {
 	<h1>Ventes &agrave; pr&eacute;voir</h1>
 	<p>pour ne pas d&eacute;border<br>liste</p>
 	<h1>Utile pour</h1>
-	<?=$BDD->MarchandiseUtilePour($id)?>
+	<p>liste</p>
 	<h1>N&eacute;cessite</h1>
-	<?=$BDD->MarchandiseAbesoin($id)?>
+	<p>liste</p>
 <?php
 }
 }
