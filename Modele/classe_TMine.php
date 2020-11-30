@@ -1,5 +1,5 @@
 <?php
-require'Modele/classe_Tableau.php'; // classe mère
+require'Modele/classe_Tableau.php';
 
 class TMine extends Tableau {
 
@@ -15,7 +15,7 @@ protected function Afficher_rapport($id) {
 	<p>production maxi</p>
 	<p>nombre</p>
 	<h1>Utile pour</h1>
-	<?=$BDD->MineUtilePour($id)?>
+	<p>liste</p>
 <?php
 }
 }
