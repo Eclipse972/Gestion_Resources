@@ -30,17 +30,16 @@ protected function Afficher_tbody($vueBD, $id_selectionné) {
 	try	{ // code inspiré du site de P.Giraud
 		include 'connexion.php'; // les variables de connexion sont définies dans ce script non suivi par git
 		$BD = new PDO($dsn, $utilisateur, $mdp); // On se connecte au serveur MySQL
-		if ($vueBD == 'Vue_marchandise') // la vue marchandise est indépendante du joueur
-			$requete=$BD->prepare('SELECT ID, code FROM Vue_marchandise');
+		if ($vueBD == 'Vue_marchandise')
+			$requete = $BD->prepare('SELECT ID, code FROM Vue_marchandise'); // la vue marchandise est indépendante du joueur
 		else {
-			$requete=$BD->prepare('SELECT ID, IDjoueur, code FROM '.$vueBD.' WHERE IDjoueur = :ID'); // FROM :vue WHERE  avec bindValue(':vue',$vue) provoque une erreur de syntaxe
+			$requete = $BD->prepare('SELECT ID, IDjoueur, code FROM '.$vueBD.' WHERE IDjoueur = :ID'); // FROM :vue WHERE  avec bindValue(':vue',$vue) provoque une erreur de syntaxe
 			$requete->bindValue(':ID',$IDjoueur, PDO::PARAM_INT);
 		}
 		$requete->execute();
 		$T_Vue = $requete->fetchAll(PDO::FETCH_ASSOC);
-	}
-	catch (PDOException $e) {
-		echo "Erreur : " . $e->getMessage(); // faire un meilleur traitement de l'erreur
+	} catch (PDOException $e) {
+		exit('Erreur : '.$e->getMessage()); // faire un meilleur traitement de l'erreur
 	}
 	$BD = null; // on ferme la connexion
 ?>
@@ -50,13 +49,13 @@ protected function Afficher_tbody($vueBD, $id_selectionné) {
 		echo "\t",($réponseBD['ID'] == $id_selectionné) ? '<tr id="selection">' : '<tr>',"\n"; // pose d'une ancre sur la ligne sélectionnée
 		echo $réponseBD['code'],"\t</tr>\n";
 		if ($réponseBD['ID'] == $id_selectionné) {
-?>
-	<tr>
+			$liste_variables = $this->Récupérer_variables_rapport($vueBD, $IDjoueur, $id)
+?>	<tr>
 		<td colspan="<?=$this->nb_col_tableau?>" id="rapport">
 		<a href="#">Remonter en haut de la page</a>
 <!-- Début du rapport -->
 <?php
-		$this->Afficher_rapport($id_selectionné);
+		$this->Afficher_rapport($ligneBD);
 ?>
 <!-- Fin du rapport -->
 		</td>
@@ -68,5 +67,20 @@ protected function Afficher_tbody($vueBD, $id_selectionné) {
 	</tbody>
 	</table>
 <?php
+}
+protected function Récupérer_variables_rapport($vueBD, $IDjoueur, $id) {
+	try	{
+		include 'connexion.php'; // les variables de connexion sont définies dans ce script non suivi par git
+		$BD = new PDO($dsn, $utilisateur, $mdp); // On se connecte au serveur MySQL
+		$requete = $BD->prepare('SELECT * FROM Rapport_'.$vueBD.' WHERE ID = :ID AND IDjoueur = :IDjoueur');
+		$requete->bindValue(':IDjoueur',$IDjoueur, PDO::PARAM_INT);
+		$requete->bindValue(':ID',$id_selectionné, PDO::PARAM_INT);
+		$requete->execute();
+		$liste_variables = $requete->fetch(PDO::FETCH_ASSOC); // une seule ligne à capturer qui content toutes les variables pour afficher le rapport
+	} catch (PDOException $e) {
+		exit('Erreur : '.$e->getMessage()); // faire un meilleur traitement de l'erreur
+	}
+	$BD = null; // on ferme la connexion
+	return $liste_variables; // retourne la listes des variables sous la forme d'un tableau associatif
 }
 }

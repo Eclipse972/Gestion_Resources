@@ -13,7 +13,7 @@ public function Afficher_tete() { parent::Afficher_thead(array('Marchandise', 'c
 
 public function Afficher_corps($id_selectionné) { parent::Afficher_tbody('Vue_marchandise', $id_selectionné); }
 
-protected function Afficher_rapport($id) {
+protected function Afficher_rapport($Tvariables) {
 ?>
 	<h1>Liste des besoins</h1>
 	<p>liste</p>

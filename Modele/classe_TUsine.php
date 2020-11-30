@@ -7,7 +7,7 @@ public function Afficher_tete() { $this->Afficher_thead(array('Usine', 'Niveau',
 
 public function Afficher_corps($id_selectionné) { parent::Afficher_tbody('Vue_usine', $id_selectionné); }
 
-protected function Afficher_rapport($id) {
+protected function Afficher_rapport($Tvariables) {
 ?>
 	<h1>Mise &agrave; jour des donn&eacute;es</h1>
 	<p>niveau</p>
