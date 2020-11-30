@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: gestion.resources.sql.free.fr
--- Généré le : Ven 27 Novembre 2020 à 19:37
+-- Généré le : Lun 30 Novembre 2020 à 21:33
 -- Version du serveur: 5.0.83
 -- Version de PHP: 5.3.9
 
@@ -52,8 +52,8 @@ INSERT INTO `marchandise` (`ID`, `nom`, `image`, `unité_ID`, `nature_ID`, `cour
 (8, 'diamant brut', 'diamant_brut', 5, 1, 1143, 3160, '2019-07-25 21:41:03'),
 (9, 'gravier', 'gravier', 1, 1, 378, 455, '2019-07-25 21:42:01'),
 (10, 'ilem&eacute;nite', 'ilemenite', 1, 1, 419, 450, '2019-07-25 21:43:59'),
-(11, 'minerai d''argent', 'mineraiDargent', 1, 1, 2566, 2566, '2019-07-25 21:46:18'),
-(12, 'minerai d''or', 'mineraiDor', 1, 1, 1448, 1448, '2019-07-25 21:46:18'),
+(11, 'minerai d&apos;argent', 'mineraiDargent', 1, 1, 2566, 2566, '2019-07-25 21:46:18'),
+(12, 'minerai d&apos;or', 'mineraiDor', 1, 1, 1448, 1448, '2019-07-25 21:46:18'),
 (13, 'minerai de fer', 'minerai2fer', 1, 1, 1002, 2890, '2019-07-25 21:48:10'),
 (14, 'minerai de lithium', 'minerai2lithium', 1, 1, 319, 813, '2019-07-25 21:48:10'),
 (15, 'p&eacute;trole brut', 'petrole', 1, 1, 2496, 2756, '2019-07-25 21:49:37'),

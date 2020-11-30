@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: gestion.resources.sql.free.fr
--- Généré le : Lun 30 Novembre 2020 à 18:15
+-- Généré le : Lun 30 Novembre 2020 à 21:33
 -- Version du serveur: 5.0.83
 -- Version de PHP: 5.3.9
 
@@ -27,11 +27,11 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 CREATE TABLE IF NOT EXISTS `mine` (
   `ID` tinyint(3) unsigned NOT NULL auto_increment,
-  `joueur_ID` tinyint(3) unsigned NOT NULL default '1',
+  `joueur_ID` tinyint(3) unsigned NOT NULL,
   `type_mine_ID` tinyint(3) unsigned NOT NULL,
   `nombre` int(10) unsigned NOT NULL default '0',
   `prod_max` bigint(20) unsigned NOT NULL default '0',
-  `etat%` tinyint(1) unsigned NOT NULL default '0',
+  `etat` tinyint(1) unsigned NOT NULL default '0' COMMENT 'pourcentage en valeur entière',
   `ordre_affichage` tinyint(1) unsigned NOT NULL default '0',
   PRIMARY KEY  (`ID`),
   UNIQUE KEY `joueur_ID` (`joueur_ID`,`type_mine_ID`)
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `mine` (
 -- Contenu de la table `mine`
 --
 
-INSERT INTO `mine` (`ID`, `joueur_ID`, `type_mine_ID`, `nombre`, `prod_max`, `etat%`, `ordre_affichage`) VALUES
+INSERT INTO `mine` (`ID`, `joueur_ID`, `type_mine_ID`, `nombre`, `prod_max`, `etat`, `ordre_affichage`) VALUES
 (1, 1, 1, 10, 11111, 100, 0),
 (2, 1, 2, 20, 2222, 69, 0),
 (3, 1, 3, 510, 44444, 56, 0),
