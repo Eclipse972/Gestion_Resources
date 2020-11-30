@@ -23,6 +23,7 @@ protected function Afficher_rapport($id) {
 	<p>les usines peuvent elles assurer les besoins pour produire</p>
 
 	<h1>Am&eacute;lioration</h1>
+	<p>besoins</p>
 	<p>ordre am&eacute;lioration</p>
 <?php
 }
