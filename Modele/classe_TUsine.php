@@ -1,14 +1,13 @@
 <?php
-require'Modele/classe_Tableau.php'; // classe mère
+require'Modele/classe_Tableau.php'; 
 
 class TUsine extends Tableau {
 
-public function Afficher_tete() { parent::Afficher_thead(array('Usine', 'Niveau', 'Production')); }
+public function Afficher_tete() { $this->Afficher_thead(array('Usine', 'Niveau', 'Production')); }
 
 public function Afficher_corps($id_selectionné) { parent::Afficher_tbody('Vue_usine', $id_selectionné); }
 
 protected function Afficher_rapport($id) {
-	global $BDD;
 ?>
 	<h1>Mise &agrave; jour des donn&eacute;es</h1>
 	<p>niveau</p>
@@ -24,7 +23,6 @@ protected function Afficher_rapport($id) {
 	<p>les usines peuvent elles assurer les besoins pour produire</p>
 
 	<h1>Am&eacute;lioration</h1>
-	<?=$BDD->Amélioration_usine($id)?>
 	<p>ordre am&eacute;lioration</p>
 <?php
 }
