@@ -8,7 +8,6 @@ public function Afficher_tete() { parent::Afficher_thead(array('Entrep&ocirc;t',
 public function Afficher_corps($id_selectionné) { parent::Afficher_tbody('Vue_entrepot', $id_selectionné); }
 
 protected function Afficher_rapport($id) {
-	global $BDD;
 ?>
 	<h1>Mise &agrave; jour des donn&eacute;es</h1>
 	<p>niveau</p>
