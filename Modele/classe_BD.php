@@ -1,11 +1,9 @@
 <?php
-abstract class base2donnees { // chaque requête doit commencer par une nouvelle connexion. =< utilisation de new à chaque appael
+abstract class base2donnees {
 protected $resultat;
 protected $BD;
 protected $IDjoueur;
 
-// pour les développements futurs
-abstract protected function Tableau_parametres($ID);
 abstract public function Récupère_vue();
 
 public function __construct() {
@@ -16,24 +14,41 @@ public function __construct() {
 	catch (PDOException $e) { // En cas d'erreur, on affiche un message et on arrête tout
 		die('Erreur : '.$e->getMessage());
 	}
-	$this->IDjoueur = (isset($_SESSION['ID'])) ? $_SESSION['ID'] : 1; // joueur exemple
+	$this->IDjoueur = (isset($_SESSION['ID'])) ? $_SESSION['ID'] : 1; // joueur lambda pour le moment
 }
 
-/*public function Récupère_Vue_brute($vueBD) {
+public function Récupère_Vue_nommée($vueBD) {
+	$this->resultat = $this->BD->prepare('SELECT ID, IDjoueur, code FROM ? WHERE IDjoueur = ?'); // préparation de la requête
+	//////////////////////////
+	if (!$this->resultat) trigger_error('Erreur de préparation requête sur '.$vueBD, E_USER_ERROR);
+	/////////////////////////
+	// exécution de la requête
+	$this->resultat->bindValue(1,$vueBD);
+	$this->resultat->bindValue(2,$this->IDjoueur);
+	$this->resultat->execute();
+	if ($this->resultat->errorCode() != '00000') trigger_error('Erreur de requête sur '.$vueBD.' & joueur='.$this->IDjoueur, E_USER_ERROR);
+	
+	// récupération des données
 	$T_code = [];
-	$No_ligne = 0;
-	$this->resultat = $this->BD->query('SELECT * FROM '.$vueBD); // récupère les données de la vue
-	while ($ligne = $this->resultat->fetch()) {
-		$T_code[$No_ligne]['ID'] = $ligne['ID'];
-		$T_code[$No_ligne]['code'] = $this->Remplacement_variables($ligne['code'], $this->Tableau_parametres($ligne['ID']));// remplacement des variables
-		$No_ligne++;
-	}
-	return $T_code;
-}*/
+	while ($ligne = $this->resultat->fetch()) $T_code[] = $ligne;
 
-protected function Remplacement_variables($ligne, $T_param) {	// remplace chaque variable (entourée de parenthèses) par sa valeur
-	foreach($T_param as $variable => $valeur) $ligne = str_replace('('.$variable.')',	$valeur, $ligne);
-	return $ligne;
+	$this->resultat->closeCursor(); // utile si j'utilise autre chose que MySQL
+	return $T_code;
+}
 }
 
+class BD_usines extends base2donnees {
+	public function Récupère_vue() { return parent::Récupère_Vue_nommée('Vue_usine'); }
+}
+
+class BD_mine extends base2donnees {
+	public function Récupère_vue() { return parent::Récupère_Vue_nommée('Vue_mine'); }
+}
+
+class BD_entrepots extends base2donnees {
+	public function Récupère_vue() { return parent::Récupère_Vue_nommée('Vue_entrepot'); }
+}
+
+class BD_marchandise extends base2donnees {
+	public function Récupère_vue() { return parent::Récupère_Vue_nommée('Vue_marchandise'); }
 }
