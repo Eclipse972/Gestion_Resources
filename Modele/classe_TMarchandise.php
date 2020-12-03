@@ -17,9 +17,9 @@ protected function Afficher_rapport($Tvariables) {
 ?>	<h1>Liste des besoins avec achats et ventes &agrave; pr&eacute;voir</h1>
 	<p><?=$Tvariables['liste']?></p>
 
-	<h1>Utile pour</h1>
+	<h1>Utile pour...</h1>
 <?php
-	echo isset($Tvariables['utile']) ? "<ul>\n".$Tvariables['utile']."\t</ul>\n" : '<p>Gagner de l&apos;argent!</p>';
+	echo isset($Tvariables['utile']) ? "\t<ul>\n".$Tvariables['utile']."\t</ul>\n" : '<p>Gagner de l&apos;argent!</p>';
 
 	echo isset($Tvariables['necessite']) ? "<h1>N&eacute;cessite</h1>\n\t<ul>\n".$Tvariables['necessite']."\t</ul>\n" : '';
 }
