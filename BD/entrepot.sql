@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: gestion.resources.sql.free.fr
--- Généré le : Lun 30 Novembre 2020 à 21:32
+-- Généré le : Jeu 03 Décembre 2020 à 21:53
 -- Version du serveur: 5.0.83
 -- Version de PHP: 5.3.9
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `entrepot` (
   `ordre_affichage` tinyint(1) unsigned NOT NULL default '0',
   PRIMARY KEY  (`ID`),
   UNIQUE KEY `unicité_entrepot` (`marchandise_ID`,`joueur_ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=29 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=39 ;
 
 --
 -- Contenu de la table `entrepot`
@@ -69,7 +69,17 @@ INSERT INTO `entrepot` (`ID`, `marchandise_ID`, `joueur_ID`, `niveau`, `stock`, 
 (25, 27, 1, 0, 0, '2020-11-30 19:43:39', 0),
 (26, 28, 1, 0, 0, '2020-11-30 19:43:39', 0),
 (27, 29, 1, 0, 0, '2020-11-30 19:43:39', 0),
-(28, 30, 1, 0, 0, '2020-11-30 19:43:39', 0);
+(28, 30, 1, 0, 0, '2020-11-30 19:43:39', 0),
+(29, 3, 2, 10, 0, '2020-12-03 02:41:52', 0),
+(30, 4, 2, 11, 22, '2020-12-03 02:41:52', 0),
+(31, 31, 1, 10, 11, '2020-12-03 03:52:29', 0),
+(32, 32, 1, 99, 1, '2020-12-03 03:52:29', 0),
+(33, 33, 1, 0, 65, '2020-12-03 03:52:29', 0),
+(34, 34, 1, 88, 999, '2020-12-03 03:52:29', 0),
+(35, 35, 1, 4, 5, '2020-12-03 03:52:29', 0),
+(36, 36, 1, 6, 333, '2020-12-03 03:52:29', 0),
+(37, 37, 1, 61, 245, '2020-12-03 03:52:29', 0),
+(38, 38, 1, 44, 4445, '2020-12-03 03:52:29', 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

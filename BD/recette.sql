@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: gestion.resources.sql.free.fr
--- Généré le : Lun 30 Novembre 2020 à 21:34
+-- Généré le : Jeu 03 Décembre 2020 à 21:55
 -- Version du serveur: 5.0.83
 -- Version de PHP: 5.3.9
 
@@ -94,7 +94,7 @@ INSERT INTO `recette` (`ID`, `nature_ID`, `nom`) VALUES
 (55, 2, 'raffinerie de silicium'),
 (56, 2, 'raffinerie de titane'),
 (57, 2, 'verrerie'),
-(58, 2, 'usine de techologies m&eacute;dicale');
+(58, 2, 'usine de tecnhologies m&eacute;dicale');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
