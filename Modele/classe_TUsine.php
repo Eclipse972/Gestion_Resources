@@ -9,7 +9,8 @@ public function Afficher_corps($id_selectionné) { parent::Afficher_tbody('Vue_u
 
 protected function Afficher_rapport($Tvariables) {
 ?>	<h1>Mise &agrave; jour des donn&eacute;es</h1>
-	<p>niveau</p>
+	<p>niveau = <?=$Tvariables['niveau']?></p>
+	<p>dur&eacute;e de production souhait&eacute;e = <?=$Tvariables['duree_prod_souhaitee']?></p>
 
 	<h1>Production</h1>
 	<p>dur&eacute;e de production restante: jour - heures - minutes<br>recharger la page devra mettre &agrave; jour cette info</p>
