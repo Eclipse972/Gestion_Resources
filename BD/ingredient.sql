@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: gestion.resources.sql.free.fr
--- Généré le : Lun 30 Novembre 2020 à 21:32
+-- Généré le : Jeu 03 Décembre 2020 à 21:04
 -- Version du serveur: 5.0.83
 -- Version de PHP: 5.3.9
 
@@ -22,10 +22,10 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `ingredients`
+-- Structure de la table `ingredient`
 --
 
-CREATE TABLE IF NOT EXISTS `ingredients` (
+CREATE TABLE IF NOT EXISTS `ingredient` (
   `recette_ID` tinyint(3) unsigned NOT NULL,
   `nature` tinyint(1) NOT NULL COMMENT 'facilite la recherche: 0=ingrédients, 1=argent, 2produit',
   `marchandise_ID` tinyint(3) unsigned NOT NULL,
@@ -34,10 +34,10 @@ CREATE TABLE IF NOT EXISTS `ingredients` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
 --
--- Contenu de la table `ingredients`
+-- Contenu de la table `ingredient`
 --
 
-INSERT INTO `ingredients` (`recette_ID`, `nature`, `marchandise_ID`, `quantité`) VALUES
+INSERT INTO `ingredient` (`recette_ID`, `nature`, `marchandise_ID`, `quantité`) VALUES
 (1, 1, 1, 0),
 (1, 2, 3, 1),
 (2, 1, 1, 0),

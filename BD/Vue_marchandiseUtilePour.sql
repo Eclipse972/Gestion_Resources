@@ -8,9 +8,9 @@ SELECT
 		recette.nom,'</li>\n'
 		SEPARATOR '') AS code
 FROM recette
-INNER JOIN ingredients		ON ingredients.recette_ID		= recette.ID
-INNER JOIN marchandise		ON ingredients.marchandise_ID	= marchandise.ID
+INNER JOIN ingredient		ON ingredient.recette_ID		= recette.ID
+INNER JOIN marchandise		ON ingredient.marchandise_ID	= marchandise.ID
 INNER JOIN nature_recette	ON recette.nature_ID			= nature_recette.ID
-WHERE ingredients.nature = 0
+WHERE ingredient.nature = 0
 GROUP BY marchandise.ID
 ORDER BY marchandise.ID ASC
