@@ -9,20 +9,19 @@ public function Afficher_corps($id_selectionné) { parent::Afficher_tbody('Vue_e
 
 protected function Afficher_rapport($Tvariables) {
 ?>	<h1>Mise &agrave; jour des donn&eacute;es</h1>
-	<p>niveau</p>
-	<p>stock</p>
+	<p>niveau = <?=$Tvariables['niveau']?></p>
+	<p>stock = <?=$Tvariables['stock']?></p>
 
 	<h1>Les besoins</h1>
-	<p>listes des consomations ordonn&eacute;es par date croissante</p>
+	<p><?=$Tvariables['besoin']?></p>
 
 	<h1>Am&eacute;lioration</h1>
-	<p>co&ucirc;t pour am&eacute;liorer d'un niveau</p>
+	<p><?=$Tvariables['amelioration']?></p>
 
 	<h1>Utile pour</h1>
-	<p>liste</p>
-
-	<h1>N&eacute;cessite</h1>
-	<p>liste</p>
 <?php
+	echo isset($Tvariables['utile']) ? "\t<ul>\n".$Tvariables['utile']."\t</ul>\n" : '<p>Gagner de l&apos;argent!</p>';
+
+	echo isset($Tvariables['necessite']) ? "<h1>N&eacute;cessite</h1>\n\t<ul>\n".$Tvariables['necessite']."\t</ul>\n" : '';
 }
 }
