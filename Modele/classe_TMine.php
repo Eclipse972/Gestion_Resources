@@ -9,12 +9,14 @@ public function Afficher_corps($id_selectionné) { parent::Afficher_tbody('Vue_m
 
 protected function Afficher_rapport($Tvariables) {
 ?>	<h1>Mise &agrave; jour des donn&eacute;es</h1>
-	<p>&eacute;tat</p>
-	<p>production maxi</p>
-	<p>nombre</p>
+	<p>&eacute;tat = <?=$Tvariables['etat']?></p>
+	<p>production maxi = <?=$Tvariables['prod_max']?></p>
+	<p>nombre = <?=$Tvariables['nombre']?></p>
 
 	<h1>Utile pour</h1>
-	<p>liste</p>
+	<ul>
+<?=$Tvariables['utile']?>
+	</ul>
 <?php
 }
 }
