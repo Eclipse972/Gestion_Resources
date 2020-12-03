@@ -49,7 +49,7 @@ protected function Afficher_tbody($vueBD, $id_selectionné) {
 		echo "\t",($réponseBD['ID'] == $id_selectionné) ? '<tr id="selection">' : '<tr>',"\n"; // pose d'une ancre sur la ligne sélectionnée
 		echo $réponseBD['code'],"\t</tr>\n";
 		if ($réponseBD['ID'] == $id_selectionné) {
-			$T_variables = $this->Récupérer_variables_rapport($vueBD, $IDjoueur, $id)
+			$T_variables = $this->Récupérer_variables_rapport($vueBD, $IDjoueur, $id_selectionné);
 ?>	<tr>
 		<td colspan="<?=$this->nb_col_tableau?>" id="rapport">
 		<a href="#">Remonter en haut de la page</a>
@@ -72,9 +72,9 @@ protected function Récupérer_variables_rapport($vueBD, $IDjoueur, $id) {
 	try	{
 		include 'connexion.php'; // les variables de connexion sont définies dans ce script non suivi par git
 		$BD = new PDO($dsn, $utilisateur, $mdp); // On se connecte au serveur MySQL
-		$requete = $BD->prepare('SELECT * FROM Rapport_'.$vueBD.' WHERE ID = :ID AND IDjoueur = :IDjoueur');
+		$requete = $BD->prepare('SELECT * FROM '.$vueBD.'_rapport WHERE ID = :ID AND IDjoueur = :IDjoueur');
 		$requete->bindValue(':IDjoueur',$IDjoueur, PDO::PARAM_INT);
-		$requete->bindValue(':ID',$id_selectionné, PDO::PARAM_INT);
+		$requete->bindValue(':ID',$id, PDO::PARAM_INT);
 		$requete->execute();
 		$liste_variables = $requete->fetch(PDO::FETCH_ASSOC); // une seule ligne à capturer qui content toutes les variables pour afficher le rapport
 	} catch (PDOException $e) {

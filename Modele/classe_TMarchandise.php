@@ -15,13 +15,15 @@ public function Afficher_corps($id_selectionné) { parent::Afficher_tbody('Vue_m
 
 protected function Afficher_rapport($Tvariables) {
 ?>	<h1>Liste des besoins avec achats et ventes &agrave; pr&eacute;voir</h1>
-	<p>tableau</p>
+	<p><?=$Tvariables['liste']?></p>
 
 	<h1>Utile pour</h1>
-	<p>liste</p>
+	<ul>
+	<?=isset($Tvariables['utile']) ? "<ul>\n".$Tvariables['utile']."</ul>\n" : 'gagner de l&apos;argent!'?>
+	</ul>
 
 	<h1>N&eacute;cessite</h1>
-	<p>liste</p>
+	<?=isset($Tvariables['necessite']) ? "<ul>\n".$Tvariables['necessite']."</ul>\n" : 'rien'?>
 <?php
 }
 }
