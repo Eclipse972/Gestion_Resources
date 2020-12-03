@@ -49,13 +49,13 @@ protected function Afficher_tbody($vueBD, $id_selectionné) {
 		echo "\t",($réponseBD['ID'] == $id_selectionné) ? '<tr id="selection">' : '<tr>',"\n"; // pose d'une ancre sur la ligne sélectionnée
 		echo $réponseBD['code'],"\t</tr>\n";
 		if ($réponseBD['ID'] == $id_selectionné) {
-			$liste_variables = $this->Récupérer_variables_rapport($vueBD, $IDjoueur, $id)
+			$T_variables = $this->Récupérer_variables_rapport($vueBD, $IDjoueur, $id)
 ?>	<tr>
 		<td colspan="<?=$this->nb_col_tableau?>" id="rapport">
 		<a href="#">Remonter en haut de la page</a>
 <!-- Début du rapport -->
 <?php
-		$this->Afficher_rapport($ligneBD);
+		$this->Afficher_rapport($T_variables);
 ?>
 <!-- Fin du rapport -->
 		</td>

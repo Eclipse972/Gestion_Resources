@@ -14,15 +14,12 @@ public function Afficher_tete() { parent::Afficher_thead(array('Marchandise', 'c
 public function Afficher_corps($id_selectionné) { parent::Afficher_tbody('Vue_marchandise', $id_selectionné); }
 
 protected function Afficher_rapport($Tvariables) {
-?>
-	<h1>Liste des besoins</h1>
-	<p>liste</p>
-	<h1>Achats à pr&eacute;voir</h1>
-	<p>Pour ne pas &ecirc;tre en rupture de stock<br>liste</p>
-	<h1>Ventes &agrave; pr&eacute;voir</h1>
-	<p>pour ne pas d&eacute;border<br>liste</p>
+?>	<h1>Liste des besoins avec achats et ventes &agrave; pr&eacute;voir</h1>
+	<p>tableau</p>
+
 	<h1>Utile pour</h1>
 	<p>liste</p>
+
 	<h1>N&eacute;cessite</h1>
 	<p>liste</p>
 <?php

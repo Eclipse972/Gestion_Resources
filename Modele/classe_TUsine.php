@@ -8,13 +8,12 @@ public function Afficher_tete() { $this->Afficher_thead(array('Usine', 'Niveau',
 public function Afficher_corps($id_selectionné) { parent::Afficher_tbody('Vue_usine', $id_selectionné); }
 
 protected function Afficher_rapport($Tvariables) {
-?>
-	<h1>Mise &agrave; jour des donn&eacute;es</h1>
+?>	<h1>Mise &agrave; jour des donn&eacute;es</h1>
 	<p>niveau</p>
-	<p>dur&eacute;e de production restante: jour - heures - minutes<br>recharger la page mettra &agrave; jour cette info</p>
 
 	<h1>Production</h1>
-	<p>dur&eacute;e de production souhait&eacute;e</p>
+	<p>dur&eacute;e de production restante: jour - heures - minutes<br>recharger la page devra mettre &agrave; jour cette info</p>
+	<p>dur&eacute;e de production (jour - heures - minutes) ou quantité souhait&eacute;e</p>
 	<p>Besoins pour la production souhait&eacute;e</p>
 
 	<h1>Autosuffisance</h1>
