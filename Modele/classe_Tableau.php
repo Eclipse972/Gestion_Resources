@@ -52,7 +52,7 @@ protected function Afficher_tbody($vueBD, $id_selectionné) {
 			$T_variables = $this->Récupérer_variables_rapport($vueBD, $IDjoueur, $id_selectionné);
 ?>	<tr>
 		<td colspan="<?=$this->nb_col_tableau?>" id="rapport">
-		<a href="#">Remonter en haut de la page</a>
+		<p align="right"><a href="#"><img src="Vue/images/fleche_haut.png" style="height:40px" alt "remonter en haut de la page"></a></p>
 <!-- Début du rapport -->
 <?php
 		$this->Afficher_rapport($T_variables);
