@@ -78,7 +78,7 @@ ob_end_clean();
 	<ul>
 <?php
 	foreach($T_onglet as $onglet => $valeur)
-		echo "\t\t",'<li><a ',($onglet == $SCRIPT) ? 'id="onglet_actif" ' : '','href="',$onglet,'.php">','<img src="Vue/images/onglet_',$onglet,'.png" alt="onglet ',$onglet,'"></a></li>',"\n";
+		echo "\t\t<li><a ",($onglet == $SCRIPT) ? 'id="onglet_actif" ' : '',"href=\"{$onglet}.php\"><img src=\"Vue/images/onglet_{$onglet}.png\" alt=\"onglet {$onglet}\"></a></li>\n";
 ?>
 	</ul>
 </nav>

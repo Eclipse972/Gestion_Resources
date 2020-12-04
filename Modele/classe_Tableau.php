@@ -19,7 +19,7 @@ protected function Afficher_thead($T_en_tete) { // déclare le tableau avec en p
 ?>
 	<thead>
 	<tr>
-<?php	foreach($T_en_tete as $valeur) {	echo "\t\t<th>",$valeur,"</th>\n";	}	?>
+<?php	foreach($T_en_tete as $valeur) echo "\t\t<th>$valeur</th>\n";	?>
 	</tr>
 	</thead>
 <?php
@@ -31,7 +31,7 @@ protected function Afficher_tbody($vueBD, $id_selectionné) {
 		include 'connexion.php'; // les variables de connexion sont définies dans ce script non suivi par git
 		$BD = new PDO($dsn, $utilisateur, $mdp); // On se connecte au serveur MySQL
 		if ($vueBD == 'Vue_marchandise')
-			$requete = $BD->prepare('SELECT ID, code FROM Vue_marchandise'); // la vue marchandise est indépendante du joueur
+			$requete = $BD->prepare('SELECT ID, code FROM Vue_marchandise'); // la vue marchandise est indépendante du joueur sauf lorsque l'ordre d'afichage sera implémenté
 		else {
 			$requete = $BD->prepare('SELECT ID, IDjoueur, code FROM '.$vueBD.' WHERE IDjoueur = :ID'); // FROM :vue WHERE  avec bindValue(':vue',$vue) provoque une erreur de syntaxe
 			$requete->bindValue(':ID',$IDjoueur, PDO::PARAM_INT);
@@ -47,7 +47,7 @@ protected function Afficher_tbody($vueBD, $id_selectionné) {
 <?php
 	foreach($T_Vue as $réponseBD) {
 		echo "\t",($réponseBD['ID'] == $id_selectionné) ? '<tr id="selection">' : '<tr>',"\n"; // pose d'une ancre sur la ligne sélectionnée
-		echo $réponseBD['code'],"\t</tr>\n";
+		echo "{$réponseBD['code']}\t</tr>\n";
 		if ($réponseBD['ID'] == $id_selectionné) {
 			$T_variables = $this->Récupérer_variables_rapport($vueBD, $IDjoueur, $id_selectionné);
 ?>	<tr>
