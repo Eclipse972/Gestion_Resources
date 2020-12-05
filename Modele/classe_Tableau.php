@@ -100,16 +100,16 @@ protected function AbesoinsDe($marchandise_ID) {
 			WHERE ingredient.nature = 2 AND ingS.nature = 0 AND marchandise.ID = :ID");
 		$requete->bindValue(':ID',$marchandise_ID, PDO::PARAM_INT);
 		$requete->execute();
-		$liste_recettes = $requete->fetchall(PDO::FETCH_ASSOC);
+		$T_reponseBD = $requete->fetchall(PDO::FETCH_ASSOC);
 	} catch (PDOException $e) {
 		exit('Erreur : '.$e->getMessage()); // faire un meilleur traitement de l'erreur
 	}
 	$BD = null; // on ferme la connexion
-	if (count($liste_recettes)>1) { // plusieurs lignes
+	if (count($T_reponseBD)>1) { // plusieurs lignes
 		echo"\t<h1>N&eacute;cessite :</h1>\n\t<ul>";
-		foreach($liste_recettes as $ligneBD) echo "\t\t<li>{$ligneBD['nom']}</li>\n";
+		foreach($T_reponseBD as $ligneBD) echo "\t\t<li>{$ligneBD['nom']}</li>\n";
 		echo"\t</ul>";
-	} elseif (count($liste_recettes)==1) echo"\t<p>N&eacute;cessite uniquement {$liste_recettes[0]['nom']}</p>"; // une seule ligne
+	} elseif (count($T_reponseBD)==1) echo"\t<p>N&eacute;cessite uniquement {$T_reponseBD[0]['nom']}</p>"; // une seule ligne
 	// sinon on affiche rien
 }
 
@@ -120,7 +120,7 @@ protected function UtilePour($marchandise_ID) {
 		$requete = $BD->prepare("
 			SELECT CONCAT(nature_recette.nom,
 				IF(LEFT(recette.nom,1) IN ('a', 'e', 'i', 'o', 'u'),' d&apos;', ' de '),
-				recette.nom) AS recette
+				recette.nom) AS nom
 			FROM marchandise
 			INNER JOIN ingredient ON ingredient.marchandise_ID = marchandise.ID
 			INNER JOIN recette ON ingredient.recette_ID = recette.ID
@@ -128,16 +128,16 @@ protected function UtilePour($marchandise_ID) {
 			WHERE ingredient.nature = 0 AND marchandise.ID = :ID");
 		$requete->bindValue(':ID',$marchandise_ID, PDO::PARAM_INT);
 		$requete->execute();
-		$liste_recettes = $requete->fetchall(PDO::FETCH_ASSOC);
+		$T_reponseBD = $requete->fetchall(PDO::FETCH_ASSOC);
 	} catch (PDOException $e) {
 		exit('Erreur : '.$e->getMessage()); // faire un meilleur traitement de l'erreur
 	}
 	$BD = null; // on ferme la connexion
-	if (count($liste_recettes)>1) { // plusieurs lignes
+	if (count($T_reponseBD)>1) { // plusieurs lignes
 		echo"\t<h1>Utile pour :</h1>\n\t<ul>";
-		foreach($liste_recettes as $ligneBD) echo "\t\t<li>{$ligneBD['recette']}</li>\n";
+		foreach($T_reponseBD as $ligneBD) echo "\t\t<li>{$ligneBD['nom']}</li>\n";
 		echo"\t</ul>";
-	} elseif (count($liste_recettes)==1) echo"\t<p>Utile uniquement pour {$liste_recettes[0]['recette']}</p>"; // une seule ligne
+	} elseif (count($T_reponseBD)==1) echo"\t<p>Utile uniquement pour {$T_reponseBD[0]['nom']}</p>"; // une seule ligne
 	// sinon on affiche rien
 }
 
