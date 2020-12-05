@@ -85,16 +85,6 @@ protected function Récupérer_variables_rapport($vueBD, $IDjoueur, $id) {
 	return $liste_variables; // retourne la listes des variables sous la forme d'un tableau associatif
 }
 
-protected function Besoins($marchandise_ID) {
-	try {
-		include 'connexion.php'; // les variables de connexion sont définies dans ce script non suivi par git
-		$BD = new PDO($dsn, $utilisateur, $mdp); // On se connecte au serveur MySQL
-
-	} catch (PDOException $e) {
-		exit('Erreur : '.$e->getMessage()); // faire un meilleur traitement de l'erreur
-	}
-	$BD = null; // on ferme la connexion
-}
 
 protected function UtilePour($marchandise_ID) {
 	try {
@@ -116,14 +106,13 @@ protected function UtilePour($marchandise_ID) {
 		exit('Erreur : '.$e->getMessage()); // faire un meilleur traitement de l'erreur
 	}
 	$BD = null; // on ferme la connexion
-	echo'<h1>Utile pour ...</h1>';
-	if (isset($liste_recettes)) {
-		if (count($liste_recettes)>1) { // plusieurs lignes
-			echo"\t<ul>";
-			foreach($liste_recettes as $ligneBD) echo "\t\t<li>{$ligneBD['recette']}</li>\n";
-			echo"\t</ul>";
-		} else echo"\t<p>{$liste_recettes[0]['recette']}</p>"; // une seule ligne
-	} else echo'Gagner de l&apos;argent!'; // liste vide
+	if (count($liste_recettes)>1) { // plusieurs lignes
+		echo"\t<h1>Utile pour :</h1>\n\t<ul>";
+		foreach($liste_recettes as $ligneBD) echo "\t\t<li>{$ligneBD['recette']}</li>\n";
+		echo"\t</ul>";
+	} elseif (count($liste_recettes)==1)
+		echo"\t<p>Utile uniquement pour {$liste_recettes[0]['recette']}</p>"; // une seule ligne
+		// sinon la liste vide, on ne fait rien
 }
 
 }
