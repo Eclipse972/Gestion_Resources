@@ -19,7 +19,6 @@ protected function Afficher_rapport($Tvariables) {
 	<p><?=$Tvariables['amelioration']?></p>
 <?php
 	echo $this->UtilePour($Tvariables['ID']);
-	
-	echo isset($Tvariables['necessite']) ? "<h1>N&eacute;cessite</h1>\n\t<ul>\n".$Tvariables['necessite']."\t</ul>\n" : '';
+	echo $this->AbesoinsDe($Tvariables['ID']);
 }
 }

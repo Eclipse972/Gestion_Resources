@@ -5,7 +5,6 @@ SELECT
 	entrepot.niveau,
 	entrepot.stock,
 	'besoin de l&apos;entrepot' AS besoin,
-	'Amélioration' AS amelioration,
-	(SELECT code FROM Vue_marchandiseAbesoin WHERE Vue_marchandiseAbesoin.ID = entrepot.marchandise_ID) AS necessite
+	'Amélioration' AS amelioration
 FROM joueur
 INNER JOIN entrepot ON entrepot.joueur_ID = joueur.ID
