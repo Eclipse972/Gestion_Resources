@@ -24,24 +24,26 @@ protected function Afficher_thead($T_en_tete) { // déclare le tableau avec en p
 	</thead>
 <?php
 }
-
-protected function Afficher_tbody($vueBD, $id_selectionné) {
-	$IDjoueur = (isset($_SESSION['IDjoueur'])) ? $_SESSION['IDjoueur'] : 1; // joueur lambda pour le moment
-	try	{ // code inspiré du site de P.Giraud
+protected function InterrogerBD($requete, $Tparametres = []) {
+	try	{
 		include 'connexion.php'; // les variables de connexion sont définies dans ce script non suivi par git
 		$BD = new PDO($dsn, $utilisateur, $mdp); // On se connecte au serveur MySQL
-		if ($vueBD == 'Vue_marchandise')
-			$requete = $BD->prepare('SELECT ID, code FROM Vue_marchandise'); // la vue marchandise est indépendante du joueur sauf lorsque l'ordre d'afichage sera implémenté
-		else {
-			$requete = $BD->prepare('SELECT ID, IDjoueur, code FROM '.$vueBD.' WHERE IDjoueur = :ID'); // FROM :vue WHERE  avec bindValue(':vue',$vue) provoque une erreur de syntaxe
-			$requete->bindValue(':ID',$IDjoueur, PDO::PARAM_INT);
-		}
-		$requete->execute();
-		$T_Vue = $requete->fetchAll(PDO::FETCH_ASSOC);
+		$requete = $BD->prepare($requete);
+		$requete->execute($Tparametres);
+		$TreponseBD = $requete->fetchall(PDO::FETCH_ASSOC); // une seule ligne à capturer qui content toutes les variables pour afficher le rapport
 	} catch (PDOException $e) {
 		exit('Erreur : '.$e->getMessage()); // faire un meilleur traitement de l'erreur
 	}
 	$BD = null; // on ferme la connexion
+	return $TreponseBD; // retourne la listes des variables sous la forme d'un tableau associatif
+}
+
+protected function Afficher_tbody($vueBD, $id_selectionné) {
+	$IDjoueur = (isset($_SESSION['IDjoueur'])) ? $_SESSION['IDjoueur'] : 1; // joueur lambda pour le moment
+	
+	if ($vueBD=='Vue_marchandise')
+		$T_Vue = $this->InterrogerBD('SELECT ID, code FROM Vue_marchandise');
+	else $T_Vue = $this->InterrogerBD('SELECT ID, IDjoueur, code FROM '.$vueBD.' WHERE IDjoueur = :ID', array(':ID'=>$IDjoueur));
 	echo"\t<tbody>\n";
 	foreach($T_Vue as $réponseBD) {
 		echo"\t",($réponseBD['ID'] == $id_selectionné) ? '<tr id="selection">' : '<tr>'; // pose d'une ancre sur la ligne sélectionnée
@@ -58,20 +60,9 @@ protected function Afficher_tbody($vueBD, $id_selectionné) {
 	echo"\t</tbody>\n\t<table>\n";
 }
 
-protected function Récupérer_variables_rapport($vueBD, $IDjoueur, $id) {
-	try	{
-		include 'connexion.php'; // les variables de connexion sont définies dans ce script non suivi par git
-		$BD = new PDO($dsn, $utilisateur, $mdp); // On se connecte au serveur MySQL
-		$requete = $BD->prepare('SELECT * FROM '.$vueBD.'_rapport WHERE ID = :ID AND IDjoueur = :IDjoueur');
-		$requete->bindValue(':IDjoueur',$IDjoueur, PDO::PARAM_INT);
-		$requete->bindValue(':ID',$id, PDO::PARAM_INT);
-		$requete->execute();
-		$liste_variables = $requete->fetch(PDO::FETCH_ASSOC); // une seule ligne à capturer qui content toutes les variables pour afficher le rapport
-	} catch (PDOException $e) {
-		exit('Erreur : '.$e->getMessage()); // faire un meilleur traitement de l'erreur
-	}
-	$BD = null; // on ferme la connexion
-	return $liste_variables; // retourne la listes des variables sous la forme d'un tableau associatif
+protected function Récupérer_variables_rapport($vueBD, $IDjoueur, $id) { // retourne la listes des variables sous la forme d'un tableau associatif
+	$T_variables = $this->InterrogerBD('SELECT * FROM '.$vueBD.'_rapport WHERE ID = :ID AND IDjoueur = :IDjoueur', array(':IDjoueur'=>$IDjoueur, ':ID'=>$id));
+	return $T_variables[0];
 }
 
 protected function AbesoinsDe($marchandise_ID) { $this->BesoinOuUtile($marchandise_ID, false); }
@@ -100,17 +91,7 @@ protected function BesoinOuUtile($marchandise_ID, $Butile) {
 				WHERE ingredient.nature = 2 AND ingS.nature = 0 AND marchandise.ID = :ID";
 		$titre = "N&eacute;cessite";
 	}
-	try {
-		include 'connexion.php'; // les variables de connexion sont définies dans ce script non suivi par git
-		$BD = new PDO($dsn, $utilisateur, $mdp); // On se connecte au serveur MySQL
-		$requete = $BD->prepare($sql);
-		$requete->bindValue(':ID',$marchandise_ID, PDO::PARAM_INT);
-		$requete->execute();
-		$T_reponseBD = $requete->fetchall(PDO::FETCH_ASSOC);
-	} catch (PDOException $e) {
-		exit('Erreur : '.$e->getMessage()); // faire un meilleur traitement de l'erreur
-	}
-	$BD = null; // on ferme la connexion
+	$T_reponseBD = $this->InterrogerBD($sql, array(':ID'=>$marchandise_ID));
 	if (count($T_reponseBD)>1) { // plusieurs lignes
 		echo"\t<h1>{$titre} :</h1>\n\t<ul>\n";
 		foreach($T_reponseBD as $ligneBD) echo "\t\t<li>{$ligneBD['nom']}</li>\n";
