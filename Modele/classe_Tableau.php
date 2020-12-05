@@ -26,7 +26,7 @@ protected function Afficher_thead($T_en_tete) { // déclare le tableau avec en p
 }
 	
 protected function Afficher_tbody($vueBD, $id_selectionné) {
-	$IDjoueur = (isset($_SESSION['ID'])) ? $_SESSION['ID'] : 1; // joueur lambda pour le moment
+	$IDjoueur = (isset($_SESSION['IDjoueur'])) ? $_SESSION['IDjoueur'] : 1; // joueur lambda pour le moment
 	try	{ // code inspiré du site de P.Giraud
 		include 'connexion.php'; // les variables de connexion sont définies dans ce script non suivi par git
 		$BD = new PDO($dsn, $utilisateur, $mdp); // On se connecte au serveur MySQL
