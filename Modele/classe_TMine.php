@@ -13,11 +13,7 @@ protected function Afficher_rapport($Tvariables) {
 	<p>prouction actuelle = <?=floor($Tvariables['prod_max']*$Tvariables['etat'])/100?></p>
 	<p>production maxi = <?=$Tvariables['prod_max']?></p>
 	<p>nombre = <?=$Tvariables['nombre']?></p>
-
-	<h1>Utile pour</h1>
-	<ul>
-<?=$Tvariables['utile']?>
-	</ul>
 <?php
+	echo $this->UtilePour($Tvariables['marchandise_ID']);
 }
 }
