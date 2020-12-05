@@ -101,7 +101,9 @@ protected function UtilePour($marchandise_ID) {
 		include 'connexion.php'; // les variables de connexion sont définies dans ce script non suivi par git
 		$BD = new PDO($dsn, $utilisateur, $mdp); // On se connecte au serveur MySQL
 		$requete = $BD->prepare("
-			SELECT CONCAT(nature_recette.nom,' ',recette.nom) AS recette
+			SELECT CONCAT(nature_recette.nom,
+				IF(LEFT(recette.nom,1) IN ('a', 'e', 'i', 'o', 'u'),' d&apos;', ' de '),
+				recette.nom) AS recette
 			FROM marchandise
 			INNER JOIN ingredient ON ingredient.marchandise_ID = marchandise.ID
 			INNER JOIN recette ON ingredient.recette_ID = recette.ID
