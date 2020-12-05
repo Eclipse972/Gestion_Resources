@@ -68,6 +68,7 @@ protected function Afficher_tbody($vueBD, $id_selectionné) {
 	</table>
 <?php
 }
+
 protected function Récupérer_variables_rapport($vueBD, $IDjoueur, $id) {
 	try	{
 		include 'connexion.php'; // les variables de connexion sont définies dans ce script non suivi par git
@@ -83,4 +84,37 @@ protected function Récupérer_variables_rapport($vueBD, $IDjoueur, $id) {
 	$BD = null; // on ferme la connexion
 	return $liste_variables; // retourne la listes des variables sous la forme d'un tableau associatif
 }
+
+
+
+protected function UtilePour($marchandise_ID) {
+	try {
+		include 'connexion.php'; // les variables de connexion sont définies dans ce script non suivi par git
+		$BD = new PDO($dsn, $utilisateur, $mdp); // On se connecte au serveur MySQL
+		$requete = $BD->prepare("
+			SELECT CONCAT(nature_recette.nom,' ',recette.nom) AS recette
+			FROM marchandise
+			INNER JOIN ingredient ON ingredient.marchandise_ID = marchandise.ID
+			INNER JOIN recette ON ingredient.recette_ID = recette.ID
+			INNER JOIN nature_recette ON recette.nature_ID = nature_recette.ID
+			WHERE ingredient.nature = 0 AND marchandise.ID = :ID");
+		$requete->bindValue(':ID',$marchandise_ID, PDO::PARAM_INT);
+		$requete->execute();
+		$liste_recettes = $requete->fetchall(PDO::FETCH_ASSOC);
+	} catch (PDOException $e) {
+		exit('Erreur : '.$e->getMessage()); // faire un meilleur traitement de l'erreur
+	}
+	$BD = null; // on ferme la connexion
+	echo'<h1>Utile pour ...</h1>';
+	if (isset($liste_recettes)) {
+		if (count($liste_recettes)>1) { // plusieurs lignes
+			echo"\t<ul>";
+			foreach($liste_recettes as $ligneBD) echo "\t\t<li>{$ligneBD['recette']}</li>\n";
+			echo"\t</ul>";
+		} else { // une seule ligne
+			echo"<p>{$liste_recettes[0]['recette']}</p>";
+			}
+	} else { echo'Gagner de l&apos;argent!';}
+}
+
 }
