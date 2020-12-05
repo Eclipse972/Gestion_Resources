@@ -85,6 +85,33 @@ protected function Récupérer_variables_rapport($vueBD, $IDjoueur, $id) {
 	return $liste_variables; // retourne la listes des variables sous la forme d'un tableau associatif
 }
 
+protected function AbesoinsDe($marchandise_ID) {
+	try {
+		include 'connexion.php'; // les variables de connexion sont définies dans ce script non suivi par git
+		$BD = new PDO($dsn, $utilisateur, $mdp); // On se connecte au serveur MySQL
+		$requete = $BD->prepare("
+			SELECT marS.nom
+			FROM recette
+			INNER JOIN ingredient		ON ingredient.recette_ID		= recette.ID
+			INNER JOIN marchandise		ON ingredient.marchandise_ID	= marchandise.ID
+			INNER JOIN nature_recette	ON recette.nature_ID			= nature_recette.ID
+			INNER JOIN ingredient ingS	ON ingS.recette_ID		= recette.ID
+			INNER JOIN marchandise marS	ON ingS.marchandise_ID	= marS.ID
+			WHERE ingredient.nature = 2 AND ingS.nature = 0 AND marchandise.ID = :ID");
+		$requete->bindValue(':ID',$marchandise_ID, PDO::PARAM_INT);
+		$requete->execute();
+		$liste_recettes = $requete->fetchall(PDO::FETCH_ASSOC);
+	} catch (PDOException $e) {
+		exit('Erreur : '.$e->getMessage()); // faire un meilleur traitement de l'erreur
+	}
+	$BD = null; // on ferme la connexion
+	if (count($liste_recettes)>1) { // plusieurs lignes
+		echo"\t<h1>N&eacute;cessite :</h1>\n\t<ul>";
+		foreach($liste_recettes as $ligneBD) echo "\t\t<li>{$ligneBD['nom']}</li>\n";
+		echo"\t</ul>";
+	} elseif (count($liste_recettes)==1) echo"\t<p>N&eacute;cessite uniquement {$liste_recettes[0]['nom']}</p>"; // une seule ligne
+	// sinon on affiche rien
+}
 
 protected function UtilePour($marchandise_ID) {
 	try {
@@ -110,9 +137,8 @@ protected function UtilePour($marchandise_ID) {
 		echo"\t<h1>Utile pour :</h1>\n\t<ul>";
 		foreach($liste_recettes as $ligneBD) echo "\t\t<li>{$ligneBD['recette']}</li>\n";
 		echo"\t</ul>";
-	} elseif (count($liste_recettes)==1)
-		echo"\t<p>Utile uniquement pour {$liste_recettes[0]['recette']}</p>"; // une seule ligne
-		// sinon la liste vide, on ne fait rien
+	} elseif (count($liste_recettes)==1) echo"\t<p>Utile uniquement pour {$liste_recettes[0]['recette']}</p>"; // une seule ligne
+	// sinon on affiche rien
 }
 
 }
