@@ -1,5 +1,9 @@
 <?php 
 session_start();
+// sauvegarde de l'état dans la session
+if (!isset($_SESSION['IDjoueur'])) $_SESSION['IDjoueur'] = 1;
+$_SESSION['ID'] = (int) $_GET['id']; // indique la ligne sélectionné pour un tableau
+
 /* Fichiers à créer pour un développement d'un futur onglet Ex: batiment spéciaux, missions
  * Soit X le nom du nouvel onglet 
  * X.php à la racine
@@ -9,6 +13,7 @@ session_start();
  * Modele/classe_TX.php classe associée au tableau 
  * Modele/classe_BD_X la BDD 
  * */
+  
  $T_onglet = array(
 //	onglet			=> classe associée
 	'index'			=> 'Joueur',
@@ -23,8 +28,7 @@ if (isset($T_onglet[$SCRIPT]) && ($SCRIPT!='index')) {
 }// gérer le sinon
 
 // joueur
-require'Modele/classe_Joueur.php'; // nécessaire quelque soit l'onglet
-
+require'Modele/classe_Joueur.php';
 $Joueur=new Joueur;
 $CONNEXION_JOUEUR = $Joueur->Cadre_connexion();
 
@@ -35,16 +39,13 @@ if (isset($T_onglet[$SCRIPT])) { // un des onglets appelle cette page
 		$Joueur->Présentation();
 		// traitement
 	} else { // onglet de type table
-		$id_selectionné = (int) $_GET['id']; // ID objet de l'onglet sélectionné
 		$Tableau = new $T_onglet[$SCRIPT];
 		$Tableau->Afficher_tete();
-		$Tableau->Afficher_corps($id_selectionné);
+		$Tableau->Afficher_corps($_SESSION['ID']);
 	}
 } else { // aucun des onglets sélectionnés
 	$CODE_ERREUR = (isset($_SESSION['erreur'])) ? (int) $_SESSION['erreur'] : 0;
-?>	<h1>Erreur <?=$CODE_ERREUR?>: <?=$DICO[$CODE_ERREUR]?></h1>
-	<p>S&eacute;lectionnez un des onglets en haut de cette page.</p>
-<?php
+	echo"<h1>Erreur {$CODE_ERREUR}: {$DICO[$CODE_ERREUR]}</h1>\n<p>S&eacute;lectionnez un des onglets en haut de cette page.</p>\n";
 }
 $SECTION = ob_get_contents();
 ob_end_clean();
