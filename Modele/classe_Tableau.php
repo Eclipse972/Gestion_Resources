@@ -42,31 +42,20 @@ protected function Afficher_tbody($vueBD, $id_selectionné) {
 		exit('Erreur : '.$e->getMessage()); // faire un meilleur traitement de l'erreur
 	}
 	$BD = null; // on ferme la connexion
-?>
-	<tbody>
-<?php
+	echo"\t<tbody>\n";
 	foreach($T_Vue as $réponseBD) {
 		echo "\t",($réponseBD['ID'] == $id_selectionné) ? '<tr id="selection">' : '<tr>',"\n"; // pose d'une ancre sur la ligne sélectionnée
 		echo "{$réponseBD['code']}\t</tr>\n";
 		if ($réponseBD['ID'] == $id_selectionné) {
 			$T_variables = $this->Récupérer_variables_rapport($vueBD, $IDjoueur, $id_selectionné);
-?>	<tr>
-		<td colspan="<?=$this->nb_col_tableau?>" id="rapport">
-		<a href="#"><img src="Vue/images/fleche_haut.png" style="height:40px" align=right alt="remonter en haut de la page"></a>
-<!-- Début du rapport -->
-<?php
-		$this->Afficher_rapport($T_variables);
-?>
-<!-- Fin du rapport -->
-		</td>
-	</tr>
-<?php		
-		} // fin du if
+			echo"\t<tr>\n\t<td colspan=\"{$this->nb_col_tableau}\" id=\"rapport\">\n";
+			echo"\t\t",'<a href="#"><img src="Vue/images/fleche_haut.png" style="height:40px" align=right alt="remonter en haut de la page"></a>',"\n";
+			echo"<!-- Début du rapport -->\n";
+			$this->Afficher_rapport($T_variables, $id_selectionné);
+			echo"<!-- Fin du rapport -->\n";
+		}
 	}
-?>
-	</tbody>
-	</table>
-<?php
+	echo"\t</tbody>\n\t<table>\n";
 }
 
 protected function Récupérer_variables_rapport($vueBD, $IDjoueur, $id) {
