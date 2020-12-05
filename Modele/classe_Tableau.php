@@ -10,7 +10,7 @@ public function __construct() {
 // pour les développements futurs
 abstract public function Afficher_tete();					// en-tête du tableau
 abstract public function Afficher_corps($id_selectionné);	// corps du tableau
-abstract protected function Afficher_rapport($id);			// affichage détaillé de la ligne
+abstract protected function Afficher_rapport($Tvariables, $id);			// affichage détaillé de la ligne
 
 
 // Affichage de la page
@@ -24,7 +24,7 @@ protected function Afficher_thead($T_en_tete) { // déclare le tableau avec en p
 	</thead>
 <?php
 }
-	
+
 protected function Afficher_tbody($vueBD, $id_selectionné) {
 	$IDjoueur = (isset($_SESSION['IDjoueur'])) ? $_SESSION['IDjoueur'] : 1; // joueur lambda pour le moment
 	try	{ // code inspiré du site de P.Giraud
@@ -44,13 +44,13 @@ protected function Afficher_tbody($vueBD, $id_selectionné) {
 	$BD = null; // on ferme la connexion
 	echo"\t<tbody>\n";
 	foreach($T_Vue as $réponseBD) {
-		echo "\t",($réponseBD['ID'] == $id_selectionné) ? '<tr id="selection">' : '<tr>',"\n"; // pose d'une ancre sur la ligne sélectionnée
-		echo "{$réponseBD['code']}\t</tr>\n";
+		echo"\t",($réponseBD['ID'] == $id_selectionné) ? '<tr id="selection">' : '<tr>'; // pose d'une ancre sur la ligne sélectionnée
+		echo"\n{$réponseBD['code']}\t</tr>\n";
 		if ($réponseBD['ID'] == $id_selectionné) {
+			echo"\t<tr>\n\t<td colspan=\"{$this->nb_col_tableau}\" id=\"rapport\">\n\t\t";
+			echo'<a href="#"><img src="Vue/images/fleche_haut.png" style="height:40px" align=right alt="remonter en haut de la page"></a>';
+			echo"\n<!-- Début du rapport -->\n";
 			$T_variables = $this->Récupérer_variables_rapport($vueBD, $IDjoueur, $id_selectionné);
-			echo"\t<tr>\n\t<td colspan=\"{$this->nb_col_tableau}\" id=\"rapport\">\n";
-			echo"\t\t",'<a href="#"><img src="Vue/images/fleche_haut.png" style="height:40px" align=right alt="remonter en haut de la page"></a>',"\n";
-			echo"<!-- Début du rapport -->\n";
 			$this->Afficher_rapport($T_variables, $id_selectionné);
 			echo"<!-- Fin du rapport -->\n";
 		}
