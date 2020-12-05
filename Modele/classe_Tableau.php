@@ -85,47 +85,36 @@ protected function Récupérer_variables_rapport($vueBD, $IDjoueur, $id) {
 	return $liste_variables; // retourne la listes des variables sous la forme d'un tableau associatif
 }
 
-protected function AbesoinsDe($marchandise_ID) {
-	try {
-		include 'connexion.php'; // les variables de connexion sont définies dans ce script non suivi par git
-		$BD = new PDO($dsn, $utilisateur, $mdp); // On se connecte au serveur MySQL
-		$requete = $BD->prepare("
-			SELECT marS.nom
-			FROM recette
-			INNER JOIN ingredient		ON ingredient.recette_ID		= recette.ID
-			INNER JOIN marchandise		ON ingredient.marchandise_ID	= marchandise.ID
-			INNER JOIN nature_recette	ON recette.nature_ID			= nature_recette.ID
-			INNER JOIN ingredient ingS	ON ingS.recette_ID		= recette.ID
-			INNER JOIN marchandise marS	ON ingS.marchandise_ID	= marS.ID
-			WHERE ingredient.nature = 2 AND ingS.nature = 0 AND marchandise.ID = :ID");
-		$requete->bindValue(':ID',$marchandise_ID, PDO::PARAM_INT);
-		$requete->execute();
-		$T_reponseBD = $requete->fetchall(PDO::FETCH_ASSOC);
-	} catch (PDOException $e) {
-		exit('Erreur : '.$e->getMessage()); // faire un meilleur traitement de l'erreur
-	}
-	$BD = null; // on ferme la connexion
-	if (count($T_reponseBD)>1) { // plusieurs lignes
-		echo"\t<h1>N&eacute;cessite :</h1>\n\t<ul>";
-		foreach($T_reponseBD as $ligneBD) echo "\t\t<li>{$ligneBD['nom']}</li>\n";
-		echo"\t</ul>";
-	} elseif (count($T_reponseBD)==1) echo"\t<p>N&eacute;cessite uniquement {$T_reponseBD[0]['nom']}</p>"; // une seule ligne
-	// sinon on affiche rien
-}
+protected function AbesoinsDe($marchandise_ID) { $this->BesoinOuUtile($marchandise_ID, false); }
 
-protected function UtilePour($marchandise_ID) {
-	try {
-		include 'connexion.php'; // les variables de connexion sont définies dans ce script non suivi par git
-		$BD = new PDO($dsn, $utilisateur, $mdp); // On se connecte au serveur MySQL
-		$requete = $BD->prepare("
-			SELECT CONCAT(nature_recette.nom,
+protected function UtilePour($marchandise_ID) { $this->BesoinOuUtile($marchandise_ID, true); }
+
+protected function BesoinOuUtile($marchandise_ID, $Butile) {
+	if ($Butile) {
+		$sql = "SELECT CONCAT(nature_recette.nom,
 				IF(LEFT(recette.nom,1) IN ('a', 'e', 'i', 'o', 'u'),' d&apos;', ' de '),
 				recette.nom) AS nom
-			FROM marchandise
-			INNER JOIN ingredient ON ingredient.marchandise_ID = marchandise.ID
-			INNER JOIN recette ON ingredient.recette_ID = recette.ID
-			INNER JOIN nature_recette ON recette.nature_ID = nature_recette.ID
-			WHERE ingredient.nature = 0 AND marchandise.ID = :ID");
+				FROM marchandise
+				INNER JOIN ingredient ON ingredient.marchandise_ID = marchandise.ID
+				INNER JOIN recette ON ingredient.recette_ID = recette.ID
+				INNER JOIN nature_recette ON recette.nature_ID = nature_recette.ID
+				WHERE ingredient.nature = 0 AND marchandise.ID = :ID";
+		$titre = "Utile pour";
+	} else {
+		$sql = "SELECT marS.nom
+				FROM recette
+				INNER JOIN ingredient		ON ingredient.recette_ID		= recette.ID
+				INNER JOIN marchandise		ON ingredient.marchandise_ID	= marchandise.ID
+				INNER JOIN nature_recette	ON recette.nature_ID			= nature_recette.ID
+				INNER JOIN ingredient ingS	ON ingS.recette_ID		= recette.ID
+				INNER JOIN marchandise marS	ON ingS.marchandise_ID	= marS.ID
+				WHERE ingredient.nature = 2 AND ingS.nature = 0 AND marchandise.ID = :ID";
+		$titre = "N&eacute;cessite";
+	}
+	try {
+		include 'connexion.php'; // les variables de connexion sont définies dans ce script non suivi par git
+		$BD = new PDO($dsn, $utilisateur, $mdp); // On se connecte au serveur MySQL
+		$requete = $BD->prepare($sql);
 		$requete->bindValue(':ID',$marchandise_ID, PDO::PARAM_INT);
 		$requete->execute();
 		$T_reponseBD = $requete->fetchall(PDO::FETCH_ASSOC);
@@ -134,10 +123,10 @@ protected function UtilePour($marchandise_ID) {
 	}
 	$BD = null; // on ferme la connexion
 	if (count($T_reponseBD)>1) { // plusieurs lignes
-		echo"\t<h1>Utile pour :</h1>\n\t<ul>";
+		echo"\t<h1>{$titre} :</h1>\n\t<ul>";
 		foreach($T_reponseBD as $ligneBD) echo "\t\t<li>{$ligneBD['nom']}</li>\n";
 		echo"\t</ul>";
-	} elseif (count($T_reponseBD)==1) echo"\t<p>Utile uniquement pour {$T_reponseBD[0]['nom']}</p>"; // une seule ligne
+	} elseif (count($T_reponseBD)==1) echo"\t<p>{$titre} {$T_reponseBD[0]['nom']}</p>"; // une seule ligne
 	// sinon on affiche rien
 }
 
