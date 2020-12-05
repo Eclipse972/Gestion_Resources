@@ -3,7 +3,7 @@ abstract class Tableau { // Remarque: chaque classe fille est associée à un CS
 	protected $nb_col_tableau;
 
 public function __construct() {
-?>	<table>
+?><table>
 <?php
 }
 
@@ -123,9 +123,9 @@ protected function BesoinOuUtile($marchandise_ID, $Butile) {
 	}
 	$BD = null; // on ferme la connexion
 	if (count($T_reponseBD)>1) { // plusieurs lignes
-		echo"\t<h1>{$titre} :</h1>\n\t<ul>";
+		echo"\t<h1>{$titre} :</h1>\n\t<ul>\n";
 		foreach($T_reponseBD as $ligneBD) echo "\t\t<li>{$ligneBD['nom']}</li>\n";
-		echo"\t</ul>";
+		echo"\t</ul>\n";
 	} elseif (count($T_reponseBD)==1) echo"\t<p>{$titre} {$T_reponseBD[0]['nom']}</p>"; // une seule ligne
 	// sinon on affiche rien
 }
