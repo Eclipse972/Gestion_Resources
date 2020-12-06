@@ -25,6 +25,7 @@ protected function InterrogerBD($requete, $Tparametres = []) {
 	try	{
 		include 'connexion.php'; // les variables de connexion sont définies dans ce script non suivi par git
 		$BD = new PDO($dsn, $utilisateur, $mdp); // On se connecte au serveur MySQL
+		$BD->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$requete = $BD->prepare($requete);
 		$requete->execute($Tparametres);
 		$TreponseBD = $requete->fetchall(PDO::FETCH_ASSOC); // une seule ligne à capturer qui content toutes les variables pour afficher le rapport
