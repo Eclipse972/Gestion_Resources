@@ -16,7 +16,7 @@ protected function Afficher_rapport($Tvariables, $id_selectionné) {
 		<input type="number" id="etat" name="etat" min=0 max=100 step="1" value="<?=$Tvariables['etat']?>" style="width:45px">
 		<br>
 		<label for="nb_mine">Nombre de mine :</label>
-		<input type="number" id="nb_mine" name="nb_mine" min="0" value="<?=$Tvariables['nombre']?>" style="margin-top:9px">
+		<input type="number" id="nb_mine" name="nb_mine" min="0" value="<?=$Tvariables['nombre']?>" style="width: 185px; margin-top:9px">
 		
 		<input type="submit" value="MAJ" style="margin-left:90px">
 	</form>
