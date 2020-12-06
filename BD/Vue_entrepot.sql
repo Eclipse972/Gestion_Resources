@@ -6,7 +6,7 @@ SELECT
 		'\t\t<td><a href="?id=',marchandise.ID,'#selection"><img src="Vue/images/',marchandise.image, '.png" alt ="',marchandise.nom,'">',
 		UCASE(LEFT(marchandise.nom,1)),SUBSTRING(marchandise.nom,2,LENGTH(marchandise.nom)),'</a></td>\n',
 		'\t\t<td>',entrepot.niveau,'</td>\n',
-		'\t\t<td>',entrepot.stock,' ',unites.nom,'/h</td>\n'
+		'\t\t<td>',entrepot.stock,' ',unites.nom,'</td>\n'
 	) AS code,
 	marchandise.nom AS nom_ligne
 FROM entrepot
