@@ -34,7 +34,9 @@ section table {
 #rapport form {
 	background-color:yellow;
 	padding:9px;
-	width:80%
+	width:80%;
+	border:1px solid black;
+	border-radius:9px;
 }
 
 #rapport h1 {
