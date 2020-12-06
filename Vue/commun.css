@@ -26,23 +26,9 @@ header img {
 }
 /* zone centrale ------------------------------------------------------------------------------- */
 section {
-	font-size: 20px;
-	overflow: auto;
 	min-height:550px;
 	padding:5px;
 	border-bottom:2px solid white;
-}
-section h1 {
-	text-decoration: underline;
-	text-align: center;
-	font-size: 25px;
-	margin-top: 0;
-}
-section h2 {
-	text-decoration: underline;
-	text-align: left;
-	font-size: 22px;
-	margin-top: 0;
 }
 
 /*	--------------------------------------------------------------------------------------------
