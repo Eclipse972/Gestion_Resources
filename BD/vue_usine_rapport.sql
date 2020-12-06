@@ -4,6 +4,6 @@ SELECT
 	usine.ID,
 	usine.niveau,
 	usine.duree_prod_souhaitee,
-	usine.t_fin_production
+	usine.date_fin_production
 FROM joueur
 INNER JOIN usine ON usine.joueur_ID = joueur.ID
