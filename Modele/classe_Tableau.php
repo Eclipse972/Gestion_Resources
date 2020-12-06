@@ -10,20 +10,17 @@ public function __construct() {
 // pour les développements futurs
 abstract public function Afficher_tete();					// en-tête du tableau
 abstract public function Afficher_corps($id_selectionné);	// corps du tableau
-abstract protected function Afficher_rapport($Tvariables, $id);			// affichage détaillé de la ligne
+abstract protected function Afficher_rapport($Tvariables, $id);	// affichage détaillé de la ligne
 
 
 // Affichage de la page
 protected function Afficher_thead($T_en_tete) { // déclare le tableau avec en paramètres un tableau contenant les en-têtes à afficher
 	$this->nb_col_tableau = count($T_en_tete);
-?>
-	<thead>
-	<tr>
-<?php	foreach($T_en_tete as $valeur) echo "\t\t<th>$valeur</th>\n";	?>
-	</tr>
-	</thead>
-<?php
+	echo"\t<thead>\n\t<tr>";
+	foreach($T_en_tete as $valeur) echo "\t\t<th>$valeur</th>\n";
+	echo"\t</tr>\n\t</thead>";
 }
+
 protected function InterrogerBD($requete, $Tparametres = []) {
 	try	{
 		include 'connexion.php'; // les variables de connexion sont définies dans ce script non suivi par git
@@ -39,7 +36,7 @@ protected function InterrogerBD($requete, $Tparametres = []) {
 }
 
 protected function Afficher_tbody($vueBD, $id_selectionné) {
-	$IDjoueur = (isset($_SESSION['IDjoueur'])) ? $_SESSION['IDjoueur'] : 1; // joueur lambda pour le moment
+	$IDjoueur = $_SESSION['IDjoueur'];
 	
 	if ($vueBD=='Vue_marchandise')
 		$T_Vue = $this->InterrogerBD('SELECT ID, code FROM Vue_marchandise');
@@ -57,7 +54,7 @@ protected function Afficher_tbody($vueBD, $id_selectionné) {
 			echo"<!-- Fin du rapport -->\n";
 		}
 	}
-	echo"\t</tbody>\n\t<table>\n";
+	echo"\t</tbody>\n\t</table>\n";
 }
 
 protected function Récupérer_variables_rapport($vueBD, $IDjoueur, $id) { // retourne la listes des variables sous la forme d'un tableau associatif
