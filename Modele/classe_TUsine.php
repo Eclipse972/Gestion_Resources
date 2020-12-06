@@ -17,7 +17,7 @@ protected function Afficher_rapport($Tvariables, $id_selectionné) {
 		<input type="number" id="niveau" name="niveau" value="<?=$Tvariables['niveau']?>" style="width:50px; margin-right:50px">
 		
 		<fieldset>
-			<legend>dur&eacute;e de production restante :</legend>
+			<legend>Dur&eacute;e de production restante :</legend>
 
 			<label for="jour">jour :</label>
 			<input type="number" id="jour" name="jour" value="<?=(int)($durée/86400)?>" min="0" style="width:45px; margin-right:9px">
@@ -30,7 +30,7 @@ protected function Afficher_rapport($Tvariables, $id_selectionné) {
 		</fieldset>
 
 		<fieldset>
-			<legend>dur&eacute;e de production souhait&eacute;e :</legend>
+			<legend>Dur&eacute;e de production souhait&eacute;e :</legend>
 
 			<label for="jour2">jour :</label>
 			<input type="number" id="jour2" name="jour2" value="<?=(int)($Tvariables['duree_prod_souhaitee']/1440)?>" min="0" max="7" style="width:25px; margin-right:9px">
@@ -42,7 +42,7 @@ protected function Afficher_rapport($Tvariables, $id_selectionné) {
 			<input type="number" id="minute2" name="minute2" value="<?=$Tvariables['duree_prod_souhaitee'] % 60?>" min="0" max="59" style="width:35px; margin-right:9px">
 		</fieldset>
 
-		<input type="submit" value="MAJ" style="margin-left:90px">
+		<input type="submit" value="MAJ" style="margin-top:9px">
 	</form>
 
 	<h1>Production</h1>
