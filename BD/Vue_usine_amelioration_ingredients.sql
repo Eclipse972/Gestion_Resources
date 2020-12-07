@@ -13,5 +13,5 @@ INNER JOIN type_usine ON usine.type_usine_ID = type_usine.ID
 INNER JOIN recette ON type_usine.amelioration_ID = recette.ID
 INNER JOIN ingredient ON ingredient.recette_ID = recette.ID
 INNER JOIN marchandise ON ingredient.marchandise_ID = marchandise.ID
-INNER JOIN entrepot ON entrepot.marchandise_ID = marchandise.ID
+INNER JOIN entrepot ON entrepot.marchandise_ID = marchandise.ID AND entrepot.joueur_ID = usine.joueur_ID
 WHERE ingredient.nature = 0 #ingrédient de la recette
