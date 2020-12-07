@@ -16,9 +16,9 @@ abstract protected function Afficher_rapport($Tvariables, $id);	// affichage dé
 // Affichage de la page
 protected function Afficher_thead($T_en_tete) { // déclare le tableau avec en paramètres un tableau contenant les en-têtes à afficher
 	$this->nb_col_tableau = count($T_en_tete);
-	echo"\t<thead>\n\t<tr>";
+	echo"\n\t<thead>\n\t<tr>\n";
 	foreach($T_en_tete as $valeur) echo "\t\t<th>$valeur</th>\n";
-	echo"\t</tr>\n\t</thead>";
+	echo"\t</tr>\n\t</thead>\n";
 }
 
 protected function InterrogerBD($requete, $Tparametres = []) {
