@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: gestion.resources.sql.free.fr
--- Généré le : Jeu 03 Décembre 2020 à 21:53
+-- Généré le : Lun 07 Décembre 2020 à 21:31
 -- Version du serveur: 5.0.83
 -- Version de PHP: 5.3.9
 
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `joueur` (
 --
 
 INSERT INTO `joueur` (`ID`, `pseudo`, `connecté?`, `mdp_chiffré`, `email`, `niveau`, `niveauQG`) VALUES
-(1, 'Lambda', 0, '', 'christophe.hervi@free.fr', 108, 5),
+(1, 'Lambda', 0, '', 'christophe.hervi@free.fr', 233, 5),
 (2, '2Fer', 0, '', 'christophe.hervi@free.fr', 108, 5);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
