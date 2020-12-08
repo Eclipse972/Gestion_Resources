@@ -1,8 +1,6 @@
 <?php 
 session_start();
-// sauvegarde de l'état dans la session
-if (!isset($_SESSION['IDjoueur'])) $_SESSION['IDjoueur'] = 1;
-$_SESSION['ID'] = (int) $_GET['id']; // indique la ligne sélectionné pour un tableau
+$SCRIPT = substr($_SERVER['PHP_SELF'],1,strlen($_SERVER['PHP_SELF'])-5);	// script associé à l'onglet qui a téléchargé cette page
 
 /* Fichiers à créer pour un développement d'un futur onglet Ex: batiment spéciaux, missions
  * Soit X le nom du nouvel onglet 
@@ -22,10 +20,17 @@ $_SESSION['ID'] = (int) $_GET['id']; // indique la ligne sélectionné pour un t
 	'entrepots'	=> 'TEntrepot',
 	'commerce'	=> 'TCommerce'
 );
-$SCRIPT = substr($_SERVER['PHP_SELF'],1,strlen($_SERVER['PHP_SELF'])-5);	// script associé à l'onglet qui a téléchargé cette page
+
+// sauvegarde de l'état dans la session
+if (!isset($_SESSION['IDjoueur'])) $_SESSION['IDjoueur'] = 1; // valeur initalisée lorsque le joueur se connecte. 1->joueur Lambda
+$_SESSION['onglet'] = isset($T_onglet[$SCRIPT]) ? $SCRIPT : null; 
+$_SESSION['ID'] = (int) $_GET['id']; // indique la ligne sélectionnée dans un onglet
+
 if (isset($T_onglet[$SCRIPT]) && ($SCRIPT!='index')) {
 	require'Modele/classe_'.$T_onglet[$SCRIPT].'.php'; // chargement de la classe associée à l'onglet
-}// gérer le sinon
+} else {
+	// gérer le sinon
+}
 
 // joueur
 require'Modele/classe_Joueur.php';
