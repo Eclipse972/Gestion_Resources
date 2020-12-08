@@ -14,4 +14,3 @@ FROM mine
 INNER JOIN type_mine ON mine.type_mine_ID = type_mine.ID
 INNER JOIN marchandise ON type_mine.marchandise_ID = marchandise.ID
 INNER JOIN unites ON marchandise.unité_ID = unites.ID
-INNER JOIN joueur ON mine.joueur_ID = joueur.ID

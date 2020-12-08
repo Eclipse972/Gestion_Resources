@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: gestion.resources.sql.free.fr
--- Généré le : Mar 08 Décembre 2020 à 03:55
+-- Généré le : Mar 08 Décembre 2020 à 11:28
 -- Version du serveur: 5.0.83
 -- Version de PHP: 5.3.9
 
@@ -26,36 +26,34 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 
 CREATE TABLE IF NOT EXISTS `mine` (
-  `ID` tinyint(3) unsigned NOT NULL auto_increment,
   `joueur_ID` tinyint(3) unsigned NOT NULL,
   `type_mine_ID` tinyint(3) unsigned NOT NULL,
   `nombre` int(10) unsigned NOT NULL default '0',
   `prod_max` bigint(20) unsigned NOT NULL default '0',
   `etat` tinyint(1) unsigned NOT NULL default '0' COMMENT 'pourcentage en valeur entière',
   `ordre_affichage` tinyint(1) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`ID`),
-  UNIQUE KEY `joueur_ID` (`joueur_ID`,`type_mine_ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=15 ;
+  PRIMARY KEY  (`joueur_ID`,`type_mine_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
 --
 -- Contenu de la table `mine`
 --
 
-INSERT INTO `mine` (`ID`, `joueur_ID`, `type_mine_ID`, `nombre`, `prod_max`, `etat`, `ordre_affichage`) VALUES
-(1, 1, 1, 157, 300485, 96, 0),
-(2, 1, 2, 3, 919, 92, 0),
-(3, 1, 3, 91, 82424, 95, 0),
-(4, 1, 4, 4, 1675, 94, 0),
-(5, 1, 5, 26, 13128, 97, 0),
-(6, 1, 6, 12, 32565, 69, 0),
-(7, 1, 7, 51, 48481, 24, 0),
-(8, 1, 8, 7, 6519, 99, 0),
-(9, 1, 9, 89, 1645, 54, 0),
-(10, 1, 10, 78, 6456, 77, 0),
-(11, 1, 11, 15, 561, 14, 0),
-(12, 1, 12, 15, 6165, 92, 0),
-(13, 1, 13, 0, 979, 58, 0),
-(14, 1, 14, 651, 6516, 6, 0);
+INSERT INTO `mine` (`joueur_ID`, `type_mine_ID`, `nombre`, `prod_max`, `etat`, `ordre_affichage`) VALUES
+(1, 1, 159, 300485, 91, 0),
+(1, 2, 3, 919, 92, 0),
+(1, 3, 91, 82424, 95, 0),
+(1, 4, 4, 1675, 94, 0),
+(1, 5, 26, 13128, 97, 0),
+(1, 6, 12, 32565, 69, 0),
+(1, 7, 51, 48481, 24, 0),
+(1, 8, 7, 6519, 99, 0),
+(1, 9, 89, 1645, 54, 0),
+(1, 10, 78, 6456, 77, 0),
+(1, 11, 15, 561, 14, 0),
+(1, 12, 15, 6165, 92, 0),
+(1, 13, 0, 979, 58, 0),
+(1, 14, 651, 6516, 6, 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
