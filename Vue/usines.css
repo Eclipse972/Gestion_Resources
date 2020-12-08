@@ -43,4 +43,11 @@ section tbody tr td:nth-child(1) p {
 }
 
 #amélioration tbody tr { text-align:right; }
+
+#amélioration tbody tr td:nth-child(2), /* une police à chasse fixe pour les colonnes n'affichant que des chiffres pour faciliter la lecture */
+#amélioration tbody tr td:nth-child(3),
+#amélioration tbody tr td:nth-child(4),
+#amélioration tbody tr td:nth-child(5),
+#amélioration tbody tr td:nth-child(6) { font-family:courier; font-size:14px; }
+
 #amélioration tbody tr td:nth-child(1) {  text-align:left; }
