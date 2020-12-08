@@ -15,12 +15,12 @@ $_SESSION['ID'] = (int) $_GET['id']; // indique la ligne sélectionné pour un t
  * */
   
  $T_onglet = array(
-//	onglet			=> classe associée
-	'index'			=> 'Joueur',
-	'usines'		=> 'TUsine',
-	'mines'			=> 'TMine',
-	'entrepots'		=> 'TEntrepot',
-	'marchandises'	=> 'TMarchandise'
+//	onglet		=> classe associée
+	'index'		=> 'Joueur',
+	'usines'	=> 'TUsine',
+	'mines'		=> 'TMine',
+	'entrepots'	=> 'TEntrepot',
+	'commerce'	=> 'TCommerce'
 );
 $SCRIPT = substr($_SERVER['PHP_SELF'],1,strlen($_SERVER['PHP_SELF'])-5);	// script associé à l'onglet qui a téléchargé cette page
 if (isset($T_onglet[$SCRIPT]) && ($SCRIPT!='index')) {
