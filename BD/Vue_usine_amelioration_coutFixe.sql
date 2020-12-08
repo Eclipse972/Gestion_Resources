@@ -1,7 +1,7 @@
 CREATE VIEW Vue_usine_amelioration_coutFixe AS 
 SELECT
 	usine.joueur_ID
-	,usine.ID
+	,type_usine.ID AS ID
 	,ingredient.quantité * POWER(usine.niveau+1,2) AS somme
 FROM usine
 INNER JOIN type_usine ON usine.type_usine_ID = type_usine.ID

@@ -1,7 +1,7 @@
 CREATE VIEW Vue_usine_amelioration_ingredients AS 
 SELECT
 	usine.joueur_ID
-	,usine.ID
+	,type_usine.ID AS ID
 	,marchandise.nom
 	,-ingredient.quantité * POWER(usine.niveau+1,2) AS Qte #consommation est négative
 	,entrepot.stock
