@@ -7,7 +7,7 @@ SELECT
 		UCASE(LEFT(type_mine.nom,1)),SUBSTRING(type_mine.nom,2,LENGTH(type_mine.nom)),'</strong></a></td>\n',
 		'\t\t<td>',mine.etat,'%</td>\n',
 		'\t\t<td>',mine.nombre,'</td>\n',
-		'\t\t<td>',REPLACE(FORMAT(mine.prod_max*mine.etat/100,1),',',' '),' ',unites.nom,'/h</td>\n'
+		'\t\t<td>',REPLACE(REPLACE(FORMAT(mine.prod_max*mine.etat/100,1),',',' '),'.',','),' ',unites.nom,'/h</td>\n'
 	) AS code,
 	type_mine.nom AS nom_ligne
 FROM mine
