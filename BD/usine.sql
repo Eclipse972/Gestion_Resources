@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: gestion.resources.sql.free.fr
--- Généré le : Lun 07 Décembre 2020 à 21:33
+-- Généré le : Mar 08 Décembre 2020 à 03:56
 -- Version du serveur: 5.0.83
 -- Version de PHP: 5.3.9
 
@@ -30,8 +30,8 @@ CREATE TABLE IF NOT EXISTS `usine` (
   `joueur_ID` tinyint(3) unsigned NOT NULL,
   `type_usine_ID` tinyint(3) unsigned NOT NULL,
   `niveau` int(10) unsigned NOT NULL,
-  `date_fin_production` int(10) unsigned NOT NULL default '0',
-  `duree_prod_souhaitee` int(10) unsigned NOT NULL default '0' COMMENT 'durée de production souhaitée en minutes',
+  `date_fin_production` int(10) unsigned NOT NULL default '0' COMMENT 'format timestamp',
+  `duree_prod_souhaitee` int(10) unsigned NOT NULL default '7200' COMMENT 'exprimée en minutes',
   `ordre_affichage` tinyint(1) unsigned NOT NULL default '0',
   PRIMARY KEY  (`ID`),
   UNIQUE KEY `unicité (joueur-type d'usine)` (`joueur_ID`,`type_usine_ID`)
