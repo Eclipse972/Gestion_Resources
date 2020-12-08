@@ -23,6 +23,8 @@ section table {
 	margin-right: auto;
 }
 
+section strong { font-size:22px; }
+
 #rapport {
 	color:black;
 	background-color:white;
