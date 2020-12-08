@@ -4,7 +4,7 @@ SELECT
 	usine.joueur_ID AS IDjoueur,
 	CONCAT(
 		'\t\t<td><p id="gauche"><a href="?id=',CAST(type_usine.ID AS CHAR),'#selection"><img src="Vue/images/',type_usine.image, '.png" alt ="',type_usine.nom,'"></a></p>\n',
-		'\t\t\t<a href="?id=',CAST(type_usine.ID AS CHAR),'#selection"><h1>',UCASE(LEFT(type_usine.nom,1)),SUBSTRING(type_usine.nom,2,LENGTH(type_usine.nom)),'</h1></a>\n\t\t\t<p id="petite_image">',
+		'\t\t\t<a href="?id=',CAST(type_usine.ID AS CHAR),'#selection"><strong>',UCASE(LEFT(type_usine.nom,1)),SUBSTRING(type_usine.nom,2,LENGTH(type_usine.nom)),'</strong></a>\n\t\t\t<p id="petite_image">',
 		(SELECT GROUP_CONCAT( # requête qui crée la recette
 					ABS(ingredient.quantité),
 					'\t<img src="Vue/images/',marchandise.image,'.png" alt ="',marchandise.nom,'">',

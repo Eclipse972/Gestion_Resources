@@ -2,8 +2,8 @@ CREATE VIEW Vue_marchandise AS
 SELECT 
 	ID,
 	CONCAT(
-		'\t\t<td><a href="?id=',ID,'#selection"><img src="Vue/images/',image, '.png" alt ="',nom,'">',
-		UCASE(LEFT(nom,1)),SUBSTRING(nom,2,LENGTH(nom)),'</a></td>\n',
+		'\t\t<td><a href="?id=',ID,'#selection"><img src="Vue/images/',image, '.png" alt ="',nom,'"><strong>',
+		UCASE(LEFT(nom,1)),SUBSTRING(nom,2,LENGTH(nom)),'</strong></a></td>\n',
 		'\t\t<td>',REPLACE(FORMAT(cours_ki ,0),',', ' '),'&euro;</td>\n',
 		'\t\t<td>',REPLACE(FORMAT(cours_max ,0),',', ' '),'&euro;</td>\n'
 	) AS code,

@@ -3,8 +3,8 @@ SELECT
 	entrepot.ID,
 	entrepot.joueur_ID AS IDjoueur,
 	CONCAT(
-		'\t\t<td><a href="?id=',entrepot.ID,'#selection"><img src="Vue/images/',marchandise.image, '.png" alt ="',marchandise.nom,'">',
-		UCASE(LEFT(marchandise.nom,1)),SUBSTRING(marchandise.nom,2,LENGTH(marchandise.nom)),'</a></td>\n',
+		'\t\t<td><a href="?id=',entrepot.ID,'#selection"><img src="Vue/images/',marchandise.image, '.png" alt ="',marchandise.nom,'"><strong>',
+		UCASE(LEFT(marchandise.nom,1)),SUBSTRING(marchandise.nom,2,LENGTH(marchandise.nom)),'</strong></a></td>\n',
 		'\t\t<td>',CAST(entrepot.niveau AS CHAR),'</td>\n',
 		'\t\t<td>',REPLACE(CAST(FORMAT(entrepot.stock,0) AS CHAR),',',' '),' ',unites.nom,'</td>\n'
 	) AS code
