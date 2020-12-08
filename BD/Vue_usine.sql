@@ -6,7 +6,7 @@ SELECT
 		'\t\t<td><p id="gauche"><a href="?id=',CAST(type_usine.ID AS CHAR),'#selection"><img src="Vue/images/',type_usine.image, '.png" alt ="',type_usine.nom,'"></a></p>\n',
 		'\t\t\t<a href="?id=',CAST(type_usine.ID AS CHAR),'#selection"><strong>',UCASE(LEFT(type_usine.nom,1)),SUBSTRING(type_usine.nom,2,LENGTH(type_usine.nom)),'</strong></a>\n\t\t\t<p id="petite_image">',
 		(SELECT GROUP_CONCAT( # requête qui crée la recette
-					ABS(ingredient.quantité),
+					REPLACE(CAST(FORMAT(ABS(ingredient.quantité),0) AS CHAR),',',' '),
 					'\t<img src="Vue/images/',marchandise.image,'.png" alt ="',marchandise.nom,'">',
 					IF(ingredient.nature = 0,' + ',IF(ingredient.nature =1,' -> ',''))
 					ORDER BY ingredient.nature ASC SEPARATOR ''
