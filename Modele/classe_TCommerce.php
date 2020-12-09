@@ -14,7 +14,8 @@ public function Afficher_tete() { parent::Afficher_thead(array('Marchandise', 'c
 public function Afficher_corps($id_selectionné) { parent::Afficher_tbody('Vue_commerce', $id_selectionné); }
 
 protected function Afficher_rapport($Tvariables, $id_selectionné) {
-?>	<h1>Liste des besoins avec achats et ventes &agrave; pr&eacute;voir</h1>
+?>
+	<h1>Liste des besoins avec achats et ventes &agrave; pr&eacute;voir</h1>
 	<p><?=$Tvariables['liste']?></p>
 <?php
 	echo $this->UtilePour($Tvariables['ID']);
