@@ -56,26 +56,16 @@ public function Afficher() {
 }
 
 public function Traiter() {
-	try	{
-		include'connexion.php';
-		$BD = new PDO($dsn, $utilisateur, $mdp);
-		$BD->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$requete = $BD->prepare('
-			UPDATE usine
+	Formulaire::MiseAJour('UPDATE usine
 			SET niveau = :niveau,
 				date_fin_production = UNIX_TIMESTAMP() + :dureeProd +9, # évite de perdre 1 minute 
 				duree_prod_souhaitee = :dureeSouhaitee
-			WHERE usine.joueur_ID = :IDjoueur AND usine.type_usine_ID = :ID');
-		$requete->execute(array(
-			':IDjoueur'			=>$_SESSION['IDjoueur'],
-			':ID'				=>$this->Nettoyer($_POST['ID']),
-			':niveau'			=>$this->Nettoyer($_POST['niveau']),
-			':dureeProd'		=>60*$this->Nettoyer($_POST['minute']) 	+ 3600*$this->Nettoyer($_POST['heure'])  + 86400*$this->Nettoyer($_POST['jour']),
-			':dureeSouhaitee'	=>60*$this->Nettoyer($_POST['minute2']) + 3600*$this->Nettoyer($_POST['heure2']) + 86400*$this->Nettoyer($_POST['jour2'])));
-	} catch (PDOException $e) {
-		exit('Erreur traitement formulaire: '.$e->getMessage());
-	}
-	$BD = null;
+			WHERE usine.joueur_ID = :IDjoueur AND usine.type_usine_ID = :ID',
+		array(	':IDjoueur'			=>$_SESSION['IDjoueur'],
+				':ID'				=>$this->Nettoyer($_POST['ID']),
+				':niveau'			=>$this->Nettoyer($_POST['niveau']),
+				':dureeProd'		=>60*$this->Nettoyer($_POST['minute']) 	+ 3600*$this->Nettoyer($_POST['heure'])  + 86400*$this->Nettoyer($_POST['jour']),
+				':dureeSouhaitee'	=>60*$this->Nettoyer($_POST['minute2']) + 3600*$this->Nettoyer($_POST['heure2']) + 86400*$this->Nettoyer($_POST['jour2'])));
 	header("location:http://gestion.resources.free.fr/usines.php?id={$_SESSION['ID']}#selection");
 }
 }

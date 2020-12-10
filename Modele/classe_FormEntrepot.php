@@ -30,23 +30,11 @@ public function Afficher() {
 }
 
 public function Traiter() {
-	try	{
-		include'connexion.php';
-		$BD = new PDO($dsn, $utilisateur, $mdp);
-		$BD->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$requete = $BD->prepare('
-			UPDATE entrepot
-			SET niveau = :niveau,	stock = :stock
-			WHERE entrepot.joueur_ID = :IDjoueur AND entrepot.marchandise_ID = :ID');
-		$requete->execute(array(
-			':IDjoueur'	=>$_SESSION['IDjoueur'],
-			':ID'		=>$this->Nettoyer($_POST['ID']),
-			':niveau'	=>$this->Nettoyer($_POST['niveau']),
-			':stock'	=>$this->Nettoyer($_POST['stock'])));
-	} catch (PDOException $e) {
-		exit('Erreur traitement formulaire: '.$e->getMessage());
-	}
-	$BD = null;
+	Formulaire::MiseAJour('UPDATE entrepot SET niveau = :niveau,	stock = :stock WHERE entrepot.joueur_ID = :IDjoueur AND entrepot.marchandise_ID = :ID',
+		array(	':IDjoueur'	=>$_SESSION['IDjoueur'],
+				':ID'		=>$this->Nettoyer($_POST['ID']),
+				':niveau'	=>$this->Nettoyer($_POST['niveau']),
+				':stock'	=>$this->Nettoyer($_POST['stock'])));
 	header("location:http://gestion.resources.free.fr/usines.php?id={$_SESSION['ID']}#selection");
 }
 }
