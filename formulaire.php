@@ -39,6 +39,7 @@ if ((!isset($IDjoueur)) || (!isset($onglet)) || (!isset($ID)) // position incomp
 	<link rel="shortcut icon" type="image/png" href="Vue/images/resources.ico">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand:400,700">
 	<link rel="stylesheet" href="Vue/commun.css" />
+	<link rel="stylesheet" href="Vue/formulaire.css" />
 	<title>Gestion de production pour le jeu Resources</title>
 </head>
 
