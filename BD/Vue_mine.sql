@@ -1,14 +1,15 @@
 CREATE VIEW Vue_mine AS
 SELECT
-	type_mine.ID,
 	mine.joueur_ID AS IDjoueur,
+	type_mine.ID,
+	CONCAT('<a href="formulaire.php?id=',CAST(type_mine.ID AS CHAR),'">') AS lien_formulaire,
 	CONCAT(
 		'\t\t<td><a href="?id=',type_mine.ID,'#selection"><img src="Vue/images/',marchandise.image, '.png" alt ="',type_mine.nom,'"><strong>',
 		UCASE(LEFT(type_mine.nom,1)),SUBSTRING(type_mine.nom,2,LENGTH(type_mine.nom)),'</strong></a></td>\n\t\t<td>',
-		mine.etat,'%</td>\n\t\t<td>',
-		mine.nombre,'</td>\n\t\t<td>',
-		REPLACE(REPLACE(FORMAT(mine.prod_max*mine.etat/100,1),',',' '),'.',','),' ',unites.nom,'/h</td>\n\t\t<td>',
-		REPLACE(REPLACE(FORMAT(mine.prod_max,0),',',' '),'.',','),' ',unites.nom,'/h</td>\n'
+		(SELECT lien_formulaire),mine.etat,'%</a></td>\n\t\t<td>',
+		(SELECT lien_formulaire),mine.nombre,'</a></td>\n\t\t<td>',
+		(SELECT lien_formulaire),REPLACE(REPLACE(FORMAT(mine.prod_max*mine.etat/100,1),',',' '),'.',','),' ',unites.nom,'/h</a></td>\n\t\t<td>',
+		(SELECT lien_formulaire),REPLACE(REPLACE(FORMAT(mine.prod_max,0),',',' '),'.',','),' ',unites.nom,'/h</a></td>\n'
 	) AS code,
 	type_mine.nom AS nom_ligne
 FROM mine
