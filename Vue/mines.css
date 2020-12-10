@@ -1,9 +1,10 @@
 /* feuille de style de l'onglet mines */
-section thead tr th:nth-child(1), section tbody tr td:nth-child(1) { width:400px; }
-section thead tr th:nth-child(2), section tbody tr td:nth-child(2) { width:100px; }
+section thead tr th:nth-child(1), section tbody tr td:nth-child(1) { width:300px; }
+section thead tr th:nth-child(2), section tbody tr td:nth-child(2) { width:60px; }
 section thead tr th:nth-child(3), section tbody tr td:nth-child(3) { width:100px; }
-section thead tr th:nth-child(4), section tbody tr td:nth-child(4) { width:200px; }
+section thead tr th:nth-child(4), section tbody tr td:nth-child(4),
+section thead tr th:nth-child(5), section tbody tr td:nth-child(5) { width:200px; }
 
 section tbody tr td:nth-child(2), section tbody tr td:nth-child(3) { text-align: center; }
-section tbody tr td:nth-child(4) { text-align: right; }
+section tbody tr td:nth-child(4), section tbody tr td:nth-child(5) { text-align: right; }
 
