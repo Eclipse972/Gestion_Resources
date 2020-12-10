@@ -19,13 +19,7 @@ protected function Récupérer_variables_formulaire($VueBD, $ID) {
 	return $TreponseBD; // retourne la listes des variables sous la forme d'un tableau associatif
 }
 
-protected function Nettoyer($donnée_numérique) { // nettoie et convertit en entier
-	$donnée_numérique = trim($donnée_numérique);
-	$donnée_numérique = stripslashes($donnée_numérique);
-	$donnée_numérique = htmlspecialchars($donnée_numérique);
-	return (int) $donnée_numérique;
-}
-
+protected function Nettoyer($donnée_numérique) { return (int) htmlspecialchars(stripslashes(trim($donnée_numérique))); }	// nettoie et convertit en entier
 
 protected function DébutFormulaire($image, $nom, $ID) {
 ?>
