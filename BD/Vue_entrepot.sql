@@ -7,6 +7,7 @@ SELECT
 		'\t\t<td><a href="?id=',entrepot.marchandise_ID,'#selection"><img src="Vue/images/',marchandise.image, '.png" alt ="',marchandise.nom,'"><strong>',
 		UCASE(LEFT(marchandise.nom,1)),SUBSTRING(marchandise.nom,2,LENGTH(marchandise.nom)),'</strong></a></td>\n\t\t<td>',
 		(SELECT lien_formulaire),CAST(entrepot.niveau AS CHAR),'</a></td>\n\t\t<td>',
+		REPLACE(CAST(FORMAT(entrepot.niveau * entrepot.niveau * 5000,0) AS CHAR),',',' '),' ',unites.nom,'</td>\n\t\t<td>',
 		(SELECT lien_formulaire),REPLACE(CAST(FORMAT(entrepot.stock,0) AS CHAR),',',' '),' ',unites.nom,'</a></td>\n'
 	) AS code
 FROM entrepot
