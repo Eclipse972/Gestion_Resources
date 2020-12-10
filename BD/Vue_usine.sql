@@ -15,7 +15,7 @@ SELECT
 			INNER JOIN marchandise ON ingredient.marchandise_ID = marchandise.ID
 			WHERE ingredient.recette_ID = type_usine.production_ID
 		),
-		'</p>\n\t\t</td>\n\t\t<td><a href="formulaire.php">',CAST(usine.niveau AS CHAR),'</a></td>\n',
+		'</p>\n\t\t</td>\n\t\t<td><a href="formulaire.php?id=',CAST(type_usine.ID AS CHAR),'">',CAST(usine.niveau AS CHAR),'</a></td>\n',
 		'\t\t<td>',REPLACE(CAST(FORMAT(type_usine.prod_niveau1*usine.niveau,0) AS CHAR),',',' '),' ',unites.nom,'/h</td>\n'
 	) AS code,
 	type_usine.nom AS nom_ligne

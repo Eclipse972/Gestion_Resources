@@ -1,35 +1,35 @@
 <?php
 session_start();
-$Tclasse = array(
-//	onglet		=> classe associée
-	'usines'	=> 'FormUsine',
-	'mines'		=> 'FormMine',
-	'entrepots'	=> 'FormEntrepot',
-	'commerce'	=> 'FormCommerce'
-);
-// on récupère l'état sauvegardé dans la session
 $IDjoueur = $_SESSION['IDjoueur'];
 $onglet = $_SESSION['onglet'];
-$ID = $_SESSION['ID'];
+if  ((!isset($IDjoueur)) ||	(!isset($onglet)))	{
+	$_SESSION['erreur'] = 2;
+	header("Location:http://gestion.resources.free.fr/erreur.php");
+}
+$Tclasse = array(
+	//	onglet		=> classe associée
+		'usines'	=> 'FormUsine',
+		'mines'		=> 'FormMine',
+		'entrepots'	=> 'FormEntrepot',
+		'commerce'	=> 'FormCommerce'
+	);
+require"Modele/classe_{$Tclasse[$onglet]}.php";
+$formulaire = new $Tclasse[$onglet];
 
-if ((!isset($IDjoueur)) || (!isset($onglet)) || (!isset($ID)) // position incomplète
-	|| (!isset($Tclasse[$onglet]))) // onglet pas dans la liste
-{
-	$_SESSION['erreur'] = 2; // erreur formulaire
-	header("Location:http://gestion.resources.free.fr/erreur.php"); // redirection vers la page d'erreur
-} else {
-	require"Modele/classe_{$Tclasse[$onglet]}.php";
-	$formulaire = new $Tclasse[$onglet];
-	if (empty($_POST)) {
-		$formulaire->Hydrate();
-		ob_start();
-		$formulaire->Afficher();
-		$SECTION = ob_get_contents();
-		ob_end_clean();
-	} else {
+if (empty($_POST))	{
+	$ID = (int) $_GET['id'];	// indique l'usine sélectionnée qui peut être différente du focus dans l'onglet
+	if (($ID==0) || ($ID>22)) {	// identifiant invalide
+		$_SESSION['erreur'] = 3;
+		header("Location:http://gestion.resources.free.fr/erreur.php");
+	}
+	$formulaire->Hydrate($ID);
+	ob_start();
+	$formulaire->Afficher();
+	$SECTION = ob_get_contents();
+	ob_end_clean();
+} else {	// traitement
 		$formulaire->Traiter();
-		header("Location:http://gestion.resources.free.fr/{$onglet}.php?id={$ID}#selection"); 
-	} 
+		header("Location:http://gestion.resources.free.fr/{$onglet}.php?id={$ID}#selection");
 }
 ?>
 <!doctype html>
@@ -51,10 +51,7 @@ if ((!isset($IDjoueur)) || (!isset($onglet)) || (!isset($ID)) // position incomp
 			<?=$SECTION?>
 		</section>
 	</main>
-
-	<footer>
-		<p>Site optimis&eacute; pour <img src="Vue/images/chrome.png" alt="Chrome"> et <img src="Vue/images/firefox.png" alt="Firefox"> - derni&egrave;re mise à jour: 4 d&eacute;cembre 2020</p>
-	</footer>
+<?php include'Vue/pied2page.html';?>
 </body>
 </html>
 

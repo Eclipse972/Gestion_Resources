@@ -1,1 +1,4 @@
-/* feuile de style pour les formulaires */
+form {
+	width:50%;
+	margin:auto;
+}
