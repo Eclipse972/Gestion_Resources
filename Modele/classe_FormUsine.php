@@ -23,7 +23,7 @@ public function Afficher() {
 	$this->DébutFormulaire($this->imageUsine, $this->nomUsine, $this->ID);
 ?>
 		<label for="niveau">Niveau :</label>
-		<input type="number" id="niveau" name="niveau" value="<?=$this->niveau?>" style="width:50px; margin-right:50px">
+		<input type="number" id="niveau" name="niveau" min="0" value="<?=$this->niveau?>" style="width:50px; margin-right:50px">
 		
 		<fieldset>
 			<legend>Dur&eacute;e de production restante :</legend>
