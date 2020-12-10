@@ -20,7 +20,7 @@ public function Hydrate($ID) {
 }
 
 public function Afficher() {
-	$this->DébutFormulaire($this->imageUsine, $this->nomUsine, $this->ID);
+	Formulaire::Commencer($this->imageUsine, $this->nomUsine, $this->ID);
 ?>
 		<label for="niveau">Niveau :</label>
 		<input type="number" id="niveau" name="niveau" min="0" value="<?=$this->niveau?>" style="width:50px; margin-right:50px">
@@ -52,7 +52,7 @@ public function Afficher() {
 			<input type="number" id="minute2" name="minute2" value="<?=(int)($this->duree_prod_souhaitee/60) % 60?>" min="0" max="59" style="width:35px; margin-right:9px">
 		</fieldset>
 <?php
-	$this->FinFormulaire();
+	Formulaire::Terminer();
 }
 
 public function Traiter() {

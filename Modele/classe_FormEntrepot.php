@@ -17,7 +17,7 @@ public function Hydrate($ID) {
 }
 
 public function Afficher() {
-	$this->DébutFormulaire($this->imageEntrepot, 'de l&apos;entrep&ocirc;t '.$this->nomEntrepot, $this->ID);
+	Formulaire::Commencer($this->imageEntrepot, 'de l&apos;entrep&ocirc;t '.$this->nomEntrepot, $this->ID);
 ?>
 		<label for="niveau">Niveau :</label>
 		<input type="number" id="niveau" name="niveau" value="<?=$this->niveau?>" style="width:50px; margin-right:50px">
@@ -26,7 +26,7 @@ public function Afficher() {
 		<input type="number" id="stock" name="stock" value="<?=$this->stock?>" style="width:200px; margin-right:50px">
 		<br>
 <?php
-	$this->FinFormulaire();
+	Formulaire::Terminer();
 }
 
 public function Traiter() {

@@ -21,7 +21,7 @@ protected function Récupérer_variables_formulaire($VueBD, $ID) { // renvoie le
 
 protected function Nettoyer($donnée_numérique) { return (int) htmlspecialchars(stripslashes(trim($donnée_numérique))); }	// nettoie et convertit en entier
 
-protected function DébutFormulaire($image, $nom, $ID) {
+protected function Commencer($image, $nom, $ID) {
 ?>
 	<img src="Vue/images/<?=$image?>.png" alt="<?=$nom?>">
 	<form action="formulaire.php" method="post">
@@ -30,10 +30,21 @@ protected function DébutFormulaire($image, $nom, $ID) {
 <?php
 }
 
-protected function FinFormulaire() {
+protected function Terminer() {
 ?>
 		<input type="submit" value="Valider" style="margin-top:9px">
 	</form>
 <?php
+}
+
+protected function MiseAJour($requête, $T_paramètres) {
+	try	{
+		include'connexion.php';
+		$BD = new PDO($dsn, $utilisateur, $mdp);
+		$BD->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$requete = $BD->prepare($requête);
+		$requete->execute($T_paramètres);
+	} catch (PDOException $e) { exit('Erreur traitement formulaire: '.$e->getMessage()); }
+	$BD = null;
 }
 }
