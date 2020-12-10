@@ -4,19 +4,19 @@ abstract public function Hydrate($ID);	// recherche les données pour pré-rempl
 abstract public function Afficher();	// afficher le formulaire
 abstract public function Traiter();		// traiter les données reçues
 
-protected function Récupérer_variables_formulaire($VueBD, $ID) {
+protected function Récupérer_variables_formulaire($VueBD, $ID) { // renvoie les variables pour hydrater le formulaire
 	try	{
-		include'connexion.php'; // les variables de connexion sont définies dans ce script non suivi par git
-		$BD = new PDO($dsn, $utilisateur, $mdp); // On se connecte au serveur MySQL
+		include'connexion.php';
+		$BD = new PDO($dsn, $utilisateur, $mdp);
 		$BD->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$requete = $BD->prepare("SELECT * FROM {$VueBD}_rapport WHERE IDjoueur = :IDjoueur AND ID = :ID");
 		$requete->execute(array(':IDjoueur'=>$_SESSION['IDjoueur'], ':ID'=>$ID));
-		$TreponseBD = $requete->fetch(PDO::FETCH_ASSOC); // une seule ligne à capturer qui contient toutes les variables pour afficher le formulaire
+		$TreponseBD = $requete->fetch(PDO::FETCH_ASSOC);
 	} catch (PDOException $e) {
-		exit('Erreur : '.$e->getMessage()); // faire un meilleur traitement de l'erreur
+		exit('Erreur : '.$e->getMessage());
 	}
-	$BD = null; // on ferme la connexion
-	return $TreponseBD; // retourne la listes des variables sous la forme d'un tableau associatif
+	$BD = null;
+	return $TreponseBD;
 }
 
 protected function Nettoyer($donnée_numérique) { return (int) htmlspecialchars(stripslashes(trim($donnée_numérique))); }	// nettoie et convertit en entier

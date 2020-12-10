@@ -6,6 +6,6 @@ SELECT
 	type_usine.image,
 	usine.niveau,
 	usine.duree_prod_souhaitee,
-	usine.date_fin_production
+	IF(usine.date_fin_production < UNIX_TIMESTAMP(), 0, usine.date_fin_production - UNIX_TIMESTAMP()) AS dureeProd
 FROM usine
 INNER JOIN type_usine ON usine.type_usine_ID = type_usine.ID
