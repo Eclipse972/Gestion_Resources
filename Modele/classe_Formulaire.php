@@ -1,17 +1,18 @@
 <?php
 abstract class Formulaire {
+protected $nom; // nom de l'élément mis à jour
+protected $image; // fichier image associé au nom
 
-// pour les développements futurs
-abstract public Hydrate(); // recherche les données pour pré-remplir le formulaire
-abstract public Afficher();// afficher le formulaire
-abstract public Traiter(); // traiter les données reçues
+abstract public function Hydrate(); // recherche les données pour pré-remplir le formulaire
+abstract public function Afficher();// afficher le formulaire
+abstract public function Traiter(); // traiter les données reçues
 
 protected function Récupérer_variables_formulaire($VueBD) {
 	try	{
-		include '../connexion.php'; // les variables de connexion sont définies dans ce script non suivi par git
+		include'connexion.php'; // les variables de connexion sont définies dans ce script non suivi par git
 		$BD = new PDO($dsn, $utilisateur, $mdp); // On se connecte au serveur MySQL
 		$BD->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$requete = $BD->prepare("SELECT * FROM {$vueBD}_rapport WHERE IDjoueur = :IDjoueur AND ID = :ID");
+		$requete = $BD->prepare("SELECT * FROM {$VueBD}_rapport WHERE IDjoueur = :IDjoueur AND ID = :ID");
 		$requete->execute(array(':IDjoueur'=>$_SESSION['IDjoueur'], ':ID'=>$_SESSION['ID']));
 		$TreponseBD = $requete->fetch(PDO::FETCH_ASSOC); // une seule ligne à capturer qui contient toutes les variables pour afficher le formulaire
 	} catch (PDOException $e) {
@@ -21,10 +22,10 @@ protected function Récupérer_variables_formulaire($VueBD) {
 	return $TreponseBD; // retourne la listes des variables sous la forme d'un tableau associatif
 }
 
-private function Nettoyer($donnée_numérique) { // nettoie et convertit en entier
-	$donnée = trim($donnée_numérique);
-	$donnée = stripslashes($donnée_numérique);
-	$donnée = htmlspecialchars($donnée_numérique);
+protected function Nettoyer($donnée_numérique) { // nettoie et convertit en entier
+	$donnée_numérique = trim($donnée_numérique);
+	$donnée_numérique = stripslashes($donnée_numérique);
+	$donnée_numérique = htmlspecialchars($donnée_numérique);
 	return (int) $donnée_numérique;
 }
 }

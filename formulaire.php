@@ -20,15 +20,16 @@ if ((!isset($IDjoueur)) || (!isset($onglet)) || (!isset($ID)) // position incomp
 } else {
 	require"Modele/classe_{$Tclasse[$onglet]}.php";
 	$formulaire = new $Tclasse[$onglet];
-	if (isset($_POST)) {
-		$formulaire->Traiter();
-		header("Location:http://gestion.resources.free.fr/{$onglet}.php?id={$ID}#selection"); 
-	} else {
+	if (empty($_POST)) {
+		$formulaire->Hydrate();
 		ob_start();
 		$formulaire->Afficher();
 		$SECTION = ob_get_contents();
 		ob_end_clean();
-	}
+	} else {
+		$formulaire->Traiter();
+		header("Location:http://gestion.resources.free.fr/{$onglet}.php?id={$ID}#selection"); 
+	} 
 }
 ?>
 <!doctype html>
