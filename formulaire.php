@@ -17,8 +17,14 @@ require"Modele/classe_{$Tclasse[$onglet]}.php";
 $formulaire = new $Tclasse[$onglet];
 
 if (empty($_POST))	{
-	$ID = (int) $_GET['id'];	// indique l'usine sélectionnée qui peut être différente du focus dans l'onglet
-	if (($ID==0) || ($ID>22)) {	// identifiant invalide
+	$ID = (int) $_GET['id'];
+	$T_maxID = array( // ID maxi de chaque onglet
+		'usines'	=> 22,
+		'mines'		=> 14,
+		'entrepots'	=> 38,
+		'commerce'	=> 38
+	);
+	if (($ID==0) || ($ID > $T_maxID[$onglet])) {	// identifiant invalide
 		$_SESSION['erreur'] = 3;
 		header("Location:http://gestion.resources.free.fr/erreur.php");
 	}
