@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: gestion.resources.sql.free.fr
--- Généré le : Jeu 03 Décembre 2020 à 21:56
+-- Généré le : Jeu 10 Décembre 2020 à 22:29
 -- Version du serveur: 5.0.83
 -- Version de PHP: 5.3.9
 
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `unites` (
 --
 
 INSERT INTO `unites` (`ID`, `nom`) VALUES
-(1, 'm3'),
+(1, 'm&sup3;'),
 (2, 'kg'),
 (3, 'pi&egrave;ce'),
 (4, 'unité'),
