@@ -37,6 +37,7 @@ public function Afficher() {
 
 			<label for="minute">minute :</label>
 			<input type="number" id="minute" name="minute" value="<?=(int)($duréeRestanteProd/60) % 60?>" min="0" max="59" style="width:35px; margin-right:9px">
+			<p>Remarque: lors de l&apos;affichage des usines, il suffit de recharger la page pour mettre à jour cette dur&eacute;e.</p>
 		</fieldset>
 
 		<fieldset>
