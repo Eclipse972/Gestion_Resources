@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: gestion.resources.sql.free.fr
--- Généré le : Mar 08 Décembre 2020 à 12:06
+-- Généré le : Jeu 10 Décembre 2020 à 02:13
 -- Version du serveur: 5.0.83
 -- Version de PHP: 5.3.9
 
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `usine` (
   `type_usine_ID` tinyint(3) unsigned NOT NULL,
   `niveau` int(10) unsigned NOT NULL,
   `date_fin_production` int(10) unsigned NOT NULL default '0' COMMENT 'format timestamp',
-  `duree_prod_souhaitee` int(10) unsigned NOT NULL default '7200' COMMENT 'exprimée en minutes',
+  `duree_prod_souhaitee` int(10) unsigned NOT NULL default '7200' COMMENT 'format timestamp',
   `ordre_affichage` tinyint(1) unsigned NOT NULL default '0',
   PRIMARY KEY  (`joueur_ID`,`type_usine_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `usine` (
 --
 
 INSERT INTO `usine` (`joueur_ID`, `type_usine_ID`, `niveau`, `date_fin_production`, `duree_prod_souhaitee`, `ordre_affichage`) VALUES
-(1, 1, 50, 1607731044, 7200, 0),
+(1, 1, 20, 1607560289, 8199, 0),
 (1, 2, 27, 1607298872, 0, 1),
 (1, 3, 13, 1609870326, 7200, 2),
 (1, 4, 10, 1608789730, 7200, 3),
