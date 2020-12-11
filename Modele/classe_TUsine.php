@@ -45,7 +45,7 @@ protected function Afficher_rapport($Tvariables, $id_selectionné) {
 		WHERE joueur_ID = :IDjoueur AND ID = :ID"
 		,array(':IDjoueur'=>$_SESSION['IDjoueur'], ':ID'=>$_SESSION['ID']));
 	$coutIngrédients = $rechercheCout[0]['somme'];
-	$taux = 5; // atux en % des frais de transport à rechercher dans la BD
+	$taux = 5; // taux en % des frais de transport à rechercher dans la BD
 	// coût fixe
 	$rechercheCoutFixe = $this->InterrogerBD("
 		SELECT somme
