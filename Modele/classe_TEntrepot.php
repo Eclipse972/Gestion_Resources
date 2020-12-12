@@ -14,6 +14,7 @@ protected function Afficher_rapport($Tvariables, $id_selectionné) {
 
 	<h1>Am&eacute;lioration</h1>
 	<p><?=$Tvariables['amelioration']?></p>
+	<h1>Divers</h1>
 <?php
 	echo $this->UtilePour($Tvariables['marchandise_ID']);
 	echo $this->AbesoinsDe($Tvariables['marchandise_ID']);

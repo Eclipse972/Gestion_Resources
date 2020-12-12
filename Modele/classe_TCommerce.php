@@ -17,6 +17,7 @@ protected function Afficher_rapport($Tvariables, $id_selectionné) {
 ?>
 	<h1>Liste des besoins avec achats et ventes &agrave; pr&eacute;voir</h1>
 	<p><?=$Tvariables['liste']?></p>
+	<h1>Divers</h1>
 <?php
 	echo $this->UtilePour($Tvariables['ID']);
 	echo $this->AbesoinsDe($Tvariables['ID']);
