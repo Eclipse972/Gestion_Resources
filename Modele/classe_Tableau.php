@@ -69,27 +69,13 @@ protected function UtilePour($marchandise_ID) { $this->BesoinOuUtile($marchandis
 
 protected function BesoinOuUtile($marchandise_ID, $Butile) {
 	if ($Butile) {
-		$sql = "SELECT CONCAT(nature_recette.nom,
-				IF(LEFT(recette.nom,1) IN ('a', 'e', 'i', 'o', 'u'),' d&apos;', ' de '),
-				recette.nom) AS nom
-				FROM marchandise
-				INNER JOIN ingredient ON ingredient.marchandise_ID = marchandise.ID
-				INNER JOIN recette ON ingredient.recette_ID = recette.ID
-				INNER JOIN nature_recette ON recette.nature_ID = nature_recette.ID
-				WHERE ingredient.nature = 0 AND marchandise.ID = :ID";
+		$vue = 'Vue_marchandiseUtilePour';
 		$titre = "Utile pour";
 	} else {
-		$sql = "SELECT marS.nom
-				FROM recette
-				INNER JOIN ingredient		ON ingredient.recette_ID		= recette.ID
-				INNER JOIN marchandise		ON ingredient.marchandise_ID	= marchandise.ID
-				INNER JOIN nature_recette	ON recette.nature_ID			= nature_recette.ID
-				INNER JOIN ingredient ingS	ON ingS.recette_ID		= recette.ID
-				INNER JOIN marchandise marS	ON ingS.marchandise_ID	= marS.ID
-				WHERE ingredient.nature = 2 AND ingS.nature = 0 AND marchandise.ID = :ID";
+		$vue = 'Vue_marchandiseABesoinDe';
 		$titre = "N&eacute;cessite";
 	}
-	$T_reponseBD = $this->InterrogerBD($sql, array(':ID'=>$marchandise_ID));
+	$T_reponseBD = $this->InterrogerBD("SELECT nom FROM {$vue} WHERE marchandise_ID = :ID", array(':ID'=>$marchandise_ID));
 	if (count($T_reponseBD)>1) { // plusieurs lignes
 		echo"\t<h1>{$titre} :</h1>\n\t<ul>\n";
 		foreach($T_reponseBD as $ligneBD) echo "\t\t<li>{$ligneBD['nom']}</li>\n";
