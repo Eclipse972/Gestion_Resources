@@ -20,20 +20,20 @@ SELECT
 		),
 		'<br>',(SELECT lien_formulaire),
 		IF ((SELECT dureeProd) = 0, 'Production terminée', 'Temps de production restant: '),
-		CASE FORMAT((SELECT dureeProd)/86400, 0)
+		CASE (SELECT dureeProd) DIV 86400
 			WHEN 0 THEN ''
 			WHEN 1 THEN '1 jour '
-			ELSE CONCAT(FORMAT((SELECT dureeProd)/86400, 0),' jours ')
+			ELSE CONCAT(CAST((SELECT dureeProd) DIV 86400 AS CHAR),' jours ')
 		END,
-		CASE FORMAT((SELECT dureeProd)/3600, 0)
+		CASE ((SELECT dureeProd) DIV 3600) % 24
 			WHEN 0 THEN ''
 			WHEN 1 THEN '1 heure '
-			ELSE CONCAT(FORMAT((SELECT dureeProd)/3600, 0) % 24,' heures ')
+			ELSE CONCAT(CAST(((SELECT dureeProd) DIV 3600) % 24 AS CHAR),' heures ')
 		END,
-		CASE FORMAT((SELECT dureeProd)/60, 0)
+		CASE ((SELECT dureeProd) DIV 60) % 60
 			WHEN 0 THEN ''
 			WHEN 1 THEN '1 minute'
-			ELSE CONCAT(FORMAT((SELECT dureeProd)/60, 0) % 60,' minutes')
+			ELSE CONCAT(CAST(((SELECT dureeProd) DIV 60) % 60 AS CHAR),' minutes')
 		END,
 		'</a></p>\n\t\t</td>\n\t\t<td>',(SELECT lien_formulaire),CAST(usine.niveau AS CHAR),'</a></td>\n',
 		'\t\t<td>',REPLACE(CAST(FORMAT(type_usine.prod_niveau1*usine.niveau,0) AS CHAR),',',' '),' ',unites.nom,'/h</td>\n'
