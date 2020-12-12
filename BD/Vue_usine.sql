@@ -18,7 +18,8 @@ SELECT
 			INNER JOIN marchandise ON ingredient.marchandise_ID = marchandise.ID
 			WHERE ingredient.recette_ID = type_usine.production_ID
 		),
-		'<br>',(SELECT lien_formulaire),'Temps de production restant: ',
+		'<br>',(SELECT lien_formulaire),
+		IF ((SELECT dureeProd) = 0, 'Production terminée', 'Temps de production restant: '),
 		CASE FORMAT((SELECT dureeProd)/86400, 0)
 			WHEN 0 THEN ''
 			WHEN 1 THEN '1 jour '
