@@ -80,7 +80,7 @@ protected function BesoinOuUtile($marchandise_ID, $Butile) {
 		echo"\t<h1>{$titre} :</h1>\n\t<ul>\n";
 		foreach($T_reponseBD as $ligneBD) echo "\t\t<li>{$ligneBD['nom']}</li>\n";
 		echo"\t</ul>\n";
-	} elseif (count($T_reponseBD)==1) echo"\t<p>{$titre} {$T_reponseBD[0]['nom']}</p>"; // une seule ligne
+	} elseif (count($T_reponseBD)==1) echo"\t<p>{$titre} {$T_reponseBD[0]['nom']}</p>\n"; // une seule ligne
 	// sinon on affiche rien
 }
 
