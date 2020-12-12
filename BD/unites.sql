@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: gestion.resources.sql.free.fr
--- Généré le : Jeu 10 Décembre 2020 à 22:29
+-- Généré le : Sam 12 Décembre 2020 à 06:33
 -- Version du serveur: 5.0.83
 -- Version de PHP: 5.3.9
 
@@ -39,7 +39,7 @@ INSERT INTO `unites` (`ID`, `nom`) VALUES
 (1, 'm&sup3;'),
 (2, 'kg'),
 (3, 'pi&egrave;ce'),
-(4, 'unité'),
+(4, 'unit&eacute;'),
 (5, 'ct'),
 (6, 'MWh'),
 (7, '&euro;');

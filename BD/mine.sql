@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: gestion.resources.sql.free.fr
--- Généré le : Mar 08 Décembre 2020 à 11:28
+-- Généré le : Sam 12 Décembre 2020 à 06:30
 -- Version du serveur: 5.0.83
 -- Version de PHP: 5.3.9
 
@@ -40,11 +40,11 @@ CREATE TABLE IF NOT EXISTS `mine` (
 --
 
 INSERT INTO `mine` (`joueur_ID`, `type_mine_ID`, `nombre`, `prod_max`, `etat`, `ordre_affichage`) VALUES
-(1, 1, 159, 300485, 91, 0),
-(1, 2, 3, 919, 92, 0),
+(1, 1, 179, 30485, 92, 0),
+(1, 2, 3, 91900, 90, 0),
 (1, 3, 91, 82424, 95, 0),
 (1, 4, 4, 1675, 94, 0),
-(1, 5, 26, 13128, 97, 0),
+(1, 5, 26, 13128, 95, 0),
 (1, 6, 12, 32565, 69, 0),
 (1, 7, 51, 48481, 24, 0),
 (1, 8, 7, 6519, 99, 0),
@@ -53,7 +53,7 @@ INSERT INTO `mine` (`joueur_ID`, `type_mine_ID`, `nombre`, `prod_max`, `etat`, `
 (1, 11, 15, 561, 14, 0),
 (1, 12, 15, 6165, 92, 0),
 (1, 13, 0, 979, 58, 0),
-(1, 14, 651, 6516, 6, 0);
+(1, 14, 659, 6516, 99, 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

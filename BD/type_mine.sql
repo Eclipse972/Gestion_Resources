@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: gestion.resources.sql.free.fr
--- Généré le : Jeu 03 Décembre 2020 à 21:55
+-- Généré le : Sam 12 Décembre 2020 à 06:32
 -- Version du serveur: 5.0.83
 -- Version de PHP: 5.3.9
 
@@ -39,11 +39,11 @@ CREATE TABLE IF NOT EXISTS `type_mine` (
 INSERT INTO `type_mine` (`ID`, `nom`, `marchandise_ID`) VALUES
 (1, 'mine d&apos;argile', 3),
 (2, 'mine de bauxite', 4),
-(3, 'mine de calcaire', 5),
-(4, 'mine de chacopyrite', 6),
+(3, 'carri&egrave;re de calcaire', 5),
+(4, 'mine de cuivre', 6),
 (5, 'mine de charbon', 7),
 (6, 'mine de diamants', 8),
-(7, 'mine de graviers', 9),
+(7, 'fosse &agrave; graviers', 9),
 (8, 'mine d&apos;ilem&eacute;nite', 10),
 (9, 'mine d&apos;argent', 11),
 (10, 'mine d&apos;or', 12),

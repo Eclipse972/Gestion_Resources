@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: gestion.resources.sql.free.fr
--- Généré le : Mar 08 Décembre 2020 à 11:12
+-- Généré le : Sam 12 Décembre 2020 à 06:27
 -- Version du serveur: 5.0.83
 -- Version de PHP: 5.3.9
 
@@ -40,10 +40,10 @@ CREATE TABLE IF NOT EXISTS `entrepot` (
 --
 
 INSERT INTO `entrepot` (`marchandise_ID`, `joueur_ID`, `niveau`, `stock`, `moment`, `ordre_affichage`) VALUES
-(3, 1, 159, 112760000, 2020, 0),
+(3, 1, 159, 19780000, 2020, 0),
 (4, 1, 4, 0, 2020, 0),
 (5, 1, 78, 4500, 2020, 0),
-(6, 1, 2, 0, 2020, 0),
+(6, 1, 5, 51561216, 2020, 0),
 (7, 1, 5, 0, 2020, 0),
 (8, 1, 8, 0, 2020, 0),
 (9, 1, 10, 9, 2020, 0),
@@ -76,8 +76,8 @@ INSERT INTO `entrepot` (`marchandise_ID`, `joueur_ID`, `niveau`, `stock`, `momen
 (34, 1, 88, 999, 2020, 0),
 (35, 1, 4, 5, 2020, 0),
 (36, 1, 6, 333, 2020, 0),
-(37, 1, 61, 245, 2020, 0),
-(38, 1, 44, 4445, 2020, 0);
+(37, 1, 60, 276, 2020, 0),
+(38, 1, 144, 14445, 2020, 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

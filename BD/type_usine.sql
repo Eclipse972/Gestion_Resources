@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: gestion.resources.sql.free.fr
--- Généré le : Jeu 03 Décembre 2020 à 21:56
+-- Généré le : Sam 12 Décembre 2020 à 06:32
 -- Version du serveur: 5.0.83
 -- Version de PHP: 5.3.9
 
@@ -56,7 +56,7 @@ INSERT INTO `type_usine` (`ID`, `nom`, `image`, `marchandise_ID`, `prod_niveau1`
 (13, 'usine de drones', 'usine_drone', 29, 1, 27, 49),
 (14, 'usine d&apos;engrais', 'usineDengrais', 30, 1210, 28, 50),
 (15, 'usine d&apos;insecticide', 'usine_insecticide', 31, 3500, 29, 51),
-(16, 'usine de lithium', 'usine_lithium', 32, 750, 30, 52),
+(16, 'raffinerie de lithium', 'usine_lithium', 32, 750, 30, 52),
 (17, 'raffinerie d&apos;or', 'raffinerie_or', 33, 240, 31, 53),
 (18, 'usine de plastique', 'usine_plastique', 34, 1800, 32, 54),
 (19, 'usine de silicium', 'usine_silicium', 35, 120, 33, 55),
