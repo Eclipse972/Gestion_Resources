@@ -3,6 +3,7 @@ SELECT
 	mine.type_mine_ID AS ID,
 	mine.joueur_ID AS IDjoueur,
 	type_mine.nom,
+	type_mine.marchandise_ID,
 	marchandise.image,
 	mine.etat,
 	mine.prod_max,
