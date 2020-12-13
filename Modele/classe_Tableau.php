@@ -63,7 +63,7 @@ protected function Récupérer_variables_rapport($vueBD, $IDjoueur, $id) { // re
 	return $T_variables[0];
 }
 
-protected function AbesoinsDe($marchandise_ID) { $this->BesoinOuUtile($marchandise_ID, false); }
+protected function Obtenir($marchandise_ID) { $this->BesoinOuUtile($marchandise_ID, false); }
 
 protected function UtilePour($marchandise_ID) { $this->BesoinOuUtile($marchandise_ID, true); }
 
@@ -72,8 +72,8 @@ protected function BesoinOuUtile($marchandise_ID, $Butile) {
 		$vue = 'Vue_marchandiseUtilePour';
 		$titre = "Utile pour";
 	} else {
-		$vue = 'Vue_marchandiseABesoinDe';
-		$titre = "N&eacute;cessite";
+		$vue = 'Vue_marchandiseObtenir';
+		$titre = "Obtenir gr&acirc;ce &agrave; ";
 	}
 	$T_reponseBD = $this->InterrogerBD("SELECT nom FROM {$vue} WHERE marchandise_ID = :ID", array(':ID'=>$marchandise_ID));
 	
@@ -83,7 +83,7 @@ protected function BesoinOuUtile($marchandise_ID, $Butile) {
 		foreach($T_reponseBD as $ligneBD) echo "\t\t<li>{$ligneBD['nom']}</li>\n";
 		echo"\t</ul></span></a>";
 	} else echo "<p>{$titre} ",(count($T_reponseBD)==1 ? $T_reponseBD[0]['nom'] : "rien"),"</p>";
-	echo "\n<br>\n";
+	echo "\n";
 	
 }
 
