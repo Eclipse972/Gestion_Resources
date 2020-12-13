@@ -13,4 +13,4 @@ SELECT
 FROM entrepot
 INNER JOIN marchandise ON entrepot.marchandise_ID = marchandise.ID
 INNER JOIN unites ON marchandise.unité_ID = unites.ID
-WHERE marchandise.nature_ID > 1
+WHERE marchandise.nature_ID > 0

@@ -11,4 +11,4 @@ SELECT
 	nom AS nom_ligne
 FROM commerce
 INNER JOIN marchandise ON commerce.marchandise_ID = marchandise.ID
-WHERE marchandise.nature_ID > 1
+WHERE marchandise.nature_ID > 0
