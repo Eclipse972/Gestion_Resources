@@ -11,4 +11,4 @@ SELECT
 	nom AS nom_ligne
 FROM commerce
 INNER JOIN marchandise ON commerce.marchandise_ID = marchandise.ID
-WHERE marchandise.nature_ID BETWEEN 1 AND 2	#ressources et produits pour le moment
+WHERE marchandise.nature_ID > 1

@@ -76,14 +76,14 @@ protected function BesoinOuUtile($marchandise_ID, $Butile) {
 		$titre = "N&eacute;cessite";
 	}
 	$T_reponseBD = $this->InterrogerBD("SELECT nom FROM {$vue} WHERE marchandise_ID = :ID", array(':ID'=>$marchandise_ID));
-	echo"\t<a class=\"infobulle\">{$titre} <span>";
+	
 	if (count($T_reponseBD)>1) { // plusieurs lignes
+		echo"\t<a class=\"infobulle\">{$titre} ...<span>";
 		echo"<ul>\n";
 		foreach($T_reponseBD as $ligneBD) echo "\t\t<li>{$ligneBD['nom']}</li>\n";
-		echo"\t</ul>";
-	} elseif (count($T_reponseBD)==1) echo $T_reponseBD[0]['nom']; // une seule ligne
-	else echo'rien';
-	echo "</span></a>\n<br>";
+		echo"\t</ul></span></a>";
+	} else echo "<p>{$titre} ",(count($T_reponseBD)==1 ? $T_reponseBD[0]['nom'] : "rien"),"</p>";
+	echo "\n<br>\n";
 	
 }
 

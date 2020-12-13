@@ -13,4 +13,4 @@ SELECT
 FROM entrepot
 INNER JOIN marchandise ON entrepot.marchandise_ID = marchandise.ID
 INNER JOIN unites ON marchandise.unité_ID = unites.ID
-WHERE marchandise.nature_ID BETWEEN 1 AND 2 #ressources et produits seulement pour le moment
+WHERE marchandise.nature_ID > 1
