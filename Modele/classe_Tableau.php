@@ -38,10 +38,7 @@ protected function InterrogerBD($requete, $Tparametres = []) {
 
 protected function Afficher_tbody($vueBD, $id_selectionné) {
 	$IDjoueur = $_SESSION['IDjoueur'];
-	
-	if ($vueBD=='Vue_marchandise')
-		$T_Vue = $this->InterrogerBD('SELECT ID, code FROM Vue_marchandise');
-	else $T_Vue = $this->InterrogerBD('SELECT ID, IDjoueur, code FROM '.$vueBD.' WHERE IDjoueur = :ID', array(':ID'=>$IDjoueur));
+	$T_Vue = $this->InterrogerBD('SELECT ID, IDjoueur, code FROM '.$vueBD.' WHERE IDjoueur = :ID', array(':ID'=>$IDjoueur));
 	echo"\t<tbody>\n";
 	foreach($T_Vue as $réponseBD) {
 		echo"\t",($réponseBD['ID'] == $id_selectionné) ? '<tr id="selection">' : '<tr>'; // pose d'une ancre sur la ligne sélectionnée
