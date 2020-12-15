@@ -76,8 +76,18 @@ ob_end_clean();
 
 <main>
 
+<script type="text/javascript">
+function MAJ(message, valeur) {
+	var ID = prompt(message, valeur);
+	if (ID==null)
+			window.location.assign('http://gestion.resources.free.fr/index.php');
+	else	window.location.assign('http://gestion.resources.free.fr/index.php?id=' + ID);
+}
+</script>
+
 <div id="joueur">
-	<?=$CONNEXION_JOUEUR?>	
+	<?=$CONNEXION_JOUEUR?>
+	<a onclick="MAJ('ID', 10)" >Cliquez</a>
 </div>
 
 <nav>
