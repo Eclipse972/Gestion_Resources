@@ -45,6 +45,7 @@ if (isset($T_onglet[$SCRIPT])) { // un des onglets appelle cette page
 		// traitement
 	} else { // onglet de type table
 		$Tableau = new $T_onglet[$SCRIPT];
+		$Tableau->InsérerScript();
 		$Tableau->Afficher_tete();
 		$Tableau->Afficher_corps($_SESSION['ID']);
 	}

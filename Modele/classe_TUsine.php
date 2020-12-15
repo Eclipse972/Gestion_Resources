@@ -3,6 +3,8 @@ require'Modele/classe_Tableau.php';
 
 class TUsine extends Tableau {
 
+public function InsérerScript() { echo parent::InsérerJS('usine'); }
+
 public function Afficher_tete() { $this->Afficher_thead(array('Usine', 'Niveau', 'Production')); }
 
 public function Afficher_corps($id_selectionné) { parent::Afficher_tbody('Vue_usine', $id_selectionné); }

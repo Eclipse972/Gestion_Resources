@@ -2,19 +2,17 @@
 abstract class Tableau { // Remarque: chaque classe fille est associée à un CSS et doit définir les classes abstraites
 	protected $nb_col_tableau;
 
-public function __construct() {
-?><table>
-<?php
-}
-
 // pour les développements futurs
 abstract public function Afficher_tete();					// en-tête du tableau
 abstract public function Afficher_corps($id_selectionné);	// corps du tableau
 abstract protected function Afficher_rapport($Tvariables, $id);	// affichage détaillé de la ligne
-
+abstract public function InsérerScript();	// script.js à insérer
 
 // Affichage de la page
+protected function InsérerJS($script) {	return isset($script) ? "\t<script src=\"Controleur/{$script}.js\"> </script>\n" : ""; }
+
 protected function Afficher_thead($T_en_tete) { // déclare le tableau avec en paramètres un tableau contenant les en-têtes à afficher
+	echo"\t<table>\n";
 	$this->nb_col_tableau = count($T_en_tete);
 	echo"\n\t<thead>\n\t<tr>\n";
 	foreach($T_en_tete as $valeur) echo "\t\t<th>$valeur</th>\n";
