@@ -7,6 +7,8 @@ private $imageEntrepot;
 private $niveau;
 private $stock;
 
+public function IDvalide($id) { return ($id>2) && ($id<=60); }
+
 public function Hydrate($ID) {
 	$Tvariables=$this->Récupérer_variables_formulaire('Vue_entrepot',$ID); // recherche les données pour pré-remplir le formulaire	
 	$this->nomEntrepot = $Tvariables['nom'];

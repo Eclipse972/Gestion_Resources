@@ -3,6 +3,7 @@ abstract class Formulaire {
 abstract public function Hydrate($ID);	// recherche les données pour pré-remplir le formulaire
 abstract public function Afficher();	// afficher le formulaire
 abstract public function Traiter();		// traiter les données reçues
+abstract public function IDvalide($id);	// nombre axi d'élément
 
 protected function Récupérer_variables_formulaire($VueBD, $ID) { // renvoie les variables pour hydrater le formulaire
 	try	{

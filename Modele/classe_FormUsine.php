@@ -9,6 +9,8 @@ class FormUsine extends Formulaire {
 	private $duréeRestanteProd;	// compatible timestamp
 	private $duree_prod_souhaitee;	// idem
 
+public function IDvalide($id) { return ($id>0) && ($id<=22); }
+
 public function Hydrate($ID) {
 	$Tvariables=$this->Récupérer_variables_formulaire('Vue_usine',$ID); // recherche les données pour pré-remplir le formulaire	
 	$this->nomUsine = $Tvariables['nom'];

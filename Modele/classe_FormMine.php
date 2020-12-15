@@ -8,6 +8,8 @@ private $état;
 private $prodMax;
 private $nombre;
 
+public function NbMax() { return $id>0) && ($id<=14); }
+
 public function Hydrate($ID) {
 	$Tvariables=$this->Récupérer_variables_formulaire('Vue_mine',$ID); // recherche les données pour pré-remplir le formulaire	
 	$this->nomMine = $Tvariables['nom'];
