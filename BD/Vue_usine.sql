@@ -19,7 +19,7 @@ SELECT
 			WHERE ingredient.recette_ID = type_usine.production_ID
 		),
 		'<br>',(SELECT lien_formulaire),
-		IF ((SELECT dureeProd) = 0, 'Production terminée', 'Temps de production restant: '),
+		IF ((SELECT dureeProd) = 0, 'Production termin&eacute;e', 'Temps de production restant: '),
 		CASE (SELECT dureeProd) DIV 86400
 			WHEN 0 THEN ''
 			WHEN 1 THEN '1 jour '
