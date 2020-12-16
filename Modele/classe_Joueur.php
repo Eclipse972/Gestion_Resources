@@ -8,7 +8,7 @@ public function Présentation() {
 
 public function Cadre_connexion() {
 	ob_start();
-	echo '<a href="index.php">Connexion</a>';
+	echo "<a href="index.php">Connexion</a>\n";
 	$code = ob_get_contents();
 	ob_end_clean();
 	return $code;
