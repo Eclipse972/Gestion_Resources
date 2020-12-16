@@ -18,8 +18,7 @@ $T_onglet = array(
 	'usines'	=> 'TUsine',
 	'mines'		=> 'TMine',
 	'entrepots'	=> 'TEntrepot',
-	'commerce'	=> 'TCommerce'
-);
+	'commerce'	=> 'TCommerce');
 
 // sauvegarde de l'état dans la session
 if (!isset($_SESSION['IDjoueur'])) $_SESSION['IDjoueur'] = 1; // valeur initalisée lorsque le joueur se connecte. 1->joueur Lambda
@@ -56,7 +55,6 @@ if (isset($T_onglet[$SCRIPT])) { // un des onglets appelle cette page
 $SECTION = ob_get_contents();
 ob_end_clean();
 ?>
-
 <!doctype html>
 <html lang="fr">
 <head>
@@ -78,8 +76,7 @@ ob_end_clean();
 <main>
 
 <div id="joueur">
-	<?=$CONNEXION_JOUEUR?>
-	<p><a onclick="alert('texte1')">lien 1</a></p>
+<?=$CONNEXION_JOUEUR?>
 </div>
 
 <nav>
@@ -92,8 +89,9 @@ ob_end_clean();
 </nav>
 
 <section>
-	<?=$SECTION?>
+<?=$SECTION?>
 </section>
+
 </main>
 <?php include'Vue/pied2page.html';?>
 </body>

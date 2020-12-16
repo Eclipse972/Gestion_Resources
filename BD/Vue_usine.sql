@@ -35,7 +35,7 @@ SELECT
 			WHEN 1 THEN '1 minute'
 			ELSE CONCAT(CAST(((SELECT dureeProd) DIV 60) % 60 AS CHAR),' minutes')
 		END,
-		'</a></p>\n\t\t</td>\n\t\t<td><a onclick="NiveauUsine(\"',type_usine.nom,'\",',CAST(type_usine.ID AS CHAR),',',CAST(usine.niveau AS CHAR),')">',CAST(usine.niveau AS CHAR),'</a></td>\n',
+		'</a></p>\n\t\t</td>\n\t\t<td><a onclick="NiveauUsine(',CAST(type_usine.ID AS CHAR),',',CAST(usine.niveau AS CHAR),')">',CAST(usine.niveau AS CHAR),'</a></td>\n',
 		'\t\t<td>',REPLACE(CAST(FORMAT(type_usine.prod_niveau1*usine.niveau,0) AS CHAR),',',' '),' ',unites.nom,'/h</td>\n'
 	) AS code
 FROM usine
