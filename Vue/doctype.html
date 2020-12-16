@@ -12,7 +12,7 @@ $SCRIPT = substr($_SERVER['PHP_SELF'],1,strlen($_SERVER['PHP_SELF'])-5);	// scri
  * Modele/classe_BD_X la BDD 
  * */
   
- $T_onglet = array(
+$T_onglet = array(
 //	onglet		=> classe associée
 	'index'		=> 'Joueur',
 	'usines'	=> 'TUsine',
@@ -79,6 +79,7 @@ ob_end_clean();
 
 <div id="joueur">
 	<?=$CONNEXION_JOUEUR?>
+	<p><a onclick="alert('texte1')">lien 1</a></p>
 </div>
 
 <nav>
