@@ -23,8 +23,6 @@ section tbody tr td:nth-child(1) p {
 	margin:0;
 }
 
-#petite_image img { height:22px;}
-
 #gauche { float:left; }
 
 /* tableau pour affichier les besoins de l'amélioration */
