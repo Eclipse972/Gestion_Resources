@@ -18,6 +18,8 @@ section table {
 
 section strong { font-size:22px; }
 
+a:hover { cursor:url(hand.cur), pointer; }
+
 #rapport {
 	border:1px solid white;
 	margin:10px;
