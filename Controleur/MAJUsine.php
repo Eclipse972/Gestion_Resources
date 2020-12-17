@@ -12,7 +12,7 @@ function MiseAJour($type_usineID, $champ, $valeur) {
 		$requete->bindValue(':IDjoueur',$_SESSION['IDjoueur'],	PDO::PARAM_INT);
 		$requete->bindValue(':ID',		$type_usineID,			PDO::PARAM_INT);
 		$requete->execute();
-	} catch (PDOException $e) { exit('Erreur traitement formulaire: '.$e->getMessage()); }
+	} catch (PDOException $e) { exit('Erreur MAJ usine: '.$e->getMessage()); }
 	$BD = null;
 }
 
@@ -23,21 +23,21 @@ switch($champ) {
 	case 'Niveau':
 		MiseAJour($type_usineID, 'niveau', $valeur);
 		break;
-	/*case 'Production':
-		MiseAJour($type_usineID, 'production', $valeur);
-		break;
-	case 'Quantite':
-		MiseAJour($type_usineID, champ?, $valeur);
-		break;
 	case 'Temps':
 		// calcul de la date de fin de production à faire
-		MiseAJour($type_usineID, champ?, $valeur);
-		break;*/
+		//MiseAJour($type_usineID, champ?, $valeur);
+		break;
+	case 'Production':
+		//MiseAJour($type_usineID, 'production', $valeur);
+		break;
+	case 'Quantite':
+		//MiseAJour($type_usineID, champ?, $valeur);
+		break;
 	default: // doit générer une erreur
-/* J'ai testé $_SERVER['HTTP_REFERER'] mais ça renvoie à cette page qui est blanche.
- * et ça fonctionne uniquement quand le visiteur a cliqué sur un lien. Le lancement de cette page ne viens pas d'un lien oridnaire */
 }
 ?>
 <script>
-	window.history.go(-1);
+	window.history.go(-1); 
+/* J'ai testé $_SERVER['HTTP_REFERER'] mais ça renvoie à cette page qui est blanche.
+ * et ça fonctionne uniquement quand le visiteur a cliqué sur un lien. Or le lancement de cette page ne viens pas d'un lien oridnaire */
 </script>

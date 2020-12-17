@@ -3,23 +3,13 @@ SELECT
 	type_usine.ID,
 	usine.joueur_ID AS IDjoueur,
 	CONCAT('<a href="?id=',CAST(type_usine.ID AS CHAR),'#selection">') AS lien_rapport, # utilisé 2 fois
-	CONCAT('<a href="formulaire.php?id=',CAST(type_usine.ID AS CHAR),'">') AS lien_formulaire, # idem
 	IF(UNIX_TIMESTAMP() > usine.date_fin_production, 0, usine.date_fin_production - UNIX_TIMESTAMP()) AS dureeProd,
 	CONCAT(
 		'\t\t<td><p id="gauche">',(SELECT lien_rapport),'<img src="Vue/images/',type_usine.image, '.png" alt ="',type_usine.nom,'"></a></p>\n\t\t\t',
-		(SELECT lien_rapport),'<strong>',UCASE(LEFT(type_usine.nom,1)),SUBSTRING(type_usine.nom,2,LENGTH(type_usine.nom)),'</strong></a>\n\t\t\t<p id="petite_image">',
-		(SELECT GROUP_CONCAT( # requête qui crée la recette
-					REPLACE(CAST(FORMAT(ABS(ingredient.quantité),0) AS CHAR),',',' '),
-					'\t<img src="Vue/images/',marchandise.image,'.png" alt ="',marchandise.nom,'">',
-					IF(ingredient.nature = 0,' + ',IF(ingredient.nature =1,' -> ',''))
-					ORDER BY ingredient.nature ASC SEPARATOR ''
-				) AS code
-			FROM ingredient
-			INNER JOIN marchandise ON ingredient.marchandise_ID = marchandise.ID
-			WHERE ingredient.recette_ID = type_usine.production_ID
-		),
-		'<br>',(SELECT lien_formulaire),
-		IF ((SELECT dureeProd) = 0, 'Production termin&eacute;e', 'Temps de production restant: '),
+		(SELECT lien_rapport),'<strong>',UCASE(LEFT(type_usine.nom,1)),SUBSTRING(type_usine.nom,2,LENGTH(type_usine.nom)),'</strong></a>\n',
+		IF ((SELECT dureeProd) > 0, '\t\t\t<p>Avancement: X/Y</p>\n',''), # X et Y non encore définis
+		'\t\t\t<p><a onclick="TempsProdRestant(',CAST(type_usine.ID AS CHAR),')">',
+		IF ((SELECT dureeProd) > 0, 'Temps de production restant: ', 'Production termin&eacute;e'),
 		CASE (SELECT dureeProd) DIV 86400
 			WHEN 0 THEN ''
 			WHEN 1 THEN '1 jour '
