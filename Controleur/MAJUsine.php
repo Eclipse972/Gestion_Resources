@@ -8,9 +8,9 @@ function MiseAJour($type_usineID, $champ, $valeur) {
 		$BD = new PDO($dsn, $utilisateur, $mdp);
 		$BD->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$requete = $BD->prepare("UPDATE usine SET {$champ} = :valeur WHERE usine.joueur_ID = :IDjoueur AND usine.type_usine_ID = :ID");
-		$requete->bindValue(':valeur',	$valeur,				PDO::PARAM_INT);
 		$requete->bindValue(':IDjoueur',$_SESSION['IDjoueur'],	PDO::PARAM_INT);
 		$requete->bindValue(':ID',		$type_usineID,			PDO::PARAM_INT);
+		$requete->bindValue(':valeur',	$valeur,				PDO::PARAM_INT);
 		$requete->execute();
 	} catch (PDOException $e) { exit('Erreur MAJ usine: '.$e->getMessage()); }
 	$BD = null;
@@ -24,14 +24,10 @@ switch($champ) {
 		MiseAJour($type_usineID, 'niveau', $valeur);
 		break;
 	case 'Temps':
-		// calcul de la date de fin de production à faire
-		//MiseAJour($type_usineID, champ?, $valeur);
+		MiseAJour($type_usineID, 'date_fin_production', $valeur + time() + 9);
 		break;
 	case 'Production':
-		//MiseAJour($type_usineID, 'production', $valeur);
-		break;
-	case 'Quantite':
-		//MiseAJour($type_usineID, champ?, $valeur);
+		MiseAJour($type_usineID, 'prod_en_cours', $valeur);
 		break;
 	default: // doit générer une erreur
 }

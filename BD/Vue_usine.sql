@@ -4,10 +4,14 @@ SELECT
 	usine.joueur_ID AS IDjoueur,
 	CONCAT('<a href="?id=',CAST(type_usine.ID AS CHAR),'#selection">') AS lien_rapport, # utilisé 2 fois
 	IF(UNIX_TIMESTAMP() > usine.date_fin_production, 0, usine.date_fin_production - UNIX_TIMESTAMP()) AS dureeProd,
+	FORMAT(usine.prod_en_cours - (usine.niveau * type_usine.prod_niveau1 * (SELECT dureeProd))/3600, 0) AS avancement,
 	CONCAT(
 		'\t\t<td><p id="gauche">',(SELECT lien_rapport),'<img src="Vue/images/',type_usine.image, '.png" alt ="',type_usine.nom,'"></a></p>\n\t\t\t',
 		(SELECT lien_rapport),'<strong>',UCASE(LEFT(type_usine.nom,1)),SUBSTRING(type_usine.nom,2,LENGTH(type_usine.nom)),'</strong></a>\n',
-		IF ((SELECT dureeProd) > 0, '\t\t\t<p>Avancement: X/Y</p>\n',''), # X et Y non encore définis
+		IF ((SELECT dureeProd) = 0,'', 
+			CONCAT('\t\t\t<p>Avancement: ',IF ((SELECT avancement) < 0,'<span style="background-color:red"> Probl&egrave;me avec un des param&egrave;tres </span>',REPLACE((SELECT avancement),',',' ')),
+				' / <a onclick="ProductionUsine(',CAST(type_usine.ID AS CHAR),',',CAST(usine.prod_en_cours AS CHAR),')">',
+				REPLACE(CAST(FORMAT(usine.prod_en_cours,0) AS CHAR),',',' '),' ',unites.nom,'</a></p>\n')),
 		'\t\t\t<p><a onclick="TempsProdRestant(',CAST(type_usine.ID AS CHAR),')">',
 		IF ((SELECT dureeProd) > 0, 'Temps de production restant: ', 'Production termin&eacute;e'),
 		CASE (SELECT dureeProd) DIV 86400
