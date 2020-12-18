@@ -31,9 +31,9 @@ switch($champ) {
 		break;
 	default: // doit générer une erreur
 }
-?>
-<script>
-	window.history.go(-1); 
-/* J'ai testé $_SERVER['HTTP_REFERER'] mais ça renvoie à cette page qui est blanche.
- * et ça fonctionne uniquement quand le visiteur a cliqué sur un lien. Or le lancement de cette page ne viens pas d'un lien oridnaire */
-</script>
+$retour = "Location: http://gestion.resources.free.fr/usines.php";
+if (isset($_SESSION['ID'])) $retour = $retour."?id={$_SESSION['ID']}#selection";
+////////////////////////////
+//print_r($_SESSION); exit;
+////////////////////////////
+header($retour);

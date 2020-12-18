@@ -51,6 +51,7 @@ if (isset($T_onglet[$SCRIPT])) { // un des onglets appelle cette page
 } else { // aucun des onglets sélectionnés
 	$CODE_ERREUR = (isset($_SESSION['erreur'])) ? (int) $_SESSION['erreur'] : 0;
 	echo"<h1>Erreur {$CODE_ERREUR}: {$DICO[$CODE_ERREUR]}</h1>\n<p>S&eacute;lectionnez un des onglets en haut de cette page.</p>\n";
+	unset($_SESSION['erreur']);
 }
 $SECTION = ob_get_contents();
 ob_end_clean();
@@ -77,6 +78,7 @@ ob_end_clean();
 
 <div id="joueur">
 <?=$CONNEXION_JOUEUR?>
+<?php print_r($_SESSION); ?>
 </div>
 
 <nav>
