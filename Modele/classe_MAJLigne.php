@@ -87,3 +87,22 @@ public function Nombre($chaine) { $this->MAJchampTypeEntier('nombre', $chaine); 
 
 public function ProdMax($chaine) { $this->MAJchampTypeEntier('prod_max', $chaine); }
 }
+///////////////////////////////////////////////////////////////////////
+class entrepotMAJ extends MAJOnglet {
+
+public function __construct($IDjoueur, $type_mineID) {
+	parent::__construct($IDjoueur, $type_mineID);
+	$this->table = 'entrepot';
+	$this->nomChampID = 'marchandise_ID';
+	$this->onglet = 'entrepots';
+}
+
+public function IDvalide($valeur) {
+	$valeur = (int)$valeur;
+	return (($valeur > 0) && ($valeur <= 60));
+}
+
+public function Niveau($chaine) { $this->MAJchampTypeEntier('niveau', $chaine); }
+
+public function Stock($chaine) { $this->MAJchampTypeEntier('stock', $chaine); }
+}
