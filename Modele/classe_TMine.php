@@ -3,7 +3,7 @@ require'Modele/classe_Tableau.php';
 
 class TMine extends Tableau {
 
-public function InsérerScript(){}
+public function InsérerScript() { echo parent::InsérerJS('mine'); }
 
 public function Afficher_tete() { parent::Afficher_thead(array('Mines', '&Eacute;tat','Nombre', 'Production', 'Production max')); }
 

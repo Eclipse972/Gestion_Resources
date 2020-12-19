@@ -37,10 +37,10 @@ public function PageDeRetour($ID) {
 	if ($this->IDvalide($ID)) $retour = $retour."?id={$ID}#selection";
 	return $retour;
 }
-
 }
 /////////////////////////////////////////////////////////////////////
 class UsineMAJ extends MAJOnglet {
+
 public function __construct($IDjoueur, $type_usineID) {
 	parent::__construct($IDjoueur, $type_usineID);
 	$this->table = 'usine';
@@ -58,11 +58,32 @@ public function Niveau($chaine) { $this->MAJchampTypeEntier('niveau', $chaine); 
 public function Production($chaine) { $this->MAJchampTypeEntier('prod_en_cours', $chaine); }
 
 public function TempsProdRestant($chaine) { // temps au format j-HH-mm
-if (preg_match('#^[0-9]+-[0-2][0-9]-[0-5][0-9]$#', $chaine)) {
-	list($jour, $heure, $minute) = preg_split('/-/',$chaine);
-	$this->MAJchampTypeEntier('date_fin_production', strval(time() + 60*(int)$minute + 3600*(int)$heure + 86400*(int)$jour+9));
-} // sinon on ne fait rien
+	if (preg_match('#^[0-9]+-[0-2][0-9]-[0-5][0-9]$#', $chaine)) {
+		list($jour, $heure, $minute) = preg_split('/-/',$chaine);
+		$this->MAJchampTypeEntier('date_fin_production', strval(time() + 60*(int)$minute + 3600*(int)$heure + 86400*(int)$jour+9));
+	} // sinon on ne fait rien
 }
-
 }
 ///////////////////////////////////////////////////////////////////////
+class mineMAJ extends MAJOnglet {
+
+public function __construct($IDjoueur, $type_mineID) {
+	parent::__construct($IDjoueur, $type_mineID);
+	$this->table = 'mine';
+	$this->nomChampID = 'type_mine_ID';
+	$this->onglet = 'mines';
+}
+
+public function IDvalide($valeur) {
+	$valeur = (int)$valeur;
+	return (($valeur > 0) && ($valeur <= 14));
+}
+
+public function Etat($chaine) {
+	if ((int)$chaine <=100) $this->MAJchampTypeEntier('etat', $chaine); // MAJchampTypeEntier vérifie que la chaine est bien un entier donc inutile de le aire ici
+}
+
+public function Nombre($chaine) { $this->MAJchampTypeEntier('nombre', $chaine); }
+
+public function ProdMax($chaine) { $this->MAJchampTypeEntier('prod_max', $chaine); }
+}

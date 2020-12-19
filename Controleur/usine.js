@@ -1,4 +1,4 @@
-function MAJ(methode, type_usineID, valeur, expreg = '[0-9]{1,}') { // factorisation
+function MAJ(methode, type_usineID, valeur, expreg = '[0-9]+') { // factorisation
 var question = {
 	"Niveau"		: "Niveau de l'usine",
 	"Production"	: "Production totale",
