@@ -3,12 +3,12 @@ body {
 	--couleur_fond:#021116;
 	--largeur_page:1000px;
 	/* fin de déclaraion de variables */
-	background-image:url("/Vue/images/fond_resources.png");
+	/* image trop lourde background-image:url("/Vue/images/fond_resources.png");*/
 	font-family: 'Quicksand', sans-serif;
 	color:white;
 }
 
-header, main, footer { 
+header, main, footer {
 	width:var(--largeur_page);
 	margin:auto;
 	padding:5px;
