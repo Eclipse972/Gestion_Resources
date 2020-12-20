@@ -8,11 +8,11 @@ SELECT
 	CONCAT(
 		'\t\t<td><p id="gauche">',(SELECT lien_rapport),'<img src="Vue/images/',type_usine.image, '.png" alt ="',type_usine.nom,'"></a></p>\n\t\t\t',
 		(SELECT lien_rapport),'<strong>',UCASE(LEFT(type_usine.nom,1)),SUBSTRING(type_usine.nom,2,LENGTH(type_usine.nom)),'</strong></a>\n',
-		IF ((SELECT dureeProd) = 0,'', 
+		IF ((SELECT dureeProd) = 0,'',
 			CONCAT('\t\t\t<p>Avancement: ',IF ((SELECT avancement) < 0,'<span style="background-color:red"> Probl&egrave;me avec un des param&egrave;tres </span>',REPLACE((SELECT avancement),',',' ')),
-				' / <a onclick="ProductionUsine(',CAST(type_usine.ID AS CHAR),',',CAST(usine.prod_en_cours AS CHAR),')">',
+				' / <a href ="#" onclick="ProductionUsine(',CAST(type_usine.ID AS CHAR),',',CAST(usine.prod_en_cours AS CHAR),')">',
 				REPLACE(CAST(FORMAT(usine.prod_en_cours,0) AS CHAR),',',' '),' ',unites.nom,'</a></p>\n')),
-		'\t\t\t<p><a onclick="TempsProdRestant(',CAST(type_usine.ID AS CHAR),')">',
+		'\t\t\t<p><a href ="#" onclick="TempsProdRestant(',CAST(type_usine.ID AS CHAR),')">',
 		IF ((SELECT dureeProd) > 0, 'Temps de production restant: ', 'Production termin&eacute;e'),
 		CASE (SELECT dureeProd) DIV 86400
 			WHEN 0 THEN ''
@@ -29,7 +29,7 @@ SELECT
 			WHEN 1 THEN '1 minute'
 			ELSE CONCAT(CAST(((SELECT dureeProd) DIV 60) % 60 AS CHAR),' minutes')
 		END,
-		'</a></p>\n\t\t</td>\n\t\t<td><a onclick="NiveauUsine(',CAST(type_usine.ID AS CHAR),',',CAST(usine.niveau AS CHAR),')">',CAST(usine.niveau AS CHAR),'</a></td>\n',
+		'</a></p>\n\t\t</td>\n\t\t<td><a href ="#" onclick="NiveauUsine(',CAST(type_usine.ID AS CHAR),',',CAST(usine.niveau AS CHAR),')">',CAST(usine.niveau AS CHAR),'</a></td>\n',
 		'\t\t<td>',REPLACE(CAST(FORMAT(type_usine.prod_niveau1*usine.niveau,0) AS CHAR),',',' '),' ',unites.nom,'/h</td>\n'
 	) AS code
 FROM usine
