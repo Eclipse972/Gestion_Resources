@@ -1,6 +1,7 @@
 function OuvrirFormulaireMAJ(){
-formulaire = document.getElementById("MAJ-usine");
-formulaire.style.visibility = "visible";
+document.formulaireMAJ.niveau.value=10;
+div = document.getElementById("MAJ-usine");
+div.style.visibility = "visible";
 }
 
 function MAJ(methode, type_usineID, valeur, expreg = '[0-9]+') { // factorisation

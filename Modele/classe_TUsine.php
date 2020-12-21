@@ -14,7 +14,7 @@ public function Afficher_corps($id_selectionné) {
 	<a href='#' onclick='OuvrirFormulaireMAJ()'>Ouvrir</a>
 
 	<div id="MAJ-usine">
-		<form action="#" method="post">
+		<form action="#" name="formulaireMAJ" method="post">
 			<p id="gauche"><img src="Vue/images/acierie.png" alt ="aci&eacute;rie"></p>
 			<h1>Mise &agrave; jour de l&apos;usine</h1>
 			<label for="niveau">Niveau :</label>
