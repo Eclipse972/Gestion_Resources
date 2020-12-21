@@ -9,7 +9,7 @@ SELECT
 	((SELECT dureeProd) DIV 60) % 60 AS minutes, # minute est un mot-clé SQL
 	CONCAT('<a href="#" onclick="OuvrirFormulaireMAJ(',usine.joueur_ID,',',
 		'''',type_usine.image,''',',
-		''''',',			#'''',type_usine.nom,''',',
+		''''',',			--'''',type_usine.nom,''',', provoque un bug avec les noms avec un apostrophe
 		usine.niveau,',',
 		usine.prod_en_cours,',',
 		(SELECT jour),',', (SELECT heure),',', (SELECT minutes),')">')	AS lien_MAJ,
