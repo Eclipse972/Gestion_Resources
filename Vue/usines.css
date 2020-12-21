@@ -51,7 +51,7 @@ section tbody tr td:nth-child(1) p {
 #amelioration tbody tr td:nth-child(1) {  text-align:left; }
 
 /* Boite de dialogue MAJ usine */
-#MAJ-usine {
+#conteneur_formulaire {
 visibility: hidden;
 position: absolute;
 left: 0;
@@ -61,7 +61,7 @@ height: 100%;
 z-index: 1000;
 }
 
-#MAJ-usine form {
+#conteneur_formulaire form {
 width:750px;
 height: 300px;
 margin: 5px;

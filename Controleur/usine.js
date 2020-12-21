@@ -1,7 +1,20 @@
-function OuvrirFormulaireMAJ(){
-document.formulaireMAJ.niveau.value=10;
-div = document.getElementById("MAJ-usine");
+function OuvrirFormulaireMAJ(image, niveau, production, jour, heure, minute) {
+// modification du formulaire
+document.formulaireMAJ.image.src="Vue/images/" + image + ".png";
+document.formulaireMAJ.niveau.value = niveau;
+document.formulaireMAJ.production.value = production;
+document.formulaireMAJ.jour.value = jour;
+document.formulaireMAJ.heure.value = heure;
+document.formulaireMAJ.minute.value = minute;
+
+// affichage
+div = document.getElementById("conteneur_formulaire");
 div.style.visibility = "visible";
+}
+
+function FermerFormulaireMAJ() {
+div = document.getElementById("conteneur_formulaire");
+div.style.visibility = "hidden";
 }
 
 function MAJ(methode, type_usineID, valeur, expreg = '[0-9]+') { // factorisation
