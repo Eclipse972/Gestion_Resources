@@ -11,11 +11,11 @@ public function Afficher_corps($id_selectionné) {
 	parent::Afficher_tbody('Vue_usine', $id_selectionné);
 	//////////////////////
 ?>
-	<a href='#' onclick='OuvrirFormulaireMAJ("acierie",10, 12345, 2, 4, 8)'>Ouvrir</a>
+	<a href='#' onclick='OuvrirFormulaireMAJ("acierie", "aci&eacute;rie", 10, 12345, 2, 4, 8)'>Ouvrir</a>
 
 	<div id="conteneur_formulaire">
 		<form action="#" name="formulaireMAJ" method="post">
-			<p id="gauche"><img name="image" alt ="aci&eacute;rie"></p>
+			<p id="gauche"><img name="image"></p>
 			<h1>Mise &agrave; jour de l&apos;usine</h1>
 			<label for="niveau">Niveau :</label>
 			<input type="number" id="niveau" name="niveau" style="width:50px; margin-right:50px">
