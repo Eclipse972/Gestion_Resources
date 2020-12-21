@@ -3,13 +3,33 @@ abstract class Tableau { // Remarque: chaque classe fille est associée à un CS
 	protected $nb_col_tableau;
 
 // pour les développements futurs
-abstract public function Afficher_tete();					// en-tête du tableau
+abstract public function Afficher_tete();	// en-tête du tableau
 abstract public function Afficher_corps($id_selectionné);	// corps du tableau
 abstract protected function Afficher_rapport($Tvariables, $id);	// affichage détaillé de la ligne
 abstract public function InsérerScript();	// script.js à insérer
+abstract public function CréerFormulaireMAJ();
 
 // Affichage de la page
 protected function InsérerJS($script) {	return isset($script) ? "<script src=\"Controleur/{$script}.js\"> </script>\n" : ""; }
+
+protected function DébutFormulaire($script, $titre) {
+?>
+	<div id="conteneur_formulaire">
+	<form action="Controleur/<?=$script?>.php" name="formulaireMAJ" method="post">
+	<p id="gauche"><img name="image"></p>
+	<h1>Mise &agrave; jour <?=$titre?></h1>
+<?php
+}
+
+protected function FinFormulaire() {
+?>
+	<input type="submit" value="Valider" style="margin-top:9px">
+	<a href='#' onclick='FermerFormulaireMAJ()'>ANNULER</a>
+	<input type="hidden" id="ID" name="ID">
+	</form>
+	</div>
+<?php
+}
 
 protected function Afficher_thead($T_en_tete) { // déclare le tableau avec en paramètres un tableau contenant les en-têtes à afficher
 	echo"\t<table>\n";

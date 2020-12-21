@@ -1,17 +1,17 @@
-<?php 
+<?php
 session_start();
 $SCRIPT = substr($_SERVER['PHP_SELF'],1,strlen($_SERVER['PHP_SELF'])-5);	// script associé à l'onglet qui a téléchargé cette page
 
 /* Fichiers à créer pour un développement d'un futur onglet Ex: batiment spéciaux, missions
- * Soit X le nom du nouvel onglet 
+ * Soit X le nom du nouvel onglet
  * X.php à la racine
  * ajouter X dans le tableau $T_onglet
  * Vue/X.css feuille de style en plus de commun.css
  * Vue/images/onglet_X.png image de l'onglet
- * Modele/classe_TX.php classe associée au tableau 
- * Modele/classe_BD_X la BDD 
+ * Modele/classe_TX.php classe associée au tableau
+ * Modele/classe_BD_X la BDD
  * */
-  
+
 $T_onglet = array(
 //	onglet		=> classe associée
 	'index'		=> 'Joueur',
@@ -22,7 +22,7 @@ $T_onglet = array(
 
 // sauvegarde de l'état dans la session
 if (!isset($_SESSION['IDjoueur'])) $_SESSION['IDjoueur'] = 1; // valeur initalisée lorsque le joueur se connecte. 1->joueur Lambda
-$_SESSION['onglet'] = isset($T_onglet[$SCRIPT]) ? $SCRIPT : null; 
+$_SESSION['onglet'] = isset($T_onglet[$SCRIPT]) ? $SCRIPT : null;
 $_SESSION['ID'] = (int) $_GET['id']; // indique la ligne sélectionnée dans un onglet
 
 if (isset($T_onglet[$SCRIPT]) && ($SCRIPT!='index')) {
@@ -47,6 +47,7 @@ if (isset($T_onglet[$SCRIPT])) { // un des onglets appelle cette page
 		$Tableau->InsérerScript();
 		$Tableau->Afficher_tete();
 		$Tableau->Afficher_corps($_SESSION['ID']);
+		$Tableau->CréerFormulaireMAJ();
 	}
 } else { // aucun des onglets sélectionnés
 	$CODE_ERREUR = (isset($_SESSION['erreur'])) ? (int) $_SESSION['erreur'] : 0;

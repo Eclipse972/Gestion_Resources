@@ -5,6 +5,8 @@ class TEntrepot extends Tableau {
 
 public function InsérerScript() { echo parent::InsérerJS('entrepot'); }
 
+public function CréerFormulaireMAJ() {}
+
 public function Afficher_tete() { parent::Afficher_thead(array('Entrep&ocirc;t', 'Niveau', 'Capacit&eacute;', 'Stock')); }
 
 public function Afficher_corps($id_selectionné) { parent::Afficher_tbody('Vue_entrepot', $id_selectionné); }

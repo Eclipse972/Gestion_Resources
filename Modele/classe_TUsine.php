@@ -5,38 +5,30 @@ class TUsine extends Tableau {
 
 public function InsérerScript() { echo parent::InsérerJS('usine'); }
 
+public function CréerFormulaireMAJ() {
+	parent::DébutFormulaire('MAJUsine', ' de l&apos;usine');
+?>
+	<label for="niveau">Niveau :</label>
+	<input type="number" id="niveau" name="niveau" style="width:50px; margin-right:50px">
+	<fieldset>
+		<legend>Production en cours</legend>
+		<label for="production">Production totale</label>
+		<input type="number" id="production" name="production" min="1" style="width:120px;">
+		<br>
+		<label for="jour">jour :</label>
+		<input type="number" id="jour" name="jour" min="0" style="width:45px; margin-top:9px; margin-right:9px">
+		<label for="heure">heure :</label>
+		<input type="number" id="heure" name="heure" min="0" max="23" style="width:35px; margin-right:9px">
+		<label for="minute">minute :</label>
+		<input type="number" id="minute" name="minute" min="0" max="59" style="width:35px; margin-right:9px">
+	</fieldset>
+<?php
+	parent::FinFormulaire();
+}
+
 public function Afficher_tete() { $this->Afficher_thead(array('Usine', 'Niveau', 'Production')); }
 
-public function Afficher_corps($id_selectionné) {
-	parent::Afficher_tbody('Vue_usine', $id_selectionné);
-	//////////////////////
-?>
-	<a href='#' onclick='OuvrirFormulaireMAJ("acierie", "aci&eacute;rie", 10, 12345, 2, 4, 8)'>Ouvrir</a>
-
-	<div id="conteneur_formulaire">
-		<form action="#" name="formulaireMAJ" method="post">
-			<p id="gauche"><img name="image"></p>
-			<h1>Mise &agrave; jour de l&apos;usine</h1>
-			<label for="niveau">Niveau :</label>
-			<input type="number" id="niveau" name="niveau" style="width:50px; margin-right:50px">
-			<fieldset>
-				<legend>Production en cours</legend>
-				<label for="production">Production totale</label>
-				<input type="number" id="production" name="production" min="1" style="width:120px;">
-				<br>
-				<label for="jour">jour :</label>
-				<input type="number" id="jour" name="jour" min="0" style="width:45px; margin-top:9px; margin-right:9px">
-				<label for="heure">heure :</label>
-				<input type="number" id="heure" name="heure" min="0" max="23" style="width:35px; margin-right:9px">
-				<label for="minute">minute :</label>
-				<input type="number" id="minute" name="minute" min="0" max="59" style="width:35px; margin-right:9px">
-			</fieldset>
-			<input type="submit" value="Valider" style="margin-top:9px">
-			<a href='#' onclick='FermerFormulaireMAJ("acierie",10, 12345, 2, 4, 8)'>ANNULER</a>
-		</form>
-	</div>
-<?php	//////////////////////
-}
+public function Afficher_corps($id_selectionné) { parent::Afficher_tbody('Vue_usine', $id_selectionné); }
 
 protected function Afficher_rapport($Tvariables, $id_selectionné) {
 ?>

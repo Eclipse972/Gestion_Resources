@@ -5,6 +5,8 @@ class TMine extends Tableau {
 
 public function InsérerScript() { echo parent::InsérerJS('mine'); }
 
+public function CréerFormulaireMAJ() {}
+
 public function Afficher_tete() { parent::Afficher_thead(array('Mines', '&Eacute;tat','Nombre', 'Production', 'Production max')); }
 
 public function Afficher_corps($id_selectionné) { parent::Afficher_tbody('Vue_mine', $id_selectionné); }
