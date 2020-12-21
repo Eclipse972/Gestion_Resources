@@ -1,7 +1,7 @@
 <?php
 session_start();
 require'../Modele/classe_MAJLigne.php';
-$usine = new usineMAJ($_SESSION['IDjoueur'], $_GET['type_usineID']);
+$usine = new usineMAJ($_SESSION['IDjoueur'], $_GET['ID']);
 
 /*$dico = array(
 	'Niveau' =>1,
