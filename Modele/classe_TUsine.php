@@ -1,5 +1,5 @@
 <?php
-require'Modele/classe_Tableau.php'; 
+require'Modele/classe_Tableau.php';
 
 class TUsine extends Tableau {
 
@@ -7,7 +7,36 @@ public function InsérerScript() { echo parent::InsérerJS('usine'); }
 
 public function Afficher_tete() { $this->Afficher_thead(array('Usine', 'Niveau', 'Production')); }
 
-public function Afficher_corps($id_selectionné) { parent::Afficher_tbody('Vue_usine', $id_selectionné); }
+public function Afficher_corps($id_selectionné) {
+	parent::Afficher_tbody('Vue_usine', $id_selectionné);
+	//////////////////////
+?>
+	<a href='#' onclick='OuvrirFormulaireMAJ()'>Ouvrir</a>
+
+	<div id="MAJ-usine">
+		<form action="#" method="post">
+			<p id="gauche"><img src="Vue/images/acierie.png" alt ="aci&eacute;rie"></p>
+			<h1>Mise &agrave; jour de l&apos;usine</h1>
+			<label for="niveau">Niveau :</label>
+			<input type="number" id="niveau" name="niveau" value="0" style="width:50px; margin-right:50px">
+			<fieldset>
+				<legend>Production en courrs</legend>
+				<label for="avancement">Avancement</label>
+				<input type="number" id="avancement" name="avancement" value="0" min="0" style="width:120px;"> /
+				<input type="number" id="production" name="production" value="1" min="1" style="width:120px;">
+				<br>
+				<label for="jour">jour :</label>
+				<input type="number" id="jour" name="jour" value="0" min="0" style="width:45px; margin-top:9px; margin-right:9px">
+				<label for="heure">heure :</label>
+				<input type="number" id="heure" name="heure" value="0" min="0" max="23" style="width:35px; margin-right:9px">
+				<label for="minute">minute :</label>
+				<input type="number" id="minute" name="minute" value="0" min="0" max="59" style="width:35px; margin-right:9px">
+			</fieldset>
+			<input type="submit" value="Valider" style="margin-top:9px">
+		</form>
+	</div>
+<?php	//////////////////////
+}
 
 protected function Afficher_rapport($Tvariables, $id_selectionné) {
 ?>
@@ -22,7 +51,7 @@ protected function Afficher_rapport($Tvariables, $id_selectionné) {
 	<p>les usines peuvent elles assurer les besoins pour produire</p>
 
 	<h1>Am&eacute;lioration</h1>
-	<table id="amélioration">
+	<table id="amelioration">
 	<thead>
 		<tr><th>Marchandise</th><th>Quantit&eacute;</th><th>stock</th><th>manque</th><th>PU</th><th>achat</th>		</tr>
 	</thead>

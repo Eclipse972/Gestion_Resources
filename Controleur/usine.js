@@ -1,3 +1,8 @@
+function OuvrirFormulaireMAJ(){
+formulaire = document.getElementById("MAJ-usine");
+formulaire.style.visibility = "visible";
+}
+
 function MAJ(methode, type_usineID, valeur, expreg = '[0-9]+') { // factorisation
 var question = {
 	"Niveau"		: "Niveau de l'usine",
