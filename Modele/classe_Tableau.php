@@ -32,7 +32,9 @@ protected function FinFormulaire() {
 }
 
 protected function Afficher_thead($T_en_tete) { // déclare le tableau avec en paramètres un tableau contenant les en-têtes à afficher
-	echo"\t<table>\n";
+?>
+	<table>
+<?php
 	$this->nb_col_tableau = count($T_en_tete);
 	echo"\t<thead>\n\t<tr>\n";
 	foreach($T_en_tete as $valeur) echo "\t\t<th>$valeur</th>\n";
@@ -63,7 +65,6 @@ protected function Afficher_tbody($vueBD, $id_selectionné) {
 		echo"\n{$réponseBD['code']}\t</tr>\n";
 		if ($réponseBD['ID'] == $id_selectionné) {
 			echo"\t<tr>\n\t<td colspan=\"{$this->nb_col_tableau}\" id=\"rapport\">\n\t\t";
-			echo'<a href="#"><img src="Vue/images/fleche_haut.png" style="height:40px" align=right alt="remonter en haut de la page"></a>';
 			echo"\n<!-- Début du rapport -->\n";
 			$T_variables = $this->Récupérer_variables_rapport($vueBD, $IDjoueur, $id_selectionné);
 			$this->Afficher_rapport($T_variables, $id_selectionné);

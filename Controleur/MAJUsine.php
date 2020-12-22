@@ -22,10 +22,6 @@ $T_paramètres = array(
 	':jour'		=> $jour,
 	':heure'	=> $heure,
 	':minute'	=> $minute);
-
-////////////////////////////
-//print_r($T_paramètres);exit;
-////////////////////////////
 $usine->MiseAjour($listeDchamps, $T_paramètres);
 
 header("Location: ".$usine->PageDeRetour($ID));
