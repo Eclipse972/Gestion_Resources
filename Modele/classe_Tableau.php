@@ -17,7 +17,7 @@ protected function DébutFormulaire($script, $titre) {
 	<div id="conteneur_formulaire">
 	<form action="<?=$script?>.php" name="formulaireMAJ" method="post">
 	<span class="bouton-fermeture"><a href='#' onclick='FermerFormulaireMAJ()'>X</a></span>
-	<p id="gauche"><img name="image"></p>
+	<span class="gauche"><img name="image"></span>
 	<h1>Mise &agrave; jour<?=$titre?></h1>
 <?php
 }

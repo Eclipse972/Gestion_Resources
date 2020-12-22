@@ -23,7 +23,10 @@ section tbody tr td:nth-child(1) p {
 	margin:0;
 }
 
-#gauche { float:left; }
+.gauche {
+	float:left;
+	margin-right:9px;
+}
 
 /* tableau pour affichier les besoins de l'amelioration */
 #amelioration tbody tr td:nth-child(1) { vertical-align:middle; }/* pour annuler celui de section */
@@ -50,7 +53,7 @@ section tbody tr td:nth-child(1) p {
 
 #amelioration tbody tr td:nth-child(1) {  text-align:left; }
 
-/* Boite de dialogue MAJ usine */
+/* formulaire de MAJ usine */
 #conteneur_formulaire {
 visibility: hidden;
 position: absolute;
@@ -63,7 +66,7 @@ z-index: 1000;
 
 #conteneur_formulaire form {
 width:750px;
-height: 300px;
+height: 260px;
 margin: 5px;
 background-color: #021116;
 padding:15px;
@@ -75,3 +78,30 @@ transform: translate(-50%, -50%);
 -ms-transform: translate(-50%, -50%);
 -webkit-transform: translate(-50%, -50%);
 }
+
+#conteneur_formulaire h1 {
+	margin-top:9px;
+	margin-bottom:9px;
+	text-align:middle;
+}
+
+#conteneur_formulaire fieldset {
+	width:370px;
+	margin-top:9px;
+	margin-bottom:9px;
+}
+
+#conteneur_formulaire fieldset input {
+	width:40px;
+	margin-right:9px;
+	margin-top:9px;
+}
+
+#conteneur_formulaire #champ1 input {
+	width:50px;
+	margin-right:20px
+}
+
+#conteneur_formulaire #champ2 input { width:120px; }
+
+#conteneur_formulaire #champ1, #conteneur_formulaire #champ2 { display:inline-block; }

@@ -65,6 +65,6 @@ font-weight: bold;
 background-color: #245070;
 }
 
-.bouton-fermeture:hover {
-background-color: #adadad;
-}
+.bouton-fermeture:hover { background-color: #adadad; }
+
+.bouton-fermeture a:hover { text-decoration:none; }
