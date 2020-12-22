@@ -3,10 +3,8 @@ require'Modele/classe_Tableau.php';
 
 class TUsine extends Tableau {
 
-public function InsérerScript() { echo parent::InsérerJS('usine'); }
-
 public function CréerFormulaireMAJ() {
-	parent::DébutFormulaire('MAJUsine', ' de l&apos;usine');
+	parent::DébutFormulaire('MAJUsine', ' de l&apos;usine', 'usine');
 ?>
 	<div id="champ1">
 		<label for="niveau">Niveau :</label>

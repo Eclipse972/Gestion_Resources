@@ -3,9 +3,13 @@ require'Modele/classe_Tableau.php'; // classe mère
 
 class TEntrepot extends Tableau {
 
-public function InsérerScript() { echo parent::InsérerJS('entrepot'); }
+public function CréerFormulaireMAJ() {
+	parent::DébutFormulaire('MAJEntrepo', ' de l&apos;entrp&ocirc;t', 'entrepot');
+?>
 
-public function CréerFormulaireMAJ() {}
+<?php
+	parent::FinFormulaire();
+}
 
 public function Afficher_tete() { parent::Afficher_thead(array('Entrep&ocirc;t', 'Niveau', 'Capacit&eacute;', 'Stock')); }
 

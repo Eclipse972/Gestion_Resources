@@ -7,12 +7,6 @@ document.formulaireMAJ.état.value		= état;
 document.formulaireMAJ.production.value = production;
 document.formulaireMAJ.nombre.value		= nombre;
 
-// affichage
 div = document.getElementById("conteneur_formulaire");
 div.style.visibility = "visible";
-}
-
-function FermerFormulaireMAJ() {
-div = document.getElementById("conteneur_formulaire");
-div.style.visibility = "hidden";
 }

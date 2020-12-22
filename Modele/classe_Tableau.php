@@ -6,16 +6,21 @@ abstract class Tableau { // Remarque: chaque classe fille est associée à un CS
 abstract public function Afficher_tete();	// en-tête du tableau
 abstract public function Afficher_corps($id_selectionné);	// corps du tableau
 abstract protected function Afficher_rapport($Tvariables, $id);	// affichage détaillé de la ligne
-abstract public function InsérerScript();	// script.js à insérer
 abstract public function CréerFormulaireMAJ();
 
 // Affichage de la page
-protected function InsérerJS($script) {	return isset($script) ? "<script src=\"Controleur/{$script}.js\"> </script>\n" : ""; }
-
-protected function DébutFormulaire($script, $titre) {
+protected function DébutFormulaire($action, $titre, $script) {
 ?>
+	<script>
+	function FermerFormulaireMAJ() {
+		div = document.getElementById("conteneur_formulaire");
+		div.style.visibility = "hidden";
+	}
+	</script>
+	<script src="Controleur/<?=$script?>.js"></script>
+
 	<div id="conteneur_formulaire">
-	<form action="Controleur/<?=$script?>.php" name="formulaireMAJ" method="post">
+	<form action="Controleur/<?=$action?>.php" name="formulaireMAJ" method="post">
 	<span class="bouton-fermeture"><a href='#' onclick='FermerFormulaireMAJ()'>X</a></span>
 	<span class="gauche"><img name="image"></span>
 	<h1>Mise &agrave; jour<?=$titre?></h1>

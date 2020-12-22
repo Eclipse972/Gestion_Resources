@@ -3,10 +3,8 @@ require'Modele/classe_Tableau.php';
 
 class TMine extends Tableau {
 
-public function InsérerScript() { echo parent::InsérerJS('mine'); }
-
 public function CréerFormulaireMAJ() {
-		parent::DébutFormulaire('MAJMine', ' de la mine');
+	parent::DébutFormulaire('MAJMine', ' de la mine', 'mine');
 ?>
 	<div id="champ1">
 		<label for="état">&Eacute;tat :</label>
