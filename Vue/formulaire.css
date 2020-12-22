@@ -1,6 +1,0 @@
-form { width:600px; }
-section img { margin-left:50px; }
-form, img {
-	display:inline-block;
-	vertical-align:middle;
-}
