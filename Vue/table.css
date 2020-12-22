@@ -41,6 +41,7 @@ section strong { font-size:22px; }
 	color:black;
 	background-color: #eff1f3;
 }
+
 .infobulle:hover span {
   display:block;
   top:0;
@@ -50,4 +51,20 @@ section strong { font-size:22px; }
   min-height:20px;
   border:1px solid black;
   overflow:hidden;
+}
+
+/* bouton de fermeture du formulaire */
+.bouton-fermeture {
+float: right;
+width: 30px;
+line-height: 30px;
+text-align: center;
+cursor: pointer;
+font-size:20px;
+font-weight: bold;
+background-color: #245070;
+}
+
+.bouton-fermeture:hover {
+background-color: #adadad;
 }

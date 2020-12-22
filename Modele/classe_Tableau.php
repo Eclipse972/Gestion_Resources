@@ -15,16 +15,16 @@ protected function InsérerJS($script) {	return isset($script) ? "<script src=\"
 protected function DébutFormulaire($script, $titre) {
 ?>
 	<div id="conteneur_formulaire">
-	<form action="Controleur/<?=$script?>.php" name="formulaireMAJ" method="post">
+	<form action="<?=$script?>.php" name="formulaireMAJ" method="post">
+	<span class="bouton-fermeture"><a href='#' onclick='FermerFormulaireMAJ()'>X</a></span>
 	<p id="gauche"><img name="image"></p>
-	<h1>Mise &agrave; jour <?=$titre?></h1>
+	<h1>Mise &agrave; jour<?=$titre?></h1>
 <?php
 }
 
 protected function FinFormulaire() {
 ?>
 	<input type="submit" value="Valider" style="margin-top:9px">
-	<a href='#' onclick='FermerFormulaireMAJ()'>ANNULER</a>
 	<input type="hidden" id="ID" name="ID">
 	</form>
 	</div>
