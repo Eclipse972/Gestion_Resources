@@ -1,17 +1,23 @@
 <?php
 session_start();
 require'../Modele/classe_MAJLigne.php';
-$mine = new mineMAJ($_SESSION['IDjoueur'], $_GET['type_mineID']);
+$mine = new mineMAJ($_SESSION['IDjoueur'], $_POST['ID']);
 
-$dico = array(
-	'ProdMax' =>1,
-	'Nombre' =>2,
-	'Etat' =>3
-);
-$methode = $_GET['methode'];
-if (isset($dico[$methode])) {
-	$mine->$methode($_GET['valeur']);
-}
+$Tpost = $mine->FormaterParamètres($_POST);
+$ID			= $Tpost['ID'];
+$état		= $Tpost['état'];
+$production = $Tpost['production'];
+$nombre		= $Tpost['nombre'];
 
-$ID = $_SESSION['ID'];
+$listeDchamps	= "	etat = :etat,
+					prod_max = :prod,
+					nombre = :nombre";
+$T_paramètres = array(
+	':IDjoueur'	=> $_SESSION['IDjoueur'],
+	':ID'		=> $ID,
+	':etat'		=> $état,
+	':prod'		=> $production,
+	':nombre'	=> $nombre);
+$mine->MiseAjour($listeDchamps, $T_paramètres);
+
 header("Location: ".$mine->PageDeRetour($ID));

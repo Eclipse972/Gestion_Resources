@@ -69,6 +69,8 @@ background-color: #245070;
 
 .bouton-fermeture a:hover { text-decoration:none; }
 
+.bouton-fermeture a { display:block; }
+
 #vers_le_haut {
   position: fixed;
   width: 40px;

@@ -8,3 +8,51 @@ section thead tr th:nth-child(5), section tbody tr td:nth-child(5) { width:200px
 section tbody tr td:nth-child(2), section tbody tr td:nth-child(3) { text-align: center; }
 section tbody tr td:nth-child(4), section tbody tr td:nth-child(5) { text-align: right; }
 
+.gauche {
+	float:left;
+	margin-right:9px;
+}
+
+/* formulaire de MAJ mine */
+#conteneur_formulaire {
+visibility: hidden;
+position: absolute;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+z-index: 1000;
+}
+
+#conteneur_formulaire form {
+width:750px;
+height: 260px;
+margin: 5px;
+background-color: #021116;
+padding:15px;
+border: 2px solid white;
+position: fixed;
+left: 50%;
+top: 300px;
+transform: translate(-50%, -50%);
+-ms-transform: translate(-50%, -50%);
+-webkit-transform: translate(-50%, -50%);
+}
+
+#conteneur_formulaire h1 {
+	margin-top:9px;
+	margin-bottom:9px;
+	text-align:middle;
+}
+
+#conteneur_formulaire #champ1 input {
+	width:50px;
+	margin-right:20px
+}
+
+#conteneur_formulaire #champ2 input { width:120px; }
+
+#conteneur_formulaire #champ1, #conteneur_formulaire #champ2, #conteneur_formulaire #champ3 {
+	display:block;
+	margin-top:9px;
+}

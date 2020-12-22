@@ -61,8 +61,8 @@ protected function Afficher_tbody($vueBD, $id_selectionné) {
 	$T_Vue = $this->InterrogerBD('SELECT ID, IDjoueur, code FROM '.$vueBD.' WHERE IDjoueur = :ID', array(':ID'=>$IDjoueur));
 	echo"\t<tbody>\n";
 	foreach($T_Vue as $réponseBD) {
-		echo"\t",($réponseBD['ID'] == $id_selectionné) ? '<tr id="selection">' : '<tr>'; // pose d'une ancre sur la ligne sélectionnée
-		echo"\n{$réponseBD['code']}\t</tr>\n";
+		echo"\t<tr id=\"{$réponseBD['ID']}\">\n"; // pose d'une ancre sur toutes les lignes
+		echo"{$réponseBD['code']}\t</tr>\n";
 		if ($réponseBD['ID'] == $id_selectionné) {
 			echo"\t<tr>\n\t<td colspan=\"{$this->nb_col_tableau}\" id=\"rapport\">\n\t\t";
 			echo"\n<!-- Début du rapport -->\n";

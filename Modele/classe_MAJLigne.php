@@ -26,6 +26,10 @@ public function MiseAjour($listeDchamps, $T_paramètres) { // les paramètres so
 		$sql = "UPDATE {$this->table}
 				SET {$listeDchamps}
 				WHERE {$this->table}.joueur_ID = :IDjoueur AND {$this->table}.{$this->nomChampID} = :ID";
+		//////////////////////////////////////////////
+		//echo"requête = {$sql}\n";
+		//print_r($T_paramètres);exit;
+		//////////////////////////////////////////////
 		$requete = $BD->prepare($sql);
 		foreach($T_paramètres as $clé => $valeur) { $requete->bindValue($clé, $valeur, PDO::PARAM_INT); }
 		$requete->execute();
@@ -34,8 +38,9 @@ public function MiseAjour($listeDchamps, $T_paramètres) { // les paramètres so
 }
 
 public function PageDeRetour($ID) {
-	$retour = "http://gestion.resources.free.fr/{$this->onglet}.php";
-	if ($this->IDvalide($ID)) $retour = $retour."?id={$ID}#selection";
+	$retour = "/{$this->onglet}.php";
+	if ($this->IDvalide($_SESSION['ID'])) $retour = $retour."?id={$_SESSION['ID']}"; // affiche le rapport si il y a lieu'
+	if ($this->IDvalide($ID)) $retour = $retour."#{$ID}";	// met le focus sur l'élément dont on vient de changer les paramètres
 	return $retour;
 }
 }
@@ -53,7 +58,6 @@ public function IDvalide($valeur) {
 	$valeur = (int)$valeur;
 	return (($valeur > 0) && ($valeur <= 22));
 }
-
 }
 ///////////////////////////////////////////////////////////////////////
 class mineMAJ extends MAJOnglet {
@@ -65,20 +69,10 @@ public function __construct($IDjoueur, $type_mineID) {
 	$this->onglet = 'mines';
 }
 
-public function FormaterParamètres() {}
-
 public function IDvalide($valeur) {
 	$valeur = (int)$valeur;
 	return (($valeur > 0) && ($valeur <= 14));
 }
-
-public function Etat($chaine) {
-	if ((int)$chaine <=100) $this->MAJchampTypeEntier('etat', $chaine); // MAJchampTypeEntier vérifie que la chaine est bien un entier donc inutile de le aire ici
-}
-
-public function Nombre($chaine) { $this->MAJchampTypeEntier('nombre', $chaine); }
-
-public function ProdMax($chaine) { $this->MAJchampTypeEntier('prod_max', $chaine); }
 }
 ///////////////////////////////////////////////////////////////////////
 class entrepotMAJ extends MAJOnglet {
@@ -89,8 +83,6 @@ public function __construct($IDjoueur, $type_mineID) {
 	$this->nomChampID = 'marchandise_ID';
 	$this->onglet = 'entrepots';
 }
-
-public function FormaterParamètres() {}
 
 public function IDvalide($valeur) {
 	$valeur = (int)$valeur;
