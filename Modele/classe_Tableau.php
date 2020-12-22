@@ -19,13 +19,13 @@ protected function DébutFormulaire($script, $titre) {
 	<span class="bouton-fermeture"><a href='#' onclick='FermerFormulaireMAJ()'>X</a></span>
 	<span class="gauche"><img name="image"></span>
 	<h1>Mise &agrave; jour<?=$titre?></h1>
+	<input type="hidden" id="ID" name="ID">
 <?php
 }
 
 protected function FinFormulaire() {
 ?>
 	<input type="submit" value="Valider" style="margin-top:9px">
-	<input type="hidden" id="ID" name="ID">
 	</form>
 	</div>
 <?php
