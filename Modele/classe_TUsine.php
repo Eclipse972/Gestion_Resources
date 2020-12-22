@@ -10,20 +10,20 @@ public function CréerFormulaireMAJ() {
 ?>
 	<div id="champ1">
 		<label for="niveau">Niveau :</label>
-		<input type="number" id="niveau" name="niveau" min="1">
+		<input type="number" id="niveau" name="niveau" min="1" required>
 	</div>
 	<div id="champ2">
 		<label for="production">Production totale</label>
-		<input type="number" id="production" name="production" min="1">
+		<input type="number" id="production" name="production" min="1" required>
 	</div>
 	<fieldset>
 		<legend>Dur&eacute;e de production restante</legend>
 		<label for="jour">jour :</label>
-		<input type="number" id="jour" name="jour" min="0">
+		<input type="number" id="jour" name="jour" min="0" required>
 		<label for="heure">heure :</label>
-		<input type="number" id="heure" name="heure" min="0" max="23">
+		<input type="number" id="heure" name="heure" min="0" max="23" required>
 		<label for="minute">minute :</label>
-		<input type="number" id="minute" name="minute" min="0" max="59">
+		<input type="number" id="minute" name="minute" min="0" max="59" required>
 	</fieldset>
 <?php
 	parent::FinFormulaire();
