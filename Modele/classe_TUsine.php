@@ -10,7 +10,7 @@ public function CréerFormulaireMAJ() {
 ?>
 	<div id="champ1">
 		<label for="niveau">Niveau :</label>
-		<input type="number" id="niveau" name="niveau">
+		<input type="number" id="niveau" name="niveau" min="1">
 	</div>
 	<div id="champ2">
 		<label for="production">Production totale</label>
