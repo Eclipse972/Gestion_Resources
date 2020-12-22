@@ -15,9 +15,9 @@ SELECT
 	FORMAT(usine.prod_en_cours - (usine.niveau * type_usine.prod_niveau1 * (SELECT dureeProd))/3600, 0) AS avancement,
 	CONCAT(
 		'\t\t<td><a href="?id=',type_usine.ID,'#selection"><span class="gauche"><img src="Vue/images/',type_usine.image,'.png" alt ="',type_usine.nom,'"></span>',
-		'<strong>',UCASE(LEFT(type_usine.nom,1)),SUBSTRING(type_usine.nom,2,LENGTH(type_usine.nom)),'</strong></a>\n\t\t\t<p>',
+		'<strong>',UCASE(LEFT(type_usine.nom,1)),SUBSTRING(type_usine.nom,2,LENGTH(type_usine.nom)),'</strong></a>\n',
 		IF ((SELECT dureeProd) = 0,'', #-- production terminée on ne fait rien sinon on affiche l'avancement
-			CONCAT('Avancement: ',
+			CONCAT('\t\t\t<p>Avancement: ',
 				IF ((SELECT avancement) < 0,
 					'<span style="background-color:red"> Probl&egrave;me avec un des param&egrave;tres </span>',#--avertissement
 					REPLACE((SELECT avancement),',',' ')	#--sinon on affiche la quantité déjà produite
@@ -25,7 +25,7 @@ SELECT
 				(SELECT lien_MAJ), REPLACE(CAST(FORMAT(usine.prod_en_cours,0) AS CHAR),',',' '),' ',unites.nom,'</a></p>\n'
 			)
 		),
-		(SELECT lien_MAJ),
+		'\t\t\t',(SELECT lien_MAJ),
 		IF ((SELECT dureeProd) > 0, 'Temps de production restant: ', 'Production termin&eacute;e'),
 		CASE (SELECT jour)
 			WHEN 0 THEN ''
@@ -42,7 +42,7 @@ SELECT
 			WHEN 1 THEN '1 minute'
 			ELSE CONCAT((SELECT minutes),' minutes')
 		END,
-		'</a></p>\n\t\t</td>\n\t\t<td>',(SELECT lien_MAJ),usine.niveau,'</a></td>\n',
+		'</a>\n\t\t</td>\n\t\t<td>',(SELECT lien_MAJ),usine.niveau,'</a></td>\n',
 		'\t\t<td>',REPLACE(CAST(FORMAT(type_usine.prod_niveau1*usine.niveau,0) AS CHAR),',',' '),' ',unites.nom,'/h</td>\n'
 	) AS code
 FROM usine
