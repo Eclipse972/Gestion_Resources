@@ -73,10 +73,8 @@ background-color: #245070;
   position: fixed;
   width: 40px;
   height: 40px;
-  bottom: 50px;
+  bottom: 30px;
   right: 30px;
 }
 
-#vers_le_haut img {
-  width: 40px;
-}
+#vers_le_haut img { width: 40px; }

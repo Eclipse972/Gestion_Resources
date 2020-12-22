@@ -26,9 +26,6 @@ public function MiseAjour($listeDchamps, $T_paramètres) { // les paramètres so
 		$sql = "UPDATE {$this->table}
 				SET {$listeDchamps}
 				WHERE {$this->table}.joueur_ID = :IDjoueur AND {$this->table}.{$this->nomChampID} = :ID";
-		///////////////////////////
-		//echo"requête = $sql";exit;
-		///////////////////////////
 		$requete = $BD->prepare($sql);
 		foreach($T_paramètres as $clé => $valeur) { $requete->bindValue($clé, $valeur, PDO::PARAM_INT); }
 		$requete->execute();
