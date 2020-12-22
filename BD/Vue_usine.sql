@@ -6,7 +6,7 @@ SELECT
 	(SELECT dureeProd) DIV 86400 AS jour,
 	((SELECT dureeProd) DIV 3600) % 24 AS heure,
 	((SELECT dureeProd) DIV 60) % 60 AS minutes, #--minute est un mot-clé SQL
-	CONCAT('<a href="#" onclick="OuvrirFormulaireMAJ(',usine.joueur_ID,',',
+	CONCAT('<a href="#" onclick="OuvrirFormulaireMAJ(',type_usine.ID,',',
 		'''',type_usine.image,''',',
 		''''',',			#--'''',type_usine.nom,''',', provoque un bug avec les noms contenant une apostrophe
 		usine.niveau,',',
