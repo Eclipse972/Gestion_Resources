@@ -15,7 +15,7 @@ protected function InsérerJS($script) {	return isset($script) ? "<script src=\"
 protected function DébutFormulaire($script, $titre) {
 ?>
 	<div id="conteneur_formulaire">
-	<form action="<?=$script?>.php" name="formulaireMAJ" method="post">
+	<form action="Controleur/<?=$script?>.php" name="formulaireMAJ" method="post">
 	<span class="bouton-fermeture"><a href='#' onclick='FermerFormulaireMAJ()'>X</a></span>
 	<span class="gauche"><img name="image"></span>
 	<h1>Mise &agrave; jour<?=$titre?></h1>
