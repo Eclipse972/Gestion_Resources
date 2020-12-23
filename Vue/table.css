@@ -18,6 +18,11 @@ section table {
 
 section strong { font-size:22px; }
 
+.gauche {
+	float:left;
+	margin-right:9px;
+}
+
 #rapport {
 	border:1px solid white;
 	margin:10px;

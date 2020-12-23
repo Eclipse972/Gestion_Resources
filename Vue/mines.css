@@ -8,11 +8,6 @@ section thead tr th:nth-child(5), section tbody tr td:nth-child(5) { width:200px
 section tbody tr td:nth-child(2), section tbody tr td:nth-child(3) { text-align: center; }
 section tbody tr td:nth-child(4), section tbody tr td:nth-child(5) { text-align: right; }
 
-.gauche {
-	float:left;
-	margin-right:9px;
-}
-
 /* spécificités du formulaire de MAJ mines */
 #conteneur_formulaire #champ1 input {
 	width:50px;
