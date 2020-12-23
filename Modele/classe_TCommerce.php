@@ -8,12 +8,10 @@ public function __construct() {
 	$this->date_MAJ = 'ind&eacute;termin&eacute;e'; // il va faloir trouver cette date lors de la MAJ des prix des marchandises
 }
 
-public function InsérerScript() {}
-
 public function CréerFormulaireMAJ() {}
 
 public function Afficher_tete() {
-	echo"<p align=\"right\">Derni&egrave;re mise à jour le: <?=$this->date_MAJ?></p>\n";
+	echo"<p align=\"right\">Derni&egrave;re mise à jour le: {$this->date_MAJ}</p>\n";
 	parent::Afficher_thead(array('Marchandise', 'cours Ki-market',	'cours max'));
 }
 

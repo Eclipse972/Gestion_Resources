@@ -1,16 +1,21 @@
 <?php
 session_start();
 require'../Modele/classe_MAJLigne.php';
-$entrepot = new entrepotMAJ($_SESSION['IDjoueur'], $_GET['marchandise_ID']);
+$entrepot = new entrepotMAJ($_SESSION['IDjoueur'], $_POST['ID']);
 
-$dico = array(
-	'Niveau' =>1,
-	'Stock' =>2
-);
-$methode = $_GET['methode'];
-if (isset($dico[$methode])) {
-	$entrepot->$methode($_GET['valeur']);
-}
+$Tpost = $entrepot->FormaterParamètres($_POST);
+$ID		= $Tpost['ID'];
+$niveau	= $Tpost['niveau'];
+$stock	= $Tpost['stock'];
 
-$ID = $_SESSION['ID'];
+$listeDchamps	= "	niveau = :niveau,
+					stock = :stock";
+$T_paramètres = array(
+	':IDjoueur'	=> $_SESSION['IDjoueur'],
+	':ID'		=> $ID,
+	':niveau'	=> $niveau,
+	':stock'	=> $stock);
+
+$entrepot->MiseAjour($listeDchamps, $T_paramètres);
+
 header("Location: ".$entrepot->PageDeRetour($ID));

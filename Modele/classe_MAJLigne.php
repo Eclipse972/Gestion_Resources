@@ -88,8 +88,19 @@ public function IDvalide($valeur) {
 	$valeur = (int)$valeur;
 	return (($valeur > 0) && ($valeur <= 60));
 }
+}
+///////////////////////////////////////////////////////////////////////
+class commerceMAJ extends MAJOnglet {
 
-public function Niveau($chaine) { $this->MAJchampTypeEntier('niveau', $chaine); }
+public function __construct($IDjoueur, $type_mineID) {
+	parent::__construct($IDjoueur, $type_mineID);
+	$this->table = 'commerce';
+	$this->nomChampID = 'marchandise_ID';
+	$this->onglet = 'commerce';
+}
 
-public function Stock($chaine) { $this->MAJchampTypeEntier('stock', $chaine); }
+public function IDvalide($valeur) {
+	$valeur = (int)$valeur;
+	return (($valeur > 0) && ($valeur <= 60));
+}
 }

@@ -4,9 +4,16 @@ require'Modele/classe_Tableau.php'; // classe mère
 class TEntrepot extends Tableau {
 
 public function CréerFormulaireMAJ() {
-	parent::DébutFormulaire('MAJEntrepo', ' de l&apos;entrp&ocirc;t', 'entrepot');
+	parent::DébutFormulaire('MAJEntrepot', ' de l&apos;entrp&ocirc;t', 'entrepot');
 ?>
-
+	<div id="champ1">
+		<label for="niveau">Niveau :</label>
+		<input type="number" id="niveau" name="niveau" min="0" step="1" required>
+	</div>
+	<div id="champ2">
+		<label for="stock">Stock</label>
+		<input type="number" id="stock" name="stock" min="0" step="1" required>
+	</div>
 <?php
 	parent::FinFormulaire();
 }
