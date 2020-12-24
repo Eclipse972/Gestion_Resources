@@ -3,6 +3,7 @@ SELECT
 	entrepot.marchandise_ID AS ID,
 	entrepot.joueur_ID AS IDjoueur,
 	entrepot.niveau * entrepot.niveau * 5000 AS capacité,
+	IF(marchandise.cours_ki > marchandise.cours_max, marchandise.cours_ki, marchandise.cours_max) AS PU,
 	CONCAT('<a href="#" onclick="OuvrirFormulaireMAJ(',entrepot.marchandise_ID,',',
 		'''',marchandise.image,''',',
 		''''',',			#--'''',marchandise.nom,''',', provoque un bug avec les noms contenant une apostrophe
@@ -15,7 +16,8 @@ SELECT
 		'</td>\n\t\t<td>',
 		(SELECT lien_MAJ),CAST(entrepot.niveau AS CHAR),'</a></td>\n\t\t<td>',
 		REPLACE(CAST(FORMAT(entrepot.niveau * entrepot.niveau * 5000,0) AS CHAR),',',' '),' ',unites.nom,'</td>\n\t\t<td>',
-		(SELECT lien_MAJ),REPLACE(CAST(FORMAT(entrepot.stock,0) AS CHAR),',',' '),' ',unites.nom,'</a></td>\n'
+		(SELECT lien_MAJ),REPLACE(CAST(FORMAT(entrepot.stock,0) AS CHAR),',',' '),' ',unites.nom,'</a></td>\n\t\t<td>',
+		REPLACE(CAST(FORMAT(entrepot.stock * (SELECT PU),0) AS CHAR),',',' '),'</td>\n'
 	) AS code
 FROM entrepot
 INNER JOIN marchandise ON entrepot.marchandise_ID = marchandise.ID

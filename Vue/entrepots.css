@@ -1,8 +1,12 @@
 /* feuille de style de l'onglet entrepôts */
-section thead tr th:nth-child(1), section tbody tr td:nth-child(1) { width:500px; }
+section thead tr th:nth-child(1), section tbody tr td:nth-child(1) { width:300px; }
 section thead tr th:nth-child(2), section tbody tr td:nth-child(2) { width:90px; }
-section thead tr th:nth-child(3), section tbody tr td:nth-child(3), section thead tr th:nth-child(4), section tbody tr td:nth-child(4) { width:150px; }
-section tbody tr td:nth-child(2), section tbody tr td:nth-child(3), section tbody tr td:nth-child(4) { text-align: right; }
+
+section thead tr th:nth-child(3), section tbody tr td:nth-child(3),
+section thead tr th:nth-child(4), section tbody tr td:nth-child(4),
+section thead tr th:nth-child(5), section tbody tr td:nth-child(5) { width:150px; }
+
+section tbody tr td:nth-child(2), section tbody tr td:nth-child(3), section tbody tr td:nth-child(4), section tbody tr td:nth-child(5) { text-align: right; }
 
 /* spécificités du formulaire de MAJ entrepot */
 #conteneur_formulaire #champ1 input {
