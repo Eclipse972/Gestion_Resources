@@ -12,10 +12,7 @@ abstract public function CréerFormulaireMAJ();
 protected function DébutFormulaire($action, $titre, $script) {
 ?>
 	<script>
-	function FermerFormulaireMAJ() {
-		div = document.getElementById("conteneur_formulaire");
-		div.style.visibility = "hidden";
-	}
+	function FermerFormulaireMAJ() { document.getElementById("conteneur_formulaire").style.visibility = "hidden"; }
 	</script>
 	<script src="Controleur/<?=$script?>.js"></script>
 

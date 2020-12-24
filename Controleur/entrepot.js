@@ -6,6 +6,5 @@ document.formulaireMAJ.image.alt		= alt;
 document.formulaireMAJ.niveau.value		= niveau;
 document.formulaireMAJ.stock.value		= stock;
 
-div = document.getElementById("conteneur_formulaire");
-div.style.visibility = "visible";
+document.getElementById("conteneur_formulaire").style.visibility = "visible";
 }

@@ -9,6 +9,5 @@ document.formulaireMAJ.heure.value		= heure;
 document.formulaireMAJ.minute.value		= minute;
 document.formulaireMAJ.ID.value			= ID;
 
-div = document.getElementById("conteneur_formulaire");
-div.style.visibility = "visible";
+document.getElementById("conteneur_formulaire").style.visibility = "visible";
 }

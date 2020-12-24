@@ -7,6 +7,5 @@ document.formulaireMAJ.état.value		= état;
 document.formulaireMAJ.production.value = production;
 document.formulaireMAJ.nombre.value		= nombre;
 
-div = document.getElementById("conteneur_formulaire");
-div.style.visibility = "visible";
+document.getElementById("conteneur_formulaire").style.visibility = "visible";
 }
