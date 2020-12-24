@@ -106,7 +106,7 @@ padding:15px;
 border: 2px solid white;
 position: fixed;
 left: 50%;
-top: 300px;
+bottom: 50px;
 transform: translate(-50%, -50%);
 -ms-transform: translate(-50%, -50%);
 -webkit-transform: translate(-50%, -50%);
