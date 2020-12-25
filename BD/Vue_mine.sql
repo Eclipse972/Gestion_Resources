@@ -10,7 +10,7 @@ SELECT
 		mine.prod_max,',',
 		mine.nombre,')">')	AS lien_MAJ,
 	CONCAT(
-		'\t\t<td><a href="?id=',type_mine.ID,'#',type_mine.ID,'"><img src="Vue/images/',marchandise.image, '.png" alt ="',type_mine.nom,'"><strong>',
+		'<td><a href="?id=',type_mine.ID,'#',type_mine.ID,'"><img src="Vue/images/',marchandise.image, '.png" alt ="',type_mine.nom,'"><strong>',
 		UCASE(LEFT(type_mine.nom,1)),SUBSTRING(type_mine.nom,2,LENGTH(type_mine.nom)),'</strong></a></td>\n\t\t<td>',
 		(SELECT lien_MAJ),mine.etat,'%</a></td>\n\t\t<td>',
 		(SELECT lien_MAJ),mine.nombre,'</a></td>\n\t\t<td>',
