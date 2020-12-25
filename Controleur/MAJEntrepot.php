@@ -1,7 +1,7 @@
 <?php
 session_start();
 require'../Modele/classe_MAJLigne.php';
-$entrepot = new entrepotMAJ($_SESSION['IDjoueur'], $_POST['ID']);
+$entrepot = new Entrepot($_SESSION['IDjoueur'], $_POST['ID']);
 
 $Tpost = $entrepot->FormaterParamètres($_POST);
 $ID		= $Tpost['ID'];

@@ -1,7 +1,7 @@
 <?php
 session_start();
 require'../Modele/classe_MAJLigne.php';
-$mine = new mineMAJ($_SESSION['IDjoueur'], $_POST['ID']);
+$mine = new Mine($_SESSION['IDjoueur'], $_POST['ID']);
 
 $Tpost = $mine->FormaterParamètres($_POST);
 $ID			= $Tpost['ID'];

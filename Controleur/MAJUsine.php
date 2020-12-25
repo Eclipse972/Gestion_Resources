@@ -1,7 +1,7 @@
 <?php
 session_start();
 require'../Modele/classe_MAJLigne.php';
-$usine = new usineMAJ($_SESSION['IDjoueur'], $_POST['ID']);
+$usine = new Usine($_SESSION['IDjoueur'], $_POST['ID']);
 
 $Tpost = $usine->FormaterParamètres($_POST);
 $ID			= $Tpost['ID'];

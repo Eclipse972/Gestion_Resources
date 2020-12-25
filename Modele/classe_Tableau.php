@@ -1,19 +1,17 @@
 <?php
 abstract class Tableau { // Remarque: chaque classe fille est associée à un CSS et doit définir les classes abstraites
 	protected $nb_col_tableau;
+	protected $vueBD;
+	protected $nomClasseLigne;
 
 // pour les développements futurs
 abstract public function Afficher_tete();	// en-tête du tableau
-abstract public function Afficher_corps($id_selectionné);	// corps du tableau
-abstract protected function Afficher_rapport($Tvariables, $id);	// affichage détaillé de la ligne
 abstract public function CréerFormulaireMAJ();
 
 // Affichage de la page
 protected function DébutFormulaire($action, $titre, $script) {
 ?>
-	<script>
-	function FermerFormulaireMAJ() { document.getElementById("conteneur_formulaire").style.visibility = "hidden"; }
-	</script>
+	<script>function FermerFormulaireMAJ() { document.getElementById("conteneur_formulaire").style.visibility = "hidden"; }</script>
 	<script src="Controleur/<?=$script?>.js"></script>
 
 	<div id="conteneur_formulaire">
@@ -33,76 +31,42 @@ protected function FinFormulaire() {
 <?php
 }
 
-protected function Afficher_thead($T_en_tete) { // déclare le tableau avec en paramètres un tableau contenant les en-têtes à afficher
+protected function Afficher_thead($T_en_tete) {
+	$this->nb_col_tableau = count($T_en_tete);
 ?>
 	<table>
+	<thead><tr>
+<?php	foreach($T_en_tete as $valeur) echo "\t\t\t<th>$valeur</th>\n";?>
+	</tr></thead>
 <?php
-	$this->nb_col_tableau = count($T_en_tete);
-	echo"\t<thead>\n\t<tr>\n";
-	foreach($T_en_tete as $valeur) echo "\t\t<th>$valeur</th>\n";
-	echo"\t</tr>\n\t</thead>\n";
 }
 
-protected function InterrogerBD($requete, $Tparametres = []) {
+public function Afficher_corps($id_selectionné) {
+	$IDjoueur = $_SESSION['IDjoueur'];
 	try	{
 		include 'connexion.php'; // les variables de connexion sont définies dans ce script non suivi par git
 		$BD = new PDO($dsn, $utilisateur, $mdp); // On se connecte au serveur MySQL
 		$BD->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$requete = $BD->prepare($requete);
-		$requete->execute($Tparametres);
-		$TreponseBD = $requete->fetchall(PDO::FETCH_ASSOC); // une seule ligne à capturer qui content toutes les variables pour afficher le rapport
+		$requete = $BD->prepare("SELECT ID, IDjoueur, code FROM {$this->vueBD} WHERE IDjoueur = :ID");
+		$requete->bindValue(':ID', $IDjoueur);
+		$requete->execute();
+		$Tvue = $requete->fetchall(PDO::FETCH_ASSOC); // une seule ligne à capturer qui content toutes les variables pour afficher le rapport
 	} catch (PDOException $e) {
 		exit('Erreur : '.$e->getMessage()); // faire un meilleur traitement de l'erreur
 	}
 	$BD = null; // on ferme la connexion
-	return $TreponseBD; // retourne la listes des variables sous la forme d'un tableau associatif
-}
-
-protected function Afficher_tbody($vueBD, $id_selectionné) {
-	$IDjoueur = $_SESSION['IDjoueur'];
-	$T_Vue = $this->InterrogerBD('SELECT ID, IDjoueur, code FROM '.$vueBD.' WHERE IDjoueur = :ID', array(':ID'=>$IDjoueur));
-	echo"\t<tbody>\n";
-	foreach($T_Vue as $réponseBD) {
-		echo"\t<tr id=\"{$réponseBD['ID']}\">\n"; // pose d'une ancre sur toutes les lignes
-		echo"{$réponseBD['code']}\t</tr>\n";
-		if ($réponseBD['ID'] == $id_selectionné) {
-			echo"\t<tr>\n\t<td colspan=\"{$this->nb_col_tableau}\" id=\"rapport\">\n\t\t";
-			echo"\n<!-- Début du rapport -->\n";
-			$T_variables = $this->Récupérer_variables_rapport($vueBD, $IDjoueur, $id_selectionné);
-			$this->Afficher_rapport($T_variables, $id_selectionné);
-			echo"<!-- Fin du rapport -->\n";
-		}
+	$ligne = new $this->nomClasseLigne();
+?>
+	<tbody>
+<?php
+	foreach($Tvue as $réponseBD) {
+		$ligne->Hydrater($réponseBD);
+		echo $ligne->Afficher();
+		if ($réponseBD['ID'] == $id_selectionné) $ligne->AfficherRapport();
 	}
-	echo"\t</tbody>\n\t</table>\n";
+?>
+	</tbody>
+	</table>
+<?php
 }
-
-protected function Récupérer_variables_rapport($vueBD, $IDjoueur, $id) { // retourne la listes des variables sous la forme d'un tableau associatif
-	$T_variables = $this->InterrogerBD('SELECT * FROM '.$vueBD.'_rapport WHERE ID = :ID AND IDjoueur = :IDjoueur', array(':IDjoueur'=>$IDjoueur, ':ID'=>$id));
-	return $T_variables[0];
-}
-
-protected function Obtenir($marchandise_ID) { $this->BesoinOuUtile($marchandise_ID, false); }
-
-protected function UtilePour($marchandise_ID) { $this->BesoinOuUtile($marchandise_ID, true); }
-
-protected function BesoinOuUtile($marchandise_ID, $Butile) {
-	if ($Butile) {
-		$vue = 'Vue_marchandiseUtilePour';
-		$titre = "Utile pour";
-	} else {
-		$vue = 'Vue_marchandiseObtenir';
-		$titre = "Obtenir gr&acirc;ce &agrave; ";
-	}
-	$T_reponseBD = $this->InterrogerBD("SELECT nom FROM {$vue} WHERE marchandise_ID = :ID", array(':ID'=>$marchandise_ID));
-
-	if (count($T_reponseBD)>1) { // plusieurs lignes
-		echo"\t<a class=\"infobulle\">{$titre} ...<span>";
-		echo"<ul>\n";
-		foreach($T_reponseBD as $ligneBD) echo "\t\t<li>{$ligneBD['nom']}</li>\n";
-		echo"\t</ul></span></a>";
-	} else echo "<p>{$titre} ",(count($T_reponseBD)==1 ? $T_reponseBD[0]['nom'] : "rien"),"</p>";
-	echo "\n";
-
-}
-
 }
