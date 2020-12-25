@@ -1,6 +1,7 @@
 <?php
-require'Modele/classe_Tableau.php'; // classe mère
-require'Modele/classe_MAJLigne.php'; // classe pour les objets lignes
+require'Modele/classe_Tableau.php';
+require'Modele/classe_LigneTableau.php';
+require'Modele/classe_Commerce.php';
 
 class TCommerce extends Tableau {
 private $date_MAJ;

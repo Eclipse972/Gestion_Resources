@@ -25,9 +25,9 @@ if (!isset($_SESSION['IDjoueur'])) $_SESSION['IDjoueur'] = 1; // valeur initalis
 $_SESSION['onglet'] = isset($T_onglet[$SCRIPT]) ? $SCRIPT : null;
 $_SESSION['ID'] = (int) $_GET['id']; // indique la ligne sélectionnée dans un onglet
 
-if (isset($T_onglet[$SCRIPT]) && ($SCRIPT!='index')) {
+if (isset($T_onglet[$SCRIPT]) && ($SCRIPT!='index'))
 	require'Modele/classe_'.$T_onglet[$SCRIPT].'.php'; // chargement de la classe associée à l'onglet
-} else {
+else {
 	// gérer le sinon
 }
 

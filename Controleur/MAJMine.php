@@ -1,6 +1,7 @@
 <?php
 session_start();
-require'../Modele/classe_MAJLigne.php';
+require'../Modele/classe_LigneTableau.php';
+require'../Modele/classe_Mine.php';
 $mine = new Mine($_SESSION['IDjoueur'], $_POST['ID']);
 
 $Tpost = $mine->FormaterParamètres($_POST);

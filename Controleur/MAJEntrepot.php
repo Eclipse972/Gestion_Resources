@@ -1,6 +1,7 @@
 <?php
 session_start();
-require'../Modele/classe_MAJLigne.php';
+require'../Modele/classe_LigneTableau.php';
+require'../Modele/classe_Entrepot.php';
 $entrepot = new Entrepot($_SESSION['IDjoueur'], $_POST['ID']);
 
 $Tpost = $entrepot->FormaterParamètres($_POST);
