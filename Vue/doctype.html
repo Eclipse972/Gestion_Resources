@@ -1,6 +1,7 @@
 <?php
 session_start();
 $SCRIPT = substr($_SERVER['PHP_SELF'],1,strlen($_SERVER['PHP_SELF'])-5);	// script associé à l'onglet qui a téléchargé cette page
+require"Controleur/RequeteBD.php";
 
 /* Fichiers à créer pour un développement d'un futur onglet Ex: batiment spéciaux, missions
  * Soit X le nom du nouvel onglet
