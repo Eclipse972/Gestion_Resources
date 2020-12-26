@@ -62,7 +62,11 @@ public function Afficher_corps($id_selectionné) {
 	foreach($Tvue as $réponseBD) {
 		$ligne->Hydrater($réponseBD);
 		echo $ligne->Afficher();
-		if ($réponseBD['ID'] == $id_selectionné) $ligne->AfficherRapport();
+		if ($réponseBD['ID'] == $id_selectionné) {
+			echo"\t<tr>\n\t\t<td colspan=\"{$this->nb_col_tableau}\" id=\"rapport\">\n<!-- Début du rapport -->\n";
+			$ligne->AfficherRapport();
+			echo"\t\t</td>\n\t</tr>\n<!-- Fin du rapport -->";
+		}
 	}
 ?>
 	</tbody>

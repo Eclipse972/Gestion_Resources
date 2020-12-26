@@ -40,9 +40,11 @@ protected function ExecuteRequete($sql, $T_paramètres) {
 		foreach($T_paramètres as $clé => $valeur) { $requete->bindValue($clé, $valeur, PDO::PARAM_INT); }
 		$requete->execute();
 		if (substr($sql, 1, 5) == 'SELECT') $TreponseBD = $requete->fetchall(PDO::FETCH_ASSOC);
+		else $TreponseBD = null;
 	}
 	catch (PDOException $e) { exit('Erreur ex&eacute;cution de requ&ecirc;te pour la ligne: '.$e->getMessage()); }
-	return $requete;
+	$BD = null;
+	return $TreponseBD;
 }
 
 protected function InterrogerBD($sql, $Tparametres) {
@@ -51,8 +53,7 @@ protected function InterrogerBD($sql, $Tparametres) {
 }
 
 public function MiseAjour($listeDchamps, $T_paramètres) { // les paramètres sont des chaines transmises par javascript
-	$sql = "UPDATE {$this->table} SET {$listeDchamps} WHERE {$this->table}.joueur_ID = :IDjoueur AND {$this->table}.{$this->nomChampID} = :ID";
-	$this->ExecuteRequete($sql, $T_paramètres);
+	$this->ExecuteRequete("UPDATE {$this->table} SET {$listeDchamps} WHERE {$this->table}.joueur_ID = :IDjoueur AND {$this->table}.{$this->nomChampID} = :ID", $T_paramètres);
 }
 
 public function Afficher() {
@@ -63,8 +64,8 @@ public function Afficher() {
 <?php
 }
 
-protected function Récupérer_variables_rapport($vueBD, $IDjoueur, $id) { // retourne la listes des variables sous la forme d'un tableau associatif
-	$T_variables = $this->InterrogerBD('SELECT * FROM '.$vueBD.'_rapport WHERE ID = :ID AND IDjoueur = :IDjoueur', array(':IDjoueur'=>$IDjoueur, ':ID'=>$id));
+protected function Récupérer_variables_rapport($vueBD) { // retourne la listes des variables sous la forme d'un tableau associatif
+	$T_variables = $this->InterrogerBD("SELECT * FROM {$vueBD}_rapport WHERE ID = :ID AND IDjoueur = :IDjoueur", array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
 	return $T_variables;
 }
 
@@ -76,7 +77,8 @@ protected function BesoinOuUtile($marchandise_ID, $Butile) {
 	if ($Butile) {
 		$vue = 'Vue_marchandiseUtilePour';
 		$titre = "Utile pour";
-	} else {
+	}
+	else {
 		$vue = 'Vue_marchandiseObtenir';
 		$titre = "Obtenir gr&acirc;ce &agrave;";
 	}
@@ -87,7 +89,8 @@ protected function BesoinOuUtile($marchandise_ID, $Butile) {
 		echo"<ul>\n";
 		foreach($T_reponseBD as $ligneBD) echo "\t\t<li>{$ligneBD['nom']}</li>\n";
 		echo"\t</ul></span></a>";
-	} else echo "<p>{$titre} ",(count($T_reponseBD)==1 ? $T_reponseBD[0]['nom'] : "rien"),"</p>";
+	}
+	else echo "<p>{$titre} ",(count($T_reponseBD)==1 ? $T_reponseBD[0]['nom'] : "rien"),"</p>";
 	echo "\n";
 
 }

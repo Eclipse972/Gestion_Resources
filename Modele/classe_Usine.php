@@ -15,7 +15,6 @@ public function HydraterRapport($T_paramètres) {
 public function AfficherRapport() {
 ?>
 	<h1>Production</h1>
-	<p>dur&eacute;e de production restante: jour - heures - minutes<br>recharger la page devra mettre &agrave; jour cette info</p>
 	<p>dur&eacute;e de production (jour - heures - minutes) ou quantité souhait&eacute;e</p>
 	<p>Besoins pour la production souhait&eacute;e</p>
 
@@ -41,14 +40,18 @@ public function AfficherRapport() {
 				,'</td></tr>\n') AS code
 		FROM Vue_usine_amelioration_ingredients
 		WHERE joueur_ID = :IDjoueur AND ID = :ID"
-		,array(':IDjoueur'=>$_SESSION['IDjoueur'], ':ID'=>$_SESSION['ID']));
+		,array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
+	/////////////////////////////
+	//echo"joueur= {$this->IDjoueur} ID={$this->ID}";exit;
+	echo"résultat requête=";print_r($T_ligneBD);exit;
+	/////////////////////////////
 	foreach($T_ligneBD as $ligne) echo $ligne['code'];
 	// coût des marchandises
 	$rechercheCout = $this->InterrogerBD("
 		SELECT SUM(achat) AS somme
 		FROM Vue_usine_amelioration_ingredients
 		WHERE joueur_ID = :IDjoueur AND ID = :ID"
-		,array(':IDjoueur'=>$_SESSION['IDjoueur'], ':ID'=>$_SESSION['ID']));
+		,array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
 	$coutIngrédients = $rechercheCout[0]['somme'];
 	$taux = 5; // taux en % des frais de transport à rechercher dans la BD
 	// coût fixe
@@ -56,7 +59,7 @@ public function AfficherRapport() {
 		SELECT somme
 		FROM Vue_usine_amelioration_coutFixe
 		WHERE joueur_ID = :IDjoueur AND ID = :ID"
-		,array(':IDjoueur'=>$_SESSION['IDjoueur'], ':ID'=>$_SESSION['ID']));
+		,array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
 	$coutFixe = $rechercheCoutFixe[0]['somme'];
 ?>
 		<tr><td colspan="5" style="text-align:right">Total =</td><td><?=number_format($coutIngrédients, 0, ',',' ')?></td></tr>
