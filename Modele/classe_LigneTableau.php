@@ -9,7 +9,6 @@ abstract class LigneTableau {
 	protected $IDmax;
 	protected $code; // HTML de la ligne
 
-abstract public function HydraterRapport($T_paramètres);
 abstract public function AfficherRapport();
 
 public function __construct() {}

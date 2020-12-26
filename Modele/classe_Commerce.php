@@ -9,9 +9,6 @@ public function __construct() {
 	$this->IDmax = 60;
 }
 
-public function HydraterRapport($T_paramètres) {
-}
-
 public function AfficherRapport() {
 ?>
 	<h1>Liste des besoins avec achats et ventes &agrave; pr&eacute;voir</h1>
