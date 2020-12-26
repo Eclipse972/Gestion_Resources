@@ -17,7 +17,10 @@ public function AfficherRapport() {
 	<h1>En construction</h1>
 	<h1>Divers</h1>
 <?php
-	echo $this->UtilePour($Tvariables['marchandise_ID']);
+///////////////////////////////////////////////
+echo"joueur {$this->IDjoueur}\nID={$this->ID}";exit;
+///////////////////////////////////////////////
+	echo $this->UtilePour($this->ID);
 }
 
 }

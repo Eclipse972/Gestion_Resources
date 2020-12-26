@@ -65,7 +65,7 @@ public function Afficher_corps($id_selectionné) {
 		if ($réponseBD['ID'] == $id_selectionné) {
 			echo"\t<tr>\n\t\t<td colspan=\"{$this->nb_col_tableau}\" id=\"rapport\">\n<!-- Début du rapport -->\n";
 			$ligne->AfficherRapport();
-			echo"\t\t</td>\n\t</tr>\n<!-- Fin du rapport -->";
+			echo"\t\t</td>\n\t</tr>\n<!-- Fin du rapport -->\n";
 		}
 	}
 ?>

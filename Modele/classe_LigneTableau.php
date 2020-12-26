@@ -14,10 +14,10 @@ abstract public function AfficherRapport();
 
 public function __construct() {}
 
-public function Hydrater($Tparamètes) {
-	$this->ID = $Tparamètes['ID'];
-	$this->IDjoueur = $Tparamètes['IDjoueur'];
-	$this->code = $Tparamètes['code'];
+public function Hydrater($Tparam) {
+	$this->ID = $Tparam['ID'];
+	$this->IDjoueur = $Tparam['IDjoueur'];
+	$this->code = $Tparam['code'];
 }
 
 public function FormaterParamètres($T_post) {
@@ -33,13 +33,14 @@ public function IDvalide($valeur) {
 
 protected function ExecuteRequete($sql, $T_paramètres) {
 	try	{
-		include '../connexion.php'; // les variables de connexion sont définies dans ce script non suivi par git
+		$fichier = (file_exists('connexion.php')) ? 'connexion.php' : '../connexion.php';
+		include $fichier;
 		$BD = new PDO($dsn, $utilisateur, $mdp); // On se connecte au serveur MySQL
 		$BD->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$requete = $BD->prepare($sql);
 		foreach($T_paramètres as $clé => $valeur) { $requete->bindValue($clé, $valeur, PDO::PARAM_INT); }
 		$requete->execute();
-		if (substr($sql, 1, 5) == 'SELECT') $TreponseBD = $requete->fetchall(PDO::FETCH_ASSOC);
+		if (substr($sql, 0, 6) == 'SELECT') $TreponseBD = $requete->fetchall(PDO::FETCH_ASSOC);
 		else $TreponseBD = null;
 	}
 	catch (PDOException $e) { exit('Erreur ex&eacute;cution de requ&ecirc;te pour la ligne: '.$e->getMessage()); }
@@ -83,16 +84,14 @@ protected function BesoinOuUtile($marchandise_ID, $Butile) {
 		$titre = "Obtenir gr&acirc;ce &agrave;";
 	}
 	$T_reponseBD = $this->InterrogerBD("SELECT nom FROM {$vue} WHERE marchandise_ID = :ID", array(':ID'=>$marchandise_ID));
-
 	if (count($T_reponseBD)>1) { // plusieurs lignes
 		echo"\t<a class=\"infobulle\">{$titre} ...<span>";
 		echo"<ul>\n";
 		foreach($T_reponseBD as $ligneBD) echo "\t\t<li>{$ligneBD['nom']}</li>\n";
 		echo"\t</ul></span></a>";
 	}
-	else echo "<p>{$titre} ",(count($T_reponseBD)==1 ? $T_reponseBD[0]['nom'] : "rien"),"</p>";
+	else echo "<p>{$titre} ",(count($T_reponseBD)==1 ? $T_reponseBD['nom'] : "rien"),"</p>";
 	echo "\n";
-
 }
 
 public function PageDeRetour($ID) {

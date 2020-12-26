@@ -25,41 +25,25 @@ public function AfficherRapport() {
 
 	<h1>Am&eacute;lioration</h1>
 	<table id="amelioration">
-	<thead>
-		<tr><th>Marchandise</th><th>Quantit&eacute;</th><th>stock</th><th>manque</th><th>PU</th><th>achat</th>		</tr>
-	</thead>
+	<thead><tr><th>Marchandise</th><th>Quantit&eacute;</th><th>stock</th><th>manque</th><th>PU</th><th>achat</th></tr></thead>
 	<tbody>
 <?php
-	$T_ligneBD = $this->InterrogerBD("
-		SELECT CONCAT('\t\t<tr><td>',nom
-				,'</td><td>',REPLACE(CAST(FORMAT(Qte ,0) AS CHAR),',',' ')
-				,'</td><td>',REPLACE(CAST(FORMAT(stock ,0) AS CHAR),',',' ')
-				,'</td><td>',REPLACE(CAST(FORMAT(manque ,0) AS CHAR),',',' ')
-				,'</td><td>',REPLACE(CAST(FORMAT(PU ,0) AS CHAR),',',' ')
-				,'</td><td>',REPLACE(CAST(FORMAT(achat ,0) AS CHAR),',',' ')
-				,'</td></tr>\n') AS code
-		FROM Vue_usine_amelioration_ingredients
-		WHERE joueur_ID = :IDjoueur AND ID = :ID"
-		,array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
-	/////////////////////////////
-	//echo"joueur= {$this->IDjoueur} ID={$this->ID}";exit;
-	echo"résultat requête=";print_r($T_ligneBD);exit;
-	/////////////////////////////
+$T_ligneBD = $this->InterrogerBD("SELECT CONCAT(
+			'\t\t<tr><td>',nom
+			,'</td><td>',REPLACE(CAST(FORMAT(Qte ,0) AS CHAR),',',' ')
+			,'</td><td>',REPLACE(CAST(FORMAT(stock ,0) AS CHAR),',',' ')
+			,'</td><td>',REPLACE(CAST(FORMAT(manque ,0) AS CHAR),',',' ')
+			,'</td><td>',REPLACE(CAST(FORMAT(PU ,0) AS CHAR),',',' ')
+			,'</td><td>',REPLACE(CAST(FORMAT(achat ,0) AS CHAR),',',' ')
+			,'</td></tr>\n') AS code
+		FROM Vue_usine_amelioration_ingredients WHERE joueur_ID = :IDjoueur AND ID = :ID", array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
 	foreach($T_ligneBD as $ligne) echo $ligne['code'];
 	// coût des marchandises
-	$rechercheCout = $this->InterrogerBD("
-		SELECT SUM(achat) AS somme
-		FROM Vue_usine_amelioration_ingredients
-		WHERE joueur_ID = :IDjoueur AND ID = :ID"
-		,array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
-	$coutIngrédients = $rechercheCout[0]['somme'];
+	$rechercheCout = $this->InterrogerBD("SELECT SUM(achat) AS somme FROM Vue_usine_amelioration_ingredients WHERE joueur_ID = :IDjoueur AND ID = :ID", array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
+	$coutIngrédients = $rechercheCout['somme'];
 	$taux = 5; // taux en % des frais de transport à rechercher dans la BD
 	// coût fixe
-	$rechercheCoutFixe = $this->InterrogerBD("
-		SELECT somme
-		FROM Vue_usine_amelioration_coutFixe
-		WHERE joueur_ID = :IDjoueur AND ID = :ID"
-		,array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
+	$rechercheCoutFixe = $this->InterrogerBD("SELECT somme FROM Vue_usine_amelioration_coutFixe WHERE joueur_ID = :IDjoueur AND ID = :ID", array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
 	$coutFixe = $rechercheCoutFixe[0]['somme'];
 ?>
 		<tr><td colspan="5" style="text-align:right">Total =</td><td><?=number_format($coutIngrédients, 0, ',',' ')?></td></tr>

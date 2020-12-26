@@ -21,8 +21,8 @@ public function AfficherRapport() {
 	<p><?=$Tvariables['amelioration']?></p>
 	<h1>Divers</h1>
 <?php
-	echo $this->UtilePour($Tvariables['marchandise_ID']);
-	echo $this->Obtenir($Tvariables['marchandise_ID']);
+	echo $this->UtilePour($this->ID);
+	echo $this->Obtenir($this->ID);
 }
 
 }
