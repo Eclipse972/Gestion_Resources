@@ -39,26 +39,20 @@ protected function ExecuteRequete($sql, $T_paramètres) {
 		$requete = $BD->prepare($sql);
 		foreach($T_paramètres as $clé => $valeur) { $requete->bindValue($clé, $valeur, PDO::PARAM_INT); }
 		$requete->execute();
+		if (substr($sql, 1, 5) == 'SELECT') $TreponseBD = $requete->fetchall(PDO::FETCH_ASSOC);
 	}
 	catch (PDOException $e) { exit('Erreur ex&eacute;cution de requ&ecirc;te pour la ligne: '.$e->getMessage()); }
 	return $requete;
 }
 
 protected function InterrogerBD($sql, $Tparametres) {
-	try	{
-		$requete = $this->ExecuteRequete($sql, $Tparametres);
-		$TreponseBD = $requete->fetchall(PDO::FETCH_ASSOC);
-	}
-	catch (PDOException $e) { exit('Erreur int&eacute;rrogation BD: '.$e->getMessage()); }
+	$TreponseBD = $this->ExecuteRequete($sql, $Tparametres);
 	return (count($TreponseBD) > 1) ? $TreponseBD : $TreponseBD[0];
 }
 
 public function MiseAjour($listeDchamps, $T_paramètres) { // les paramètres sont des chaines transmises par javascript
-	try	{
-		$sql = "UPDATE {$this->table} SET {$listeDchamps} WHERE {$this->table}.joueur_ID = :IDjoueur AND {$this->table}.{$this->nomChampID} = :ID";
-		$this->ExecuteRequete($sql, $T_paramètres);
-	}
-	catch (PDOException $e) { exit('Erreur MAJ ligne de tableau: '.$e->getMessage()); }
+	$sql = "UPDATE {$this->table} SET {$listeDchamps} WHERE {$this->table}.joueur_ID = :IDjoueur AND {$this->table}.{$this->nomChampID} = :ID";
+	$this->ExecuteRequete($sql, $T_paramètres);
 }
 
 public function Afficher() {
