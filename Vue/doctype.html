@@ -26,8 +26,11 @@ if (!isset($_SESSION['IDjoueur'])) $_SESSION['IDjoueur'] = 1; // valeur initalis
 $_SESSION['onglet'] = isset($T_onglet[$SCRIPT]) ? $SCRIPT : null;
 $_SESSION['ID'] = (int) $_GET['id']; // indique la ligne sélectionnée dans un onglet
 
-if (isset($T_onglet[$SCRIPT]) && ($SCRIPT!='index'))
-	require'Modele/classe_'.$T_onglet[$SCRIPT].'.php'; // chargement de la classe associée à l'onglet
+if (isset($T_onglet[$SCRIPT]) && ($SCRIPT!='index')) {
+	require'Modele/classe_'.$T_onglet[$SCRIPT].'.php';	// chargement de la classe de tableau associée à l'onglet
+	require'Modele/classe_LigneTableau.php'; // chargement de la classe mère des lignes de tableau
+	require'Modele/classe_'.substr($T_onglet[$SCRIPT],1,9).'.php';	// chargement de la classe de ligne associée à l'onglet (on retire le T du nom)
+}
 else {
 	// gérer le sinon
 }
@@ -44,7 +47,8 @@ if (isset($T_onglet[$SCRIPT])) { // un des onglets appelle cette page
 		$Joueur->Présentation();
 		// traitement
 	} else { // onglet de type table
-		$Tableau = new $T_onglet[$SCRIPT];
+		$classeTableau = $T_onglet[$SCRIPT];
+		$Tableau = new $classeTableau;
 		$Tableau->Afficher_tete();
 		$Tableau->Afficher_corps($_SESSION['ID']);
 		$Tableau->CréerFormulaireMAJ();

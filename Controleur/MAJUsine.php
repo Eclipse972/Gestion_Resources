@@ -1,7 +1,9 @@
 <?php
 session_start();
-require'../Modele/classe_LigneTableau.php';
+require'../Modele/classe_LigneTableau.php'; // chargement de la classe mère des lignes de tableau
 require'../Modele/classe_Usine.php';
+require'../Controleur/RequeteBD.php';
+
 $usine = new Usine($_SESSION['IDjoueur'], $_POST['ID']);
 
 $Tpost = $usine->FormaterParamètres($_POST);

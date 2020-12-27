@@ -1,7 +1,5 @@
 <?php
-require'Modele/classe_Tableau.php';
-require'Modele/classe_LigneTableau.php';
-require'Modele/classe_Mine.php';
+require'Modele/classe_Tableau.php'; // chargement de la classe mère
 
 class TMine extends Tableau {
 

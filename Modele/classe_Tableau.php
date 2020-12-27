@@ -5,7 +5,6 @@ abstract class Tableau { // Remarque: chaque classe fille est associée à un CS
 	protected $nomClasseLigne;
 
 // pour les développements futurs
-abstract public function Afficher_tete();	// en-tête du tableau
 abstract public function CréerFormulaireMAJ();
 
 // Affichage de la page
@@ -43,18 +42,7 @@ protected function Afficher_thead($T_en_tete) {
 
 public function Afficher_corps($id_selectionné) {
 	$IDjoueur = $_SESSION['IDjoueur'];
-	try	{
-		include 'connexion.php'; // les variables de connexion sont définies dans ce script non suivi par git
-		$BD = new PDO($dsn, $utilisateur, $mdp); // On se connecte au serveur MySQL
-		$BD->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$requete = $BD->prepare("SELECT ID, IDjoueur, code FROM {$this->vueBD} WHERE IDjoueur = :ID");
-		$requete->bindValue(':ID', $IDjoueur);
-		$requete->execute();
-		$Tvue = $requete->fetchall(PDO::FETCH_ASSOC); // une seule ligne à capturer qui content toutes les variables pour afficher le rapport
-	} catch (PDOException $e) {
-		exit('Erreur : '.$e->getMessage()); // faire un meilleur traitement de l'erreur
-	}
-	$BD = null; // on ferme la connexion
+	$Tvue = ExecuterRequete("SELECT ID, IDjoueur, code FROM {$this->vueBD} WHERE IDjoueur = :ID", array(':ID' => $IDjoueur), 'construction du tableau d\'objets');
 	$ligne = new $this->nomClasseLigne();
 ?>
 	<tbody>

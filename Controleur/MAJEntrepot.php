@@ -1,7 +1,9 @@
 <?php
 session_start();
-require'../Modele/classe_LigneTableau.php';
+require'../Modele/classe_LigneTableau.php'; // chargement de la classe mère des lignes de tableau
 require'../Modele/classe_Entrepot.php';
+require'../Controleur/RequeteBD.php';
+
 $entrepot = new Entrepot($_SESSION['IDjoueur'], $_POST['ID']);
 
 $Tpost = $entrepot->FormaterParamètres($_POST);

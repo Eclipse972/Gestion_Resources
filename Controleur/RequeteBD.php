@@ -1,7 +1,7 @@
 <?php
 function ExecuterRequete($sql, $T_paramètres, $messageDerreur = '') {
 try	{
-	include'../connexion.php';
+	include (file_exists('connexion.php') ? 'connexion.php' : '../connexion.php');
 	$BD = new PDO($dsn, $utilisateur, $mdp); // On se connecte au serveur MySQL
 	$BD->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	$requete = $BD->prepare($sql);

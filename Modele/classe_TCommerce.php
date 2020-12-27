@@ -1,7 +1,5 @@
 <?php
-require'Modele/classe_Tableau.php';
-require'Modele/classe_LigneTableau.php';
-require'Modele/classe_Commerce.php';
+require'Modele/classe_Tableau.php'; // chargement de la classe mère
 
 class TCommerce extends Tableau {
 private $date_MAJ;

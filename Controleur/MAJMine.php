@@ -1,7 +1,9 @@
 <?php
 session_start();
-require'../Modele/classe_LigneTableau.php';
+require'../Modele/classe_LigneTableau.php'; // chargement de la classe mère des lignes de tableau
 require'../Modele/classe_Mine.php';
+require'../Controleur/RequeteBD.php';
+
 $mine = new Mine($_SESSION['IDjoueur'], $_POST['ID']);
 
 $Tpost = $mine->FormaterParamètres($_POST);
