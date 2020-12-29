@@ -8,6 +8,7 @@ public function __construct() {
 	$this->nomClasseLigne = 'Entrepot';
 	$this->traitementFormulaire = 'entrepots';
 	$this->scriptJS = 'entrepot';
+	$this->T_paramètres = array('niveau', 'stock');
 }
 
 public function Afficher_tete() { parent::Afficher_thead(array('Entrep&ocirc;t', 'Niveau', 'Capacit&eacute;', 'Stock', 'Valeur')); }
@@ -28,22 +29,19 @@ public function CréerFormulaireMAJ() {
 }
 
 public function TraiterFormulaireMAJ($Tpost) {
-	$ID		= $Tpost['ID'];
-	$niveau	= $Tpost['niveau'];
-	$stock	= $Tpost['stock'];
-	$entrepot = new Entrepot($_SESSION['IDjoueur'], $ID);
+	$entrepot = new Entrepot($_SESSION['IDjoueur'], $Tpost['ID']);
 
 	$listeDchamps	= "	niveau = :niveau,
 						stock = :stock";
 	$T_paramètres = array(
 		':IDjoueur'	=> $_SESSION['IDjoueur'],
-		':ID'		=> $ID,
-		':niveau'	=> $niveau,
-		':stock'	=> $stock);
+		':ID'		=> $Tpost['ID'],
+		':niveau'	=> $Tpost['niveau'],
+		':stock'	=> $Tpost['stock']);
 
 	$entrepot->MiseAjour($listeDchamps, $T_paramètres);
 
-	header("Location: ".$entrepot->PageDeRetour($ID));
+	header("Location: ".$entrepot->PageDeRetour($Tpost['ID']));
 }
 
 }

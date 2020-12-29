@@ -5,6 +5,7 @@ abstract class Tableau { // Remarque: chaque classe fille est associée à un CS
 	protected $nomClasseLigne;
 	protected $traitementFormulaire;
 	protected $scriptJS;
+	protected $T_paramètres; // liste des paramètres supplémentaires du script OuvrirFormulaireMAJ
 
 // pour les développements futurs
 abstract public function CréerFormulaireMAJ();
@@ -13,8 +14,19 @@ abstract public function TraiterFormulaireMAJ($Tpost);
 // Affichage de la page
 protected function DébutFormulaire($titre) {
 ?>
-	<script>function FermerFormulaireMAJ() { document.getElementById("conteneur_formulaire").style.visibility = "hidden"; }</script>
-	<script src="Controleur/<?=$this->scriptJS?>.js"></script>
+	<script>
+	function FermerFormulaireMAJ() { document.getElementById("conteneur_formulaire").style.visibility = "hidden"; }
+
+	function OuvrirFormulaireMAJ(ID, image, alt<?php foreach($this->T_paramètres as $champ)	echo", {$champ}"; ?>)	{
+		// modification du formulaire
+		document.formulaireMAJ.ID.value	= ID;
+		document.formulaireMAJ.image.src= "Vue/images/" + image + ".png";
+		document.formulaireMAJ.image.alt= alt;
+<?php	foreach($this->T_paramètres as $champ)	echo"\t\tdocument.formulaireMAJ.{$champ}.value = {$champ};\n"; ?>
+		document.getElementById("conteneur_formulaire").style.visibility = "visible";
+	}
+	</script>
+	<!--<script src="Controleur/<?=$this->scriptJS?>.js"></script>-->
 
 	<div id="conteneur_formulaire">
 	<form action="<?=$this->traitementFormulaire?>.php" name="formulaireMAJ" method="post">

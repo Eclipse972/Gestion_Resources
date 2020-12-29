@@ -8,6 +8,7 @@ public function __construct() {
 	$this->nomClasseLigne = 'Usine';
 	$this->traitementFormulaire = 'usines';
 	$this->scriptJS = 'usine';
+	$this->T_paramètres = array('niveau', 'production', 'jour', 'heure', 'minute');
 }
 
 public function Afficher_tete() { parent::Afficher_thead(array('Usine', 'Niveau', 'Production')); }
@@ -37,28 +38,23 @@ public function CréerFormulaireMAJ() {
 }
 
 public function TraiterFormulaireMAJ($Tpost) {
-	$ID			= $Tpost['ID'];
-	$niveau		= $Tpost['niveau'];
-	$production = $Tpost['production'];
-	$jour		= $Tpost['jour'];
-	$heure		= $Tpost['heure'];
-	$minute = ($jour + $heure + $Tpost['minute'] == 0) ? -1 : $Tpost['minute']; // si durée nulle on met l'heure de fin de production dans le passé
-	$usine = new Usine($_SESSION['IDjoueur'], $ID);
+	$usine = new Usine($_SESSION['IDjoueur'], $Tpost['ID']);
 
 	$listeDchamps	= "	niveau = :niveau,
 						prod_en_cours = :prod,
 						date_fin_production = UNIX_TIMESTAMP() + 1 + 60*:minute + 3600*:heure + 86400*:jour";
 	$T_paramètres = array(
 		':IDjoueur'	=> $_SESSION['IDjoueur'],
-		':ID'		=> $ID,
-		':niveau'	=> $niveau,
-		':prod'		=> $production,
-		':jour'		=> $jour,
-		':heure'	=> $heure,
-		':minute'	=> $minute);
+		':ID'		=> $Tpost['ID'],
+		':niveau'	=> $Tpost['niveau'],
+		':prod'		=> $Tpost['production'],
+		':jour'		=> $Tpost['jour'],
+		':heure'	=> $Tpost['heure'],
+		':minute'	=> ($Tpost['jour'] + $Tpost['heure'] + $Tpost['minute'] == 0) ? -1 : $Tpost['minute'] // si durée nulle on met l'heure de fin de production dans le passé
+	);
 	$usine->MiseAjour($listeDchamps, $T_paramètres);
 
-	header("Location: ".$usine->PageDeRetour($ID));
+	header("Location: ".$usine->PageDeRetour($Tpost['ID']));
 }
 
 }

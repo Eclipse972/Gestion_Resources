@@ -8,6 +8,7 @@ public function __construct() {
 	$this->nomClasseLigne = 'Mine';
 	$this->traitementFormulaire = 'mines';
 	$this->scriptJS = 'mine';
+	$this->T_paramètres = array('état', 'production', 'nombre');
 }
 
 public function Afficher_tete() { parent::Afficher_thead(array('Mines', '&Eacute;tat','Nombre', 'Production', 'Production max')); }
@@ -32,24 +33,20 @@ public function CréerFormulaireMAJ() {
 }
 
 public function TraiterFormulaireMAJ($Tpost) {
-	$ID			= $Tpost['ID'];
-	$état		= $Tpost['état'];
-	$production = $Tpost['production'];
-	$nombre		= $Tpost['nombre'];
-	$mine = new Mine($_SESSION['IDjoueur'], $ID);
+	$mine = new Mine($_SESSION['IDjoueur'], $Tpost['ID']);
 
 	$listeDchamps	= "	etat = :etat,
 						prod_max = :prod,
 						nombre = :nombre";
 	$T_paramètres = array(
 		':IDjoueur'	=> $_SESSION['IDjoueur'],
-		':ID'		=> $ID,
-		':etat'		=> $état,
-		':prod'		=> $production,
-		':nombre'	=> $nombre);
+		':ID'		=> $Tpost['ID'],
+		':etat'		=> $Tpost['état'],
+		':prod'		=> $Tpost['production'],
+		':nombre'	=> $Tpost['nombre']);
 	$mine->MiseAjour($listeDchamps, $T_paramètres);
 
-	header("Location: ".$mine->PageDeRetour($ID));
+	header("Location: ".$mine->PageDeRetour($Tpost['ID']));
 }
 
 }

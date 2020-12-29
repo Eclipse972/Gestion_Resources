@@ -31,6 +31,7 @@ if (empty($_POST)) {
 }
 else {
 	$Tpost = [];
-	foreach($_POST as $clé => $valeur) $Tpost[$clé] = (int)htmlspecialchars(stripslashes(trim($valeur)));
+	foreach($_POST as $clé => $valeur)
+		$Tpost[$clé] = (int)htmlspecialchars(stripslashes(trim($valeur)));
 	$Tableau->TraiterFormulaireMAJ($Tpost);
 }
