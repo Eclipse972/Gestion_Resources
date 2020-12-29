@@ -11,7 +11,6 @@ try	{
 	switch(substr($sql, 0, 6)) {
 		case 'SELECT':
 			$TreponseBD = $requete->fetchall(PDO::FETCH_ASSOC);
-			$TreponseBD = (count($TreponseBD) > 1) ? $TreponseBD : $TreponseBD[0];
 			break;
 		case 'UPDATE':
 			$TreponseBD = null;

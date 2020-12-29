@@ -24,26 +24,8 @@ public function IDvalide($valeur) {
 	return (($valeur > $this->IDmin) && ($valeur <= $this->IDmax));
 }
 
-protected function ExecuteRequete($sql, $T_paramètres) {
-	try	{
-		$fichier = (file_exists('connexion.php')) ? 'connexion.php' : '../connexion.php';
-		include $fichier;
-		$BD = new PDO($dsn, $utilisateur, $mdp); // On se connecte au serveur MySQL
-		$BD->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$requete = $BD->prepare($sql);
-		foreach($T_paramètres as $clé => $valeur) { $requete->bindValue($clé, $valeur, PDO::PARAM_INT); }
-		$requete->execute();
-		if (substr($sql, 0, 6) == 'SELECT') $TreponseBD = $requete->fetchall(PDO::FETCH_ASSOC);
-		else $TreponseBD = null;
-	}
-	catch (PDOException $e) { exit('Erreur ex&eacute;cution de requ&ecirc;te pour la ligne: '.$e->getMessage()); }
-	$BD = null;
-	return $TreponseBD;
-}
-
 protected function InterrogerBD($sql, $Tparametres) {
-	$TreponseBD = $this->ExecuteRequete($sql, $Tparametres);
-	return (count($TreponseBD) > 1) ? $TreponseBD : $TreponseBD[0];
+	return ExecuterRequete($sql, $Tparametres);
 }
 
 public function MiseAjour($listeDchamps, $T_paramètres) { // les paramètres sont des chaines transmises par javascript
@@ -83,7 +65,7 @@ protected function BesoinOuUtile($marchandise_ID, $Butile) {
 		foreach($T_reponseBD as $ligneBD) echo "\t\t<li>{$ligneBD['nom']}</li>\n";
 		echo"\t</ul></span></a>";
 	}
-	else echo "<p>{$titre} ",(count($T_reponseBD)==1 ? $T_reponseBD['nom'] : "rien"),"</p>";
+	else echo "<p>{$titre} ",(count($T_reponseBD)==1 ? $T_reponseBD[0]['nom'] : "rien"),"</p>";
 	echo "\n";
 }
 

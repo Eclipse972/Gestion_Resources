@@ -37,7 +37,7 @@ $T_ligneBD = $this->InterrogerBD("SELECT CONCAT(
 	foreach($T_ligneBD as $ligne) echo $ligne['code'];
 	// coût des marchandises
 	$rechercheCout = $this->InterrogerBD("SELECT SUM(achat) AS somme FROM Vue_usine_amelioration_ingredients WHERE joueur_ID = :IDjoueur AND ID = :ID", array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
-	$coutIngrédients = $rechercheCout['somme'];
+	$coutIngrédients = $rechercheCout[0]['somme'];
 	$taux = 5; // taux en % des frais de transport à rechercher dans la BD
 	// coût fixe
 	$rechercheCoutFixe = $this->InterrogerBD("SELECT somme FROM Vue_usine_amelioration_coutFixe WHERE joueur_ID = :IDjoueur AND ID = :ID", array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
