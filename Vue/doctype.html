@@ -37,7 +37,7 @@ if (isset($T_onglet[$SCRIPT])) { // un des onglets appelle cette page
 	if ($SCRIPT=='index') require'Controleur/pageJoueur.php';
 	else {
 		require'Controleur/pageTableau.php';
-		$cssTable = '<link rel="stylesheet" href="Vue/table.css" />';
+		$cssTable = "<link rel=\"stylesheet\" href=\"Vue/table.css\" />\n";
 	}
 } else { // aucun des onglets sélectionnés
 	$CODE_ERREUR = (isset($_SESSION['erreur'])) ? (int) $_SESSION['erreur'] : 0;
@@ -54,8 +54,8 @@ ob_end_clean();
 	<link rel="shortcut icon" type="image/png" href="Vue/images/resources.ico">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand:400,700">
 	<link rel="stylesheet" href="Vue/commun.css" />
-	<link rel="stylesheet" href="Vue/<?=$SCRIPT?>.css" />
 	<?=$cssTable?>
+	<link rel="stylesheet" href="Vue/<?=$SCRIPT?>.css" />
 	<title>Gestion de production pour le jeu Resources</title>
 </head>
 
