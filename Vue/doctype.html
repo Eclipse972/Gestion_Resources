@@ -18,12 +18,12 @@ $CONNEXION_JOUEUR = $Joueur->Cadre_connexion();
  * */
 
 $T_onglet = array(
-//	onglet		=> classe associée
-	'index'		=> 'Joueur',
-	'usines'	=> 'TUsine',
-	'mines'		=> 'TMine',
-	'entrepots'	=> 'TEntrepot',
-	'commerce'	=> 'TCommerce');
+//	onglet		=> script à charger
+	'index'		=> 'pageJoueur',
+	'usines'	=> 'pageTableau',
+	'mines'		=> 'pageTableau',
+	'entrepots'	=> 'pageTableau',
+	'commerce'	=> 'pageTableau');
 
 // sauvegarde de l'état dans la session
 if (!isset($_SESSION['IDjoueur'])) $_SESSION['IDjoueur'] = 1; // valeur initalisée lorsque le joueur se connecte. 1->joueur Lambda
@@ -32,17 +32,14 @@ $_SESSION['ID'] = (int) $_GET['id']; // indique la ligne sélectionnée dans un 
 
 // construction de la page
 ob_start();
-$cssTable ='';
 if (isset($T_onglet[$SCRIPT])) { // un des onglets appelle cette page
-	if ($SCRIPT=='index') require'Controleur/pageJoueur.php';
-	else {
-		require'Controleur/pageTableau.php';
-		$cssTable = "<link rel=\"stylesheet\" href=\"Vue/table.css\" />\n";
-	}
+	require"Controleur/{$T_onglet[$SCRIPT]}.php";
+	$cssTable = ($SCRIPT=='index') ? '' : "<link rel=\"stylesheet\" href=\"Vue/table.css\" />\n";
 } else { // aucun des onglets sélectionnés
 	$CODE_ERREUR = (isset($_SESSION['erreur'])) ? (int) $_SESSION['erreur'] : 0;
 	echo"<h1>Erreur {$CODE_ERREUR}: {$DICO[$CODE_ERREUR]}</h1>\n<p>S&eacute;lectionnez un des onglets en haut de cette page.</p>\n";
 	unset($_SESSION['erreur']);
+	$cssTable = '';
 }
 $SECTION = ob_get_contents();
 ob_end_clean();
