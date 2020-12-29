@@ -1,0 +1,4 @@
+<?php
+$Joueur->Présentation();
+// traitement
+

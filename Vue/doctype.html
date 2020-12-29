@@ -1,10 +1,14 @@
 <?php
 session_start();
-$SCRIPT = substr($_SERVER['PHP_SELF'],1,strlen($_SERVER['PHP_SELF'])-5);	// script associé à l'onglet qui a téléchargé cette page
+$SCRIPT = substr($_SERVER['PHP_SELF'],1,strlen($_SERVER['PHP_SELF'])-5);	// script associé à l'onglet qui a téléchargé ce script
 require"Controleur/RequeteBD.php";
 
-/* Fichiers à créer pour un développement d'un futur onglet Ex: batiment spéciaux, missions
- * Soit X le nom du nouvel onglet
+// joueur
+require'Modele/classe_Joueur.php';
+$Joueur=new Joueur;
+$CONNEXION_JOUEUR = $Joueur->Cadre_connexion();
+
+/* Fichiers à créer pour un développement d'un futur onglet Ex: batiment spéciaux, missions. Soit X le nom du nouvel onglet
  * X.php à la racine
  * ajouter X dans le tableau $T_onglet
  * Vue/X.css feuille de style en plus de commun.css
@@ -26,33 +30,11 @@ if (!isset($_SESSION['IDjoueur'])) $_SESSION['IDjoueur'] = 1; // valeur initalis
 $_SESSION['onglet'] = isset($T_onglet[$SCRIPT]) ? $SCRIPT : null;
 $_SESSION['ID'] = (int) $_GET['id']; // indique la ligne sélectionnée dans un onglet
 
-if (isset($T_onglet[$SCRIPT]) && ($SCRIPT!='index')) {
-	require'Modele/classe_'.$T_onglet[$SCRIPT].'.php';	// chargement de la classe de tableau associée à l'onglet
-	require'Modele/classe_LigneTableau.php'; // chargement de la classe mère des lignes de tableau
-	require'Modele/classe_'.substr($T_onglet[$SCRIPT],1,9).'.php';	// chargement de la classe de ligne associée à l'onglet (on retire le T du nom)
-}
-else {
-	// gérer le sinon
-}
-
-// joueur
-require'Modele/classe_Joueur.php';
-$Joueur=new Joueur;
-$CONNEXION_JOUEUR = $Joueur->Cadre_connexion();
-
 // construction de la page
 ob_start();
 if (isset($T_onglet[$SCRIPT])) { // un des onglets appelle cette page
-	if ($SCRIPT=='index') {
-		$Joueur->Présentation();
-		// traitement
-	} else { // onglet de type table
-		$classeTableau = $T_onglet[$SCRIPT];
-		$Tableau = new $classeTableau;
-		$Tableau->Afficher_tete();
-		$Tableau->Afficher_corps($_SESSION['ID']);
-		$Tableau->CréerFormulaireMAJ();
-	}
+	if ($SCRIPT=='index') require'Controleur/pageJoueur.php';
+	else require'Controleur/pageTableau.php';
 } else { // aucun des onglets sélectionnés
 	$CODE_ERREUR = (isset($_SESSION['erreur'])) ? (int) $_SESSION['erreur'] : 0;
 	echo"<h1>Erreur {$CODE_ERREUR}: {$DICO[$CODE_ERREUR]}</h1>\n<p>S&eacute;lectionnez un des onglets en haut de cette page.</p>\n";
@@ -83,9 +65,6 @@ ob_end_clean();
 
 <div id="joueur">
 <?=$CONNEXION_JOUEUR?>
-<?php
-//print_r($_SESSION);
-?>
 </div>
 
 <nav>
