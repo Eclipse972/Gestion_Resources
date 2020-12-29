@@ -1,7 +1,7 @@
 <?php
 session_start();
 $SCRIPT = substr($_SERVER['PHP_SELF'],1,strlen($_SERVER['PHP_SELF'])-5);	// script associé à l'onglet qui a téléchargé ce script
-require"Controleur/RequeteBD.php";
+require"RequeteBD.php";
 
 // joueur
 require'Modele/classe_Joueur.php';
@@ -33,7 +33,7 @@ $_SESSION['ID'] = (int) $_GET['id']; // indique la ligne sélectionnée dans un 
 // construction de la page
 ob_start();
 if (isset($T_onglet[$SCRIPT])) { // un des onglets appelle cette page
-	require"Controleur/{$T_onglet[$SCRIPT]}.php";
+	require"{$T_onglet[$SCRIPT]}.php";
 	$cssTable = ($SCRIPT=='index') ? '' : "<link rel=\"stylesheet\" href=\"Vue/table.css\" />\n";
 } else { // aucun des onglets sélectionnés
 	$CODE_ERREUR = (isset($_SESSION['erreur'])) ? (int) $_SESSION['erreur'] : 0;

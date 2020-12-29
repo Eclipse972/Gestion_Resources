@@ -15,7 +15,7 @@ public function __construct() {
 
 public function CréerFormulaireMAJ() {}
 
-public function TraiterFormulaireMAJ() {}
+public function TraiterFormulaireMAJ($Tpost) {}
 
 public function Afficher_tete() {
 ?>
