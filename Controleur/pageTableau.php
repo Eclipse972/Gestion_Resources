@@ -24,6 +24,13 @@ require"Modele/classe_{$T_classe[$SCRIPT]}.php";		// ligne associée à l'onglet
 
 $classeTableau = 'Tableau'.$T_classe[$SCRIPT];
 $Tableau = new $classeTableau;
-$Tableau->Afficher_tete();
-$Tableau->Afficher_corps($_SESSION['ID']);
-$Tableau->CréerFormulaireMAJ();
+if (empty($_POST)) {
+	$Tableau->Afficher_tete();
+	$Tableau->Afficher_corps($_SESSION['ID']);
+	$Tableau->CréerFormulaireMAJ();
+}
+else {
+	$Tpost = [];
+	foreach($_POST as $clé => $valeur) $Tpost[$clé] = (int)htmlspecialchars(stripslashes(trim($valeur)));
+	$Tableau->TraiterFormulaireMAJ($Tpost);
+}

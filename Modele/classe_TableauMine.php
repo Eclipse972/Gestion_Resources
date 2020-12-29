@@ -6,10 +6,14 @@ class TableauMine extends Tableau {
 public function __construct() {
 	$this->vueBD = 'Vue_mine';
 	$this->nomClasseLigne = 'Mine';
+	$this->traitementFormulaire = 'mines';
+	$this->scriptJS = 'mine';
 }
 
+public function Afficher_tete() { parent::Afficher_thead(array('Mines', '&Eacute;tat','Nombre', 'Production', 'Production max')); }
+
 public function CréerFormulaireMAJ() {
-	parent::DébutFormulaire('MAJMine', ' de la mine', 'mine');
+	parent::DébutFormulaire(' de la mine');
 ?>
 	<div id="champ1">
 		<label for="état">&Eacute;tat :</label>
@@ -27,8 +31,25 @@ public function CréerFormulaireMAJ() {
 	parent::FinFormulaire();
 }
 
-public function TraiterFormulaireMAJ() {}
+public function TraiterFormulaireMAJ($Tpost) {
+	$ID			= $Tpost['ID'];
+	$état		= $Tpost['état'];
+	$production = $Tpost['production'];
+	$nombre		= $Tpost['nombre'];
+	$mine = new Mine($_SESSION['IDjoueur'], $ID);
 
-public function Afficher_tete() { parent::Afficher_thead(array('Mines', '&Eacute;tat','Nombre', 'Production', 'Production max')); }
+	$listeDchamps	= "	etat = :etat,
+						prod_max = :prod,
+						nombre = :nombre";
+	$T_paramètres = array(
+		':IDjoueur'	=> $_SESSION['IDjoueur'],
+		':ID'		=> $ID,
+		':etat'		=> $état,
+		':prod'		=> $production,
+		':nombre'	=> $nombre);
+	$mine->MiseAjour($listeDchamps, $T_paramètres);
+
+	header("Location: ".$mine->PageDeRetour($ID));
+}
 
 }

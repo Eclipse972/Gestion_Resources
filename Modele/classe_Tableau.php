@@ -3,19 +3,21 @@ abstract class Tableau { // Remarque: chaque classe fille est associée à un CS
 	protected $nb_col_tableau;
 	protected $vueBD;
 	protected $nomClasseLigne;
+	protected $traitementFormulaire;
+	protected $scriptJS;
 
 // pour les développements futurs
 abstract public function CréerFormulaireMAJ();
-abstract public function TraiterFormulaireMAJ();
+abstract public function TraiterFormulaireMAJ($Tpost);
 
 // Affichage de la page
-protected function DébutFormulaire($action, $titre, $script) {
+protected function DébutFormulaire($titre) {
 ?>
 	<script>function FermerFormulaireMAJ() { document.getElementById("conteneur_formulaire").style.visibility = "hidden"; }</script>
-	<script src="Controleur/<?=$script?>.js"></script>
+	<script src="Controleur/<?=$this->scriptJS?>.js"></script>
 
 	<div id="conteneur_formulaire">
-	<form action="Controleur/<?=$action?>.php" name="formulaireMAJ" method="post">
+	<form action="<?=$this->traitementFormulaire?>.php" name="formulaireMAJ" method="post">
 	<span class="bouton-fermeture"><a href='#' onclick='FermerFormulaireMAJ()'>X</a></span>
 	<span class="gauche"><img name="image"></span>
 	<h1>Mise &agrave; jour<?=$titre?></h1>

@@ -19,12 +19,6 @@ public function Hydrater($Tparam) {
 	$this->code = $Tparam['code'];
 }
 
-public function FormaterParamètres($T_post) {
-	$Trésultat = [];
-	foreach($T_post as $clé => $valeur) $Trésultat[$clé] = (int)htmlspecialchars(stripslashes(trim($valeur)));
-	return $Trésultat;
-}
-
 public function IDvalide($valeur) {
 	$valeur = (int)$valeur;
 	return (($valeur > $this->IDmin) && ($valeur <= $this->IDmax));
@@ -53,7 +47,6 @@ protected function InterrogerBD($sql, $Tparametres) {
 }
 
 public function MiseAjour($listeDchamps, $T_paramètres) { // les paramètres sont des chaines transmises par javascript
-	//$this->ExecuteRequete("UPDATE {$this->table} SET {$listeDchamps} WHERE {$this->table}.joueur_ID = :IDjoueur AND {$this->table}.{$this->nomChampID} = :ID", $T_paramètres);
 	ExecuterRequete("UPDATE {$this->table} SET {$listeDchamps} WHERE {$this->table}.joueur_ID = :IDjoueur AND {$this->table}.{$this->nomChampID} = :ID", $T_paramètres, 'mise à jour');
 }
 
