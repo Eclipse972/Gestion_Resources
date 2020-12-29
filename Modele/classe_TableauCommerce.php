@@ -12,6 +12,8 @@ public function __construct() {
 
 public function CréerFormulaireMAJ() {}
 
+public function TraiterFormulaireMAJ() {}
+
 public function Afficher_tete() {
 ?>
 	<p align="right">Derni&egrave;re mise à jour le: <?=$this->date_MAJ?></p>

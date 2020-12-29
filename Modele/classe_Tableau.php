@@ -6,6 +6,7 @@ abstract class Tableau { // Remarque: chaque classe fille est associée à un CS
 
 // pour les développements futurs
 abstract public function CréerFormulaireMAJ();
+abstract public function TraiterFormulaireMAJ();
 
 // Affichage de la page
 protected function DébutFormulaire($action, $titre, $script) {

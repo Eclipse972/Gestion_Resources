@@ -23,6 +23,8 @@ public function CréerFormulaireMAJ() {
 	parent::FinFormulaire();
 }
 
+public function TraiterFormulaireMAJ() {}
+
 public function Afficher_tete() { parent::Afficher_thead(array('Entrep&ocirc;t', 'Niveau', 'Capacit&eacute;', 'Stock', 'Valeur')); }
 
 }

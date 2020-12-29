@@ -27,6 +27,8 @@ public function CréerFormulaireMAJ() {
 	parent::FinFormulaire();
 }
 
+public function TraiterFormulaireMAJ() {}
+
 public function Afficher_tete() { parent::Afficher_thead(array('Mines', '&Eacute;tat','Nombre', 'Production', 'Production max')); }
 
 }

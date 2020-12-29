@@ -32,6 +32,8 @@ public function CréerFormulaireMAJ() {
 	parent::FinFormulaire();
 }
 
+public function TraiterFormulaireMAJ() {}
+
 public function Afficher_tete() { parent::Afficher_thead(array('Usine', 'Niveau', 'Production')); }
 
 }
