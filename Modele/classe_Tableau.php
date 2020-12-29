@@ -26,7 +26,6 @@ protected function DébutFormulaire($titre) {
 		document.getElementById("conteneur_formulaire").style.visibility = "visible";
 	}
 	</script>
-	<!--<script src="Controleur/<?=$this->scriptJS?>.js"></script>-->
 
 	<div id="conteneur_formulaire">
 	<form action="<?=$this->traitementFormulaire?>.php" name="formulaireMAJ" method="post">
