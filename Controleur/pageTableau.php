@@ -9,19 +9,19 @@
  * Modele/classe_BD_X la BDD
  * */
 
-$T_tableau = array(
+$T_classe = array(
 // type tableau => classe associée
-	'usines'	=> 'TUsine',
-	'mines'		=> 'TMine',
-	'entrepots'	=> 'TEntrepot',
-	'commerce'	=> 'TCommerce');
+	'usines'	=> 'Usine',
+	'mines'		=> 'Mine',
+	'entrepots'	=> 'Entrepot',
+	'commerce'	=> 'Commerce');
 
 // $SCRIPT définie dans la script doctype.html qui appelle ce script
-require'Modele/classe_'.$T_tableau[$SCRIPT].'.php';	// chargement de la classe de tableau associée à l'onglet
-require'Modele/classe_LigneTableau.php'; // chargement de la classe mère des lignes de tableau
-require'Modele/classe_'.substr($T_tableau[$SCRIPT],1,9).'.php';	// chargement de la classe de ligne associée à l'onglet (on retire le T du nom)
+require"Modele/classe_Tableau{$T_classe[$SCRIPT]}.php";	// chargement de la classe de tableau associée à l'onglet
+require"Modele/classe_LigneTableau.php"; // chargement de la classe mère des lignes de tableau
+require"Modele/classe_{$T_classe[$SCRIPT]}.php";	// chargement de la classe de ligne associée à l'onglet (on retire le T du nom)
 
-$classeTableau = $T_tableau[$SCRIPT];
+$classeTableau = 'Tableau'.$T_classe[$SCRIPT];
 $Tableau = new $classeTableau;
 $Tableau->Afficher_tete();
 $Tableau->Afficher_corps($_SESSION['ID']);

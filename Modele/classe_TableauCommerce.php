@@ -1,7 +1,7 @@
 <?php
 require'Modele/classe_Tableau.php'; // chargement de la classe mère
 
-class TCommerce extends Tableau {
+class TableauCommerce extends Tableau {
 private $date_MAJ;
 
 public function __construct() {

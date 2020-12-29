@@ -1,7 +1,7 @@
 <?php
 require'Modele/classe_Tableau.php'; // chargement de la classe mère
 
-class TUsine extends Tableau {
+class TableauUsine extends Tableau {
 
 public function __construct() {
 	$this->vueBD = 'Vue_usine';
