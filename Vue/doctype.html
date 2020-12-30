@@ -1,7 +1,7 @@
 <?php
 session_start();
 $SCRIPT = substr($_SERVER['PHP_SELF'],1,strlen($_SERVER['PHP_SELF'])-5);	// script associé à l'onglet qui a téléchargé ce script
-require"RequeteBD.php";
+require'RequeteBD.php';
 
 // joueur
 require'Modele/classe_Joueur.php';
@@ -11,10 +11,9 @@ $CONNEXION_JOUEUR = $Joueur->Cadre_connexion();
 /* Fichiers à créer pour un développement d'un futur onglet Ex: batiment spéciaux, missions. Soit X le nom du nouvel onglet
  * X.php à la racine
  * ajouter X dans le tableau $T_onglet
- * Vue/X.css feuille de style en plus de commun.css
+ * Vue/X.css feuille de style en plus de commun.css si besoin
  * Vue/images/onglet_X.png image de l'onglet
- * Modele/classe_TX.php classe associée au tableau
- * Modele/classe_BD_X la BDD
+ * si l'onglet est de type tableau voir le script pageTaleau
  * */
 
 $T_onglet = array(
@@ -35,10 +34,8 @@ ob_start();
 if (isset($T_onglet[$SCRIPT])) { // un des onglets appelle cette page
 	require"{$T_onglet[$SCRIPT]}.php";
 	$cssTable = ($SCRIPT=='index') ? '' : "<link rel=\"stylesheet\" href=\"Vue/table.css\" />\n";
-} else { // aucun des onglets sélectionnés
-	$CODE_ERREUR = (isset($_SESSION['erreur'])) ? (int) $_SESSION['erreur'] : 0;
-	echo"<h1>Erreur {$CODE_ERREUR}: {$DICO[$CODE_ERREUR]}</h1>\n<p>S&eacute;lectionnez un des onglets en haut de cette page.</p>\n";
-	unset($_SESSION['erreur']);
+} else { // page d'erreur
+	require'pageErreur.php';
 	$cssTable = '';
 }
 $SECTION = ob_get_contents();
@@ -78,7 +75,6 @@ ob_end_clean();
 </nav>
 
 <section>
-	<div id="vers_le_haut"><a href="#"><img src="Vue/images/fleche_haut.png" alt="Retourner en haut" /></a></div>
 <?=$SECTION?>
 </section>
 

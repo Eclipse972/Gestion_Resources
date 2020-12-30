@@ -5,7 +5,7 @@
  * ajouter X dans le tableau $T_onglet
  * Vue/X.css feuille de style en plus de commun.css
  * Vue/images/onglet_X.png image de l'onglet
- * Modele/classe_TX.php classe associée au tableau
+ * Modele/classe_TableauX.php classe associée au tableau
  * Modele/classe_BD_X la BDD
  * */
 
@@ -25,6 +25,7 @@ require"Modele/classe_{$T_classe[$SCRIPT]}.php";		// ligne associée à l'onglet
 $classeTableau = 'Tableau'.$T_classe[$SCRIPT];
 $Tableau = new $classeTableau;
 if (empty($_POST)) {
+	echo"\t<div id=\"vers_le_haut\"><a href=\"#\"><img src=\"Vue/images/fleche_haut.png\" alt=\"Retourner en haut\" /></a></div>\n";
 	$Tableau->Afficher_tete();
 	$Tableau->Afficher_corps($_SESSION['ID']);
 	$Tableau->CréerFormulaireMAJ();
