@@ -16,10 +16,14 @@ public function AfficherRapport() {
 
 	<h1>Am&eacute;lioration</h1>
 	<p><?=$Tvariables['amelioration']?></p>
-	<h1>Divers</h1>
+	<a class="infobulle"><h1>Divers</h1>
+	<span>
 <?php
 	echo $this->UtilePour($this->ID);
 	echo $this->Obtenir($this->ID);
+?>
+	</span></a>
+<?php
 }
 
 }

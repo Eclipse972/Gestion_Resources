@@ -40,23 +40,11 @@ section strong { font-size:22px; }
 	margin:0 0 5px 10px;
 }
 
-.infobulle span {
-	display:none;
-	border-radius:6px;
-	color:black;
-	background-color: #eff1f3;
-}
+.infobulle span { display:none; }
 
-.infobulle:hover span {
-  display:block;
-  top:0;
-  left:0;
-  z-index:1000;
-  max-width:500px;
-  min-height:20px;
-  border:1px solid black;
-  overflow:hidden;
-}
+.infobulle span a { text-decoration:none; }
+
+.infobulle:hover span { display:block; }
 
 /* bouton de fermeture du formulaire */
 .bouton-fermeture {
