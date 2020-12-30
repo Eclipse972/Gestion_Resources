@@ -42,7 +42,7 @@ section strong { font-size:22px; }
 
 .infobulle span { display:none; }
 
-.infobulle span a { text-decoration:none; }
+.infobulle a:hover { text-decoration:none; }
 
 .infobulle:hover span { display:block; }
 
