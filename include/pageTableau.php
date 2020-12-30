@@ -18,8 +18,9 @@ $T_classe = array(
 
 // $SCRIPT défini dans la script doctype.html qui appelle ce script
 // chargement des classes...
+require'Modele/classe_Tableau.php';						// mère des tableaux
 require"Modele/classe_Tableau{$T_classe[$SCRIPT]}.php";	// tableau associée à l'onglet
-require"Modele/classe_LigneTableau.php";				// mère des lignes de tableau
+require'Modele/classe_LigneTableau.php';				// mère des lignes de tableau
 require"Modele/classe_{$T_classe[$SCRIPT]}.php";		// ligne associée à l'onglet
 
 $classeTableau = 'Tableau'.$T_classe[$SCRIPT];

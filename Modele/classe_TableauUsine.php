@@ -1,6 +1,4 @@
 <?php
-require'Modele/classe_Tableau.php'; // chargement de la classe mère
-
 class TableauUsine extends Tableau {
 
 public function __construct() {
