@@ -40,11 +40,6 @@ public function Afficher() {
 <?php
 }
 
-protected function Récupérer_variables_rapport($vueBD) { // retourne la listes des variables sous la forme d'un tableau associatif
-	$T_variables = $this->InterrogerBD("SELECT * FROM {$vueBD}_rapport WHERE ID = :ID AND IDjoueur = :IDjoueur", array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
-	return $T_variables;
-}
-
 protected function Obtenir($marchandise_ID) { $this->BesoinOuUtile($marchandise_ID, false); }
 
 protected function UtilePour($marchandise_ID) { $this->BesoinOuUtile($marchandise_ID, true); }
