@@ -11,8 +11,12 @@ public function __construct() {
 
 public function AfficherRapport() {
 ?>
-	<h1>Production</h1>
-	<p>dur&eacute;e de production (jour - heures - minutes) ou quantité souhait&eacute;e</p>
+	<h1>Productions</h1>
+	<h2>actuelle</h2>
+	<p>Pour produire X unités il faut :</p>
+
+	<h2>future</h2>
+	formuaire avec durée/Quantité + date de début + bouton de validation
 	<p>Besoins pour la production souhait&eacute;e</p>
 
 	<h1>Autosuffisance</h1>
@@ -20,7 +24,7 @@ public function AfficherRapport() {
 	<p>la production suffit-elle pour les besoins internes</p>
 	<p>les usines peuvent elles assurer les besoins pour produire</p>
 
-	<h1>Am&eacute;lioration</h1>
+	<h1>Am&eacute;lioration d&apos;usine</h1>
 	<table id="amelioration">
 	<thead><tr><th>Marchandise</th><th>Quantit&eacute;</th><th>stock</th><th>manque</th><th>PU</th><th>achat</th></tr></thead>
 	<tbody>
