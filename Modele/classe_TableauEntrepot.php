@@ -7,7 +7,6 @@ public function __construct() {
 	$this->vueBD = 'Vue_entrepot';
 	$this->nomClasseLigne = 'Entrepot';
 	$this->traitementFormulaire = 'entrepots';
-	$this->scriptJS = 'entrepot';
 	$this->T_paramètres = array('niveau', 'stock');
 }
 

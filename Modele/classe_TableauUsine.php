@@ -7,7 +7,6 @@ public function __construct() {
 	$this->vueBD = 'Vue_usine';
 	$this->nomClasseLigne = 'Usine';
 	$this->traitementFormulaire = 'usines';
-	$this->scriptJS = 'usine';
 	$this->T_paramètres = array('niveau', 'production', 'jour', 'heure', 'minute');
 }
 

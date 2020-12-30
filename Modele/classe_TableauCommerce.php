@@ -10,7 +10,6 @@ public function __construct() {
 	$this->nomClasseLigne = 'Commerce';
 	// pas de formulaire pour le moment
 	$this->traitementFormulaire = '';
-	$this->scriptJS = '';
 }
 
 public function CréerFormulaireMAJ() {}

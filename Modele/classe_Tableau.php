@@ -4,7 +4,6 @@ abstract class Tableau { // Remarque: chaque classe fille est associée à un CS
 	protected $vueBD;
 	protected $nomClasseLigne;
 	protected $traitementFormulaire;
-	protected $scriptJS;
 	protected $T_paramètres; // liste des paramètres supplémentaires du script OuvrirFormulaireMAJ
 
 // pour les développements futurs
