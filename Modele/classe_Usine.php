@@ -12,10 +12,10 @@ public function __construct() {
 public function AfficherRapport() {
 ?>
 	<h1>Productions</h1>
-	<h2>actuelle</h2>
+	<h2>Actuelle</h2>
 	<p>Pour produire X unités il faut :</p>
 
-	<h2>future</h2>
+	<h2>Future</h2>
 	formuaire avec durée/Quantité + date de début + bouton de validation
 	<p>Besoins pour la production souhait&eacute;e</p>
 
