@@ -12,11 +12,11 @@ public function __construct() {
 public function AfficherRapport() {
 ?>
 	<h1>Les besoins</h1>
-	<p><?=$Tvariables['besoin']?></p>
+	<p>Tableau : nom - quantité - date<</p>
 
 	<h1>Am&eacute;lioration</h1>
-	<p><?=$Tvariables['amelioration']?></p>
-	<a class="infobulle"><h1>Divers</h1>
+	<p>Cout pour passer au niveau supérieur</p>
+	<a class="infobulle"><h1>Divers ...</h1>
 	<span>
 <?php
 	echo $this->UtilePour($this->ID);

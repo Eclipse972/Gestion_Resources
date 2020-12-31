@@ -12,7 +12,7 @@ public function __construct() {
 public function AfficherRapport() {
 ?>
 	<h1>En construction</h1>
-	<a class="infobulle"><h1>Divers</h1>
+	<a class="infobulle"><h1>Divers ...</h1>
 	<span>
 <?=$this->UtilePour($this->ID + 2); // marchandise_ID = type_usine_ID +2 pour le moment?>
 	</span></a>

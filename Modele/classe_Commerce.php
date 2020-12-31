@@ -12,8 +12,8 @@ public function __construct() {
 public function AfficherRapport() {
 ?>
 	<h1>Liste des besoins avec achats et ventes &agrave; pr&eacute;voir</h1>
-	<p></p>
-	<a class="infobulle"><h1>Divers</h1>
+	<p>marchandise - quantité - date</p>
+	<a class="infobulle"><h1>Divers ...</h1>
 	<span>
 <?php
 	echo $this->UtilePour($this->ID);
