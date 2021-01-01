@@ -23,8 +23,7 @@ section tbody tr td:nth-child(1) p {
 	margin:0;
 }
 
-.petiteImage img {
-	width:25px;
+#rapport img {
 	height:25px;
 }
 

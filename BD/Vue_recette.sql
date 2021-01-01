@@ -2,7 +2,7 @@ CREATE VIEW Vue_recette AS
 SELECT type_usine.ID AS ID,
 	GROUP_CONCAT(
 		IF(ingredient.quantité < 0, -ingredient.quantité, ingredient.quantité)
-		,'<img src="Vue/images/',marchandise.image,'.png" alt="',marchandise.nom,'">"'
+		,'<img src="Vue/images/',marchandise.image,'.png" alt="',marchandise.nom,'">'
 		,marchandise.nom
 		,CASE ingredient.nature
 			WHEN 0 THEN ' +'
