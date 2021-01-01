@@ -23,9 +23,7 @@ section tbody tr td:nth-child(1) p {
 	margin:0;
 }
 
-#rapport img {
-	height:25px;
-}
+#rapport img {	height:30px; }
 
 .gauche {
 	float:left;
