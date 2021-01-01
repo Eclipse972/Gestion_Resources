@@ -31,8 +31,8 @@ public function CréerFormulaireMAJ() {
 }
 
 public function TraiterFormulaireMAJ($Tpost) {
-	$mine = new Mine($_SESSION['IDjoueur'], $Tpost['ID']);
-
+	$mine = new Mine;
+	$mine->Hydrater(array('IDjoueur'=>$_SESSION['IDjoueur'], 'ID'=>$Tpost['ID'], 'code'=>''));
 	$listeDchamps	= "	etat = :etat,
 						prod_max = :prod,
 						nombre = :nombre";

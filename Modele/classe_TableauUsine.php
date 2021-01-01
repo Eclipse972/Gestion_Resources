@@ -35,8 +35,8 @@ public function CréerFormulaireMAJ() {
 }
 
 public function TraiterFormulaireMAJ($Tpost) {
-	$usine = new Usine($_SESSION['IDjoueur'], $Tpost['ID']);
-
+	$usine = new Usine;
+	$usine->Hydrater(array('IDjoueur'=>$_SESSION['IDjoueur'], 'ID'=>$Tpost['ID'], 'code'=>''));
 	$listeDchamps	= "	niveau = :niveau,
 						prod_en_cours = :prod,
 						date_fin_production = UNIX_TIMESTAMP() + 1 + 60*:minute + 3600*:heure + 86400*:jour";
@@ -50,6 +50,9 @@ public function TraiterFormulaireMAJ($Tpost) {
 		':minute'	=> ($Tpost['jour'] + $Tpost['heure'] + $Tpost['minute'] == 0) ? -1 : $Tpost['minute'] // si durée nulle on met l'heure de fin de production dans le passé
 	);
 	$usine->MiseAjour($listeDchamps, $T_paramètres);
+	////////////////////////////////////
+	//exit("session = {$_SESSION['ID']}");
+	////////////////////////////////////
 
 	header("Location: ".$usine->PageDeRetour());
 }

@@ -26,8 +26,8 @@ public function CréerFormulaireMAJ() {
 }
 
 public function TraiterFormulaireMAJ($Tpost) {
-	$entrepot = new Entrepot($_SESSION['IDjoueur'], $Tpost['ID']);
-
+	$entrepot = new Entrepot;
+	$entrepot->Hydrater(array('IDjoueur'=>$_SESSION['IDjoueur'], 'ID'=>$Tpost['ID'], 'code'=>''));
 	$listeDchamps	= "	niveau = :niveau,
 						stock = :stock";
 	$T_paramètres = array(

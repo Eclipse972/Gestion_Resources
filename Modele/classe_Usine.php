@@ -14,10 +14,7 @@ public function AfficherRapport() {
 	<h1>Production actuelle</h1>
 <?php	$ligne = $this->InterrogerBD("SELECT formule FROM Vue_recette WHERE ID = :ID", array(':ID'=>$this->ID));	?>
 	<p>Formule : <?=$ligne[0]['formule']?></p>
-<?php
-	$production = $this->InterrogerBD("SELECT prodEnCours FROM Vue_usine WHERE IDjoueur = :IDjoueur AND ID = :ID"
-										,array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
-?>
+<?php	$production = $this->InterrogerBD("SELECT prodEnCours FROM Vue_usine WHERE IDjoueur = :IDjoueur AND ID = :ID", array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));?>
 	<p>La production de <?=$production[0]['prodEnCours']?> a n&eacute;cessit&eacute; :</p>
 	<table id="production">
 	<thead><tr><th>Marchandise</th><th>Quantit&eacute;</th></tr></thead>
