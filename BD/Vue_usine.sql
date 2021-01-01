@@ -6,6 +6,7 @@ SELECT
 	(SELECT dureeProd) DIV 86400 AS jour,
 	((SELECT dureeProd) DIV 3600) % 24 AS heure,
 	((SELECT dureeProd) DIV 60) % 60 AS minutes, #--minute est un mot-clé SQL
+	CONCAT(REPLACE(CAST(FORMAT(usine.prod_en_cours,0) AS CHAR),',',' '),' ',unites.nom) AS prodEnCours,
 	CONCAT('<a href="#" onclick="OuvrirFormulaireMAJ(',type_usine.ID,',',
 		'''',type_usine.image,''',',
 		''''',',			#--'''',type_usine.nom,''',', provoque un bug avec les noms contenant une apostrophe
@@ -22,7 +23,7 @@ SELECT
 					'<span style="background-color:red"> Probl&egrave;me avec un des param&egrave;tres </span>',#--avertissement
 					REPLACE((SELECT avancement),',',' ')	#--sinon on affiche la quantité déjà produite
 				),' / ',
-				(SELECT lien_MAJ), REPLACE(CAST(FORMAT(usine.prod_en_cours,0) AS CHAR),',',' '),' ',unites.nom,'</a></p>\n'
+				(SELECT lien_MAJ), (SELECT prodEnCours),'</a></p>\n'
 			)
 		),
 		'\t\t\t',(SELECT lien_MAJ),
