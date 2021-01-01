@@ -28,7 +28,11 @@ section tbody tr td:nth-child(1) p {
 	margin-right:9px;
 }
 
-/* tableau pour affichier les besoins de l'amelioration */
+/* tableau pour afficher les besoins de la production */
+#production thead tr th:nth-child(1), #production tbody tr td:nth-child(1) { width:200px; }
+#production thead tr th:nth-child(2), #production tbody tr td:nth-child(2) { width:110px; }
+
+/* tableau pour afficher les besoins de l'amelioration */
 #amelioration tbody tr td:nth-child(1) { vertical-align:middle; }/* pour annuler celui de section */
 
 #amelioration thead tr th:nth-child(1), #amelioration tbody tr td:nth-child(1) { width:200px; }
