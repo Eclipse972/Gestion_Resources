@@ -11,11 +11,21 @@ public function __construct() {
 
 public function AfficherRapport() {
 ?>
-	<h1>Productions</h1>
-	<h2>Actuelle</h2>
-	<p>Pour produire X unités il faut :</p>
-
-	<h2>Future</h2>
+	<h1>Production actuelle</h1>
+<?php	$ligne = $this->InterrogerBD("SELECT formule FROM Vue_recette WHERE ID = :ID", array(':ID'=>$this->ID));	?>
+	<p>Formule : <?=$ligne[0]['formule']?></p>
+	<p>Pour la production actuelle il a fallut :</p>
+	<table id="production">
+	<thead><tr><th>Marchandise</th><th>Quantit&eacute;</th></tr></thead>
+	<tbody>
+<?php
+$T_ligneBD = $this->InterrogerBD("SELECT code FROM Vue_usine_production_ingredients WHERE joueur_ID = :IDjoueur AND ID = :ID"
+									, array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
+	foreach($T_ligneBD as $ligne) echo $ligne['code'];
+?>
+	</tbody>
+	</table>
+	<h1>Production future</h1>
 	formuaire avec durée/Quantité + date de début + bouton de validation
 	<p>Besoins pour la production souhait&eacute;e</p>
 
