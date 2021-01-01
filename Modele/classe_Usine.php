@@ -29,15 +29,8 @@ public function AfficherRapport() {
 	<thead><tr><th>Marchandise</th><th>Quantit&eacute;</th><th>stock</th><th>manque</th><th>PU</th><th>achat</th></tr></thead>
 	<tbody>
 <?php
-$T_ligneBD = $this->InterrogerBD("SELECT CONCAT(
-			'\t\t<tr><td>',nom
-			,'</td><td>',REPLACE(CAST(FORMAT(Qte ,0) AS CHAR),',',' ')
-			,'</td><td>',REPLACE(CAST(FORMAT(stock ,0) AS CHAR),',',' ')
-			,'</td><td>',REPLACE(CAST(FORMAT(manque ,0) AS CHAR),',',' ')
-			,'</td><td>',REPLACE(CAST(FORMAT(PU ,0) AS CHAR),',',' ')
-			,'</td><td>',REPLACE(CAST(FORMAT(achat ,0) AS CHAR),',',' ')
-			,'</td></tr>\n') AS code
-		FROM Vue_usine_amelioration_ingredients WHERE joueur_ID = :IDjoueur AND ID = :ID", array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
+$T_ligneBD = $this->InterrogerBD("SELECT code FROM Vue_usine_amelioration_ingredients WHERE joueur_ID = :IDjoueur AND ID = :ID"
+									, array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
 	foreach($T_ligneBD as $ligne) echo $ligne['code'];
 	// coût des marchandises
 	$rechercheCout = $this->InterrogerBD("SELECT SUM(achat) AS somme FROM Vue_usine_amelioration_ingredients WHERE joueur_ID = :IDjoueur AND ID = :ID", array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
