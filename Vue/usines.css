@@ -23,6 +23,11 @@ section tbody tr td:nth-child(1) p {
 	margin:0;
 }
 
+.petiteImage img {
+	width:25px;
+	height:25px;
+}
+
 .gauche {
 	float:left;
 	margin-right:9px;

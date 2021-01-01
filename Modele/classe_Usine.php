@@ -13,7 +13,7 @@ public function AfficherRapport() {
 ?>
 	<h1>Production actuelle</h1>
 <?php	$ligne = $this->InterrogerBD("SELECT formule FROM Vue_recette WHERE ID = :ID", array(':ID'=>$this->ID));	?>
-	<p>Formule : <?=$ligne[0]['formule']?></p>
+	<p class="petiteImage">Formule : <?=$ligne[0]['formule']?></p>
 	<p>Pour la production actuelle il a fallut :</p>
 	<table id="production">
 	<thead><tr><th>Marchandise</th><th>Quantit&eacute;</th></tr></thead>
