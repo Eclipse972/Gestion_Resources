@@ -24,9 +24,7 @@ public function IDvalide($valeur) {
 	return (($valeur > $this->IDmin) && ($valeur <= $this->IDmax));
 }
 
-protected function InterrogerBD($sql, $Tparametres) {
-	return ExecuterRequete($sql, $Tparametres);
-}
+protected function InterrogerBD($sql, $Tparametres) { return ExecuterRequete($sql, $Tparametres); }
 
 public function MiseAjour($listeDchamps, $T_paramètres) { // les paramètres sont des chaines transmises par javascript
 	ExecuterRequete("UPDATE {$this->table} SET {$listeDchamps} WHERE {$this->table}.joueur_ID = :IDjoueur AND {$this->table}.{$this->nomChampID} = :ID", $T_paramètres, 'mise à jour');
@@ -66,8 +64,11 @@ protected function BesoinOuUtile($marchandise_ID, $Butile) {
 
 public function PageDeRetour() {
 	$retour = "/{$this->onglet}.php";
-	if ($this->IDvalide($this->ID)) $retour = $retour."?this->ID={$this->ID}"; // affiche le rapport si il y a lieu'
-	if ($this->this->IDvalthis->IDe($this->ID)) $retour = $retour."#{$this->ID}";	// met le focus sur l'élément dont on vient de changer les paramètres
+	////////////////////////////////////
+	//echo"session = {$_SESSION['ID']} - ID = {$this->ID}";exit;
+	////////////////////////////////////
+	if ($this->IDvalide($_SESSION['ID'])) $retour = $retour."?id={$_SESSION['ID']}"; // affiche le rapport si il y a lieu'
+	if ($this->IDvalide($this->ID)) $retour = $retour."#{$this->ID}";	// met le focus sur l'élément dont on vient de changer les paramètres
 	return $retour;
 }
 
