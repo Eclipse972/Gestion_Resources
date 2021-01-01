@@ -51,7 +51,7 @@ public function TraiterFormulaireMAJ($Tpost) {
 	);
 	$usine->MiseAjour($listeDchamps, $T_paramètres);
 
-	header("Location: ".$usine->PageDeRetour($Tpost['ID']));
+	header("Location: ".$usine->PageDeRetour());
 }
 
 }

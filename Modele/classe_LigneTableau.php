@@ -64,10 +64,10 @@ protected function BesoinOuUtile($marchandise_ID, $Butile) {
 	echo "\n";
 }
 
-public function PageDeRetour($ID) {
+public function PageDeRetour() {
 	$retour = "/{$this->onglet}.php";
-	if ($this->IDvalide($_SESSION['ID'])) $retour = $retour."?id={$_SESSION['ID']}"; // affiche le rapport si il y a lieu'
-	if ($this->IDvalide($ID)) $retour = $retour."#{$ID}";	// met le focus sur l'élément dont on vient de changer les paramètres
+	if ($this->IDvalide($this->ID)) $retour = $retour."?this->ID={$this->ID}"; // affiche le rapport si il y a lieu'
+	if ($this->this->IDvalthis->IDe($this->ID)) $retour = $retour."#{$this->ID}";	// met le focus sur l'élément dont on vient de changer les paramètres
 	return $retour;
 }
 

@@ -38,7 +38,7 @@ public function TraiterFormulaireMAJ($Tpost) {
 
 	$entrepot->MiseAjour($listeDchamps, $T_paramètres);
 
-	header("Location: ".$entrepot->PageDeRetour($Tpost['ID']));
+	header("Location: ".$entrepot->PageDeRetour());
 }
 
 }

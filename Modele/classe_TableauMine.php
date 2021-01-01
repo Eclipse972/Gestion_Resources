@@ -44,7 +44,7 @@ public function TraiterFormulaireMAJ($Tpost) {
 		':nombre'	=> $Tpost['nombre']);
 	$mine->MiseAjour($listeDchamps, $T_paramètres);
 
-	header("Location: ".$mine->PageDeRetour($Tpost['ID']));
+	header("Location: ".$mine->PageDeRetour());
 }
 
 }
