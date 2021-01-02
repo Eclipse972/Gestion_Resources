@@ -33,22 +33,36 @@ protected function ProductionActuelle() {
 	return $code;
 }
 
-public function AfficherRapport() {
-	$ligne = $this->InterrogerBD("SELECT formule FROM Vue_recette WHERE ID = :ID", array(':ID'=>$this->ID));
-?>		<p>Formule : <?=$ligne[0]['formule']?></p>
-<?=$this->ProductionActuelle()?>
-	<h1>Prochaine production</h1>
-<?php
+protected function ProchaineProduction() {
 	$production = $this->InterrogerBD("SELECT * FROM Vue_usine_prochaineProduction WHERE IDjoueur = :IDjoueur AND ID = :ID"
-											, array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
+										, array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
+	ob_start();
 ?>
-	<p>Besoins pour la production de <?=$production[0]['prochaineProd']?> (dur&eacute;e <?=$production[0]['duréeProductinoSouhaitée']?>) :</p>
-	<p>En construction: formulaire avec durée/Quantité + date de début + bouton de validation</p>
+		<h1>Prochaine production</h1>
+		<p>Besoins pour la production de <?=$production[0]['prochaineProd']?> (dur&eacute;e <?=$production[0]['duréeProductinoSouhaitée']?>) :</p>
+		<p>En construction: formulaire avec durée/Quantité + date de début + bouton de validation</p>
+<?php
+	$code = ob_get_contents();
+	ob_end_clean();
+	return $code;
+}
 
-	<h1>Autosuffisance</h1>
-	<p>Tendance</p>
-	<p>la production suffit-elle pour les besoins internes</p>
-	<p>les usines peuvent elles assurer les besoins pour produire</p>
+protected function Autosuffisance() {
+	ob_start();
+?>
+		<h1>Autosuffisance</h1>
+		<p>Tendance</p>
+		<p>la production suffit-elle pour les besoins internes</p>
+		<p>les usines peuvent elles assurer les besoins pour produire</p>
+<?php
+	$code = ob_get_contents();
+	ob_end_clean();
+	return $code;
+}
+
+protected function Amélioration() {
+	ob_start();
+?>
 
 	<h1>Am&eacute;lioration d&apos;usine</h1>
 	<table id="amelioration">
@@ -74,6 +88,18 @@ $T_ligneBD = $this->InterrogerBD("SELECT code FROM Vue_usine_amelioration_ingred
 	</table>
 	<p>ordre am&eacute;lioration et délai</p>
 <?php
+	$code = ob_get_contents();
+	ob_end_clean();
+	return $code;
+}
+
+public function AfficherRapport() {
+	$ligne = $this->InterrogerBD("SELECT formule FROM Vue_recette WHERE ID = :ID", array(':ID'=>$this->ID));
+	echo"\t\t<p>Formule : {$ligne[0]['formule']}</p>\n";
+	echo $this->ProductionActuelle();
+	echo $this->ProchaineProduction();
+	echo $this->Autosuffisance();
+	echo $this->Amélioration();
 }
 
 }
