@@ -61,17 +61,8 @@ protected function Autosuffisance() {
 }
 
 protected function Amélioration() {
-	ob_start();
-?>
-
-	<h1>Am&eacute;lioration d&apos;usine</h1>
-	<table id="amelioration">
-	<thead><tr><th>Marchandise</th><th>Quantit&eacute;</th><th>stock</th><th>manque</th><th>PU</th><th>achat</th></tr></thead>
-	<tbody>
-<?php
-$T_ligneBD = $this->InterrogerBD("SELECT code FROM Vue_usine_amelioration_ingredients WHERE joueur_ID = :IDjoueur AND ID = :ID"
+	$T_ligneBD = $this->InterrogerBD("SELECT code FROM Vue_usine_amelioration_ingredients WHERE joueur_ID = :IDjoueur AND ID = :ID"
 									, array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
-	foreach($T_ligneBD as $ligne) echo $ligne['code'];
 	// coût des marchandises
 	$rechercheCout = $this->InterrogerBD("SELECT SUM(achat) AS somme FROM Vue_usine_amelioration_ingredients WHERE joueur_ID = :IDjoueur AND ID = :ID", array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
 	$coutIngrédients = $rechercheCout[0]['somme'];
@@ -79,14 +70,20 @@ $T_ligneBD = $this->InterrogerBD("SELECT code FROM Vue_usine_amelioration_ingred
 	// coût fixe
 	$rechercheCoutFixe = $this->InterrogerBD("SELECT somme FROM Vue_usine_amelioration_coutFixe WHERE joueur_ID = :IDjoueur AND ID = :ID", array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
 	$coutFixe = $rechercheCoutFixe[0]['somme'];
+	ob_start();
 ?>
+		<h1>Am&eacute;lioration d&apos;usine</h1>
+		<table id="amelioration">
+		<thead><tr><th>Marchandise</th><th>Quantit&eacute;</th><th>stock</th><th>manque</th><th>PU</th><th>achat</th></tr></thead>
+		<tbody>
+<?php	foreach($T_ligneBD as $ligne) echo $ligne['code'];	?>
 		<tr><td colspan="5" style="text-align:right">Total =</td><td><?=number_format($coutIngrédients, 0, ',',' ')?></td></tr>
 		<tr><td colspan="5" style="text-align:right"><?=$taux?>% de frais de transport =</td><td><?=number_format($coutIngrédients*$taux/100, 0, ',',' ')?></td></tr>
 		<tr><td colspan="5" style="text-align:right">Frais divers =</td><td><?=number_format($coutFixe, 0, ',',' ')?></td></tr>
 		<tr><td colspan="5" style="text-align:right">CO&Ucirc;T TOTAL =</td><td><?=number_format($coutIngrédients*(1+$taux/100) + $coutFixe, 0, ',',' ')?></td></tr>
-	</tbody>
-	</table>
-	<p>ordre am&eacute;lioration et délai</p>
+		</tbody>
+		</table>
+		<p>ordre am&eacute;lioration et délai</p>
 <?php
 	$code = ob_get_contents();
 	ob_end_clean();
