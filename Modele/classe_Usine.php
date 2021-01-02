@@ -34,15 +34,14 @@ protected function ProductionActuelle() {
 }
 
 protected function ProchaineProduction() {
-	$production = $this->InterrogerBD("SELECT * FROM Vue_usine_prochaineProduction WHERE IDjoueur = :IDjoueur AND ID = :ID"
-										, array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
+	$production = $this->InterrogerBD("SELECT * FROM Vue_usine_prochaineProduction WHERE IDjoueur = :IDjoueur AND ID = :ID", array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
 	ob_start();
 ?>
 		<h1>Prochaine production</h1>
 		<p>Besoins pour la production de <?=$production[0]['prochaineProd']?> (dur&eacute;e <?=$production[0]['duréeProductinoSouhaitée']?>) :</p>
 		<p>En construction: formulaire avec durée/Quantité + date de début + bouton de validation</p>
 <?php
-	$code = ob_get_contents();
+	$code = ob_get_contents()."\n";
 	ob_end_clean();
 	return $code;
 }
@@ -55,14 +54,13 @@ protected function Autosuffisance() {
 		<p>la production suffit-elle pour les besoins internes</p>
 		<p>les usines peuvent elles assurer les besoins pour produire</p>
 <?php
-	$code = ob_get_contents();
+	$code = ob_get_contents()."\n";
 	ob_end_clean();
 	return $code;
 }
 
 protected function Amélioration() {
-	$T_ligneBD = $this->InterrogerBD("SELECT code FROM Vue_usine_amelioration_ingredients WHERE joueur_ID = :IDjoueur AND ID = :ID"
-									, array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
+	$T_ligneBD = $this->InterrogerBD("SELECT code FROM Vue_usine_amelioration_ingredients WHERE joueur_ID = :IDjoueur AND ID = :ID", array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
 	// coût des marchandises
 	$rechercheCout = $this->InterrogerBD("SELECT SUM(achat) AS somme FROM Vue_usine_amelioration_ingredients WHERE joueur_ID = :IDjoueur AND ID = :ID", array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
 	$coutIngrédients = $rechercheCout[0]['somme'];
@@ -92,7 +90,7 @@ protected function Amélioration() {
 
 public function AfficherRapport() {
 	$ligne = $this->InterrogerBD("SELECT formule FROM Vue_recette WHERE ID = :ID", array(':ID'=>$this->ID));
-	echo"\t\t<p>Formule : {$ligne[0]['formule']}</p>\n";
+	echo"\t\t<p>Formule : {$ligne[0]['formule']}</p>\n\n";
 	echo $this->ProductionActuelle();
 	echo $this->ProchaineProduction();
 	echo $this->Autosuffisance();
