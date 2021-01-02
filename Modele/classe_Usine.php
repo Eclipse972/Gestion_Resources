@@ -9,31 +9,41 @@ public function __construct() {
 	$this->IDmax = 22;
 }
 
-public function AfficherRapport() {
-?>
-	<h1>Production actuelle</h1>
-<?php	$ligne = $this->InterrogerBD("SELECT formule FROM Vue_recette WHERE ID = :ID", array(':ID'=>$this->ID));	?>
-	<p>Formule : <?=$ligne[0]['formule']?></p>
-<?php	$production = $this->InterrogerBD("SELECT prodEnCours FROM Vue_usine WHERE IDjoueur = :IDjoueur AND ID = :ID"
-											, array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));?>
-	<p>La production de <?=$production[0]['prodEnCours']?> a n&eacute;cessit&eacute; :</p>
-	<table id="production">
-	<thead><tr><th>Marchandise</th><th>Quantit&eacute;</th></tr></thead>
-	<tbody>
-<?php
+protected function ProductionActuelle() {
+	$production = $this->InterrogerBD("SELECT prodEnCours, dureeProd FROM Vue_usine WHERE IDjoueur = :IDjoueur AND ID = :ID"
+											, array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
 	$T_ligneBD = $this->InterrogerBD("SELECT code FROM Vue_usine_production_ingredients WHERE joueur_ID = :IDjoueur AND ID = :ID"
 										,array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
-	foreach($T_ligneBD as $ligne) echo $ligne['code'];
+	if ($production[0]['dureeProd'] == 0) $code = '';
+	else {
+		ob_start();
 ?>
-	</tbody>
-	</table>
+		<h1>Production actuelle</h1>
+		<p>La production de <?=$production[0]['prodEnCours']?> a n&eacute;cessit&eacute; :</p>
+		<table id="production">
+		<thead><tr><th>Marchandise</th><th>Quantit&eacute;</th></tr></thead>
+		<tbody>
+<?php	foreach($T_ligneBD as $ligne) echo $ligne['code'];	?>
+		</tbody>
+		</table>
+<?php
+		$code = ob_get_contents();
+		ob_end_clean();
+	}
+	return $code;
+}
 
+public function AfficherRapport() {
+	$ligne = $this->InterrogerBD("SELECT formule FROM Vue_recette WHERE ID = :ID", array(':ID'=>$this->ID));
+?>		<p>Formule : <?=$ligne[0]['formule']?></p>
+<?=$this->ProductionActuelle()?>
 	<h1>Prochaine production</h1>
-	<p>En constructino: formuaire avec durée/Quantité + date de début + bouton de validation</p>
-<?php	$production = $this->InterrogerBD("SELECT prochaineProd, duréeProductinoSouhaitée FROM Vue_usine_prochaineProduction WHERE IDjoueur = :IDjoueur AND ID = :ID"
+<?php
+	$production = $this->InterrogerBD("SELECT * FROM Vue_usine_prochaineProduction WHERE IDjoueur = :IDjoueur AND ID = :ID"
 											, array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
 ?>
-	<p>Besoins pour la production de <?=$production[0]['prochaineProd']?> dur&eacute;e : <?=$production[0]['duréeProductinoSouhaitée']?> :</p>
+	<p>Besoins pour la production de <?=$production[0]['prochaineProd']?> (dur&eacute;e <?=$production[0]['duréeProductinoSouhaitée']?>) :</p>
+	<p>En construction: formulaire avec durée/Quantité + date de début + bouton de validation</p>
 
 	<h1>Autosuffisance</h1>
 	<p>Tendance</p>
