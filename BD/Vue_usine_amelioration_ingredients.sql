@@ -6,7 +6,7 @@ SELECT
 	,IF((SELECT Qte) > entrepot.stock,(SELECT Qte) - entrepot.stock,0) AS manque
 	,IF (marchandise.cours_max = 0, marchandise.cours_ki, marchandise.cours_max) AS PU
 	,(SELECT manque) * (SELECT PU) AS achat
-	,CONCAT('\t\t<tr><td>',marchandise.nom
+	,CONCAT('\t\t\t<tr><td>',marchandise.nom
 			,'</td><td>',REPLACE(CAST(FORMAT((SELECT Qte) ,0) AS CHAR),',',' ')
 			,'</td><td>',REPLACE(CAST(FORMAT(entrepot.stock ,0) AS CHAR),',',' ')
 			,'</td><td>',REPLACE(CAST(FORMAT((SELECT manque) ,0) AS CHAR),',',' ')
