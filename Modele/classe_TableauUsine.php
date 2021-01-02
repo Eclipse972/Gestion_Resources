@@ -50,10 +50,6 @@ public function TraiterFormulaireMAJ($Tpost) {
 		':minute'	=> ($Tpost['jour'] + $Tpost['heure'] + $Tpost['minute'] == 0) ? -1 : $Tpost['minute'] // si durée nulle on met l'heure de fin de production dans le passé
 	);
 	$usine->MiseAjour($listeDchamps, $T_paramètres);
-	////////////////////////////////////
-	//exit("session = {$_SESSION['ID']}");
-	////////////////////////////////////
-
 	header("Location: ".$usine->PageDeRetour());
 }
 

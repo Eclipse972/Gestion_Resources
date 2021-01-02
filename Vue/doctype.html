@@ -27,7 +27,6 @@ $T_onglet = array(
 // sauvegarde de l'état dans la session
 if (!isset($_SESSION['IDjoueur'])) $_SESSION['IDjoueur'] = 1; // valeur initalisée lorsque le joueur se connecte. 1->joueur Lambda
 $_SESSION['onglet'] = isset($T_onglet[$SCRIPT]) ? $SCRIPT : null;
-$_SESSION['ID'] = (int) $_GET['id']; // indique la ligne sélectionnée dans un onglet
 
 // construction de la page
 ob_start();

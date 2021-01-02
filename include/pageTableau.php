@@ -26,6 +26,7 @@ require"Modele/classe_{$T_classe[$SCRIPT]}.php";		// ligne associée à l'onglet
 $classeTableau = 'Tableau'.$T_classe[$SCRIPT];
 $Tableau = new $classeTableau;
 if (empty($_POST)) {
+	$_SESSION['ID'] = (int) $_GET['id']; // indique la ligne sélectionnée dans le tableau
 	echo"\t<div id=\"vers_le_haut\"><a href=\"#\"><img src=\"Vue/images/fleche_haut.png\" alt=\"Retourner en haut\" /></a></div>\n";
 	$Tableau->Afficher_tete();
 	$Tableau->Afficher_corps($_SESSION['ID']);

@@ -64,9 +64,6 @@ protected function BesoinOuUtile($marchandise_ID, $Butile) {
 
 public function PageDeRetour() {
 	$retour = "/{$this->onglet}.php";
-	////////////////////////////////////
-	//echo"session = {$_SESSION['ID']} - ID = {$this->ID}";exit;
-	////////////////////////////////////
 	if ($this->IDvalide($_SESSION['ID'])) $retour = $retour."?id={$_SESSION['ID']}"; // affiche le rapport si il y a lieu'
 	if ($this->IDvalide($this->ID)) $retour = $retour."#{$this->ID}";	// met le focus sur l'élément dont on vient de changer les paramètres
 	return $retour;
