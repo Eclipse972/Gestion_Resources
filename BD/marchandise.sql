@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: gestion.resources.sql.free.fr
--- Généré le : Sam 12 Décembre 2020 à 06:28
+-- Généré le : Sam 02 Janvier 2021 à 03:21
 -- Version du serveur: 5.0.83
 -- Version de PHP: 5.3.9
 
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `marchandise` (
 INSERT INTO `marchandise` (`ID`, `nom`, `image`, `unité_ID`, `nature_ID`, `cours_ki`, `cours_max`, `moment`) VALUES
 (1, 'euro', 'euro', 7, 0, 1, 1, 2019),
 (2, 'caisse', 'caisse', 3, 0, 0, 0, 2019),
-(3, 'argile', 'argile', 1, 1, 323, 340, 2019),
+(3, 'argile', 'argile', 1, 1, 323, 0, 2019),
 (4, 'bauxite', 'bauxite', 1, 1, 2020, 2250, 2019),
 (5, 'calcaire', 'calcaire', 1, 1, 392, 480, 2019),
 (6, 'chalcopyrite', 'chalcopyrite', 1, 1, 2567, 2780, 2019),
@@ -80,28 +80,28 @@ INSERT INTO `marchandise` (`ID`, `nom`, `image`, `unité_ID`, `nature_ID`, `cour
 (36, 'technologie m&eacute;dicale', 'tech_med', 1, 2, 197220, 197220, 2019),
 (37, 'titane', 'titane', 1, 2, 32971, 51055, 2019),
 (38, 'verre', 'verre', 1, 2, 33139, 54001, 2019),
-(39, 'diamant g&eacute;ant', '', 3, 3, 951069144, 951069144, 2019),
-(40, 'd&eacute;chet de verre', '', 1, 3, 26950, 37906, 2019),
-(41, 'd&eacute;chet plastique', '', 1, 3, 5338, 12385, 2019),
-(42, 'd&eacute;chet électronique', '', 1, 3, 100082, 164371, 2019),
-(43, 'ferraille', '', 1, 3, 14575, 21530, 2019),
-(44, 'fossile', '', 3, 3, 3063, 10615, 2019),
-(45, 'huile usag&eacute;e', '', 1, 3, 4937, 9450, 2019),
-(46, 'kit de maintenance', '', 3, 3, 10815124, 45300100, 2019),
-(47, 'monnaie romaine', '', 3, 3, 33226, 36750, 2019),
-(48, 'pi&egrave;ce en cuivre', '', 3, 3, 13944, 16400, 2019),
-(49, 'tech upgrade 1', '', 3, 3, 79891279, 80000000, 2019),
-(50, 'tech upgrade 2', '', 3, 3, 159647310, 176505105, 2019),
-(51, 'tech upgrade 3', '', 3, 3, 180918823, 200683875, 2019),
-(52, 'tech upgrade 4', '', 3, 3, 102246934, 102246934, 2019),
-(53, 'vieux pneus', '', 3, 3, 21248, 23715, 2019),
-(54, '&eacute;paves de drones', '', 3, 3, 6004516, 9769669, 2019),
-(55, 'arm&eacute;e priv&eacute;e', '', 4, 4, 12152024, 17850061, 2019),
-(56, 'chiens d&apos;attaque', '', 4, 4, 200000, 1157700, 2019),
-(57, 'chiens de garde', '', 4, 4, 83384, 416800, 2019),
-(58, 'force d&apos;&eacute;lite', '', 4, 4, 11990354, 38955001, 2019),
-(59, 'gangster', '', 4, 4, 2668075, 9000000, 2019),
-(60, '&eacute;quipe de sécurit&eacute;', '', 4, 4, 1334320, 4270000, 2019);
+(39, 'diamant g&eacute;ant', 'diamant_geant', 3, 3, 951069144, 951069144, 2019),
+(40, 'd&eacute;chet de verre', 'dechet2verre', 1, 3, 26950, 37906, 2019),
+(41, 'd&eacute;chet plastique', 'dechet_plastique', 1, 3, 5338, 12385, 2019),
+(42, 'd&eacute;chet &eacute;lectronique', 'dechet_electronique', 1, 3, 100082, 164371, 2019),
+(43, 'ferraille', 'ferraille', 1, 3, 14575, 21530, 2019),
+(44, 'fossile', 'fossile', 3, 3, 3063, 10615, 2019),
+(45, 'huile usag&eacute;e', 'huile_usagee', 1, 3, 4937, 9450, 2019),
+(46, 'kit de maintenance', 'kit2maintenance', 3, 3, 10815124, 45300100, 2019),
+(47, 'monnaie romaine', 'piece-romaine', 3, 3, 33226, 36750, 2019),
+(48, 'pi&egrave;ce en cuivre', 'piece2Cu', 3, 3, 13944, 16400, 2019),
+(49, 'tech upgrade 1', 'tech_upgrade1', 3, 3, 79891279, 80000000, 2019),
+(50, 'tech upgrade 2', 'tech_upgrade2', 3, 3, 159647310, 176505105, 2019),
+(51, 'tech upgrade 3', 'tech_upgrade3', 3, 3, 180918823, 200683875, 2019),
+(52, 'tech upgrade 4', 'tech_upgrade4', 3, 3, 102246934, 102246934, 2019),
+(53, 'vieux pneus', 'vieux_pneu', 3, 3, 21248, 23715, 2019),
+(54, '&eacute;paves de drones', 'epave2drone', 3, 3, 6004516, 9769669, 2019),
+(55, 'arm&eacute;e priv&eacute;e', 'armee_privee', 4, 4, 12152024, 17850061, 2019),
+(56, 'chiens d&apos;attaque', 'chienDattaque', 4, 4, 200000, 1157700, 2019),
+(57, 'chiens de garde', 'chien2garde', 4, 4, 83384, 416800, 2019),
+(58, 'force d&apos;&eacute;lite', 'forceDlite', 4, 4, 11990354, 38955001, 2019),
+(59, 'gangster', 'gangster', 4, 4, 2668075, 9000000, 2019),
+(60, '&eacute;quipe de s&eacute;curit&eacute;', 'equipe2CQ', 4, 4, 1334320, 4270000, 2019);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
