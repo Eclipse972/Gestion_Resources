@@ -41,7 +41,7 @@ protected function ProchaineProduction() {
 		<p>Besoins pour la production de <?=$production[0]['prochaineProd']?> (dur&eacute;e <?=$production[0]['duréeProductinoSouhaitée']?>) :</p>
 		<p>En construction: formulaire avec durée/Quantité + date de début + bouton de validation</p>
 <?php
-	$code = ob_get_contents()."\n";
+	$code = ob_get_contents();
 	ob_end_clean();
 	return $code;
 }
@@ -50,11 +50,11 @@ protected function Autosuffisance() {
 	ob_start();
 ?>
 		<h1>Autosuffisance</h1>
-		<p>Tendance</p>
-		<p>la production suffit-elle pour les besoins internes</p>
-		<p>les usines peuvent elles assurer les besoins pour produire</p>
+		<p>Il peut &ecirc;tre judicieux de regarder la production de l&apos;usine couvre les besoin internes
+		et si les besoins d&apos;approvisionnement de l&apos;usine sont couverts en interne.</p>
+		<p>En construction: liste de liens vers les entrep&ocirc;ts (produit et ingr&eacute;dients de l&apos;usine)</p>
 <?php
-	$code = ob_get_contents()."\n";
+	$code = ob_get_contents();
 	ob_end_clean();
 	return $code;
 }
@@ -90,11 +90,11 @@ protected function Amélioration() {
 
 public function AfficherRapport() {
 	$ligne = $this->InterrogerBD("SELECT formule FROM Vue_recette WHERE ID = :ID", array(':ID'=>$this->ID));
-	echo"\t\t<p>Formule : {$ligne[0]['formule']}</p>\n\n";
-	echo $this->ProductionActuelle();
-	echo $this->ProchaineProduction();
+	echo"\t\t<p>Formule : {$ligne[0]['formule']}</p>\n 	";
+	echo $this->ProductionActuelle(),"\n";
+	echo $this->ProchaineProduction(),"\n";
+	echo $this->Amélioration(),"\n";
 	echo $this->Autosuffisance();
-	echo $this->Amélioration();
 }
 
 }
