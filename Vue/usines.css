@@ -35,29 +35,29 @@ section tbody tr td:nth-child(1) p {
 #production thead tr th:nth-child(2), #production tbody tr td:nth-child(2) { width:110px; }
 
 /* tableau pour afficher les besoins de l'amelioration */
-#amelioration tbody tr td:nth-child(1) { vertical-align:middle; }/* pour annuler celui de section */
+.tableau1 tbody tr td:nth-child(1) { vertical-align:middle; }/* pour annuler celui de section */
 
-#amelioration thead tr th:nth-child(1), #amelioration tbody tr td:nth-child(1) { width:200px; }
-#amelioration thead tr th:nth-child(2), #amelioration tbody tr td:nth-child(2) { width:110px; }
-#amelioration thead tr th:nth-child(3), #amelioration tbody tr td:nth-child(3) { width:100px; }
-#amelioration thead tr th:nth-child(4), #amelioration tbody tr td:nth-child(4) { width:100px; }
-#amelioration thead tr th:nth-child(5), #amelioration tbody tr td:nth-child(5) { width:100px; }
-#amelioration thead tr th:nth-child(6), #amelioration tbody tr td:nth-child(6) { width:150px; }
+.tableau1 thead tr th:nth-child(1), .tableau1 tbody tr td:nth-child(1) { width:200px; }
+.tableau1 thead tr th:nth-child(2), .tableau1 tbody tr td:nth-child(2) { width:110px; }
+.tableau1 thead tr th:nth-child(3), .tableau1 tbody tr td:nth-child(3) { width:100px; }
+.tableau1 thead tr th:nth-child(4), .tableau1 tbody tr td:nth-child(4) { width:100px; }
+.tableau1 thead tr th:nth-child(5), .tableau1 tbody tr td:nth-child(5) { width:100px; }
+.tableau1 thead tr th:nth-child(6), .tableau1 tbody tr td:nth-child(6) { width:150px; }
 
-#amelioration thead tr {
+.tableau1 thead tr {
 	text-align:center;
 	color:white;
 }
 
-#amelioration tbody tr { text-align:right; }
+.tableau1 tbody tr { text-align:right; }
 
-#amelioration tbody tr td:nth-child(2), /* une police à chasse fixe pour les colonnes n'affichant que des chiffres pour faciliter la lecture */
-#amelioration tbody tr td:nth-child(3),
-#amelioration tbody tr td:nth-child(4),
-#amelioration tbody tr td:nth-child(5),
-#amelioration tbody tr td:nth-child(6) { font-family:courier; font-size:14px; }
+.tableau1 tbody tr td:nth-child(2), /* une police à chasse fixe pour les colonnes n'affichant que des chiffres pour faciliter la lecture */
+.tableau1 tbody tr td:nth-child(3),
+.tableau1 tbody tr td:nth-child(4),
+.tableau1 tbody tr td:nth-child(5),
+.tableau1 tbody tr td:nth-child(6) { font-family:courier; font-size:14px; }
 
-#amelioration tbody tr td:nth-child(1) {  text-align:left; }
+.tableau1 tbody tr td:nth-child(1) {  text-align:left; }
 
 /* spécificités du formulaire de MAJ mines */
 #conteneur_formulaire fieldset {

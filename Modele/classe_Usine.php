@@ -71,7 +71,7 @@ protected function Amélioration() {
 	ob_start();
 ?>
 		<h1>Am&eacute;lioration d&apos;usine</h1>
-		<table id="amelioration">
+		<table class="tableau1">
 		<thead><tr><th>Marchandise</th><th>Quantit&eacute;</th><th>stock</th><th>manque</th><th>PU</th><th>achat</th></tr></thead>
 		<tbody>
 <?php	foreach($T_ligneBD as $ligne) echo $ligne['code'];	?>
