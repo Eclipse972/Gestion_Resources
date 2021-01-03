@@ -66,7 +66,7 @@ protected function ProchaineProduction() {
 ?>
 		<h1>Prochaine production</h1>
 		<p>Besoins pour la production de <?=$production[0]['prochaineProd']?> (dur&eacute;e <?=$production[0]['duréeProductinoSouhaitée']?>) :</p>
-		<?=$this->Tableau1('Vue_usine_amelioration_ingredients', 'Vue_usine_amelioration_coutFixe');	?>
+		<?=$this->Tableau1('Vue_usine_prochaineProduction_ingredients', 'Vue_usine_prochaineProduction_coutFixe');	?>
 		<p>En construction: formulaire avec durée/Quantité + date de début + bouton de validation</p>
 <?php
 	$code = ob_get_contents();
