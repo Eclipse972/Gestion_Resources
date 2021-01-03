@@ -2,26 +2,27 @@ CREATE VIEW Vue_usine_prochaineProduction AS
 SELECT
 	type_usine.ID
 	,usine.joueur_ID AS IDjoueur
-	,CONCAT(REPLACE(CAST(FORMAT(usine.niveau * type_usine.prod_niveau1 * usine.duree_prod_souhaitee / 86400,0) AS CHAR),',',' '),' ',unites.nom
+	,CONCAT(REPLACE(CAST(FORMAT(usine.prod_souhaitee,0) AS CHAR),',',' '),' ',unites.nom
 	) AS prochaineProd
-	,(SELECT usine.duree_prod_souhaitee) DIV 86400 AS jour2
-	,((SELECT usine.duree_prod_souhaitee) DIV 3600) % 24 AS heure2
-	,((SELECT usine.duree_prod_souhaitee) DIV 60) % 60 AS minute2
+	, ROUND(usine.prod_souhaitee / usine.niveau / type_usine.prod_niveau1) AS duree_prod_souhaitee # en heure
+	,(SELECT duree_prod_souhaitee) DIV 24 AS jour
+	,(SELECT duree_prod_souhaitee) % 24 AS heure
+	,((SELECT duree_prod_souhaitee) * 60) % 60 AS minutes #-- minute est un mot-clé
 	,CONCAT(
-		CASE (SELECT jour2)
+		CASE (SELECT jour)
 			WHEN 0 THEN ''
 			WHEN 1 THEN '1 jour '
-			ELSE CONCAT((SELECT jour2),' jours ')
+			ELSE CONCAT((SELECT jour),' jours ')
 		END,
-		CASE (SELECT heure2)
+		CASE (SELECT heure)
 			WHEN 0 THEN ''
 			WHEN 1 THEN '1 heure '
-			ELSE CONCAT((SELECT heure2),' heures ')
+			ELSE CONCAT((SELECT heure),' heures ')
 		END,
-		CASE (SELECT minute2)
+		CASE (SELECT minutes)
 			WHEN 0 THEN ''
 			WHEN 1 THEN '1 minute'
-			ELSE CONCAT((SELECT minute2),' minutes')
+			ELSE CONCAT((SELECT minutes),' minutes')
 		END
 	) AS duréeProductinoSouhaitée
 FROM usine
