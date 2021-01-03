@@ -7,6 +7,7 @@ public function __construct() {
 	$this->onglet = 'entrepots';
 	$this->IDmin = 2;
 	$this->IDmax = 60;
+	parent::__construct();
 }
 
 public function AfficherRapport() {

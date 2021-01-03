@@ -7,6 +7,7 @@ public function __construct() {
 	$this->onglet = 'usines';
 	$this->IDmin = 0;
 	$this->IDmax = 22;
+	parent::__construct();
 }
 
 protected function ProductionActuelle() {
@@ -38,7 +39,7 @@ protected function Tableau1($vueIngrédients, $vueCoutFixe) {
 	// coût des marchandises
 	$rechercheCout = $this->InterrogerBD("SELECT SUM(achat) AS somme FROM {$vueIngrédients} WHERE joueur_ID = :IDjoueur AND ID = :ID", array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
 	$coutIngrédients = $rechercheCout[0]['somme'];
-	$taux = 5; // taux en % des frais de transport à rechercher dans la BD
+	$taux = $this->fraisTransport; // taux en % des frais de transport à rechercher dans la BD
 	// coût fixe
 	$rechercheCoutFixe = $this->InterrogerBD("SELECT somme FROM {$vueCoutFixe} WHERE joueur_ID = :IDjoueur AND ID = :ID", array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
 	$coutFixe = $rechercheCoutFixe[0]['somme'];

@@ -7,6 +7,7 @@ public function __construct() {
 	$this->onglet = 'commerce';
 	$this->IDmin = 3;
 	$this->IDmax = 60;
+	parent::__construct();
 }
 
 public function AfficherRapport() {

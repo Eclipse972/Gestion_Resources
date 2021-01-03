@@ -8,10 +8,13 @@ abstract class LigneTableau {
 	protected $IDmin;
 	protected $IDmax;
 	protected $code; // HTML de la ligne
+	protected $fraisTransport;
 
 abstract public function AfficherRapport();
 
-public function __construct() {}
+public function __construct() {
+	$this->fraisTransport = 5;	// il faudra rechercher le taux suivant le joueur
+}
 
 public function Hydrater($Tparam) {
 	$this->ID = $Tparam['ID'];
