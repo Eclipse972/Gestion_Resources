@@ -11,30 +11,21 @@ public function __construct() {
 }
 
 public function Besoins() {
-	ob_start();
 ?>
 	<h1>Liste des besoins avec achats et ventes &agrave; pr&eacute;voir</h1>
 	<p>marchandise - quantité - date</p>
 <?php
-	$code = ob_get_contents();
-	ob_end_clean();
-	return $code;
 }
 
 public function LesCours() {
-	ob_start();
 ?>
 	<h1>Les cours</h1>
 	<p>Date de d&eacute;but : et date de fin : -</p>
 	<p>Cours d&apos;&eacute;volution en construction</p>
 <?php
-	$code = ob_get_contents();
-	ob_end_clean();
-	return $code;
 }
 
 public function StatsMarché() {
-	ob_start();
 ?>
 	<h1>Statistiques du march&eacute;</h1>
 	<p>Les courbes ci-dessous montre le rapport entre l&apos;ench&egrave;re la plus &eacute;lev&eacute;e et le cours du ki-market.</p>
@@ -43,15 +34,12 @@ public function StatsMarché() {
 	<h2>Suivant le jour de la semaine</h2>
 	<p>En construction</p>
 <?php
-	$code = ob_get_contents();
-	ob_end_clean();
-	return $code;
 }
 
 public function AfficherRapport() {
-	echo $this->Besoins();
-	echo $this->LesCours();
-	echo $this->StatsMarché();
+	$this->Besoins();
+	$this->LesCours();
+	$this->StatsMarché();
 ?>
 	<a class="infobulle"><h1>Divers ...</h1>
 	<span>
