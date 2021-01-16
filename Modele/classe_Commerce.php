@@ -29,6 +29,7 @@ public function StatsMarché() {
 ?>
 	<h1>Statistiques du march&eacute;</h1>
 	<p>Les courbes ci-dessous montre le rapport entre l&apos;ench&egrave;re la plus &eacute;lev&eacute;e et le cours du ki-market.</p>
+	<p><a href="https://fr.wikipedia.org/wiki/Bo%C3%AEte_%C3%A0_moustaches" title="Page Wikip&eacute;dia dans un nouvel onglet" target="_blank">Rappel sur les diagrammes en bo&icirc;tes ou &agrave; moustaches</a></p>
 	<h2>Suivant l&apos;heure de la journ&eacute;e</h2>
 	<p>En construction</p>
 	<h2>Suivant le jour de la semaine</h2>
