@@ -27,7 +27,6 @@ protected function ProductionActuelle() {
 		</table>
 <?php
 	}
-	return $code;
 }
 
 protected function Tableau1($vueIngrédients, $vueCoutFixe) {

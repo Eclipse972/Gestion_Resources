@@ -12,7 +12,7 @@ SELECT
 		''''',',			#--'''',type_usine.nom,''',', provoque un bug avec les noms contenant une apostrophe
 		usine.niveau,',',
 		usine.prod_en_cours,',',
-		(SELECT jour),',', (SELECT heure),',', (SELECT minutes),')">')	AS lien_MAJ,
+		(SELECT jour),',', (SELECT heure),',', (SELECT minutes),',',usine.prod_souhaitee,')">') AS lien_MAJ,
 	FORMAT(usine.prod_en_cours - (usine.niveau * type_usine.prod_niveau1 * (SELECT dureeProd))/3600, 0) AS avancement,
 	CONCAT(
 		'<td><a href="?id=',type_usine.ID,'#',type_usine.ID,'"><span class="gauche"><img src="Vue/images/',type_usine.image,'.png" alt ="',type_usine.nom,'"></span>',
