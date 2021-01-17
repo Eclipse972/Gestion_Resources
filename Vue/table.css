@@ -93,7 +93,7 @@ z-index: 1000;
 }
 
 #conteneur_formulaire form {
-width:750px;
+width:700px;
 min-height: 260px;
 margin: 5px;
 background-color: #021116;
@@ -112,3 +112,5 @@ transform: translate(-50%, -50%);
 	margin-bottom:9px;
 	text-align:middle;
 }
+
+#conteneur_formulaire input[type=submit] { margin-left:300px; }
