@@ -17,7 +17,7 @@ public function CréerFormulaireMAJ() {
 		<label for="niveau">Niveau :</label>
 		<input type="number" id="niveau" name="niveau" min="1" step="1" required>
 	</div>
-	<div id="champ2">
+	<div class="champProduction">
 		<label for="production">Production totale</label>
 		<input type="number" id="production" name="production" min="1" step="1" required>
 	</div>
@@ -32,9 +32,10 @@ public function CréerFormulaireMAJ() {
 	</fieldset>
 	<fieldset>
 		<legend>Production souhait&eacute;e</legend>
-		<label for="prod_souhaitee">Quantit&eacute;</label>
-		<input type="number" id="prod_souhaitee" name="prod_souhaitee" min="1" step="1" required>
-
+		<div class="champProduction">
+			<label for="prod_souhaitee">Quantit&eacute;</label>
+			<input type="number" id="prod_souhaitee" name="prod_souhaitee" min="0" step="1" required>
+		</div>
 		<!-- futurs champs
 		<label for="jour2">jour :</label>
 		<input type="number" id="jour2" name="jour2" min="0" step="1" required>

@@ -77,6 +77,6 @@ section tbody tr td:nth-child(1) p {
 	margin-right:20px
 }
 
-#conteneur_formulaire #champ2 input { width:120px; }
+#conteneur_formulaire .champProduction input { width:120px; }
 
-#conteneur_formulaire #champ1, #conteneur_formulaire #champ2 { display:inline-block; }
+#conteneur_formulaire #champ1, #conteneur_formulaire .champProduction { display:inline-block; }
