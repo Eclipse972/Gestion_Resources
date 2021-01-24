@@ -35,6 +35,17 @@ protected function DébutFormulaire($titre) {
 <?php
 }
 
+protected function ChampDuree($version = '', $tab="\t\t") {
+	$jour	= "jour{$version}";
+	$heure	= "heure{$version}";
+	$minute = "minute{$version}";
+?>
+<?=$tab?><label for="<?=$jour?>">jour :</label>		<input type="number" id="<?=$jour?>"	name="<?=$jour?>"	min="0" step="1" required>
+<?=$tab?><label for="<?=$heure?>">heure :</label>	<input type="number" id="<?=$heure?>"	name="<?=$heure?>"	min="0" max="23" step="1" required>
+<?=$tab?><label for="<?=$minute?>">minute :</label>	<input type="number" id="<?=$minute?>"	name="<?=$minute?>" min="0" max="59" step="1" required>
+<?php
+}
+
 protected function FinFormulaire() {
 ?>
 	<input type="submit" value="Valider" style="margin-top:9px">
