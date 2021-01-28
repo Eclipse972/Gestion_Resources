@@ -8,7 +8,7 @@ SELECT
 	((SELECT dureeProd) DIV 60) % 60 AS minutes, #--minute est un mot-clé SQL
 	CONCAT(REPLACE(CAST(FORMAT(usine.prod_en_cours,0) AS CHAR),',',' '),' ',unites.nom) AS prodEnCours,
 	CONCAT('<a href="#" onclick="OuvrirFormulaireMAJ(',type_usine.ID,',',
-		'''',type_usine.image,''',',
+		'''',type_usine.IDimage,''',',
 		''''',',			#--'''',type_usine.nom,''',', provoque un bug avec les noms contenant une apostrophe
 		usine.niveau,',',
 		usine.prod_en_cours,',',

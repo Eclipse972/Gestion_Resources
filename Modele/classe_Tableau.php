@@ -16,10 +16,10 @@ protected function DébutFormulaire($titre) {
 	<script>
 	function FermerFormulaireMAJ() { document.getElementById("conteneur_formulaire").style.visibility = "hidden"; }
 
-	function OuvrirFormulaireMAJ(ID, image, alt<?php foreach($this->T_paramètres as $champ)	echo", {$champ}"; ?>)	{
+	function OuvrirFormulaireMAJ(ID, IDimage, alt<?php foreach($this->T_paramètres as $champ)	echo", {$champ}"; ?>)	{
 		// modification du formulaire
 		document.formulaireMAJ.ID.value	= ID;
-		document.formulaireMAJ.image.src= "Vue/images/" + image + ".png";
+		document.formulaireMAJ.image.src= "https://www.resources-game.ch/images/appimages/res" + IDimage + ".png";
 		document.formulaireMAJ.image.alt= alt;
 <?php	foreach($this->T_paramètres as $champ)	echo"\t\tdocument.formulaireMAJ.{$champ}.value = {$champ};\n"; ?>
 		document.getElementById("conteneur_formulaire").style.visibility = "visible";
