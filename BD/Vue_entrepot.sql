@@ -5,7 +5,7 @@ SELECT
 	entrepot.niveau * entrepot.niveau * 5000 AS capacité,
 	IF(marchandise.cours_ki > marchandise.cours_max, marchandise.cours_ki, marchandise.cours_max) AS PU,
 	CONCAT('<a href="#" onclick="OuvrirFormulaireMAJ(',entrepot.marchandise_ID,',',
-		'''',marchandise.image,''',',
+		'''',marchandise.IDimage,''',',
 		''''',',			#--'''',marchandise.nom,''',', provoque un bug avec les noms contenant une apostrophe
 		entrepot.niveau,',',
 		entrepot.stock,')">')	AS lien_MAJ,
