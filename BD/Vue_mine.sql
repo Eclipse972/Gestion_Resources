@@ -4,7 +4,7 @@ SELECT
 	type_mine.ID,
 	CONCAT('<a href="formulaire.php?id=',CAST(type_mine.ID AS CHAR),'">') AS lien_formulaire,
 	CONCAT('<a href="#" onclick="OuvrirFormulaireMAJ(',type_mine.ID,',',
-		'''',marchandise.image,''',',
+		'''',marchandise.IDimage,''',',
 		''''',',			#--'''',type_mine.nom,''',', provoque un bug avec les noms contenant une apostrophe
 		mine.etat,',',
 		mine.prod_max,',',
