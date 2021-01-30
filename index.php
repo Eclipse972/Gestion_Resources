@@ -18,14 +18,19 @@ $CONNEXION_JOUEUR = $Joueur->Cadre_connexion();
 // Du rewriting sans le moteur rewrite. source:http://urlrewriting.fr/tutoriel-urlrewriting-sans-moteur-rewrite.htm
 $adresse = $_SERVER['REDIRECT_URL']; // sous forme: /onglet/nom-de-la-ligne
 
-if (!empty($adresse)) // c'est une redirection à cause d'une page inexistante
+if ($adresse == '/') {	// c'est un appel direct du script
+	if(isset($_GET['erreur'])) {
+		$CODE_ERREUR = $_GET['erreur'];	// faille de sécurité
+		$ONGLET = '';	// aucun onglet
+	} else $ONGLET = 'joueur';
+} else {	// c'est une redirection à cause d'une page inexistante
 	header("Status: 200 OK", false, 200); // permet de garder l'URL transformée dans la barre d'adresse
-
-// extraction de l'onglet
-$début = 1;	// le premier caractère est tjs /
-$fin = strpos($adresse, '/', 1) === false ? strlen($adresse) : strpos($adresse, '/', 1);	// recherche à partir du second caractère
-$ONGLET = substr($adresse, $début, $fin-$début);
-// une regex permettrait de faire une recherche plus rigoureuse
+	// extraction de l'onglet
+	$début = 1;	// le premier caractère est tjs /
+	$fin = strpos($adresse, '/', 1) === false ? strlen($adresse) : strpos($adresse, '/', 1);	// recherche à partir du second caractère
+	$ONGLET = substr($adresse, $début, $fin-$début);
+	// une regex permettrait de faire une recherche plus rigoureuse
+}
 
 $T_onglet = array(
 //	onglet		=> script à charger
@@ -41,14 +46,15 @@ $_SESSION['onglet'] = isset($T_onglet[$ONGLET]) ? $ONGLET : null;
 
 // construction de la page
 ob_start();
-if (isset($T_onglet[$ONGLET])) { // un des onglets appelle cette page
+if (isset($T_onglet[$ONGLET])) { // l'onglet est dans la iste
 	require"{$T_onglet[$ONGLET]}.php";
-	$cssTable = ($ONGLET=='index') ? '' : "<link rel=\"stylesheet\" href=\"Vue/table.css\" />\n";
-} else { // page d'erreur
+} else { // aucun onglet sélectionné => erreur
+	$CODE_ERREUR = isset($_GET['erreur']) ? $_GET['erreur'] : 404; // l'erreur 404 n'a pas de paramètre cAr je m'en sert pour la réécriture d'URL
 	require'pageErreur.php';
-	$cssTable = '';
 }
 $SECTION = ob_get_contents();
 ob_end_clean();
+
+$CSStable = ($T_onglet[$ONGLET]=='pageTableau') ? "\t<link rel=\"stylesheet\" href=\"Vue/table.css\" />\n" : '';
 
 include 'Vue/doctype.html';
