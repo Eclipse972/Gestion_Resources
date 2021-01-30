@@ -1,43 +1,3 @@
-<?php
-require'RequeteBD.php';
-
-// joueur
-require'Modele/classe_Joueur.php';
-$Joueur=new Joueur;
-$CONNEXION_JOUEUR = $Joueur->Cadre_connexion();
-
-/* Fichiers à créer pour un développement d'un futur onglet Ex: batiment spéciaux, missions. Soit X le nom du nouvel onglet
- * X.php à la racine
- * ajouter X dans le tableau $T_onglet
- * Vue/X.css feuille de style en plus de commun.css si besoin
- * Vue/images/onglet_X.png image de l'onglet
- * si l'onglet est de type tableau voir le script pageTaleau
- * */
-
-$T_onglet = array(
-//	onglet		=> script à charger
-	'index'		=> 'pageJoueur',
-	'usines'	=> 'pageTableau',
-	'mines'		=> 'pageTableau',
-	'entrepots'	=> 'pageTableau',
-	'commerce'	=> 'pageTableau');
-
-// sauvegarde de l'état dans la session
-if (!isset($_SESSION['IDjoueur'])) $_SESSION['IDjoueur'] = 1; // valeur initalisée lorsque le joueur se connecte. 1->joueur Lambda
-$_SESSION['onglet'] = isset($T_onglet[$SCRIPT]) ? $SCRIPT : null;
-
-// construction de la page
-ob_start();
-if (isset($T_onglet[$SCRIPT])) { // un des onglets appelle cette page
-	require"{$T_onglet[$SCRIPT]}.php";
-	$cssTable = ($SCRIPT=='index') ? '' : "<link rel=\"stylesheet\" href=\"Vue/table.css\" />\n";
-} else { // page d'erreur
-	require'pageErreur.php';
-	$cssTable = '';
-}
-$SECTION = ob_get_contents();
-ob_end_clean();
-?>
 <!doctype html>
 <html lang="fr">
 <head>
@@ -46,7 +6,7 @@ ob_end_clean();
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand:400,700">
 	<link rel="stylesheet" href="Vue/commun.css" />
 	<?=$cssTable?>
-	<link rel="stylesheet" href="Vue/<?=$SCRIPT?>.css" />
+	<link rel="stylesheet" href="Vue/<?=$ONGLET?>.css" />
 	<title>Gestion de production pour le jeu Resources</title>
 </head>
 
@@ -65,8 +25,9 @@ ob_end_clean();
 <nav>
 	<ul>
 <?php
-	foreach($T_onglet as $onglet => $valeur)
-		echo "\t\t<li><a ",($onglet == $SCRIPT) ? 'id="onglet_actif" ' : '',"href=\"{$onglet}.php\"><img src=\"Vue/images/onglet_{$onglet}.png\" alt=\"onglet {$onglet}\"></a></li>\n";
+	foreach($T_onglet as $clé => $valeur)
+		echo "\t\t<li><a ",($clé == $ONGLET) ? 'id="onglet_actif" ' : '',
+				"href=\"{$clé}\"><img src=\"Vue/images/onglet_{$clé}.png\" alt=\"onglet {$clé}\"></a></li>\n";
 ?>
 	</ul>
 </nav>
