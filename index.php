@@ -29,6 +29,7 @@ if ($adresse == '/') {	// c'est un appel direct du script
 	$début = 1;	// le premier caractère est tjs /
 	$fin = strpos($adresse, '/', 1) === false ? strlen($adresse) : strpos($adresse, '/', 1);	// recherche à partir du second caractère
 	$ONGLET = substr($adresse, $début, $fin-$début);
+
 	// une regex permettrait de faire une recherche plus rigoureuse
 }
 
