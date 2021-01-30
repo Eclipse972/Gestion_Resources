@@ -15,7 +15,7 @@ SELECT
 		(SELECT jour),',', (SELECT heure),',', (SELECT minutes),',',usine.prod_souhaitee,')">') AS lien_MAJ,
 	FORMAT(usine.prod_en_cours - (usine.niveau * type_usine.prod_niveau1 * (SELECT dureeProd))/3600, 0) AS avancement,
 	CONCAT(
-		'<td><a href="?id=',type_usine.ID,'#',type_usine.ID,'"><span class="gauche"><img src="https://www.resources-game.ch/images/appimages/res',type_usine.IDimage,'.png" alt ="',type_usine.nom,'"></span>',
+		'<td><a href="usines/',REPLACE(marchandise.name, ' ', '_'),'"><span class="gauche"><img src="https://www.resources-game.ch/images/appimages/res',type_usine.IDimage,'.png" alt ="',type_usine.nom,'"></span>',
 		'<strong>',UCASE(LEFT(type_usine.nom,1)),SUBSTRING(type_usine.nom,2,LENGTH(type_usine.nom)),'</strong></a>\n',
 		IF ((SELECT dureeProd) = 0,'', #-- production terminée on ne fait rien sinon on affiche l'avancement
 			CONCAT('\t\t\t<p>Avancement: ',
