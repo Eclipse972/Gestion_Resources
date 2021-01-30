@@ -1,6 +1,6 @@
 #Traitement de erreurs serveur
 ErrorDocument 403 http://gestion.resources.free.fr/erreur_serveur.php?erreur=403
-ErrorDocument 404 http://gestion.resources.free.fr/erreur_serveur.php?erreur=404
+ErrorDocument 404 http://gestion.resources.free.fr/erreur404.php
 ErrorDocument 500 http://gestion.resources.free.fr/erreur_serveur.php?erreur=500
 
 <IfDefine Free>
