@@ -1,6 +1,6 @@
 #Traitement de erreurs serveur
 ErrorDocument 403 /index.php?erreur=403
-ErrorDocument 404 /index.php
+ErrorDocument 404 /index.php?erreur=404
 ErrorDocument 500 /index.php?erreur=500
 
 <IfDefine Free>

@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand:400,700">
 	<link rel="stylesheet" href="Vue/commun.css" />
 <?=$CSStable?>
-	<link rel="stylesheet" href="Vue/<?=$ONGLET?>.css" />
+	<link rel="stylesheet" href="Vue/<?=$T_ONGLET[$_SESSION['onglet']]?>.css" />
 	<title>Gestion de production pour le jeu Resources</title>
 </head>
 
@@ -23,13 +23,7 @@
 </div>
 
 <nav>
-	<ul>
-<?php
-	foreach($T_onglet as $clé => $valeur)
-		echo "\t\t<li><a ",($clé == $ONGLET) ? 'id="onglet_actif" ' : '',
-				"href=\"{$clé}\"><img src=\"Vue/images/onglet_{$clé}.png\" alt=\"onglet {$clé}\"></a></li>\n";
-?>
-	</ul>
+<?=$CODE_ONGLET?>
 </nav>
 
 <section>
