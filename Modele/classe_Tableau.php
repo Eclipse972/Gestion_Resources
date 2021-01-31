@@ -27,7 +27,7 @@ protected function DébutFormulaire($titre) {
 	</script>
 
 	<div id="conteneur_formulaire">
-	<form action="<?=$this->traitementFormulaire?>.php" name="formulaireMAJ" method="post">
+	<form action="<?='/'.$this->traitementFormulaire?>" name="formulaireMAJ" method="post">
 	<span class="bouton-fermeture"><a href='#' onclick='FermerFormulaireMAJ()'>X</a></span>
 	<span class="gauche"><img name="image"></span>
 	<h1>Mise &agrave; jour<?=$titre?></h1>
