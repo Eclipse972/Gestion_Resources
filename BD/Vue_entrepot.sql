@@ -10,7 +10,7 @@ SELECT
 		entrepot.niveau,',',
 		entrepot.stock,')">')	AS lien_MAJ,
 	CONCAT(
-		'<td><a href="?id=',entrepot.marchandise_ID,'#',entrepot.marchandise_ID,'"><img src="https://www.resources-game.ch/images/appimages/res',marchandise.IDimage, '.png" alt ="',marchandise.nom,'"><strong>',
+		'<td><a href="entrepots/',REPLACE(marchandise.name, ' ', '_'),'"><img src="https://www.resources-game.ch/images/appimages/res',marchandise.IDimage, '.png" alt ="',marchandise.nom,'"><strong>',
 		UCASE(LEFT(marchandise.nom,1)),SUBSTRING(marchandise.nom,2,LENGTH(marchandise.nom)),'</strong></a>',
 		IF((SELECT capacité) >= entrepot.stock, '', '<span style="background-color:red"> Niveau (capacit&eacute;) et stock incoh&eacute;rents </span>'),
 		'</td>\n\t\t<td>',
