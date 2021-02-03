@@ -8,6 +8,7 @@ require'recup_erreur.php';
 require'recup_ligne.php';
 
 // création des différentes partie de la page
+$CSStable = ($T_SCRIPT[$_SESSION['onglet']] == 'pageTableau') ? "\t<link rel=\"stylesheet\" href=\"Vue/table.css\" />\n" : '';
 require'RequeteBD.php';
 require'Modele/classe_Joueur.php';
 require'pageJoueur.php';
@@ -21,7 +22,5 @@ if (isset($_SESSION['onglet'])) {	// c'est un onglet
 }
 $SECTION = ob_get_contents();
 ob_end_clean();
-
-$CSStable = ($T_SCRIPT[$_SESSION['onglet']] == 'pageTableau') ? "\t<link rel=\"stylesheet\" href=\"Vue/table.css\" />\n" : '';
 
 include 'Vue/doctype.html';
