@@ -13,6 +13,7 @@ $DICO = array(
 	404	=> 'Cette page n&apos;existe pas',
 	500	=> 'Serveur satur&eacute;: essayez de recharger la page'
 );
+$CODE_ERREUR = (isset($DICO[$CODE_ERREUR])) ? $CODE_ERREUR : 0;
 ?>
 <h1>Erreur <?=$CODE_ERREUR?>: <?=$DICO[$CODE_ERREUR]?></h1>
 <p>S&eacute;lectionnez un des onglets en haut de cette page.</p>

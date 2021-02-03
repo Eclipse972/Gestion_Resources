@@ -16,7 +16,8 @@ function Paramètre_onglet() {
 	global $T_ONGLET;
 	if (isset($_GET['onglet'])) {
 		$param = intval($_GET['onglet']);
-		$retour = isset($T_ONGLET[$param]) ? $param : 0;	// onglet joueur par défaut
+		if (($param < 0) || ($param >= count($T_ONGLET)))	header("location: /");	// hors limite
+		$retour = $param;
 	} else $retour = null;
 	return $retour;
 }

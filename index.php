@@ -7,15 +7,10 @@ require'recup_onglet.php';
 require'recup_erreur.php';
 require'recup_ligne.php';
 
-require'RequeteBD.php';
-
 // création des différentes partie de la page
-
-// joueur
+require'RequeteBD.php';
 require'Modele/classe_Joueur.php';
-$Joueur=new Joueur;
-$CONNEXION_JOUEUR = $Joueur->Cadre_connexion();
-
+require'pageJoueur.php';
 
 // construction de la page
 ob_start();
