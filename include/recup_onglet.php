@@ -25,7 +25,13 @@ function Paramètre_onglet() {
 $_SESSION['onglet'] = Paramètre_onglet();
 
 // construction des onglets
+$T_IMAGE  = array(	// image de chaque onglet
+	'Vue/images/onglet_joueur',
+	'https://www.resources-game.ch/images/appimages/nav_fabriken',
+	'https://www.resources-game.ch/images/appimages/nav_foerderanlagen',
+	'https://www.resources-game.ch/images/appimages/nav_lager',
+	'https://www.resources-game.ch/images/appimages/nav_auftraege');
 $CODE_ONGLET = "\t<ul>\n";
 foreach($T_ONGLET as $clé => $valeur)
-	$CODE_ONGLET .= "\t\t<li><a ".(($clé == $_SESSION['onglet']) ? 'id="onglet_actif" ' : '')."href=\"index.php?onglet={$clé}\"><img src=\"Vue/images/onglet_{$valeur}.png\" alt=\"onglet {$valeur}\"></a></li>\n";
+	$CODE_ONGLET .= "\t\t<li><a ".(($clé == $_SESSION['onglet']) ? 'id="onglet_actif" ' : '')."href=\"/?onglet={$clé}\"><img src=\"{$T_IMAGE[$clé]}.png\" alt=\"onglet {$valeur}\"></a></li>\n";
 $CODE_ONGLET .= "\t</ul>\n";
