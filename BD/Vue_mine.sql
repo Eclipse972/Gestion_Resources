@@ -4,7 +4,7 @@ SELECT
 	type_mine.ID,
 	#-- variables
 	CONCAT('<a href="/?onglet=2&ligne=',type_mine.ID) AS lien,
-	CONCAT((SELECT lien),'&champ=') AS lien_MAJ,
+	CONCAT('<a href="/?onglet=2&id=',type_mine.ID,'&champ=') AS lien_MAJ,
 	#-- code HTML
 	CONCAT('<td>',
 		#-- rapport

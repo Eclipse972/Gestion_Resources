@@ -7,7 +7,7 @@ SELECT
 	IF(marchandise.cours_ki > marchandise.cours_max, marchandise.cours_ki, marchandise.cours_max) AS PU,
 	#-- liens
 	CONCAT('<a href="/?onglet=3&ligne=',marchandise_ID) AS lien,
-	CONCAT((SELECT lien),'&champ=') AS lien_MAJ,
+	CONCAT('<a href="/?onglet=3&id=',marchandise_ID,'&champ=') AS lien_MAJ,
 	#-- code HTML
 	CONCAT('<td>',
 		(SELECT lien),'#',marchandise_ID,'"><img src="https://www.resources-game.ch/images/appimages/res',marchandise.IDimage, '.png" alt ="',marchandise.nom,'"><strong>',

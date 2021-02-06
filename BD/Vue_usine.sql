@@ -11,7 +11,7 @@ SELECT
 	CONCAT(REPLACE(CAST(FORMAT(usine.prod_en_cours,0) AS CHAR),',',' '),' ',unites.nom) AS prodEnCours,
 	#-- liens
 	CONCAT('<a href="/?onglet=1&ligne=',type_usine.ID) AS lien,
-	CONCAT((SELECT lien),'&champ=') AS lien_MAJ,
+	CONCAT('<a href="/?onglet=1&id=',type_usine.ID,'&champ=') AS lien_MAJ,
 #-- création du code HTML
 	CONCAT('<td>',
 		#-- lien pour ouvrir le rapport
