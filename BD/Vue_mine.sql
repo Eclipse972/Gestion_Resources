@@ -2,19 +2,22 @@ CREATE VIEW Vue_mine AS
 SELECT
 	mine.joueur_ID AS IDjoueur,
 	type_mine.ID,
-	CONCAT('<a href="#" onclick="OuvrirFormulaireMAJ(',type_mine.ID,',',
-		'''',marchandise.IDimage,''',',
-		''''',',			#--'''',type_mine.nom,''',', provoque un bug avec les noms contenant une apostrophe
-		mine.etat,',',
-		mine.prod_max,',',
-		mine.nombre,')">')	AS lien_MAJ,
-	CONCAT(
-		'<td><a href="/?onglet=2&ligne=',type_mine.ID,'#',type_mine.ID,'"><img src="https://www.resources-game.ch/images/appimages/res',marchandise.IDimage, '.png" alt ="',type_mine.nom,'"><strong>',
+	#-- variables
+	CONCAT('<a href="/?onglet=2&ligne=',type_mine.ID) AS lien,
+	CONCAT((SELECT lien),'&champ=') AS lien_MAJ,
+	#-- code HTML
+	CONCAT('<td>',
+		#-- rapport
+		(SELECT lien),'#',type_mine.ID,'"><img src="https://www.resources-game.ch/images/appimages/res',marchandise.IDimage, '.png" alt ="',type_mine.nom,'"><strong>',
 		UCASE(LEFT(type_mine.nom,1)),SUBSTRING(type_mine.nom,2,LENGTH(type_mine.nom)),'</strong></a></td>\n\t\t<td>',
-		(SELECT lien_MAJ),mine.etat,'%</a></td>\n\t\t<td>',
-		(SELECT lien_MAJ),mine.nombre,'</a></td>\n\t\t<td>',
+		#-- état
+		(SELECT lien_MAJ),'1">',mine.etat,'%</a></td>\n\t\t<td>',
+		#-- nombre
+		(SELECT lien_MAJ),'0">',mine.nombre,'</a></td>\n\t\t<td>',
+		#-- production actuelle
 		REPLACE(REPLACE(FORMAT(mine.prod_max*mine.etat/100,1),',',' '),'.',','),' ',unites.nom,'/h</td>\n\t\t<td>',
-		(SELECT lien_MAJ),REPLACE(REPLACE(FORMAT(mine.prod_max,0),',',' '),'.',','),' ',unites.nom,'/h</a></td>\n'
+		#-- production max
+		(SELECT lien_MAJ),'2">',REPLACE(REPLACE(FORMAT(mine.prod_max,0),',',' '),'.',','),' ',unites.nom,'/h</a></td>\n'
 	) AS code,
 	type_mine.nom AS nom_ligne
 FROM mine
