@@ -1,3 +1,4 @@
+DROP VIEW Vue_usine;
 CREATE VIEW Vue_usine AS
 SELECT
 	type_usine.ID,
@@ -9,13 +10,12 @@ SELECT
 	((SELECT dureeProd) DIV 60) % 60 AS minutes, #--minute est un mot-clé SQL
 	FORMAT(usine.prod_en_cours - (usine.niveau * type_usine.prod_niveau1 * (SELECT dureeProd))/3600, 0) AS avancement,
 	CONCAT(REPLACE(CAST(FORMAT(usine.prod_en_cours,0) AS CHAR),',',' '),' ',unites.nom) AS prodEnCours,
-	#-- liens
-	CONCAT('<a href="/?onglet=1&ligne=',type_usine.ID) AS lien,
+	#-- début lien MAJ
 	CONCAT('<a href="/?onglet=1&id=',type_usine.ID,'&champ=') AS lien_MAJ,
 #-- création du code HTML
 	CONCAT('<td>',
 		#-- lien pour le rapport
-		(SELECT lien),'#',type_usine.ID,'"><span class="gauche"><img src="https://www.resources-game.ch/images/appimages/res',type_usine.IDimage,'.png" alt ="',type_usine.nom,'"></span>',
+		'<a href="/?onglet=1&ligne=',type_usine.ID,'#',type_usine.ID,'" title="afficher d&eacute;tail"><span class="gauche"><img src="https://www.resources-game.ch/images/appimages/res',type_usine.IDimage,'.png" alt ="',type_usine.nom,'"></span>',
 		'<strong>',UCASE(LEFT(type_usine.nom,1)),SUBSTRING(type_usine.nom,2,LENGTH(type_usine.nom)),'</strong></a>\n',
 		#-- affichage de l'avancement
 		IF ((SELECT dureeProd) = 0,'', #-- production terminée on ne fait rien sinon on affiche l'avancement
