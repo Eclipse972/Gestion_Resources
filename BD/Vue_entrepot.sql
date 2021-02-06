@@ -15,11 +15,11 @@ SELECT
 		IF((SELECT capacité) >= entrepot.stock, '', '<span style="background-color:red"> Niveau (capacit&eacute;) et stock incoh&eacute;rents </span>'),
 		'</td>\n\t\t<td>',
 		#-- niveau
-		(SELECT lien_MAJ),'0">',CAST(entrepot.niveau AS CHAR),'</a></td>\n\t\t<td>',
+		(SELECT lien_MAJ),'0#',marchandise_ID,'">',CAST(entrepot.niveau AS CHAR),'</a></td>\n\t\t<td>',
 		#-- capacité
 		REPLACE(CAST(FORMAT(entrepot.niveau * entrepot.niveau * 5000,0) AS CHAR),',',' '),' ',unites.nom,'</td>\n\t\t<td>',
 		#-- stock
-		(SELECT lien_MAJ),'1">',REPLACE(CAST(FORMAT(entrepot.stock,0) AS CHAR),',',' '),' ',unites.nom,'</a></td>\n\t\t<td>',
+		(SELECT lien_MAJ),'1#',marchandise_ID,'">',REPLACE(CAST(FORMAT(entrepot.stock,0) AS CHAR),',',' '),' ',unites.nom,'</a></td>\n\t\t<td>',
 		REPLACE(CAST(FORMAT(entrepot.stock * (SELECT PU),0) AS CHAR),',',' '),'</td>\n'
 	) AS code
 FROM entrepot

@@ -11,13 +11,13 @@ SELECT
 		(SELECT lien),'#',type_mine.ID,'"><img src="https://www.resources-game.ch/images/appimages/res',marchandise.IDimage, '.png" alt ="',type_mine.nom,'"><strong>',
 		UCASE(LEFT(type_mine.nom,1)),SUBSTRING(type_mine.nom,2,LENGTH(type_mine.nom)),'</strong></a></td>\n\t\t<td>',
 		#-- état
-		(SELECT lien_MAJ),'1">',mine.etat,'%</a></td>\n\t\t<td>',
+		(SELECT lien_MAJ),'1#',type_mine.ID,'">',mine.etat,'%</a></td>\n\t\t<td>',
 		#-- nombre
-		(SELECT lien_MAJ),'0">',mine.nombre,'</a></td>\n\t\t<td>',
+		(SELECT lien_MAJ),'0#',type_mine.ID,'">',mine.nombre,'</a></td>\n\t\t<td>',
 		#-- production actuelle
 		REPLACE(REPLACE(FORMAT(mine.prod_max*mine.etat/100,1),',',' '),'.',','),' ',unites.nom,'/h</td>\n\t\t<td>',
 		#-- production max
-		(SELECT lien_MAJ),'2">',REPLACE(REPLACE(FORMAT(mine.prod_max,0),',',' '),'.',','),' ',unites.nom,'/h</a></td>\n'
+		(SELECT lien_MAJ),'2#',type_mine.ID,'">',REPLACE(REPLACE(FORMAT(mine.prod_max,0),',',' '),'.',','),' ',unites.nom,'/h</a></td>\n'
 	) AS code,
 	type_mine.nom AS nom_ligne
 FROM mine

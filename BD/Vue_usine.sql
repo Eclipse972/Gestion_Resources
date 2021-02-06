@@ -14,7 +14,7 @@ SELECT
 	CONCAT('<a href="/?onglet=1&id=',type_usine.ID,'&champ=') AS lien_MAJ,
 #-- création du code HTML
 	CONCAT('<td>',
-		#-- lien pour ouvrir le rapport
+		#-- lien pour le rapport
 		(SELECT lien),'#',type_usine.ID,'"><span class="gauche"><img src="https://www.resources-game.ch/images/appimages/res',type_usine.IDimage,'.png" alt ="',type_usine.nom,'"></span>',
 		'<strong>',UCASE(LEFT(type_usine.nom,1)),SUBSTRING(type_usine.nom,2,LENGTH(type_usine.nom)),'</strong></a>\n',
 		#-- affichage de l'avancement
@@ -25,11 +25,11 @@ SELECT
 					REPLACE((SELECT avancement),',',' ')	#--sinon on affiche la quantité déjà produite
 				),' / ',
 				#-- lien pour production en cours
-				(SELECT lien_MAJ),'1">', (SELECT prodEnCours),'</a></p>\n'
+				(SELECT lien_MAJ),'1#',type_usine.ID,'">', (SELECT prodEnCours),'</a></p>\n'
 			)
 		),
 		#-- temps restant de production enlien avec la date de fin de production
-		'\t\t\t',(SELECT lien_MAJ),'2">',
+		'\t\t\t',(SELECT lien_MAJ),'2#',type_usine.ID,'">',
 		IF ((SELECT dureeProd) > 0, 'Temps de production restant: ', '<br>Production termin&eacute;e'),
 		CASE (SELECT jour)
 			WHEN 0 THEN ''
@@ -48,7 +48,7 @@ SELECT
 		END,
 		'</a>\n\t\t</td>\n\t\t<td>',
 		#-- lien pour le niveau
-		(SELECT lien_MAJ),'0">',usine.niveau,'</a></td>\n',
+		(SELECT lien_MAJ),'0#',type_usine.ID,'">',usine.niveau,'</a></td>\n',
 		#-- capacité de production
 		'\t\t<td>',REPLACE(CAST(FORMAT(type_usine.prod_niveau1*usine.niveau,0) AS CHAR),',',' '),' ',unites.nom,'/h</td>\n'
 	) AS code
