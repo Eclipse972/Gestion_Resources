@@ -64,7 +64,7 @@ protected function Afficher_thead($T_en_tete) {
 <?php
 }
 
-public function Afficher_corps($id_selectionné) {
+public function Afficher_corps($IDdétaillé, $ID_MAJ = null) {
 	$IDjoueur = $_SESSION['IDjoueur'];
 	$Tvue = ExecuterRequete("SELECT ID, IDjoueur, code FROM {$this->vueBD} WHERE IDjoueur = :ID", array(':ID' => $IDjoueur), 'construction du tableau d\'objets');
 	$ligne = new $this->nomClasseLigne;
@@ -74,7 +74,14 @@ public function Afficher_corps($id_selectionné) {
 	foreach($Tvue as $réponseBD) {
 		$ligne->Hydrater($réponseBD);
 		echo $ligne->Afficher();
-		if ($réponseBD['ID'] == $id_selectionné) {
+		// affichage du formulaire
+		if ($réponseBD['ID'] == $ID_MAJ) {
+			echo"\t<tr>\n\t\t<td colspan=\"{$this->nb_col_tableau}\" id=\"formulaireMAJ\">\n";
+			echo"formulaire\n";
+			echo"\t\t</td>\n\t</tr>\n";
+		}
+		// affichage du rapport
+		if ($réponseBD['ID'] == $IDdétaillé) {
 			echo"\t<tr>\n\t\t<td colspan=\"{$this->nb_col_tableau}\" id=\"rapport\">\n<!-- Début du rapport -->\n";
 			$ligne->AfficherRapport();
 			echo"<!-- Fin du rapport -->\n\t\t</td>\n\t</tr>\n";

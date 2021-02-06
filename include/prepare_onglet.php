@@ -12,18 +12,6 @@ $T_CLASSE = array('',			'Usine',		'Mine',			'Entrepot',		'Commerce');	// classe 
  * si l'onglet est de type tableau voir le script pageTaleau
  * */
 
-function Paramètre_onglet() {
-	global $T_ONGLET;
-	if (isset($_GET['onglet'])) {
-		$param = intval($_GET['onglet']);
-		if (($param < 0) || ($param >= count($T_ONGLET)))	header("location: /");	// hors limite
-		$retour = $param;
-	} else $retour = null;
-	return $retour;
-}
-
-$_SESSION['onglet'] = Paramètre_onglet();
-
 function CréationOnglets($IDsélectionné) {
 	global $T_ONGLET;
 	$T_images  = array(	// image de chaque onglet
@@ -37,5 +25,3 @@ function CréationOnglets($IDsélectionné) {
 		$code .= "\t\t<li><a ".(($clé == $IDsélectionné) ? 'id="onglet_actif" ' : '')."href=\"/?onglet={$clé}\"><img src=\"{$T_images[$clé]}.png\" alt=\"onglet {$valeur}\"></a></li>\n";
 	return $code."\t</ul>\n";
 }
-
-$CODE_ONGLET = CréationOnglets($_SESSION['onglet']);
