@@ -64,7 +64,7 @@ protected function Afficher_thead($T_en_tete) {
 <?php
 }
 
-public function Afficher_corps($IDdétaillé, $ID_MAJ = null) {
+public function Afficher_corps($IDdétaillé, $ID_MAJ) {
 	$IDjoueur = $_SESSION['IDjoueur'];
 	$Tvue = ExecuterRequete("SELECT ID, IDjoueur, code FROM {$this->vueBD} WHERE IDjoueur = :ID", array(':ID' => $IDjoueur), 'construction du tableau d\'objets');
 	$ligne = new $this->nomClasseLigne;
@@ -77,7 +77,7 @@ public function Afficher_corps($IDdétaillé, $ID_MAJ = null) {
 		// affichage du formulaire
 		if ($réponseBD['ID'] == $ID_MAJ) {
 			echo"\t<tr>\n\t\t<td colspan=\"{$this->nb_col_tableau}\" id=\"formulaireMAJ\">\n";
-			echo"formulaire\n";
+			echo"Emplacement formulaire\n";
 			echo"\t\t</td>\n\t</tr>\n";
 		}
 		// affichage du rapport
