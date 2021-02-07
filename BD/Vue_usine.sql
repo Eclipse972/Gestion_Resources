@@ -25,11 +25,11 @@ SELECT
 					REPLACE((SELECT avancement),',',' ')	#--sinon on affiche la quantité déjà produite
 				),' / ',
 				#-- lien pour production en cours
-				(SELECT lien_MAJ),'1#',type_usine.ID,'">', (SELECT prodEnCours),'</a></p>\n'
+				(SELECT lien_MAJ),'1#',type_usine.ID,'" title="modifier production en cours">', (SELECT prodEnCours),'</a></p>\n'
 			)
 		),
 		#-- temps restant de production enlien avec la date de fin de production
-		'\t\t\t',(SELECT lien_MAJ),'2#',type_usine.ID,'">',
+		'\t\t\t',(SELECT lien_MAJ),'2#',type_usine.ID,'" title ="modifier le temps de production restant">',
 		IF ((SELECT dureeProd) > 0, 'Temps de production restant: ', '<br>Production termin&eacute;e'),
 		CASE (SELECT jour)
 			WHEN 0 THEN ''
@@ -48,7 +48,7 @@ SELECT
 		END,
 		'</a>\n\t\t</td>\n\t\t<td>',
 		#-- lien pour le niveau
-		(SELECT lien_MAJ),'0#',type_usine.ID,'">',usine.niveau,'</a></td>\n',
+		(SELECT lien_MAJ),'0#',type_usine.ID,'" title="modifier niveau de l&apos;usine">',usine.niveau,'</a></td>\n',
 		#-- capacité de production
 		'\t\t<td>',REPLACE(CAST(FORMAT(type_usine.prod_niveau1*usine.niveau,0) AS CHAR),',',' '),' ',unites.nom,'/h</td>\n'
 	) AS code
