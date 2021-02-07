@@ -77,8 +77,10 @@ public function Afficher_corps($IDdétaillé, $ID_MAJ) {
 		// affichage du formulaire
 		if ($réponseBD['ID'] == $ID_MAJ) {
 			echo"\t<tr>\n\t\t<td colspan=\"{$this->nb_col_tableau}\" id=\"formulaireMAJ\">\n";
-			echo"<p>Emplacement formulaire</p>\n";
-			echo"<a href=\"?onglet={$_SESSION['onglet']}\">Valider</a>";
+			echo"\t\t<p>Formulaire</p>\n";
+			echo"\t\tchamp N° {$_SESSION['champ']}: ";
+			echo "<a href=\"?onglet={$_SESSION['onglet']}",(isset($_SESSION['ligne'])) ? "&ligne={$_SESSION['ligne']}" : "";
+			echo"\">Valider</a>\n";
 			echo"\t\t</td>\n\t</tr>\n";
 		}
 		// affichage du rapport
