@@ -22,7 +22,8 @@ function PageTableau()	{
 		$Tpost = [];
 		foreach($_POST as $clé => $valeur)
 			$Tpost[$clé] = (int)htmlspecialchars(stripslashes(trim($valeur)));
-		$Tableau->TraiterFormulaireMAJ($Tpost);
+			// la ligne traite le formulaire
+
 		$tampon = '';
 	}
 	return $tampon;
