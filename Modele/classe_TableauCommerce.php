@@ -7,12 +7,7 @@ public function __construct() {
 	$this->vueBD = 'Vue_commerce';
 	$this->nomClasseLigne = 'Commerce';
 	// pas de formulaire pour le moment
-	$this->traitementFormulaire = '';
 }
-
-public function CréerFormulaireMAJ() {}
-
-public function TraiterFormulaireMAJ($Tpost) {}
 
 public function Afficher_tete() {
 ?>

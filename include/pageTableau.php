@@ -15,7 +15,6 @@ function PageTableau()	{
 		echo"\t<div id=\"vers_le_haut\"><a href=\"#\"><img src=\"Vue/images/fleche_haut.png\" alt=\"Retourner en haut\" /></a></div>\n";
 		$Tableau->Afficher_tete();
 		$Tableau->Afficher_corps();
-		$Tableau->CréerFormulaireMAJ();
 		$tampon = ob_get_contents();
 		ob_clean();
 	}

@@ -3,56 +3,7 @@ abstract class Tableau { // Remarque: chaque classe fille est associée à un CS
 	protected $nb_col_tableau;
 	protected $vueBD;
 	protected $nomClasseLigne;
-	protected $traitementFormulaire;
 	protected $T_paramètres; // liste des paramètres supplémentaires du script OuvrirFormulaireMAJ
-
-// pour les développements futurs
-abstract public function CréerFormulaireMAJ();
-abstract public function TraiterFormulaireMAJ($Tpost);
-
-// Affichage de la page
-protected function DébutFormulaire($titre) {
-?>
-	<script>
-	function FermerFormulaireMAJ() { document.getElementById("conteneur_formulaire").style.visibility = "hidden"; }
-
-	function OuvrirFormulaireMAJ(ID, IDimage, alt<?php foreach($this->T_paramètres as $champ)	echo", {$champ}"; ?>)	{
-		// modification du formulaire
-		document.formulaireMAJ.ID.value	= ID;
-		document.formulaireMAJ.image.src= "https://www.resources-game.ch/images/appimages/res" + IDimage + ".png";
-		document.formulaireMAJ.image.alt= alt;
-<?php	foreach($this->T_paramètres as $champ)	echo"\t\tdocument.formulaireMAJ.{$champ}.value = {$champ};\n"; ?>
-		document.getElementById("conteneur_formulaire").style.visibility = "visible";
-	}
-	</script>
-
-	<div id="conteneur_formulaire">
-	<form action="<?='/'.$this->traitementFormulaire?>" name="formulaireMAJ" method="post">
-	<span class="bouton-fermeture"><a href='#' onclick='FermerFormulaireMAJ()'>X</a></span>
-	<span class="gauche"><img name="image"></span>
-	<h1>Mise &agrave; jour<?=$titre?></h1>
-	<input type="hidden" id="ID" name="ID">
-<?php
-}
-
-protected function ChampDuree($version = '', $tab="\t\t") {
-	$jour	= "jour{$version}";
-	$heure	= "heure{$version}";
-	$minute = "minute{$version}";
-?>
-<?=$tab?><label for="<?=$jour?>">jour :</label>		<input type="number" id="<?=$jour?>"	name="<?=$jour?>"	min="0" step="1" required>
-<?=$tab?><label for="<?=$heure?>">heure :</label>	<input type="number" id="<?=$heure?>"	name="<?=$heure?>"	min="0" max="23" step="1" required>
-<?=$tab?><label for="<?=$minute?>">minute :</label>	<input type="number" id="<?=$minute?>"	name="<?=$minute?>" min="0" max="59" step="1" required>
-<?php
-}
-
-protected function FinFormulaire() {
-?>
-	<input type="submit" value="Valider" style="margin-top:9px">
-	</form>
-	</div>
-<?php
-}
 
 protected function Afficher_thead($T_en_tete) {
 	$this->nb_col_tableau = count($T_en_tete);
