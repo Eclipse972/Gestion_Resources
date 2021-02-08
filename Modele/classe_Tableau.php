@@ -75,7 +75,7 @@ public function Afficher_corps($IDdétaillé, $ID_MAJ) {
 		$ligne->Hydrater($réponseBD);
 		echo $ligne->Afficher();
 		// affichage du formulaire
-		if ($réponseBD['ID'] == $ID_MAJ) {
+		if ($réponseBD['ID'] == $_SESSION['id']) {
 			echo"\t<tr>\n\t\t<td colspan=\"{$this->nb_col_tableau}\" id=\"formulaireMAJ\">\n";
 			echo"\t\t<p>Formulaire</p>\n";
 			echo"\t\tchamp N° {$_SESSION['champ']}: ";
@@ -84,7 +84,7 @@ public function Afficher_corps($IDdétaillé, $ID_MAJ) {
 			echo"\t\t</td>\n\t</tr>\n";
 		}
 		// affichage du rapport
-		if ($réponseBD['ID'] == $IDdétaillé) {
+		if ($réponseBD['ID'] == $_SESSION['ligne']) {
 			echo"\t<tr>\n\t\t<td colspan=\"{$this->nb_col_tableau}\" id=\"rapport\">\n<!-- Début du rapport -->\n";
 			$ligne->AfficherRapport();
 			echo"<!-- Fin du rapport -->\n\t\t</td>\n\t</tr>\n";
