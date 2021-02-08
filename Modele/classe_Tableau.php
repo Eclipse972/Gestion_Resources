@@ -64,7 +64,7 @@ protected function Afficher_thead($T_en_tete) {
 <?php
 }
 
-public function Afficher_corps($IDdétaillé, $ID_MAJ) {
+public function Afficher_corps() {
 	$IDjoueur = $_SESSION['IDjoueur'];
 	$Tvue = ExecuterRequete("SELECT ID, IDjoueur, code FROM {$this->vueBD} WHERE IDjoueur = :ID", array(':ID' => $IDjoueur), 'construction du tableau d\'objets');
 	$ligne = new $this->nomClasseLigne;
