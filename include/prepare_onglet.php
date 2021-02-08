@@ -22,6 +22,6 @@ function CréationOnglets() {
 		'https://www.resources-game.ch/images/appimages/nav_auftraege');
 	$code = "\t<ul>\n";
 	foreach($T_ONGLET as $clé => $valeur)
-		$code .= "\t\t<li><a ".(($clé == $_SESSION['onglet']) ? 'id="onglet_actif" ' : '')."href=\"/?onglet={$clé}\"><img src=\"{$T_images[$clé]}.png\" alt=\"onglet {$valeur}\"></a></li>\n";
+		$code .= "\t\t<li><a ".(($clé === $_SESSION['onglet']) ? 'id="onglet_actif" ' : '')."href=\"/?onglet={$clé}\"><img src=\"{$T_images[$clé]}.png\" alt=\"onglet {$valeur}\"></a></li>\n";
 	return $code."\t</ul>\n";
 }
