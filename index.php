@@ -33,8 +33,8 @@ switch (// choix du scenario suivant la présence des paramètres
 		require"pageJoueur.php";
 		$SECTION = PageJoueur();
 		break;
-	case 13:// onglet + id + champ => MAJ du champ pour la ligne id. Si un rapport est affiché il doit le rester
-		$sauvegardeLigne = $T_paramètresURL['ligne'];
+	case 13:// onglet + id + champ => MAJ du champ pour la ligne id.
+		$sauvegardeLigne = $_SESSION['ligne']; // Si un rapport est affiché il doit le rester
 	case 1: // seul l'onglet est défini => affichage de la page
 	case 3: // onglet et ligne => affichage de la liste avec le rapport de la ligne sélectionnée
 		if (($T_paramètresURL['onglet'] < 0) || ($T_paramètresURL['onglet'] > count($T_ONGLET)))	header(Erreur404, false);
