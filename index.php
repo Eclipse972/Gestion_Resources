@@ -37,7 +37,7 @@ switch (// choix du scenario suivant la présence des paramètres
 		$sauvegardeLigne = $T_paramètresURL['ligne'];
 	case 1: // seul l'onglet est défini => affichage de la page
 	case 3: // onglet et ligne => affichage de la liste avec le rapport de la ligne sélectionnée
-		if (($T_paramètresURL['onglet'] < 0) || ($T_paramètresURL['onglet'] > count($T_ONGLET)))	header(Erreur404);
+		if (($T_paramètresURL['onglet'] < 0) || ($T_paramètresURL['onglet'] > count($T_ONGLET)))	header(Erreur404, false);
 		foreach ($T_paramètresURL as $clé => $valeur) $_SESSION[$clé] = $valeur;
 		if (isset($sauvegardeLigne))	$_SESSION['ligne'] = $sauvegardeLigne;
 		require"{$T_SCRIPT[$_SESSION['onglet']]}.php";
