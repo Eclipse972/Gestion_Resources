@@ -59,6 +59,6 @@ $CONNEXION_JOUEUR = $Joueur->Cadre_connexion();
 
 // création des différentes partie de la page
 $CSStable = ($T_SCRIPT[$_SESSION['onglet']] == 'pageTableau') ? "\t<link rel=\"stylesheet\" href=\"Vue/table.css\" />\n" : '';
-$CODE_ONGLET = CréationOnglets($_SESSION['onglet']);
+$CODE_ONGLET = CréationOnglets();
 
 include 'Vue/doctype.html';
