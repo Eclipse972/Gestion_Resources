@@ -6,7 +6,6 @@ public function __construct() {
 	$this->date_MAJ = 'ind&eacute;termin&eacute;e'; // il va falloir trouver cette date lors de la MAJ des prix des marchandises
 	$this->vueBD = 'Vue_commerce';
 	$this->nomClasseLigne = 'Commerce';
-	// pas de formulaire pour le moment
 }
 
 public function Afficher_tete() {

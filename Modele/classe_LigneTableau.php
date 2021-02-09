@@ -41,6 +41,17 @@ public function Afficher() {
 <?php
 }
 
+public function AfficherFormulaireMAJ() {
+?>
+	<tr>
+		<td colspan="2" id="formulaireMAJ">
+		<p>Formulaire</p>
+		<a href="?onglet=<?=$_SESSION['onglet']?><?=(isset($_SESSION['ligne'])) ? "&ligne={$_SESSION['ligne']}#{$_SESSION['ligne']}" : "#{$_SESSION['id']}"?>">Valider</a>
+		</td>
+	</tr>
+<?php
+}
+
 protected function Obtenir($marchandise_ID) { $this->BesoinOuUtile($marchandise_ID, false); }
 
 protected function UtilePour($marchandise_ID) { $this->BesoinOuUtile($marchandise_ID, true); }

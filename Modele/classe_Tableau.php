@@ -26,13 +26,8 @@ public function Afficher_corps() {
 		$ligne->Hydrater($réponseBD);
 		echo $ligne->Afficher();
 		// affichage du formulaire
-		if ($réponseBD['ID'] == $_SESSION['id']) {
-			echo"\t<tr>\n\t\t<td colspan=\"{$this->nb_col_tableau}\" id=\"formulaireMAJ\">\n";
-			echo"\t\t<p>Formulaire</p>\n";
-			echo "<a href=\"?onglet={$_SESSION['onglet']}",(isset($_SESSION['ligne'])) ? "&ligne={$_SESSION['ligne']}#{$_SESSION['ligne']}" : "#{$_SESSION['id']}";
-			echo"\">Valider</a>\n";
-			echo"\t\t</td>\n\t</tr>\n";
-		}
+		if ($réponseBD['ID'] == $_SESSION['id'])
+			$ligne->AfficherFormulaireMAJ();
 		// affichage du rapport
 		if ($réponseBD['ID'] == $_SESSION['ligne']) {
 			echo"\t<tr>\n\t\t<td colspan=\"{$this->nb_col_tableau}\" id=\"rapport\">\n<!-- Début du rapport -->\n";
