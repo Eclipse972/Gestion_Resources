@@ -46,7 +46,7 @@ public function AfficherFormulaireMAJ() {
 	<tr>
 		<td colspan="2" id="formulaireMAJ">
 		<p>Formulaire</p>
-		<a href="?onglet=<?=$_SESSION['onglet']?><?=(isset($_SESSION['ligne'])) ? "&ligne={$_SESSION['ligne']}#{$_SESSION['ligne']}" : "#{$_SESSION['id']}"?>">Valider</a>
+		<a href="?onglet=<?=$_SESSION['onglet'].((isset($_SESSION['ligne'])) ? "&ligne={$_SESSION['ligne']}#{$_SESSION['ligne']}" : "#{$_SESSION['id']}")?>">Valider</a>
 		</td>
 	</tr>
 <?php
