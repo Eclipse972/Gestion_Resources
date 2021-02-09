@@ -46,7 +46,7 @@ public function AfficherFormulaireMAJ() {
 	<tr>
 		<td colspan="2" id="formulaireMAJ">
 		<form method="post" action="?onglet=<?=$_SESSION['onglet'].((isset($_SESSION['ligne'])) ? "&ligne={$_SESSION['ligne']}#{$_SESSION['ligne']}" : "#{$_SESSION['id']}")?>">
-			champ N°<?=$_SESSION['id']?> : <input type="text" size="10" maxlength="40" name="name" />
+			champ N°<?=$_SESSION['champ']?> : <input type="text" size="10" maxlength="40" name="name" />
 			<input type="submit" value="Valider" />
 		</form>
 		</td>
