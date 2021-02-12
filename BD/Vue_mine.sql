@@ -11,7 +11,7 @@ SELECT
 		'<a href="/?onglet=2&ligne=',type_mine.ID,'#',type_mine.ID,'" title="afficher d&eacute;tail"><img src="https://www.resources-game.ch/images/appimages/res',marchandise.IDimage, '.png" alt ="',type_mine.nom,'"><strong>',
 		UCASE(LEFT(type_mine.nom,1)),SUBSTRING(type_mine.nom,2,LENGTH(type_mine.nom)),'</strong></a></td>\n\t\t<td>',
 		#-- état
-		(SELECT lien_MAJ),'1#',type_mine.ID,'" title="modifier état la mine"',mine.etat,'%</a></td>\n\t\t<td>',
+		(SELECT lien_MAJ),'1#',type_mine.ID,'" title="modifier état la mine">',mine.etat,'%</a></td>\n\t\t<td>',
 		#-- nombre
 		(SELECT lien_MAJ),'0#',type_mine.ID,'" title="modifier le nombre de mine">',mine.nombre,'</a></td>\n\t\t<td>',
 		#-- production actuelle
