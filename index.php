@@ -4,6 +4,7 @@ session_start();
 require'prepare_onglet.php';		// défini des tableaux
 require'RequeteBD.php';
 require'Modele/classe_Joueur.php';
+require'Modele/classe_Page.php';
 
 // liste exhaustive des paramètres. Ce sont tous des entiers
 $T_paramètresURL = array(
