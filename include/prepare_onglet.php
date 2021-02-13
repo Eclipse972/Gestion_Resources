@@ -1,16 +1,7 @@
 <?php	// Récupère la paramètre onglet et crée la code de la liste des onglets
 // variables globales utilisées dans d'autres scripts
-$T_ONGLET = array('joueur',		'usines',		'mines',		'entrepots',	'commerce');	// sert aussi pour la création des onglets sur la page
-$T_SCRIPT = array('pageJoueur',	'pageTableau',	'pageTableau',	'pageTableau',	'pageTableau');	// script à charger suivant l'onglet
-$T_CLASSE = array('',			'Usine',		'Mine',			'Entrepot',		'Commerce');	// classe associée à chaque onglet de type tableau
-
-/* Fichiers à créer pour un développement d'un futur onglet nommé X. Ex: batiment spéciaux, missions...
- * nom de l'onlet	: ajouter X dans le tableau ci-dessus
- * feuille de style	: Vue/X.css en plus de commun.css
- * image de l'onglet: Vue/images/onglet_X.png
- *
- * si l'onglet est de type tableau voir le script pageTaleau
- * */
+$T_ONGLET	= array('joueur',		'usines',	'mines',	'entrepots',	'commerce'		);	// sert aussi pour la création des onglets sur la page
+$T_PAGE		= array('PageJoueur',	'PageUsine','PageMine',	'PageEntrepot',	'PageCommerce'	);
 
 function CréationOnglets() {
 	global $T_ONGLET;

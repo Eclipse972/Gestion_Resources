@@ -8,12 +8,20 @@ protected function CSS($nom) {
 	<link rel="stylesheet" href="Vue/<?=$nom?>.css" />
 <?php
 }
+/* Fichiers à créer pour un développement d'un futur onglet nommé X. Ex: batiment spéciaux, missions...
+ * nom de la page	: créer une nouvelle classe X fille de la classe Page. Si l'onglet est de type tableau étendre la classe PageTableau
+ * feuille de style	: Vue/X.css en plus de commun.css
+ * image de l'onglet: Vue/images/onglet_X.png
+ * */
 }
 
 class PageJoueur extends Page {
 public function FeuilleDeStyle()	{	$this->CSS('joueur');	}
 
 public function Section() {
+?>
+<p>Page joueur en construction</p>
+<?php
 }
 }
 
@@ -21,6 +29,26 @@ class PageErreur extends Page {
 public function FeuilleDeStyle()	{	$this->CSS('erreur');	}
 
 public function Section() {
+	$DICO = array(	// dictionnaire
+		// erreurs de mon application
+		0	=> 'Erreur inconnue',
+		1	=> 'Un probl&egrave;me est survenu lors de l&apos;envoi de votre message'."\n".'R&eacute;essayez plus tard!',
+		2	=> 'Un probl&egrave;me est survenu avec le formulaire',
+		3	=> 'Identifiant formulaire inconnu',
+		4	=> 'Onglet inexistant',
+		5	=> 'Ligne inexistante',
+		6	=> 'Param&egrave;tres dans l&apos;URL incoh&eacute;rents',
+		// erreurs serveur
+		403	=> 'Acc&egrave;s interdit',
+		404	=> 'Cette page n&apos;existe pas',
+		500	=> 'Serveur satur&eacute;: essayez de recharger la page'
+	);
+	$code_erreur = (isset($DICO[$_SESSION['erreur']])) ? $_SESSION['erreur'] : 0;
+?>
+	<h1>Erreur <?=$code_erreur?>: <?=$DICO[$code_erreur]?></h1>
+	<p>S&eacute;lectionnez un des onglets en haut de cette page.</p>
+	<p>Si le probl&egrave;me persiste envoyez-moi un courriel en <a href="gestion.resources@free.fr">cliquant ici</a>.</p>
+<?php
 }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -30,7 +58,7 @@ abstract class PageTableau extends Page {
 abstract public function Afficher_tete();
 abstract public function Afficher_corps();
 
-private function CSSTableau($nom) {	$this->CSS('table');	$this->CSS($nom);	}
+protected function CSSTableau($nom) {	$this->CSS('table');	$this->CSS($nom);	}
 
 public function Section() {
 ?>
@@ -40,7 +68,7 @@ public function Section() {
 	$this->Afficher_corps();
 }
 
-private function Afficher_thead($T_en_tete) {
+protected function Afficher_thead($T_en_tete) {
 	$this->nb_col_tableau = count($T_en_tete);
 ?>
 	<table>
@@ -50,10 +78,13 @@ private function Afficher_thead($T_en_tete) {
 <?php
 }
 
-private function Afficher_tboby($vueBD, $nomClasseLigne) {
+protected function Afficher_tboby($vueBD, $nomClasseLigne) {
+	require'classe_LigneTableau.php';
+	require"Modele/classe_{$nomClasseLigne}.php";		// ligne associée à la page
+	$ligne = new $nomClasseLigne;
+
 	$IDjoueur = $_SESSION['IDjoueur'];
 	$Tvue = ExecuterRequete("SELECT ID, IDjoueur, code FROM {$vueBD} WHERE IDjoueur = :ID", array(':ID' => $IDjoueur), 'construction du tableau d\'objets');
-	$ligne = new $nomClasseLigne;
 ?>
 	<tbody>
 <?php
@@ -79,6 +110,7 @@ private function Afficher_tboby($vueBD, $nomClasseLigne) {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // classes filles de PageTableau
+
 class PageUsine extends PageTableau {
 
 public function FeuilleDeStyle() { parent::CSSTableau('usines'); }
@@ -108,7 +140,7 @@ public function Afficher_corps() { parent::Afficher_tboby('Vue_entrepot', 'Entre
 }
 
 class PageCommerce extends PageTableau {
-private $date_MAJ;
+protected $date_MAJ;
 
 public function __construct() {
 	$this->date_MAJ = 'ind&eacute;termin&eacute;e'; // il va falloir trouver cette date lors de la MAJ des prix des marchandises

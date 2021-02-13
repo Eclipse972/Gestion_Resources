@@ -31,8 +31,6 @@ switch (// choix du scenario suivant la présence des paramètres
 	case 0:	// aucun paramètre défini => page d'accueil
 		foreach ($T_paramètresURL as $clé => $valeur) $_SESSION[$clé] = $valeur;
 		$_SESSION['onglet'] = 0;
-		require"pageJoueur.php";
-		$SECTION = PageJoueur();
 		break;
 	case 13:// onglet + id + champ => MAJ du champ pour la ligne id.
 		$sauvegardeLigne = $_SESSION['ligne']; // Si un rapport est affiché il doit le rester
@@ -41,13 +39,9 @@ switch (// choix du scenario suivant la présence des paramètres
 		if (($T_paramètresURL['onglet'] < 0) || ($T_paramètresURL['onglet'] > count($T_ONGLET)))	header(Erreur404, false);
 		foreach ($T_paramètresURL as $clé => $valeur) $_SESSION[$clé] = $valeur;
 		if (isset($sauvegardeLigne))	$_SESSION['ligne'] = $sauvegardeLigne;
-		require"{$T_SCRIPT[$_SESSION['onglet']]}.php";
-		$SECTION = ($T_SCRIPT[$_SESSION['onglet']] == 'pageJoueur') ? PageJoueur() : PageTableau();
 		break;
 	case 16:// page d'erreur
 		foreach ($T_paramètresURL as $clé => $valeur) $_SESSION[$clé] = $valeur;
-		require"pageErreur.php";
-		$SECTION = PageErreur($_SESSION['erreur']);
 		break;
 	default:// pas la peine d'aller plus loin
 		header("location:/?erreur=6");
@@ -58,8 +52,20 @@ if (!isset($_SESSION['IDjoueur'])) $_SESSION['IDjoueur'] = 1; // valeur initalis
 $Joueur=new Joueur;
 $CONNEXION_JOUEUR = $Joueur->Cadre_connexion();
 
-// création des différentes partie de la page
-$CSStable = ($T_SCRIPT[$_SESSION['onglet']] == 'pageTableau') ? "\t<link rel=\"stylesheet\" href=\"Vue/table.css\" />\n" : '';
-$CODE_ONGLET = CréationOnglets();
+// création des différentes parties de la page
+$classePage = isset($T_PAGE[$_SESSION['onglet']]) ? $T_PAGE[$_SESSION['onglet']] : 'PageErreur';
+$O_PAGE = new $classePage;
+
+ob_start();
+$O_PAGE->FeuilleDeStyle();
+$CSS = ob_get_contents();
+ob_clean();
+
+$CODE_ONGLET= CréationOnglets();
+
+ob_start();
+$O_PAGE->Section();
+$SECTION = ob_get_contents();
+ob_clean();
 
 include 'Vue/doctype.html';
