@@ -58,6 +58,36 @@ abstract class PageTableau extends Page {
 abstract public function Afficher_tete();
 abstract public function Afficher_corps();
 
+public function __construct() {
+	// la session contient déjà le numéro de l'onglet
+	// liste exhaustive des paramètres. Ce sont tous des entiers
+	$T_paramètresURL = array(
+		'ligne' => 0,	// ligne à détailler
+		'id'	=> 0,	// ligne à MAJ
+		'champ' => 0);	// champ à modifier
+	foreach($T_paramètresURL as $clé => $valeur) {
+		$T_paramètresURL[$clé] = (isset($_GET[$clé])) ? intval($_GET[$clé]) : null;// récupération des paramètres sans test de validité des valeurs
+	}
+	switch ((isset($T_paramètresURL['ligne']) ? 1 : 0) + (isset($T_paramètresURL['id']) ? 2 : 0) + (isset($T_paramètresURL['champ']) ? 4 : 0))
+	{	// MAJ du contexte suivant la situation
+		case 0: // aucun paramètre supplémentaire
+			$_SESSION['ligne'] = $_SESSION['id'] = $_SESSION['champ'] = null;
+			break;
+		case 1:	// ligne uniquement => affichage de la liste avec le rapport de la ligne sélectionnée
+			$_SESSION['ligne'] = $T_paramètresURL['ligne'];
+			$_SESSION['id']	= $_SESSION['champ'] = null;
+			break;
+		case 6: // id + champ => MAJ du champ pour la ligne id.
+			// on ne modifie pas $_SESSION['ligne'] car si un rapport est affiché il doit le rester
+			$_SESSION['id']		= $T_paramètresURL['id'];
+			$_SESSION['champ']	= $T_paramètresURL['champ'];
+			break;
+		default:// pas la peine d'aller plus loin
+			$_SESSION['ligne'] = $_SESSION['id'] = $_SESSION['champ'] = null;
+			header("location:/?erreur=6");
+	}
+}
+
 protected function CSSTableau($nom) {	$this->CSS('table');	$this->CSS($nom);	}
 
 public function Section() {

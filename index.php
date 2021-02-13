@@ -6,42 +6,25 @@ require'RequeteBD.php';
 require'Modele/classe_Joueur.php';
 require'Modele/classe_Page.php';
 
-// liste exhaustive des paramètres. Ce sont tous des entiers
-$T_paramètresURL = array(
-	'onglet'=> 0,	// onglet
-	'ligne' => 0,	// ligne à détailler
-	'id'	=> 0,	// ligne à MAJ
-	'champ' => 0,	// champ à modifier
-	'erreur'=> 0);	// erreur
-foreach($T_paramètresURL as $clé => $valeur) {
-	$T_paramètresURL[$clé] = (isset($_GET[$clé])) ? intval($_GET[$clé]) : null;// récupération des paramètres sans test de validité des valeurs
-}
+$T_paramètresURL = array('onglet'=> 0,	'erreur'=> 0);	// paramètres principaux
+// récupération des paramètres sans test de validité des valeurs
+foreach($T_paramètresURL as $clé => $valeur)	$T_paramètresURL[$clé] = (isset($_GET[$clé])) ? intval($_GET[$clé]) : null;
 
-// définition de la page
-define(Erreur404, "location:/?erreur=404");
-$sauvegardeLigne = null; // variable nécessaire dans le switch
-
-switch (// choix du scenario suivant la présence des paramètres
-		 (isset($T_paramètresURL['onglet'])	? 1 : 0)
-		+(isset($T_paramètresURL['ligne'])	? 2 : 0)
-		+(isset($T_paramètresURL['id'])		? 4 : 0)
-		+(isset($T_paramètresURL['champ'])	? 8 : 0)
-		+(isset($T_paramètresURL['erreur'])	? 16: 0))
+// choix du scenario suivant la présence des paramètres
+switch ((isset($T_paramètresURL['onglet']) ? 1 : 0) + (isset($T_paramètresURL['erreur']) ? 2: 0))
 {
 	case 0:	// aucun paramètre défini => page d'accueil
-		foreach ($T_paramètresURL as $clé => $valeur) $_SESSION[$clé] = $valeur;
 		$_SESSION['onglet'] = 0;
+		$_SESSION['erreur'] = null;
 		break;
-	case 13:// onglet + id + champ => MAJ du champ pour la ligne id.
-		$sauvegardeLigne = $_SESSION['ligne']; // Si un rapport est affiché il doit le rester
-	case 1: // seul l'onglet est défini => affichage de la page
-	case 3: // onglet et ligne => affichage de la liste avec le rapport de la ligne sélectionnée
-		if (($T_paramètresURL['onglet'] < 0) || ($T_paramètresURL['onglet'] > count($T_ONGLET)))	header(Erreur404, false);
-		foreach ($T_paramètresURL as $clé => $valeur) $_SESSION[$clé] = $valeur;
-		if (isset($sauvegardeLigne))	$_SESSION['ligne'] = $sauvegardeLigne;
+	case 1: // seul l'onglet est défini
+		if (($T_paramètresURL['onglet'] < 0) || ($T_paramètresURL['onglet'] > count($T_ONGLET)))	header("location:/?erreur=404", false);
+		$_SESSION['onglet'] = $T_paramètresURL['onglet'];
+		$_SESSION['erreur'] = null;
 		break;
-	case 16:// page d'erreur
-		foreach ($T_paramètresURL as $clé => $valeur) $_SESSION[$clé] = $valeur;
+	case 2: // page d'erreur
+		$_SESSION['erreur'] = $T_paramètresURL['erreur'];
+		$_SESSION['onglet'] = null;
 		break;
 	default:// pas la peine d'aller plus loin
 		header("location:/?erreur=6");
