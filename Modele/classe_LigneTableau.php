@@ -45,7 +45,7 @@ public function AfficherFormulaireMAJ() {
 ?>
 	<tr>
 		<td colspan="2" id="formulaireMAJ">
-		<form method="post" action="?onglet=<?=$_SESSION['onglet'].((isset($_SESSION['ligne'])) ? "&ligne={$_SESSION['ligne']}#{$_SESSION['ligne']}" : "#{$_SESSION['id']}")?>">
+		<form method="post" action="<?=$this->PageDeRetour()?>">
 			champ N°<?=$_SESSION['champ']?> : <input type="text" size="10" maxlength="40" name="name" />
 			<input type="submit" value="Valider" />
 		</form>
@@ -78,11 +78,7 @@ protected function BesoinOuUtile($marchandise_ID, $Butile) {
 	echo "\n";
 }
 
-public function PageDeRetour() {
-	$retour = "/{$this->onglet}.php";
-	if ($this->IDvalide($_SESSION['ID'])) $retour = $retour."?id={$_SESSION['ID']}"; // affiche le rapport si il y a lieu'
-	if ($this->IDvalide($this->ID)) $retour = $retour."#{$this->ID}";	// met le focus sur l'élément dont on vient de changer les paramètres
-	return $retour;
+public function PageDeRetour() { return "?onglet={$_SESSION['onglet']}".((isset($_SESSION['ligne'])) ? "&ligne={$_SESSION['ligne']}#{$_SESSION['ligne']}" : "#{$_SESSION['id']}"); }
 }
 
 }
