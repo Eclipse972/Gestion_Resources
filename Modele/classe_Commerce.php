@@ -45,9 +45,6 @@ public function AfficherRapport() {
 <?php
 	echo $this->UtilePour($this->ID);
 	echo $this->Obtenir($this->ID);
-?>
-	</a>
-<?php
 }
 
 }

@@ -13,9 +13,8 @@ public function AfficherRapport() {
 ?>
 	<h1>En construction</h1>
 	<h1>Divers ...</h1>
-<?=$this->UtilePour($this->ID + 2); // marchandise_ID = type_usine_ID +2 pour le moment?>
-	</a>
 <?php
+	$this->UtilePour($this->ID + 2); // marchandise_ID = type_usine_ID +2 pour le moment
 }
 
 }
