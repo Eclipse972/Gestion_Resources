@@ -48,6 +48,7 @@ public function AfficherFormulaireMAJ() {
 		<form method="post" action="<?=$this->PageDeRetour()?>">
 			champ N°<?=$_SESSION['champ']?> : <input type="text" size="10" maxlength="40" name="name" />
 			<input type="submit" value="Valider" />
+			<input type="reset" value="Annuler" />
 		</form>
 		</td>
 	</tr>
