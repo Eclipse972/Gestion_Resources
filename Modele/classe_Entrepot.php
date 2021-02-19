@@ -4,7 +4,6 @@ class Entrepot extends LigneTableau {
 public function __construct() {
 	$this->table = 'entrepot';
 	$this->nomChampID = 'marchandise_ID';
-	$this->onglet = 'entrepots';
 	$this->IDmin = 2;
 	$this->IDmax = 60;
 	parent::__construct();

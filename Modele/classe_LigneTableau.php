@@ -3,7 +3,6 @@ abstract class LigneTableau {
 	protected $table;
 	protected $nomChampID;	// nom du champ permettant d'identifier le type d'objet
 	protected $IDjoueur;	// le joueur doit être connu lors de la construction
-	protected $onglet;
 	protected $ID;	// ligne courante
 	protected $IDmin;
 	protected $IDmax;

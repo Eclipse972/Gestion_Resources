@@ -4,7 +4,6 @@ class Commerce extends LigneTableau {
 public function __construct() {
 	$this->table = 'commerce';
 	$this->nomChampID = 'marchandise_ID';
-	$this->onglet = 'commerce';
 	$this->IDmin = 3;
 	$this->IDmax = 60;
 	parent::__construct();
