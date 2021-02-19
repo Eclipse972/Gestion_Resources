@@ -17,13 +17,12 @@ public function AfficherRapport() {
 
 	<h1>Am&eacute;lioration</h1>
 	<p>Cout pour passer au niveau supérieur</p>
-	<a class="infobulle"><h1>Divers ...</h1>
-	<span>
+	<h1>Divers ...</h1>
 <?php
 	echo $this->UtilePour($this->ID);
 	echo $this->Obtenir($this->ID);
 ?>
-	</span></a>
+	</a>
 <?php
 }
 

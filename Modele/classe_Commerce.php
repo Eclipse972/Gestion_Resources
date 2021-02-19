@@ -42,13 +42,12 @@ public function AfficherRapport() {
 	$this->LesCours();
 	$this->StatsMarché();
 ?>
-	<a class="infobulle"><h1>Divers ...</h1>
-	<span>
+	<h1>Divers ...</h1>
 <?php
 	echo $this->UtilePour($this->ID);
 	echo $this->Obtenir($this->ID);
 ?>
-	</span></a>
+	</a>
 <?php
 }
 

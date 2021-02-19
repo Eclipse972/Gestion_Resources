@@ -47,12 +47,6 @@ section strong { font-size:22px; }
 	margin:0 0 5px 10px;
 }
 
-.infobulle span { display:none; }
-
-.infobulle a:hover { text-decoration:none; }
-
-.infobulle:hover span { display:block; }
-
 /* bouton de fermeture du formulaire */
 .bouton-fermeture {
 float: right;
