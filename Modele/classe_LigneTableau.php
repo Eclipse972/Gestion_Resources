@@ -80,5 +80,3 @@ protected function BesoinOuUtile($marchandise_ID, $Butile) {
 
 public function PageDeRetour() { return "?onglet={$_SESSION['onglet']}".((isset($_SESSION['ligne'])) ? "&ligne={$_SESSION['ligne']}#{$_SESSION['ligne']}" : "#{$_SESSION['id']}"); }
 }
-
-}
