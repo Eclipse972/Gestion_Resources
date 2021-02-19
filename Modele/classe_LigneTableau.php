@@ -59,14 +59,8 @@ protected function Obtenir($marchandise_ID) { $this->BesoinOuUtile($marchandise_
 protected function UtilePour($marchandise_ID) { $this->BesoinOuUtile($marchandise_ID, true); }
 
 protected function BesoinOuUtile($marchandise_ID, $Butile) {
-	if ($Butile) {
-		$vue = 'Vue_marchandiseUtilePour';
-		$titre = "Utile pour";
-	}
-	else {
-		$vue = 'Vue_marchandiseObtenir';
-		$titre = "Obtenir gr&acirc;ce &agrave;";
-	}
+	$vue	= ($Butile) ? 'Vue_marchandiseUtilePour': 'Vue_marchandiseObtenir';
+	$titre	= ($Butile) ? 'Utile pour'				: 'Obtenir gr&acirc;ce &agrave;';
 	$T_reponseBD = $this->InterrogerBD("SELECT nom FROM {$vue} WHERE marchandise_ID = :ID", array(':ID'=>$marchandise_ID));
 	echo "\t<p>{$titre} ";
 	if (count($T_reponseBD)>1) { // plusieurs lignes
