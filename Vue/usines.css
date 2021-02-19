@@ -58,25 +58,3 @@ section tbody tr td:nth-child(1) p {
 .tableau1 tbody tr td:nth-child(6) { font-family:courier; font-size:14px; }
 
 .tableau1 tbody tr td:nth-child(1) {  text-align:left; }
-
-/* spécificités du formulaire de MAJ mines */
-#conteneur_formulaire fieldset {
-	width:370px;
-	margin-top:9px;
-	margin-bottom:9px;
-}
-
-#conteneur_formulaire fieldset input {
-	width:40px;
-	margin-right:9px;
-	margin-top:9px;
-}
-
-#conteneur_formulaire #champ1 input {
-	width:50px;
-	margin-right:20px
-}
-
-#conteneur_formulaire .champProduction input { width:120px; }
-
-#conteneur_formulaire #champ1, #conteneur_formulaire .champProduction { display:inline-block; }

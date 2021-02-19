@@ -7,16 +7,3 @@ section thead tr th:nth-child(5), section tbody tr td:nth-child(5) { width:200px
 
 section tbody tr td:nth-child(2), section tbody tr td:nth-child(3) { text-align: center; }
 section tbody tr td:nth-child(4), section tbody tr td:nth-child(5) { text-align: right; }
-
-/* spécificités du formulaire de MAJ mines */
-#conteneur_formulaire #champ1 input {
-	width:50px;
-	margin-right:20px
-}
-
-#conteneur_formulaire #champ2 input { width:120px; }
-
-#conteneur_formulaire #champ1, #conteneur_formulaire #champ2, #conteneur_formulaire #champ3 {
-	display:block;
-	margin-top:9px;
-}
