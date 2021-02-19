@@ -4,6 +4,7 @@ session_start();
 require'prepare_onglet.php';		// défini des tableaux
 require'RequeteBD.php';
 require'Modele/classe_Joueur.php';
+require'Modele/classe_ChampFormulaire.php';
 require'Modele/classe_Page.php';
 
 $T_paramètresURL = array('onglet'=> 0,	'erreur'=> 0);	// paramètres principaux
