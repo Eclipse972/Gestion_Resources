@@ -8,6 +8,7 @@ abstract class LigneTableau {
 	protected $IDmax;
 	protected $code; // HTML de la ligne
 	protected $fraisTransport;
+	protected $T_paramètres;	// tableau contenant les noms de paramètres modifiables par formulaire
 
 abstract public function AfficherRapport();
 
@@ -45,9 +46,12 @@ public function AfficherFormulaireMAJ() {
 	<tr>
 		<td colspan="2" id="formulaireMAJ">
 		<form method="post" action="<?=$this->PageDeRetour()?>">
-			champ N°<?=$_SESSION['champ']?> : <input type="text" size="10" maxlength="40" name="name" />
-			<input type="submit" value="Valider" />
-			<input type="reset" value="Annuler" />
+<?php
+			$O_champ = new ChampEntier('Essai', 12);
+			$O_champ->Afficher();
+?>
+			<button type="submit">Valider</button>
+			<button type="reset">Annuler</button>
 		</form>
 		</td>
 	</tr>

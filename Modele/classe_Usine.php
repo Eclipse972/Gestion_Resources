@@ -6,6 +6,7 @@ public function __construct() {
 	$this->nomChampID = 'type_usine_ID';
 	$this->IDmin = 0;
 	$this->IDmax = 22;
+	$this->T_paramètres = array('niveau', 'prod_en_cours', 'temps de production');
 	parent::__construct();
 }
 
