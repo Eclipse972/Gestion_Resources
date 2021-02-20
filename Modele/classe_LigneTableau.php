@@ -46,10 +46,15 @@ public function AfficherFormulaireMAJ() {
 	<tr>
 		<td colspan="2" id="formulaireMAJ">
 		<form method="post" action="<?=$this->PageDeRetour()?>">
-<?php
-			$O_champ = new ChampEntier('Essai', 12);
+<?php		// recherche du nom
+			$nom = 'nombre';
+			// recherche de la valeur par défaut
+			$valeur = 12;
+			// recherche du type de champ
+			$type = 'ChampEntier';
+			$O_champ = new $type($nom, $valeur);
 			$O_champ->Afficher();
-?>
+?>			<br>
 			<button type="submit">Valider</button>
 			<button type="reset">Annuler</button>
 		</form>
