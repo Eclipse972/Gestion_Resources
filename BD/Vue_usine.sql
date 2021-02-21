@@ -12,6 +12,9 @@ SELECT
 	CONCAT(REPLACE(CAST(FORMAT(usine.prod_en_cours,0) AS CHAR),',',' '),' ',unites.nom) AS prodEnCours,
 	#-- début lien MAJ
 	CONCAT('<a href="/?onglet=1&id=',type_usine.ID,'&champ=') AS lien_MAJ,
+	#-- valeurs par défaut pour le fomulaire
+	usine.niveau,
+	usine.prod_en_cours,
 #-- création du code HTML
 	CONCAT('<td>',
 		#-- lien pour le rapport
