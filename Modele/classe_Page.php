@@ -114,7 +114,7 @@ protected function Afficher_tboby($vueBD, $nomClasseLigne) {
 	$ligne = new $nomClasseLigne;
 
 	$IDjoueur = $_SESSION['IDjoueur'];
-	$Tvue = ExecuterRequete("SELECT ID, IDjoueur, code FROM {$vueBD} WHERE IDjoueur = :ID", array(':ID' => $IDjoueur), 'construction du tableau d\'objets');
+	$Tvue = ExecuterRequete("SELECT * FROM {$vueBD} WHERE IDjoueur = :ID", array(':ID' => $IDjoueur), 'construction du tableau d\'objets');
 ?>
 	<tbody>
 <?php
