@@ -19,6 +19,17 @@ public function Hydrater($Tparam) {
 	$this->prod_en_cours = $Tparam['prod_en_cours'];
 }
 
+public function AfficherFormulaireMAJ($champ) {
+	// recherche du nom
+	$nom = $this->T_paramètres[$champ];
+	// recherche de la valeur par défaut
+	$valeur = 12;
+	// recherche du type de champ
+	$type = 'ChampEntier';
+	$O_champ = new $type($nom, $valeur);
+	$O_champ->Afficher();
+}
+
 protected function ProductionActuelle() {
 	$production = $this->InterrogerBD("SELECT prodEnCours, dureeProd FROM Vue_usine WHERE IDjoueur = :IDjoueur AND ID = :ID"
 											, array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));

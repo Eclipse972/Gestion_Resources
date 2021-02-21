@@ -11,6 +11,7 @@ abstract class LigneTableau {
 	protected $T_paramètres;	// tableau contenant les noms de paramètres modifiables par formulaire
 
 abstract public function AfficherRapport();
+abstract public function AfficherFormulaireMAJ($champ);
 
 public function __construct() {
 	$this->fraisTransport = 5;	// il faudra rechercher le taux suivant le joueur
@@ -39,17 +40,6 @@ public function Afficher() {
 		<?=$this->code?>
 	</tr>
 <?php
-}
-
-public function AfficherFormulaireMAJ() {
-	// recherche du nom
-	$nom = 'nombre';
-	// recherche de la valeur par défaut
-	$valeur = 12;
-	// recherche du type de champ
-	$type = 'ChampEntier';
-	$O_champ = new $type($nom, $valeur);
-	$O_champ->Afficher();
 }
 
 protected function Obtenir($marchandise_ID) { $this->BesoinOuUtile($marchandise_ID, false); }
