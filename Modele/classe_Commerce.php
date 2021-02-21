@@ -6,7 +6,15 @@ public function __construct() {
 	$this->nomChampID = 'marchandise_ID';
 	$this->IDmin = 3;
 	$this->IDmax = 60;
+	$this->T_paramètres = array();
 	parent::__construct();
+}
+
+public function AfficherFormulaireMAJ($champ) {
+}
+
+public function TraiterFormulaireMAJ($champ) {
+
 }
 
 public function Besoins() {

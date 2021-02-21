@@ -6,7 +6,23 @@ public function __construct() {
 	$this->nomChampID = 'type_mine_ID';
 	$this->IDmin = 0;
 	$this->IDmax = 14;
+	$this->T_paramètres = array('nombre de mine', 'état', 'production maxi');
 	parent::__construct();
+}
+
+public function AfficherFormulaireMAJ($champ) {
+	// recherche du nom
+	$nom = $this->T_paramètres[$champ];
+	// recherche de la valeur par défaut
+	$valeur = 12;
+	// recherche du type de champ
+	$type = 'ChampEntier';
+	$O_champ = new $type($nom, $valeur);
+	$O_champ->Afficher();
+}
+
+public function TraiterFormulaireMAJ($champ) {
+
 }
 
 public function AfficherRapport() {
