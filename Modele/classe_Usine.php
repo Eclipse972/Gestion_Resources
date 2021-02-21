@@ -1,5 +1,8 @@
 <?php
 class Usine extends LigneTableau {
+	// valeur par défaut pour les formulaires
+	private $niveau;
+	private $prod_en_cours;
 
 public function __construct() {
 	$this->table = 'usine';
@@ -8,6 +11,12 @@ public function __construct() {
 	$this->IDmax = 22;
 	$this->T_paramètres = array('niveau', 'prod_en_cours', 'temps de production');
 	parent::__construct();
+}
+
+public function Hydrater($Tparam) {
+	parent::Hydrater($Tparam);
+	$this->niveau = $Tparam['niveau'];
+	$this->prod_en_cours = $Tparam['prod_en_cours'];
 }
 
 protected function ProductionActuelle() {

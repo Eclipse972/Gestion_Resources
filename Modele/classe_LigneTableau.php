@@ -16,7 +16,7 @@ public function __construct() {
 	$this->fraisTransport = 5;	// il faudra rechercher le taux suivant le joueur
 }
 
-public function Hydrater($Tparam) {
+public function Hydrater($Tparam) { // récupère les paramètres communs à toutes les classe filles
 	$this->ID = $Tparam['ID'];
 	$this->IDjoueur = $Tparam['IDjoueur'];
 	$this->code = $Tparam['code'];
@@ -42,25 +42,14 @@ public function Afficher() {
 }
 
 public function AfficherFormulaireMAJ() {
-?>
-	<tr>
-		<td colspan="2" id="formulaireMAJ">
-		<form method="post" action="?onglet=<?=$_SESSION['onglet']?>&id=<?=$_SESSION['id']?>&champ=<?=$_SESSION['champ']?>">
-<?php		// recherche du nom
-			$nom = 'nombre';
-			// recherche de la valeur par défaut
-			$valeur = 12;
-			// recherche du type de champ
-			$type = 'ChampEntier';
-			$O_champ = new $type($nom, $valeur);
-			$O_champ->Afficher();
-?>			<br>
-			<button type="submit">Valider</button>
-			<button type="reset">RAZ</button>
-		</form>
-		</td>
-	</tr>
-<?php
+	// recherche du nom
+	$nom = 'nombre';
+	// recherche de la valeur par défaut
+	$valeur = 12;
+	// recherche du type de champ
+	$type = 'ChampEntier';
+	$O_champ = new $type($nom, $valeur);
+	$O_champ->Afficher();
 }
 
 protected function Obtenir($marchandise_ID) { $this->BesoinOuUtile($marchandise_ID, false); }
