@@ -45,7 +45,7 @@ public function AfficherFormulaireMAJ() {
 ?>
 	<tr>
 		<td colspan="2" id="formulaireMAJ">
-		<form method="post" action="<?=$this->PageDeRetour()?>">
+		<form method="post" action="?onglet=<?=$_SESSION['onglet']?>&id=<?=$_SESSION['id']?>&champ=<?=$_SESSION['champ']?>">
 <?php		// recherche du nom
 			$nom = 'nombre';
 			// recherche de la valeur par défaut
@@ -56,7 +56,7 @@ public function AfficherFormulaireMAJ() {
 			$O_champ->Afficher();
 ?>			<br>
 			<button type="submit">Valider</button>
-			<button type="reset">Annuler</button>
+			<button type="reset">RAZ</button>
 		</form>
 		</td>
 	</tr>
