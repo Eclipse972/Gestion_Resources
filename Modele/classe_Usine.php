@@ -30,6 +30,10 @@ public function AfficherFormulaireMAJ($champ) {
 	$O_champ->Afficher();
 }
 
+public function TraiterFormulaireMAJ($champ) {
+
+}
+
 protected function ProductionActuelle() {
 	$production = $this->InterrogerBD("SELECT prodEnCours, dureeProd FROM Vue_usine WHERE IDjoueur = :IDjoueur AND ID = :ID"
 											, array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
