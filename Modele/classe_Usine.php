@@ -3,6 +3,7 @@ class Usine extends LigneTableau {
 	// valeur par défaut pour les formulaires
 	private $niveau;
 	private $prod_en_cours;
+	private $duréeProduction;
 
 public function __construct() {
 	$this->table = 'usine';
@@ -18,18 +19,19 @@ public function Hydrater($Tparam) {
 	// valeurs par défaut pour les champs de formulaire
 	$this->niveau = $Tparam['niveau'];
 	$this->prod_en_cours = $Tparam['prod_en_cours'];
+	$this->duréeProduction = $Tparam['dureeProd'];
 }
 
 public function AfficherFormulaireMAJ() {
 	switch($_SESSION['champ']) { // future optimisation avec des tableaux?
 		case 0:
-			$O_champ = new MAJEntier('Niveau', 15);
+			$O_champ = new MAJEntier('Niveau', $this->niveau);
 			break;
 		case 1:
-			$O_champ = new MAJEntier('Production en cours', 230000);
+			$O_champ = new MAJEntier('Production en cours', $this->prod_en_cours);
 			break;
 		case 2:
-			$O_champ = new MAJDurée('Temps de production', 39999);
+			$O_champ = new MAJDurée('Temps de production', $this->duréeProduction);
 			break;
 		default:
 			header('location:/?erreur=404');
