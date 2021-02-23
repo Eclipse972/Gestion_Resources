@@ -106,6 +106,8 @@ public function Section() {
 
 public function TraiterFormulaire() {}
 
+public function PageRetour() { return "?onglet={$_SESSION['onglet']}".((isset($_SESSION['ligne'])) ? "&ligne={$_SESSION['ligne']}#{$_SESSION['ligne']}" : "#{$_SESSION['id']}"); }
+
 protected function Afficher_thead($T_en_tete) {
 	$this->nb_col_tableau = count($T_en_tete);
 ?>
