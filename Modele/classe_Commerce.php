@@ -44,7 +44,8 @@ public function StatsMarché() {
 <?php
 }
 
-public function AfficherRapport() {
+public function AfficherRapport($nbColonne) {
+	$this->DébutRapport($nbColonne);
 	$this->Besoins();
 	$this->LesCours();
 	$this->StatsMarché();
@@ -53,6 +54,7 @@ public function AfficherRapport() {
 <?php
 	echo $this->UtilePour($this->ID);
 	echo $this->Obtenir($this->ID);
+	$this->FinRapport();
 }
 
 }

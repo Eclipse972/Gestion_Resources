@@ -25,7 +25,8 @@ public function TraiterFormulaireMAJ() {
 
 }
 
-public function AfficherRapport() {
+public function AfficherRapport($nbColonne) {
+	$this->DébutRapport($nbColonne);
 ?>
 	<h1>Les besoins</h1>
 	<p>Tableau : nom - quantité - date<</p>
@@ -35,6 +36,7 @@ public function AfficherRapport() {
 <?php
 	echo $this->UtilePour($this->ID);
 	echo $this->Obtenir($this->ID);
+	$this->FinRapport();
 }
 
 }

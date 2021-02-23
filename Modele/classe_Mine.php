@@ -25,12 +25,14 @@ public function TraiterFormulaireMAJ() {
 
 }
 
-public function AfficherRapport() {
+public function AfficherRapport($nbColonne) {
+	$this->DébutRapport($nbColonne);
 ?>
 	<h1>En construction</h1>
 	<h1>Divers ...</h1>
 <?php
 	$this->UtilePour($this->ID + 2); // marchandise_ID = type_usine_ID +2 pour le moment
+	$this->FinRapport();
 }
 
 }

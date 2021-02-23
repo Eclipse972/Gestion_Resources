@@ -110,13 +110,15 @@ protected function Autosuffisance() {
 <?php
 }
 
-public function AfficherRapport() {
+public function AfficherRapport($nbColonne) {
+	$this->DébutRapport($nbColonne);
 	$ligne = $this->InterrogerBD("SELECT formule FROM Vue_recette WHERE ID = :ID", array(':ID'=>$this->ID));
 	echo"\t\t<p>Formule : {$ligne[0]['formule']}</p>\n 	";
 	$this->ProductionActuelle();
 	$this->ProchaineProduction();
 	$this->Amélioration();
 	$this->Autosuffisance();
+	$this->FinRapport();
 }
 
 }

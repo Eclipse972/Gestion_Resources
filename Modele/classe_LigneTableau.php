@@ -10,7 +10,7 @@ abstract class LigneTableau {
 	protected $fraisTransport;
 	protected $T_paramètres;	// tableau contenant les noms de paramètres modifiables par formulaire
 
-abstract public function AfficherRapport();
+abstract public function AfficherRapport($nbColonne);
 abstract public function AfficherFormulaireMAJ();
 abstract public function TraiterFormulaireMAJ();
 
@@ -33,6 +33,22 @@ protected function InterrogerBD($sql, $Tparametres) { return ExecuterRequete($sq
 
 public function MiseAjour($listeDchamps, $T_paramètres) { // les paramètres sont des chaines transmises par javascript
 	ExecuterRequete("UPDATE {$this->table} SET {$listeDchamps} WHERE {$this->table}.joueur_ID = :IDjoueur AND {$this->table}.{$this->nomChampID} = :ID", $T_paramètres, 'mise à jour');
+}
+
+protected function DébutRapport($nbColonne) {
+?>
+	<tr>
+		<td colspan="<?=$nbColonne?>" id="rapport">
+		<!-- Début du rapport -->
+<?php
+}
+
+protected function FinRapport() {
+?>
+		<!-- Fin du rapport -->
+		</td>
+	</tr>
+<?php
 }
 
 public function Afficher() {
