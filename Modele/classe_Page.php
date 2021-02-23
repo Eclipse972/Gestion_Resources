@@ -122,9 +122,7 @@ protected function Afficher_tboby($vueBD, $nomClasseLigne) {
 		$ligne->Hydrater($réponseBD);
 		echo $ligne->Afficher();
 		// affichage du formulaire
-		if ($réponseBD['ID'] == $_SESSION['id']) {
-			$ligne->AfficherFormulaireMAJ();
-		}
+		if ($réponseBD['ID'] == $_SESSION['id'])	$ligne->AfficherFormulaireMAJ();
 		// affichage du rapport
 		if ($réponseBD['ID'] == $_SESSION['ligne']) {
 			echo"\t<tr>\n\t\t<td colspan=\"{$this->nb_col_tableau}\" id=\"rapport\">\n<!-- Début du rapport -->\n";
