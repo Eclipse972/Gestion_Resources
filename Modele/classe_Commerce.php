@@ -10,10 +10,10 @@ public function __construct() {
 	parent::__construct();
 }
 
-public function AfficherFormulaireMAJ($champ) {
+public function AfficherFormulaireMAJ() {
 }
 
-public function TraiterFormulaireMAJ($champ) {
+public function TraiterFormulaireMAJ() {
 
 }
 

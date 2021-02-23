@@ -11,8 +11,8 @@ abstract class LigneTableau {
 	protected $T_paramètres;	// tableau contenant les noms de paramètres modifiables par formulaire
 
 abstract public function AfficherRapport();
-abstract public function AfficherFormulaireMAJ($champ);
-abstract public function TraiterFormulaireMAJ($champ);
+abstract public function AfficherFormulaireMAJ();
+abstract public function TraiterFormulaireMAJ();
 
 public function __construct() {
 	$this->fraisTransport = 5;	// il faudra rechercher le taux suivant le joueur

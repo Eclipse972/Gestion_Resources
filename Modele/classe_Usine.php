@@ -19,9 +19,9 @@ public function Hydrater($Tparam) {
 	$this->prod_en_cours = $Tparam['prod_en_cours'];
 }
 
-public function AfficherFormulaireMAJ($champ) {
+public function AfficherFormulaireMAJ() {
 	// recherche du nom
-	$nom = $this->T_paramètres[$champ];
+	$nom = $this->T_paramètres[$_SESSION['champ']];
 	// recherche de la valeur par défaut
 	$valeur = 12;
 	// recherche du type de champ
@@ -30,7 +30,7 @@ public function AfficherFormulaireMAJ($champ) {
 	$O_champ->Afficher();
 }
 
-public function TraiterFormulaireMAJ($champ) {
+public function TraiterFormulaireMAJ() {
 
 }
 
