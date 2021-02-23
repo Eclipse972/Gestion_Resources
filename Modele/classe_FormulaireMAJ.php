@@ -6,10 +6,10 @@ abstract class FormulaireMAJ {
 	protected $champ; // nom du champ
 	protected $valeurParDéfaut;
 
-	protected function DébutFormulaire() {
+	protected function DébutFormulaire($identifiantFormulaire) {
 ?>
 	<tr>
-		<td colspan="2" id="formulaireMAJ">
+		<td colspan="2" id="<?=$identifiantFormulaire?>">
 			<form method="post" action="?onglet=<?=$_SESSION['onglet']?>&id=<?=$_SESSION['id']?>&champ=<?=$_SESSION['champ']?>">
 <?php
 	}
@@ -37,7 +37,7 @@ class MAJEntier extends FormulaireMAJ {
 		$this->valeurParDéfaut = $valeurParDéfaut;
 	}
 	public function Afficher() {
-		$this->DébutFormulaire();
+		$this->DébutFormulaire('MAJEntier');
 		$this->Input($this->nom, 'number', $this->valeurParDéfaut, 'min="0"');
 		$this->FinFormulaire();
 	}
@@ -50,7 +50,7 @@ class MAJPourcentage extends FormulaireMAJ {
 		$this->valeurParDéfaut = $valeurParDéfaut;
 	}
 	public function Afficher() {
-		$this->DébutFormulaire();
+		$this->DébutFormulaire('MAJPourcentage');
 		$this->Input($this->nom, 'number', $this->valeurParDéfaut, 'min="0" max="100"');
 		$this->FinFormulaire();
 	}
@@ -63,7 +63,7 @@ class MAJDurée extends FormulaireMAJ {
 		$this->valeurParDéfaut = $valeurParDéfaut;
 	}
 	public function Afficher() {
-		$this->DébutFormulaire();
+		$this->DébutFormulaire('MAJDurée');
 		$this->Input('jour',	'number', (int)($this->valeurParDéfaut/86400) , 'min="0"', 'jour','jour');
 		$this->Input('heure',	'number', (int)($this->valeurParDéfaut/3600) % 24, 'min="0" max="23"', 'heure','heure');
 		$this->Input('minute',	'number', (int)($this->valeurParDéfaut/60) % 60, 'min="0" max="60"' ,'minute','minute');
