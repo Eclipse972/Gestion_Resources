@@ -125,7 +125,7 @@ protected function Afficher_tboby($vueBD, $nomClasseLigne) {
 		if ($réponseBD['ID'] == $_SESSION['id']) {
 			echo"\t<tr>\n\t\t<td colspan=\"2\" id=\"formulaireMAJ\">\n";
 			echo"\t\t<form method=\"post\" action=\"?onglet={$_SESSION['onglet']}&id={$_SESSION['id']}&champ={$_SESSION['champ']}\">\n";
-			$ligne->AfficherFormulaireMAJ($_SESSION['champ']);
+			$ligne->AfficherFormulaireMAJ();
 			echo"\t\t\t<br><button type=\"submit\">Valider</button><button type=\"reset\">RAZ</button>\n";
 			echo"\t\t</form>\n\t\t</td>\n\t</tr>\n";
 		}
