@@ -56,3 +56,18 @@ class MAJPourcentage extends FormulaireMAJ {
 	}
 	public function Traiter() {}
 }
+
+class MAJDurée extends FormulaireMAJ {
+	public function __construct($nom, $valeurParDéfaut) {
+		$this->nom = $nom;
+		$this->valeurParDéfaut = $valeurParDéfaut;
+	}
+	public function Afficher() {
+		$this->DébutFormulaire();
+		$this->Input('jour',	'number', intdiv($this->valeurParDéfaut, 86400) , 'min="0"');
+		$this->Input('heure',	'number', intdiv($this->valeurParDéfaut, 3600) % 24, 'min="0" max="23"');
+		$this->Input('minute',	'number', intdiv($this->valeurParDéfaut, 60) % 60, 'min="0" max="60"');
+		$this->FinFormulaire();
+	}
+	public function Traiter() {}
+}
