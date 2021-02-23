@@ -65,9 +65,10 @@ public function __construct() {
 		'ligne' => 0,	// ligne à détailler
 		'id'	=> 0,	// ligne à MAJ
 		'champ' => 0);	// champ à modifier
-	foreach($T_paramètresURL as $clé => $valeur) {
-		$T_paramètresURL[$clé] = (isset($_GET[$clé])) ? intval($_GET[$clé]) : null;// récupération des paramètres sans test de validité des valeurs
-	}
+
+	// récupération des paramètres sans test de validité des valeurs
+	foreach($T_paramètresURL as $clé => $valeur)	$T_paramètresURL[$clé] = (isset($_GET[$clé])) ? intval($_GET[$clé]) : null;
+
 	switch ((isset($T_paramètresURL['ligne']) ? 1 : 0) + (isset($T_paramètresURL['id']) ? 2 : 0) + (isset($T_paramètresURL['champ']) ? 4 : 0))
 	{	// MAJ du contexte suivant la situation
 		case 0: // aucun paramètre supplémentaire
