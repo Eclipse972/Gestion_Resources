@@ -1,24 +1,31 @@
 <?php
 class Mine extends LigneTableau {
+	// valeur par défaut pour les formulaires
+	protected $état;
+	protected $nombre;
+	protected $productionMaximale;
 
 public function __construct() {
 	$this->table = 'mine';
 	$this->nomChampID = 'type_mine_ID';
 	$this->IDmin = 0;
 	$this->IDmax = 14;
-	$this->T_paramètres = array('nombre de mine', 'état', 'production maxi');
 	parent::__construct();
 }
 
+public function Hydrater($Tparam) {
+	parent::Hydrater($Tparam);
+	// valeurs par défaut pour les champs de formulaire
+	$this->état = $Tparam['etat'];
+	$this->nombre = $Tparam['nombre'];
+	$this->productionMaximale = $Tparam['prod_max'];
+}
+
 public function AfficherFormulaireMAJ() {
-	// recherche du nom
-	$nom = $this->T_paramètres[$_SESSION['champ']];
-	// recherche de la valeur par défaut
-	$valeur = 12;
-	// recherche du type de champ
-	$type = 'ChampEntier';
-	$O_champ = new $type($nom, $valeur);
-	$O_champ->Afficher();
+	parent::AfficherFormulaire(	array('MAJEntier',		'MAJPourcentage',	'MAJEntier'),
+								array('nombre de mine', 'état',				'production maxi'),
+								array($this->nombre,	$this->état,		$this->productionMaximale)
+							);
 }
 
 public function TraiterFormulaireMAJ() {

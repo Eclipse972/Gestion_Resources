@@ -1,5 +1,8 @@
 <?php
 class Entrepot extends LigneTableau {
+	// valeur par défaut pour les formulaires
+	protected $niveau;
+	protected $stock;
 
 public function __construct() {
 	$this->table = 'entrepot';
@@ -10,15 +13,18 @@ public function __construct() {
 	parent::__construct();
 }
 
+public function Hydrater($Tparam) {
+	parent::Hydrater($Tparam);
+	// valeurs par défaut pour les champs de formulaire
+	$this->niveau = $Tparam['niveau'];
+	$this->stock = $Tparam['stock'];
+}
+
 public function AfficherFormulaireMAJ() {
-	// recherche du nom
-	$nom = $this->T_paramètres[$_SESSION['champ']];
-	// recherche de la valeur par défaut
-	$valeur = 12;
-	// recherche du type de champ
-	$type = 'ChampEntier';
-	$O_champ = new $type($nom, $valeur);
-	$O_champ->Afficher();
+	parent::AfficherFormulaire(	array('MAJEntier',	'MAJEntier'),
+								array('Niveau',		'Stock'),
+								array($this->niveau,$this->stock)
+							);
 }
 
 public function TraiterFormulaireMAJ() {

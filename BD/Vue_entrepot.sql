@@ -3,6 +3,9 @@ CREATE VIEW Vue_entrepot AS
 SELECT
 	entrepot.marchandise_ID AS ID,
 	entrepot.joueur_ID AS IDjoueur,
+	#-- valeur pour formuaire MAJ
+	entrepot.niveau,
+	entrepot.stock,
 	#-- variables
 	entrepot.niveau * entrepot.niveau * 5000 AS capacité,
 	IF(marchandise.cours_ki > marchandise.cours_max, marchandise.cours_ki, marchandise.cours_max) AS PU,

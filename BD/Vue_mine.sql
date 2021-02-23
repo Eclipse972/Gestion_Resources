@@ -3,6 +3,10 @@ CREATE VIEW Vue_mine AS
 SELECT
 	mine.joueur_ID AS IDjoueur,
 	type_mine.ID,
+	#-- valeur par défaut pour les formulaire MAJ
+	mine.etat,
+	mine.nombre,
+	mine.prod_max,
 	#-- début lien MAJ
 	CONCAT('<a href="/?onglet=2&id=',type_mine.ID,'&champ=') AS lien_MAJ,
 	#-- code HTML
