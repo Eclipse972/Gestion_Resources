@@ -29,7 +29,7 @@ public function AfficherFormulaireMAJ() {
 			$O_champ = new MAJEntier('Production en cours', 230000);
 			break;
 		case 2:
-			$O_champ = new MAJEntier('Temps de production', 35);
+			$O_champ = new MAJDurée('Temps de production', 39999);
 			break;
 		default:
 			header('location:/?erreur=404');

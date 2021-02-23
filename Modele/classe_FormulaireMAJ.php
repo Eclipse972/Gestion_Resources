@@ -64,9 +64,9 @@ class MAJDurée extends FormulaireMAJ {
 	}
 	public function Afficher() {
 		$this->DébutFormulaire();
-		$this->Input('jour',	'number', intdiv($this->valeurParDéfaut, 86400) , 'min="0"');
-		$this->Input('heure',	'number', intdiv($this->valeurParDéfaut, 3600) % 24, 'min="0" max="23"');
-		$this->Input('minute',	'number', intdiv($this->valeurParDéfaut, 60) % 60, 'min="0" max="60"');
+		$this->Input('jour',	'number', (int)($this->valeurParDéfaut/86400) , 'min="0"', 'jour','jour');
+		$this->Input('heure',	'number', (int)($this->valeurParDéfaut/3600) % 24, 'min="0" max="23"', 'heure','heure');
+		$this->Input('minute',	'number', (int)($this->valeurParDéfaut/60) % 60, 'min="0" max="60"' ,'minute','minute');
 		$this->FinFormulaire();
 	}
 	public function Traiter() {}
