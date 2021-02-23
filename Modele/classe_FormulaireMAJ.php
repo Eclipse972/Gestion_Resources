@@ -1,10 +1,27 @@
 <?php
-abstract class ChampFormulaire {
+abstract class FormulaireMAJ {
 	abstract public function Afficher();
 	abstract public function Traiter();
 
 	protected $champ; // nom du champ
 	protected $valeurParDéfaut;
+
+	protected function DébutFormulaire() {
+?>
+	<tr>
+		<td colspan="2" id="formulaireMAJ">
+			<form method="post" action="?onglet=<?=$_SESSION['onglet']?>&id=<?=$_SESSION['id']?>&champ=<?=$_SESSION['champ']?>">
+<?php
+	}
+
+	protected function FinFormulaire() {
+?>
+			<br><button type="submit">Valider</button><button type="reset">RAZ</button>
+			</form>
+		</td>
+	</tr>
+<?php
+	}
 
 	protected function Input($texte, $type, $valeurParDéfaut, $autres_paramètres ='', $id = 'champ' ,$name = 'champ')  {
 ?>
@@ -14,24 +31,28 @@ abstract class ChampFormulaire {
 	}
 }
 
-class ChampEntier extends ChampFormulaire {
+class MAJEntier extends FormulaireMAJ {
 	public function __construct($nom, $valeurParDéfaut) {
 		$this->nom = $nom;
 		$this->valeurParDéfaut = $valeurParDéfaut;
 	}
 	public function Afficher() {
+		$this->DébutFormulaire();
 		$this->Input($this->nom, 'number', $this->valeurParDéfaut, 'min="0"');
+		$this->FinFormulaire();
 	}
 	public function Traiter() {}
 }
 
-class ChampPourcentage extends ChampFormulaire {
+class MAJPourcentage extends FormulaireMAJ {
 	public function __construct($nom, $valeurParDéfaut) {
 		$this->nom = $nom;
 		$this->valeurParDéfaut = $valeurParDéfaut;
 	}
 	public function Afficher() {
+		$this->DébutFormulaire();
 		$this->Input($this->nom, 'number', $this->valeurParDéfaut, 'min="0" max="100"');
+		$this->FinFormulaire();
 	}
 	public function Traiter() {}
 }

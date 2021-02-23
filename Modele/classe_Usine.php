@@ -15,18 +15,25 @@ public function __construct() {
 
 public function Hydrater($Tparam) {
 	parent::Hydrater($Tparam);
+	// valeurs par défaut pour les champs de formulaire
 	$this->niveau = $Tparam['niveau'];
 	$this->prod_en_cours = $Tparam['prod_en_cours'];
 }
 
 public function AfficherFormulaireMAJ() {
-	// recherche du nom
-	$nom = $this->T_paramètres[$_SESSION['champ']];
-	// recherche de la valeur par défaut
-	$valeur = 12;
-	// recherche du type de champ
-	$type = 'ChampEntier';
-	$O_champ = new $type($nom, $valeur);
+	switch($_SESSION['champ']) { // future optimisation avec des tableaux?
+		case 0:
+			$O_champ = new MAJEntier('Niveau', 15);
+			break;
+		case 1:
+			$O_champ = new MAJEntier('Production en cours', 230000);
+			break;
+		case 2:
+			$O_champ = new MAJEntier('Temps de production', 35);
+			break;
+		default:
+			header('location:/?erreur=404');
+	}
 	$O_champ->Afficher();
 }
 
