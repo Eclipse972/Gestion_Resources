@@ -8,7 +8,6 @@ abstract class LigneTableau {
 	protected $IDmax;
 	protected $code; // HTML de la ligne
 	protected $fraisTransport;
-	protected $T_paramètres;	// tableau contenant les noms de paramètres modifiables par formulaire
 
 abstract public function AfficherRapport($nbColonne);
 abstract public function AfficherFormulaireMAJ();
@@ -58,7 +57,15 @@ public function Afficher() {
 	</tr>
 <?php
 }
-
+protected function AfficherFormulaire($T_classe, $T_texte, $T_valeur) {
+	if (isset($T_texte[$_SESSION['champ']])) {
+		$texte = $T_texte[$_SESSION['champ']];
+		$valeur= $T_valeur[$_SESSION['champ']];
+		$classe= $T_classe[$_SESSION['champ']];
+		$O_champ = new $classe($texte, $valeur);
+		$O_champ->Afficher();
+	} else header('location:/?erreur=404');
+}
 protected function Obtenir($marchandise_ID) { $this->BesoinOuUtile($marchandise_ID, false); }
 
 protected function UtilePour($marchandise_ID) { $this->BesoinOuUtile($marchandise_ID, true); }

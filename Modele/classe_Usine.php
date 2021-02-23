@@ -10,7 +10,6 @@ public function __construct() {
 	$this->nomChampID = 'type_usine_ID';
 	$this->IDmin = 0;
 	$this->IDmax = 22;
-	$this->T_paramètres = array('niveau', 'prod_en_cours', 'temps de production');
 	parent::__construct();
 }
 
@@ -23,20 +22,10 @@ public function Hydrater($Tparam) {
 }
 
 public function AfficherFormulaireMAJ() {
-	switch($_SESSION['champ']) { // future optimisation avec des tableaux?
-		case 0:
-			$O_champ = new MAJEntier('Niveau', $this->niveau);
-			break;
-		case 1:
-			$O_champ = new MAJEntier('Production en cours', $this->prod_en_cours);
-			break;
-		case 2:
-			$O_champ = new MAJDurée('Temps de production', $this->duréeProduction);
-			break;
-		default:
-			header('location:/?erreur=404');
-	}
-	$O_champ->Afficher();
+	parent::AfficherFormulaire(	array('MAJEntier',	'MAJEntier',			'MAJDurée'),
+								array('Niveau',		'Production en cours',	'Temps de production'),
+								array($this->niveau,$this->prod_en_cours,	$this->duréeProduction)
+							);
 }
 
 public function TraiterFormulaireMAJ() {
