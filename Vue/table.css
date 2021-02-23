@@ -57,4 +57,23 @@ section strong { font-size:22px; }
 
 #vers_le_haut img { width: 40px; }
 
-button { margin: 9px 5px 5px 9px; }
+/* formulaires MAJ */
+#MAJEntier label, #MAJPourcentage label { margin-left: 80px; }
+
+#MAJDurée label[for=jour] { margin-left: 80px; }
+
+#MAJDurée label[for=heure], #MAJDurée label[for=minute] { margin-left: 10px; }
+
+#MAJEntier input { width: 120px; }
+
+#MAJPourcentage input, #MAJDurée input  { width: 45px; }
+
+#MAJEntier button, #MAJDurée button, #MAJPourcentage button {
+	margin-top: 9px;
+	margin-bottom:9px;
+	margin-right:0;
+}
+
+#MAJEntier button[type=submit], #MAJDurée button[type=submit], #MAJPourcentage button[type=submit] { margin-left:90px; }
+
+#MAJEntier button[type=reset], #MAJDurée button[type=reset], #MAJPourcentage button[type=reset] { margin-left:30px; }
