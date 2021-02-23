@@ -1,10 +1,6 @@
 <?php
 abstract class FormulaireMAJ {
 	abstract public function Afficher();
-	abstract public function Traiter();
-
-	protected $champ; // nom du champ
-	protected $valeurParDéfaut;
 
 	protected function DébutFormulaire($identifiantFormulaire) {
 ?>
@@ -41,7 +37,6 @@ class MAJEntier extends FormulaireMAJ {
 		$this->Input($this->nom, 'number', $this->valeurParDéfaut, 'min="0"');
 		$this->FinFormulaire();
 	}
-	public function Traiter() {}
 }
 
 class MAJPourcentage extends FormulaireMAJ {
@@ -54,7 +49,6 @@ class MAJPourcentage extends FormulaireMAJ {
 		$this->Input($this->nom, 'number', $this->valeurParDéfaut, 'min="0" max="100"');
 		$this->FinFormulaire();
 	}
-	public function Traiter() {}
 }
 
 class MAJDurée extends FormulaireMAJ {
@@ -69,5 +63,4 @@ class MAJDurée extends FormulaireMAJ {
 		$this->Input('minute',	'number', (int)($this->valeurParDéfaut/60) % 60, 'min="0" max="59"' ,'minute','minute');
 		$this->FinFormulaire();
 	}
-	public function Traiter() {}
 }

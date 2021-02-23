@@ -2,6 +2,7 @@
 abstract class Page {
 	abstract public function FeuilleDeStyle();
 	abstract public function Section();
+	abstract public function TraiterFormulaire();
 
 protected function CSS($nom) {
 ?>
@@ -23,6 +24,8 @@ public function Section() {
 <p>Page joueur en construction</p>
 <?php
 }
+
+public function TraiterFormulaire() {}
 }
 
 class PageErreur extends Page {
@@ -50,6 +53,8 @@ public function Section() {
 	<p>Si le probl&egrave;me persiste envoyez-moi un courriel en <a href="gestion.resources@free.fr">cliquant ici</a>.</p>
 <?php
 }
+
+public function TraiterFormulaire() {}
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 abstract class PageTableau extends Page {
@@ -99,6 +104,8 @@ public function Section() {
 	$this->Afficher_corps();
 }
 
+public function TraiterFormulaire() {}
+
 protected function Afficher_thead($T_en_tete) {
 	$this->nb_col_tableau = count($T_en_tete);
 ?>
@@ -145,6 +152,7 @@ public function Afficher_tete() { parent::Afficher_thead(array('Usine', 'Niveau'
 
 public function Afficher_corps() { parent::Afficher_tboby('Vue_usine', 'Usine'); }
 
+public function TraiterFormulaire() {}
 }
 
 class PageMine extends PageTableau {
@@ -154,6 +162,8 @@ public function FeuilleDeStyle() { parent::CSSTableau('mines'); }
 public function Afficher_tete() { parent::Afficher_thead(array('Mines', '&Eacute;tat','Nombre', 'Production', 'Production max')); }
 
 public function Afficher_corps() { parent::Afficher_tboby('Vue_mine', 'Mine'); }
+
+public function TraiterFormulaire() {}
 }
 
 class PageEntrepot extends PageTableau {
@@ -163,6 +173,8 @@ public function FeuilleDeStyle() { parent::CSSTableau('entrepots'); }
 public function Afficher_tete() { parent::Afficher_thead(array('Entrep&ocirc;t', 'Niveau', 'Capacit&eacute;', 'Stock', 'Valeur')); }
 
 public function Afficher_corps() { parent::Afficher_tboby('Vue_entrepot', 'Entrepot'); }
+
+public function TraiterFormulaire() {}
 }
 
 class PageCommerce extends PageTableau {
@@ -182,4 +194,6 @@ public function Afficher_tete() {
 }
 
 public function Afficher_corps() { parent::Afficher_tboby('Vue_commerce', 'Commerce'); }
+
+public function TraiterFormulaire() {}
 }
