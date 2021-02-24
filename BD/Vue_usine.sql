@@ -19,8 +19,12 @@ SELECT
 	CONCAT('<td>',
 		#-- fonction générant le lien pour le rapport
 		(SELECT Rapport_balise_a(1,(SELECT type_usine.ID))),
-		'<span class="gauche"><img src="https://www.resources-game.ch/images/appimages/res',type_usine.IDimage,'.png" alt ="',type_usine.nom,'"></span>',
-		'<strong>',UCASE(LEFT(type_usine.nom,1)),SUBSTRING(type_usine.nom,2,LENGTH(type_usine.nom)),'</strong></a>\n',
+		'<span class="gauche">',
+		#-- fonction téléchargeant l'image officielle
+		CAST((SELECT ImageOfficielle((SELECT type_usine.IDimage),(SELECT type_usine.nom))) AS CHAR),
+		'</span>',
+		#-- fonction de mise en valeur du texte
+		(SELECT MiseEnValeur(type_usine.nom)),
 		#-- affichage de l'avancement
 		IF ((SELECT dureeProd) = 0,'', #-- production terminée on ne fait rien sinon on affiche l'avancement
 			CONCAT('\t\t\t<p>Avancement: ',

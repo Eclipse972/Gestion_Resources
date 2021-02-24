@@ -7,9 +7,10 @@ SELECT
 		#-- fonction créant la balise a pour afficher le rapport
 		(SELECT Rapport_balise_a(4,(SELECT marchandise.ID))),
 		#-- fonction recherchant l'image officielle
-		(SELECT ImageOfficielle((SELECT marchandise.IDimage),(SELECT marchandise.nom))),
-		#-- '<img src="https://www.resources-game.ch/images/appimages/res',marchandise.IDimage, '.png" alt ="',marchandise.nom,'">',
-		'<strong>',UCASE(LEFT(nom,1)),SUBSTRING(marchandise.nom,2,LENGTH(marchandise.nom)),'</strong></a></td>\n',
+		CAST((SELECT ImageOfficielle((SELECT marchandise.IDimage),(SELECT marchandise.nom))) AS CHAR),
+		#-- fonction de mise en valeur du texte
+		(SELECT MiseEnValeur(marchandise.nom)),
+		'</a></td>\n',
 		'\t\t<td>',REPLACE(FORMAT(marchandise.cours_ki ,0),',', ' '),'&euro;</td>\n',
 		'\t\t<td>',REPLACE(FORMAT(marchandise.cours_max ,0),',', ' '),'&euro;</td>\n'
 	) AS code,

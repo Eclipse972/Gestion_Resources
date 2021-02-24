@@ -1,0 +1,3 @@
+DROP FUNCTION MiseEnValeur;
+CREATE FUNCTION MiseEnValeur(nom TEXT) RETURNS TEXT
+	RETURN CONCAT('<strong>',UCASE(LEFT(nom,1)),SUBSTRING(nom,2,LENGTH(nom)),'</strong>');
