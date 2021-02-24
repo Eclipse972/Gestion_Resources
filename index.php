@@ -40,16 +40,20 @@ $CONNEXION_JOUEUR = $Joueur->Cadre_connexion();
 $classePage = isset($T_PAGE[$_SESSION['onglet']]) ? $T_PAGE[$_SESSION['onglet']] : 'PageErreur';
 $O_PAGE = new $classePage;
 
-ob_start();
-$O_PAGE->FeuilleDeStyle();
-$CSS = ob_get_contents();
-ob_clean();
+if (empty($_POST)) {
+	ob_start();
+	$O_PAGE->FeuilleDeStyle();
+	$CSS = ob_get_contents();
+	ob_clean();
 
-$CODE_ONGLET= CréationOnglets();
+	$CODE_ONGLET= CréationOnglets();
 
-ob_start();
-$O_PAGE->Section();
-$SECTION = ob_get_contents();
-ob_clean();
+	ob_start();
+	$O_PAGE->Section();
+	$SECTION = ob_get_contents();
+	ob_clean();
 
-include 'Vue/doctype.html';
+	include 'Vue/doctype.html';
+} else {
+	header("location:{$O_PAGE->PageRetour()}");
+}
