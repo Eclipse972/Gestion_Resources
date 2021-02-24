@@ -14,11 +14,11 @@ SELECT
 	#-- code HTML
 	CONCAT('<td>',
 		#-- fonction générant le lien pour le rapport
-		(SELECT Rapport_balise_a(3,(SELECT marchandise_ID))),
+		Rapport_balise_a(3, marchandise_ID),
 		#-- fonction téléchargeant l'image officielle
-		(SELECT ImageOfficielle((SELECT marchandise.IDimage),(SELECT marchandise.nom))),
+		ImageOfficielle(marchandise.IDimage, marchandise.nom),
 		#-- fonction de mise en valeur du texte
-		(SELECT MiseEnValeur(marchandise.nom)),
+		MiseEnValeur(marchandise.nom),
 		'</a>',
 		IF((SELECT capacité) >= entrepot.stock, '', '<span style="background-color:red"> Niveau (capacit&eacute;) et stock incoh&eacute;rents </span>'),
 		'</td>\n\t\t<td>',

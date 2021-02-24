@@ -5,14 +5,14 @@ SELECT
 	marchandise.ID,
 	CONCAT('<td>',
 		#-- fonction créant la balise a pour afficher le rapport
-		(SELECT Rapport_balise_a(4,(SELECT marchandise.ID))),
+		Rapport_balise_a(4, marchandise.ID),
 		#-- fonction recherchant l'image officielle
-		(SELECT ImageOfficielle((SELECT marchandise.IDimage),(SELECT marchandise.nom))),
+		ImageOfficielle(IDimage, nom),
 		#-- fonction de mise en valeur du texte
-		(SELECT MiseEnValeur(marchandise.nom)),
+		MiseEnValeur(nom),
 		'</a></td>\n',
-		'\t\t<td>',REPLACE(FORMAT(marchandise.cours_ki ,0),',', ' '),'&euro;</td>\n',
-		'\t\t<td>',REPLACE(FORMAT(marchandise.cours_max ,0),',', ' '),'&euro;</td>\n'
+		'\t\t<td>',REPLACE(FORMAT(cours_ki ,0),',', ' '),'&euro;</td>\n',
+		'\t\t<td>',REPLACE(FORMAT(cours_max,0),',', ' '),'&euro;</td>\n'
 	) AS code,
 	nom AS nom_ligne
 FROM commerce

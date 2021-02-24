@@ -18,13 +18,13 @@ SELECT
 #-- création du code HTML
 	CONCAT('<td>',
 		#-- fonction générant le lien pour le rapport
-		(SELECT Rapport_balise_a(1,(SELECT type_usine.ID))),
+		Rapport_balise_a(1,type_usine.ID),
 		'<span class="gauche">',
 		#-- fonction téléchargeant l'image officielle
-		(SELECT ImageOfficielle((SELECT type_usine.IDimage),(SELECT type_usine.nom))),
+		ImageOfficielle(type_usine.IDimage, type_usine.nom),
 		'</span>',
 		#-- fonction de mise en valeur du texte
-		(SELECT MiseEnValeur(type_usine.nom)),
+		MiseEnValeur(type_usine.nom),
 		#-- affichage de l'avancement
 		IF ((SELECT dureeProd) = 0,'', #-- production terminée on ne fait rien sinon on affiche l'avancement
 			CONCAT('\t\t\t<p>Avancement: ',

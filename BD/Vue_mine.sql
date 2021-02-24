@@ -12,11 +12,11 @@ SELECT
 	#-- code HTML
 	CONCAT('<td>',
 		#-- fonction générant le lien pour le rapport
-		(SELECT Rapport_balise_a(1,(SELECT type_mine.ID))),
+		Rapport_balise_a(1, type_mine.ID),
 		#-- fonction téléchargeant l'image officielle
-		(SELECT ImageOfficielle((SELECT marchandise.IDimage),(SELECT type_mine.nom))),
+		ImageOfficielle(marchandise.IDimage, type_mine.nom),
 		#-- fonction de mise en valeur du texte
-		(SELECT MiseEnValeur(type_mine.nom)),
+		MiseEnValeur(type_mine.nom),
 		'</a></td>\n\t\t<td>',
 		#-- état
 		(SELECT lien_MAJ),'1#',type_mine.ID,'" title="modifier état la mine">',mine.etat,'%</a></td>\n\t\t<td>',
