@@ -3,31 +3,25 @@ CREATE VIEW Vue_entrepot AS
 SELECT
 	entrepot.marchandise_ID AS ID,
 	entrepot.joueur_ID AS IDjoueur,
-	#-- valeur pour formuaire MAJ
+#-- valeur pour formuaire MAJ
 	entrepot.niveau,
 	entrepot.stock,
-	#-- variables
+#-- variables
 	entrepot.niveau * entrepot.niveau * 5000 AS capacité,
 	IF(marchandise.cours_ki > marchandise.cours_max, marchandise.cours_ki, marchandise.cours_max) AS PU,
-	#-- début de lien MAJ
-	CONCAT('<a href="/?onglet=3&id=',marchandise_ID,'&champ=') AS lien_MAJ,
-	#-- code HTML
+#-- code HTML
 	CONCAT('<td>',
-		#-- fonction générant le lien pour le rapport
-		Rapport_balise_a(3, marchandise_ID),
-		#-- fonction téléchargeant l'image officielle
-		ImageOfficielle(marchandise.IDimage, marchandise.nom),
-		#-- fonction de mise en valeur du texte
-		MiseEnValeur(marchandise.nom),
+		Rapport_balise_a(3, marchandise_ID),					#-- fonction générant la balise a du lien pour le rapport
+		ImageOfficielle(marchandise.IDimage, marchandise.nom),	#-- fonction téléchargeant l'image officielle
+		MiseEnValeur(marchandise.nom),							#-- fonction de mise en valeur du texte
 		'</a>',
 		IF((SELECT capacité) >= entrepot.stock, '', '<span style="background-color:red"> Niveau (capacit&eacute;) et stock incoh&eacute;rents </span>'),
 		'</td>\n\t\t<td>',
-		#-- niveau
-		(SELECT lien_MAJ),'0#',marchandise_ID,'" title="modifier niveau">',CAST(entrepot.niveau AS CHAR),'</a></td>\n\t\t<td>',
-		#-- capacité
-		REPLACE(CAST(FORMAT(entrepot.niveau * entrepot.niveau * 5000,0) AS CHAR),',',' '),' ',unites.nom,'</td>\n\t\t<td>',
-		#-- stock
-		(SELECT lien_MAJ),'1#',marchandise_ID,'" title="modifier quantit&eacute; stock&eacute;e">',REPLACE(CAST(FORMAT(entrepot.stock,0) AS CHAR),',',' '),' ',unites.nom,'</a></td>\n\t\t<td>',
+		LienMAJ(3, marchandise_ID, 0, 'modifier niveau'),	#-- niveau
+		CAST(entrepot.niveau AS CHAR),'</a></td>\n\t\t<td>',
+		REPLACE(CAST(FORMAT(entrepot.niveau * entrepot.niveau * 5000,0) AS CHAR),',',' '),' ',unites.nom,'</td>\n\t\t<td>',	#-- capacité
+		LienMAJ(3, marchandise_ID, 1, 'modifier quantit&eacute; stock&eacute;e'),	#-- stock
+		REPLACE(CAST(FORMAT(entrepot.stock,0) AS CHAR),',',' '),' ',unites.nom,'</a></td>\n\t\t<td>',
 		REPLACE(CAST(FORMAT(entrepot.stock * (SELECT PU),0) AS CHAR),',',' '),'</td>\n'
 	) AS code
 FROM entrepot

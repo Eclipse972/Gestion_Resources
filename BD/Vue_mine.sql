@@ -3,29 +3,21 @@ CREATE VIEW Vue_mine AS
 SELECT
 	mine.joueur_ID AS IDjoueur,
 	type_mine.ID,
-	#-- valeur par défaut pour les formulaire MAJ
+#-- valeur par défaut pour le formulaire MAJ
 	mine.etat,
 	mine.nombre,
 	mine.prod_max,
-	#-- début lien MAJ
-	CONCAT('<a href="/?onglet=2&id=',type_mine.ID,'&champ=') AS lien_MAJ,
-	#-- code HTML
+#-- code HTML
 	CONCAT('<td>',
-		#-- fonction générant le lien pour le rapport
-		Rapport_balise_a(1, type_mine.ID),
-		#-- fonction téléchargeant l'image officielle
-		ImageOfficielle(marchandise.IDimage, type_mine.nom),
-		#-- fonction de mise en valeur du texte
-		MiseEnValeur(type_mine.nom),
+		Rapport_balise_a(1, type_mine.ID),					#-- fonction générant le lien pour le rapport
+		ImageOfficielle(marchandise.IDimage, type_mine.nom),#-- fonction téléchargeant l'image officielle
+		MiseEnValeur(type_mine.nom),						#-- fonction de mise en valeur du texte
 		'</a></td>\n\t\t<td>',
-		#-- état
-		(SELECT lien_MAJ),'1#',type_mine.ID,'" title="modifier état la mine">',mine.etat,'%</a></td>\n\t\t<td>',
-		#-- nombre
-		(SELECT lien_MAJ),'0#',type_mine.ID,'" title="modifier le nombre de mine">',mine.nombre,'</a></td>\n\t\t<td>',
-		#-- production actuelle
-		REPLACE(REPLACE(FORMAT(mine.prod_max*mine.etat/100,1),',',' '),'.',','),' ',unites.nom,'/h</td>\n\t\t<td>',
+		LienMAJ(2, type_mine.ID, 1, 'modifier &eacute;tat de la mine'),mine.etat,'%</a></td>\n\t\t<td>',	#-- état
+		LienMAJ(2, type_mine.ID, 0, 'modifier le nombre de mine'),	mine.nombre,'</a></td>\n\t\t<td>',#-- nombre
+		REPLACE(REPLACE(FORMAT(mine.prod_max*mine.etat/100,1),',',' '),'.',','),' ',unites.nom,'/h</td>\n\t\t<td>',#-- production actuelle
 		#-- production max
-		(SELECT lien_MAJ),'2#',type_mine.ID,'" title="modifier la production maximale de la mine">',REPLACE(REPLACE(FORMAT(mine.prod_max,0),',',' '),'.',','),' ',unites.nom,'/h</a></td>\n'
+		LienMAJ(2, type_mine.ID, 2, 'modifier la production maximale de la mine'),	REPLACE(REPLACE(FORMAT(mine.prod_max,0),',',' '),'.',','),' ',unites.nom,'/h</a></td>\n'
 	) AS code,
 	type_mine.nom AS nom_ligne
 FROM mine
