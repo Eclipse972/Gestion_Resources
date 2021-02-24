@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: gestion.resources.sql.free.fr
--- Généré le : Sam 02 Janvier 2021 à 03:20
+-- Généré le : Mer 24 Février 2021 à 02:56
 -- Version du serveur: 5.0.83
 -- Version de PHP: 5.3.9
 
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `entrepot` (
 --
 
 INSERT INTO `entrepot` (`marchandise_ID`, `joueur_ID`, `niveau`, `stock`, `moment`, `ordre_affichage`) VALUES
-(3, 1, 209, 220009, 2020, 0),
+(3, 1, 212, 2200, 2020, 0),
 (4, 1, 6, 99, 2020, 0),
 (5, 1, 78, 4500, 2020, 0),
 (6, 1, 55, 515612, 2020, 0),
