@@ -13,8 +13,8 @@ SELECT
 	CONCAT('<td>',
 		#-- fonction générant le lien pour le rapport
 		(SELECT Rapport_balise_a(1,(SELECT type_mine.ID))),
-		'<img src="https://www.resources-game.ch/images/appimages/res',marchandise.IDimage, '.png" alt ="',type_mine.nom,'"><strong>',
-		UCASE(LEFT(type_mine.nom,1)),SUBSTRING(type_mine.nom,2,LENGTH(type_mine.nom)),'</strong></a></td>\n\t\t<td>',
+		'<img src="https://www.resources-game.ch/images/appimages/res',marchandise.IDimage, '.png" alt ="',type_mine.nom,'">',
+		'<strong>',UCASE(LEFT(type_mine.nom,1)),SUBSTRING(type_mine.nom,2,LENGTH(type_mine.nom)),'</strong></a></td>\n\t\t<td>',
 		#-- état
 		(SELECT lien_MAJ),'1#',type_mine.ID,'" title="modifier état la mine">',mine.etat,'%</a></td>\n\t\t<td>',
 		#-- nombre

@@ -6,8 +6,10 @@ SELECT
 	CONCAT('<td>',
 		#-- fonction créant la balise a pour afficher le rapport
 		(SELECT Rapport_balise_a(4,(SELECT marchandise.ID))),
-		'<img src="https://www.resources-game.ch/images/appimages/res',marchandise.IDimage, '.png" alt ="',marchandise.nom,'"><strong>',
-		UCASE(LEFT(nom,1)),SUBSTRING(marchandise.nom,2,LENGTH(marchandise.nom)),'</strong></a></td>\n',
+		#-- fonction recherchant l'image officielle
+		(SELECT ImageOfficielle((SELECT marchandise.IDimage),(SELECT marchandise.nom))),
+		#-- '<img src="https://www.resources-game.ch/images/appimages/res',marchandise.IDimage, '.png" alt ="',marchandise.nom,'">',
+		'<strong>',UCASE(LEFT(nom,1)),SUBSTRING(marchandise.nom,2,LENGTH(marchandise.nom)),'</strong></a></td>\n',
 		'\t\t<td>',REPLACE(FORMAT(marchandise.cours_ki ,0),',', ' '),'&euro;</td>\n',
 		'\t\t<td>',REPLACE(FORMAT(marchandise.cours_max ,0),',', ' '),'&euro;</td>\n'
 	) AS code,
