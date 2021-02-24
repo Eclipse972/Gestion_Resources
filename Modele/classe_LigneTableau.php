@@ -11,7 +11,6 @@ abstract class LigneTableau {
 
 abstract public function AfficherRapport($nbColonne);
 abstract public function AfficherFormulaireMAJ();
-abstract public function TraiterFormulaireMAJ();
 
 public function __construct() {
 	$this->fraisTransport = 5;	// il faudra rechercher le taux suivant le joueur
