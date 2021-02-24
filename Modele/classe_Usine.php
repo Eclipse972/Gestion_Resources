@@ -28,10 +28,6 @@ public function AfficherFormulaireMAJ() {
 							);
 }
 
-public function TraiterFormulaireMAJ() {
-
-}
-
 protected function ProductionActuelle() {
 	$production = $this->InterrogerBD("SELECT prodEnCours, dureeProd FROM Vue_usine WHERE IDjoueur = :IDjoueur AND ID = :ID"
 											, array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));

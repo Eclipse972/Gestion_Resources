@@ -28,10 +28,6 @@ public function AfficherFormulaireMAJ() {
 							);
 }
 
-public function TraiterFormulaireMAJ() {
-
-}
-
 public function AfficherRapport($nbColonne) {
 	$this->DébutRapport($nbColonne);
 ?>

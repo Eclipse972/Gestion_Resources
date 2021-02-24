@@ -57,6 +57,7 @@ public function Afficher() {
 	</tr>
 <?php
 }
+
 protected function AfficherFormulaire($T_classe, $T_texte, $T_valeur) {
 	if (isset($T_texte[$_SESSION['champ']])) {
 		$texte = $T_texte[$_SESSION['champ']];
@@ -66,6 +67,7 @@ protected function AfficherFormulaire($T_classe, $T_texte, $T_valeur) {
 		$O_champ->Afficher();
 	} else header('location:/?erreur=404');
 }
+
 protected function Obtenir($marchandise_ID) { $this->BesoinOuUtile($marchandise_ID, false); }
 
 protected function UtilePour($marchandise_ID) { $this->BesoinOuUtile($marchandise_ID, true); }

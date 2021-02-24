@@ -154,7 +154,22 @@ public function Afficher_tete() { parent::Afficher_thead(array('Usine', 'Niveau'
 
 public function Afficher_corps() { parent::Afficher_tboby('Vue_usine', 'Usine'); }
 
-public function TraiterFormulaire() {}
+public function TraiterFormulaire() {
+	switch ($_SESSION['champ']) {
+		case 0: // niveau
+			$valeur = intval($_POST['champ']);
+			exit ("valeur = {$valeur}");
+			ExecuterRequete("UPDATE usine SET niveau = :valeur WHERE Joueur_ID = :IDjoueur AND type_usine_ID = :ID",
+								array(':valeur'=>$valeur, ':IDjoueur'=>$_SESSION['IDjoueur'],':ID'=>$_SESSION['id']), 'traitement formulaire usine');
+			break;
+		case 1: // production en cours
+			break;
+		case 2: // durée de production
+			break;
+		default:
+			header('location:/?erreur=404');
+	}
+}
 }
 
 class PageMine extends PageTableau {
