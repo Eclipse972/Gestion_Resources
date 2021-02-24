@@ -11,8 +11,9 @@ SELECT
 	CONCAT('<a href="/?onglet=2&id=',type_mine.ID,'&champ=') AS lien_MAJ,
 	#-- code HTML
 	CONCAT('<td>',
-		#-- rapport
-		'<a href="/?onglet=2&ligne=',type_mine.ID,'#',type_mine.ID,'" title="afficher d&eacute;tail"><img src="https://www.resources-game.ch/images/appimages/res',marchandise.IDimage, '.png" alt ="',type_mine.nom,'"><strong>',
+		#-- fonction générant le lien pour le rapport
+		(SELECT Rapport_balise_a(1,(SELECT type_mine.ID))),
+		'<img src="https://www.resources-game.ch/images/appimages/res',marchandise.IDimage, '.png" alt ="',type_mine.nom,'"><strong>',
 		UCASE(LEFT(type_mine.nom,1)),SUBSTRING(type_mine.nom,2,LENGTH(type_mine.nom)),'</strong></a></td>\n\t\t<td>',
 		#-- état
 		(SELECT lien_MAJ),'1#',type_mine.ID,'" title="modifier état la mine">',mine.etat,'%</a></td>\n\t\t<td>',

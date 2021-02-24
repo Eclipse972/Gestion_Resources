@@ -3,8 +3,10 @@ CREATE VIEW Vue_commerce AS
 SELECT
 	commerce.joueur_ID AS IDjoueur,
 	marchandise.ID,
-	CONCAT(
-		'<td><a href="/?onglet=4&ligne=',marchandise.ID,'#',marchandise.ID,'" title="afficher d&eacute;tail"><img src="https://www.resources-game.ch/images/appimages/res',marchandise.IDimage, '.png" alt ="',marchandise.nom,'"><strong>',
+	CONCAT('<td>',
+		#-- fonction créant la balise a pour afficher le rapport
+		(SELECT Rapport_balise_a(4,(SELECT marchandise.ID))),
+		'<img src="https://www.resources-game.ch/images/appimages/res',marchandise.IDimage, '.png" alt ="',marchandise.nom,'"><strong>',
 		UCASE(LEFT(nom,1)),SUBSTRING(marchandise.nom,2,LENGTH(marchandise.nom)),'</strong></a></td>\n',
 		'\t\t<td>',REPLACE(FORMAT(marchandise.cours_ki ,0),',', ' '),'&euro;</td>\n',
 		'\t\t<td>',REPLACE(FORMAT(marchandise.cours_max ,0),',', ' '),'&euro;</td>\n'

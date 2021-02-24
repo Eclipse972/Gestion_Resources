@@ -12,8 +12,10 @@ SELECT
 	#-- début de lien MAJ
 	CONCAT('<a href="/?onglet=3&id=',marchandise_ID,'&champ=') AS lien_MAJ,
 	#-- code HTML
-	CONCAT(
-		'<td><a href="/?onglet=3&ligne=',marchandise_ID,'#',marchandise_ID,'" title="afficher d&eacute;tail"><img src="https://www.resources-game.ch/images/appimages/res',marchandise.IDimage, '.png" alt ="',marchandise.nom,'"><strong>',
+	CONCAT('<td>',
+		#-- fonction générant le lien pour le rapport
+		(SELECT Rapport_balise_a(3,(SELECT marchandise_ID))),
+		'<img src="https://www.resources-game.ch/images/appimages/res',marchandise.IDimage, '.png" alt ="',marchandise.nom,'"><strong>',
 		UCASE(LEFT(marchandise.nom,1)),SUBSTRING(marchandise.nom,2,LENGTH(marchandise.nom)),'</strong></a>',
 		IF((SELECT capacité) >= entrepot.stock, '', '<span style="background-color:red"> Niveau (capacit&eacute;) et stock incoh&eacute;rents </span>'),
 		'</td>\n\t\t<td>',

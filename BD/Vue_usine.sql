@@ -17,8 +17,9 @@ SELECT
 	usine.prod_en_cours,
 #-- création du code HTML
 	CONCAT('<td>',
-		#-- lien pour le rapport
-		'<a href="/?onglet=1&ligne=',type_usine.ID,'#',type_usine.ID,'" title="afficher d&eacute;tail"><span class="gauche"><img src="https://www.resources-game.ch/images/appimages/res',type_usine.IDimage,'.png" alt ="',type_usine.nom,'"></span>',
+		#-- fonction générant le lien pour le rapport
+		(SELECT Rapport_balise_a(1,(SELECT type_usine.ID))),
+		'<span class="gauche"><img src="https://www.resources-game.ch/images/appimages/res',type_usine.IDimage,'.png" alt ="',type_usine.nom,'"></span>',
 		'<strong>',UCASE(LEFT(type_usine.nom,1)),SUBSTRING(type_usine.nom,2,LENGTH(type_usine.nom)),'</strong></a>\n',
 		#-- affichage de l'avancement
 		IF ((SELECT dureeProd) = 0,'', #-- production terminée on ne fait rien sinon on affiche l'avancement
