@@ -4,11 +4,11 @@ abstract class Page {
 	abstract public function Section();
 	abstract public function TraiterFormulaire();
 
-protected function CSS($nom) {
-?>
-	<link rel="stylesheet" href="Vue/<?=$nom?>.css" />
-<?php
-}
+	protected function CSS($nom) {
+	?>
+		<link rel="stylesheet" href="Vue/<?=$nom?>.css" />
+	<?php
+	}
 /* Fichiers à créer pour un développement d'un futur onglet nommé X. Ex: batiment spéciaux, missions...
  * nom de la page	: créer une nouvelle classe X fille de la classe Page. Si l'onglet est de type tableau étendre la classe PageTableau
  * feuille de style	: Vue/X.css en plus de commun.css
@@ -17,130 +17,130 @@ protected function CSS($nom) {
 }
 
 class PageJoueur extends Page {
-public function FeuilleDeStyle()	{	$this->CSS('joueur');	}
+	public function FeuilleDeStyle()	{	$this->CSS('joueur');	}
 
-public function Section() {
+	public function Section() {
 ?>
-<p>Page joueur en construction</p>
+	<p>Page joueur en construction</p>
 <?php
-}
+	}
 
-public function TraiterFormulaire() {}
+	public function TraiterFormulaire() {}
 }
 
 class PageErreur extends Page {
-public function FeuilleDeStyle()	{	$this->CSS('erreur');	}
+	public function FeuilleDeStyle()	{	$this->CSS('erreur');	}
 
-public function Section() {
-	$DICO = array(	// dictionnaire
-		// erreurs de mon application
-		0	=> 'Erreur inconnue',
-		1	=> 'Un probl&egrave;me est survenu lors de l&apos;envoi de votre message'."\n".'R&eacute;essayez plus tard!',
-		2	=> 'Un probl&egrave;me est survenu avec le formulaire',
-		3	=> 'Identifiant formulaire inconnu',
-		4	=> 'Onglet inexistant',
-		5	=> 'Ligne inexistante',
-		6	=> 'Param&egrave;tres dans l&apos;URL incoh&eacute;rents',
-		// erreurs serveur
-		403	=> 'Acc&egrave;s interdit',
-		404	=> 'Cette page n&apos;existe pas',
-		500	=> 'Serveur satur&eacute;: essayez de recharger la page'
-	);
-	$code_erreur = (isset($DICO[$_SESSION['erreur']])) ? $_SESSION['erreur'] : 0;
-?>
-	<h1>Erreur <?=$code_erreur?>: <?=$DICO[$code_erreur]?></h1>
-	<p>S&eacute;lectionnez un des onglets en haut de cette page.</p>
-	<p>Si le probl&egrave;me persiste envoyez-moi un courriel en <a href="gestion.resources@free.fr">cliquant ici</a>.</p>
-<?php
-}
+	public function Section() {
+		$DICO = array(	// dictionnaire
+			// erreurs de mon application
+			0	=> 'Erreur inconnue',
+			1	=> 'Un probl&egrave;me est survenu lors de l&apos;envoi de votre message'."\n".'R&eacute;essayez plus tard!',
+			2	=> 'Un probl&egrave;me est survenu avec le formulaire',
+			3	=> 'Identifiant formulaire inconnu',
+			4	=> 'Onglet inexistant',
+			5	=> 'Ligne inexistante',
+			6	=> 'Param&egrave;tres dans l&apos;URL incoh&eacute;rents',
+			// erreurs serveur
+			403	=> 'Acc&egrave;s interdit',
+			404	=> 'Cette page n&apos;existe pas',
+			500	=> 'Serveur satur&eacute;: essayez de recharger la page'
+		);
+		$code_erreur = (isset($DICO[$_SESSION['erreur']])) ? $_SESSION['erreur'] : 0;
+	?>
+		<h1>Erreur <?=$code_erreur?>: <?=$DICO[$code_erreur]?></h1>
+		<p>S&eacute;lectionnez un des onglets en haut de cette page.</p>
+		<p>Si le probl&egrave;me persiste envoyez-moi un courriel en <a href="gestion.resources@free.fr">cliquant ici</a>.</p>
+	<?php
+	}
 
-public function TraiterFormulaire() {}
+	public function TraiterFormulaire() {}
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 abstract class PageTableau extends Page {
 	protected $nb_col_tableau;
 
-abstract public function Afficher_tete();
-abstract public function Afficher_corps();
+	abstract public function Afficher_tete();
+	abstract public function Afficher_corps();
 
-public function __construct() {
-	// la session contient déjà le numéro de l'onglet
-	// liste exhaustive des paramètres. Ce sont tous des entiers
-	$T_paramètresURL = array(
-		'ligne' => 0,	// ligne à détailler
-		'id'	=> 0,	// ligne à MAJ
-		'champ' => 0);	// champ à modifier
+	public function __construct() {
+		// la session contient déjà le numéro de l'onglet
+		// liste exhaustive des paramètres. Ce sont tous des entiers
+		$T_paramètresURL = array(
+			'ligne' => 0,	// ligne à détailler
+			'id'	=> 0,	// ligne à MAJ
+			'champ' => 0);	// champ à modifier
 
-	// récupération des paramètres sans test de validité des valeurs
-	foreach($T_paramètresURL as $clé => $valeur)	$T_paramètresURL[$clé] = (isset($_GET[$clé])) ? intval($_GET[$clé]) : null;
+		// récupération des paramètres sans test de validité des valeurs
+		foreach($T_paramètresURL as $clé => $valeur)	$T_paramètresURL[$clé] = (isset($_GET[$clé])) ? intval($_GET[$clé]) : null;
 
-	switch ((isset($T_paramètresURL['ligne']) ? 1 : 0) + (isset($T_paramètresURL['id']) ? 2 : 0) + (isset($T_paramètresURL['champ']) ? 4 : 0))
-	{	// MAJ du contexte suivant la situation
-		case 0: // aucun paramètre supplémentaire
-			$_SESSION['ligne'] = $_SESSION['id'] = $_SESSION['champ'] = null;
-			break;
-		case 1:	// ligne uniquement => affichage de la liste avec le rapport de la ligne sélectionnée
-			$_SESSION['ligne'] = $T_paramètresURL['ligne'];
-			$_SESSION['id']	= $_SESSION['champ'] = null;
-			break;
-		case 6: // id + champ => MAJ du champ pour la ligne id.
-			// on ne modifie pas $_SESSION['ligne'] car si un rapport est affiché il doit le rester
-			$_SESSION['id']		= $T_paramètresURL['id'];
-			$_SESSION['champ']	= $T_paramètresURL['champ'];
-			break;
-		default:// pas la peine d'aller plus loin
-			$_SESSION['ligne'] = $_SESSION['id'] = $_SESSION['champ'] = null;
-			header("location:/?erreur=6");
+		switch ((isset($T_paramètresURL['ligne']) ? 1 : 0) + (isset($T_paramètresURL['id']) ? 2 : 0) + (isset($T_paramètresURL['champ']) ? 4 : 0))
+		{	// MAJ du contexte suivant la situation
+			case 0: // aucun paramètre supplémentaire
+				$_SESSION['ligne'] = $_SESSION['id'] = $_SESSION['champ'] = null;
+				break;
+			case 1:	// ligne uniquement => affichage de la liste avec le rapport de la ligne sélectionnée
+				$_SESSION['ligne'] = $T_paramètresURL['ligne'];
+				$_SESSION['id']	= $_SESSION['champ'] = null;
+				break;
+			case 6: // id + champ => MAJ du champ pour la ligne id.
+				// on ne modifie pas $_SESSION['ligne'] car si un rapport est affiché il doit le rester
+				$_SESSION['id']		= $T_paramètresURL['id'];
+				$_SESSION['champ']	= $T_paramètresURL['champ'];
+				break;
+			default:// pas la peine d'aller plus loin
+				$_SESSION['ligne'] = $_SESSION['id'] = $_SESSION['champ'] = null;
+				header("location:/?erreur=6");
+		}
 	}
-}
 
-protected function CSSTableau($nom) {	$this->CSS('table');	$this->CSS($nom);	}
+	protected function CSSTableau($nom) {	$this->CSS('table');	$this->CSS($nom);	}
 
-public function Section() {
-?>
-	<div id="vers_le_haut"><a href="#"><img src="Vue/images/fleche_haut.png" alt="Retourner en haut" /></a></div>
-<?php
-	$this->Afficher_tete();	// méthode définie par les classes filles
-	$this->Afficher_corps();
-}
-
-public function TraiterFormulaire() {}
-
-public function PageRetour() { return "?onglet={$_SESSION['onglet']}".((isset($_SESSION['ligne'])) ? "&ligne={$_SESSION['ligne']}#{$_SESSION['ligne']}" : "#{$_SESSION['id']}"); }
-
-protected function Afficher_thead($T_en_tete) {
-	$this->nb_col_tableau = count($T_en_tete);
-?>
-	<table>
-	<thead><tr>
-<?php	foreach($T_en_tete as $valeur) echo "\t\t\t<th>$valeur</th>\n";?>
-	</tr></thead>
-<?php
-}
-
-protected function Afficher_tboby($vueBD, $nomClasseLigne) {
-	require'classe_LigneTableau.php';
-	require"Modele/classe_{$nomClasseLigne}.php";		// ligne associée à la page
-	$ligne = new $nomClasseLigne;
-
-	$IDjoueur = $_SESSION['IDjoueur'];
-	$Tvue = ExecuterRequete("SELECT * FROM {$vueBD} WHERE IDjoueur = :ID", array(':ID' => $IDjoueur), 'construction du tableau d\'objets');
-?>
-	<tbody>
-<?php
-	foreach($Tvue as $réponseBD) {
-		$ligne->Hydrater($réponseBD);
-		echo $ligne->Afficher();
-		// affichage du formulaire
-		if ($réponseBD['ID'] == $_SESSION['id'])	$ligne->AfficherFormulaireMAJ();
-		// affichage du rapport
-		if ($réponseBD['ID'] == $_SESSION['ligne'])	$ligne->AfficherRapport($this->nb_col_tableau);
+	public function Section() {
+	?>
+		<div id="vers_le_haut"><a href="#"><img src="Vue/images/fleche_haut.png" alt="Retourner en haut" /></a></div>
+	<?php
+		$this->Afficher_tete();	// méthode définie par les classes filles
+		$this->Afficher_corps();
 	}
-?>
-	</tbody>
-	</table>
-<?php
-}
+
+	public function TraiterFormulaire() {}
+
+	public function PageRetour() { return "?onglet={$_SESSION['onglet']}".((isset($_SESSION['ligne'])) ? "&ligne={$_SESSION['ligne']}#{$_SESSION['ligne']}" : "#{$_SESSION['id']}"); }
+
+	protected function Afficher_thead($T_en_tete) {
+		$this->nb_col_tableau = count($T_en_tete);
+	?>
+		<table>
+		<thead><tr>
+	<?php	foreach($T_en_tete as $valeur) echo "\t\t\t<th>$valeur</th>\n";?>
+		</tr></thead>
+	<?php
+	}
+
+	protected function Afficher_tboby($vueBD, $nomClasseLigne) {
+		require'classe_LigneTableau.php';
+		require"Modele/classe_{$nomClasseLigne}.php";		// ligne associée à la page
+		$ligne = new $nomClasseLigne;
+
+		$IDjoueur = $_SESSION['IDjoueur'];
+		$Tvue = ExecuterRequete("SELECT * FROM {$vueBD} WHERE IDjoueur = :ID", array(':ID' => $IDjoueur), 'construction du tableau d\'objets');
+	?>
+		<tbody>
+	<?php
+		foreach($Tvue as $réponseBD) {
+			$ligne->Hydrater($réponseBD);
+			echo $ligne->Afficher();
+			// affichage du formulaire
+			if ($réponseBD['ID'] == $_SESSION['id'])	$ligne->AfficherFormulaireMAJ();
+			// affichage du rapport
+			if ($réponseBD['ID'] == $_SESSION['ligne'])	$ligne->AfficherRapport($this->nb_col_tableau);
+		}
+	?>
+		</tbody>
+		</table>
+	<?php
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -148,69 +148,89 @@ protected function Afficher_tboby($vueBD, $nomClasseLigne) {
 
 class PageUsine extends PageTableau {
 
-public function FeuilleDeStyle() { parent::CSSTableau('usines'); }
+	public function FeuilleDeStyle() { parent::CSSTableau('usines'); }
 
-public function Afficher_tete() { parent::Afficher_thead(array('Usine', 'Niveau', 'Production')); }
+	public function Afficher_tete() { parent::Afficher_thead(array('Usine', 'Niveau', 'Production')); }
 
-public function Afficher_corps() { parent::Afficher_tboby('Vue_usine', 'Usine'); }
+	public function Afficher_corps() { parent::Afficher_tboby('Vue_usine', 'Usine'); }
 
-public function TraiterFormulaire() {
-	switch ($_SESSION['champ']) {
-		case 0: // niveau
-			$valeur = intval($_POST['champ']);
-			exit ("valeur = {$valeur}");
-			ExecuterRequete("UPDATE usine SET niveau = :valeur WHERE Joueur_ID = :IDjoueur AND type_usine_ID = :ID",
-								array(':valeur'=>$valeur, ':IDjoueur'=>$_SESSION['IDjoueur'],':ID'=>$_SESSION['id']), 'traitement formulaire usine');
-			break;
-		case 1: // production en cours
-			break;
-		case 2: // durée de production
-			break;
-		default:
-			header('location:/?erreur=404');
+	public function TraiterFormulaire() {
+		switch ($_SESSION['champ']) {
+			case 0: // niveau
+				$valeur = intval($_POST['champ']);
+				$formule = 'niveau =';
+				break;
+			case 1: // production en cours
+				$valeur = intval($_POST['champ']);
+				$formule = 'prod_en_cours =';
+				break;
+			case 2: // durée de production
+				$valeur = intval($_POST['jour'])*86400 + intval($_POST['heure'])*3600 + intval($_POST['minute'])*60;
+				$formule = 'date_fin_production = UNIX_TIMESTAMP() +'; // permet d'utiliser le temps du serveur et pas celui de la machine
+				break;
+			default:
+				header('location:/?erreur=404');
+		}
+		ExecuterRequete("UPDATE usine SET {$formule} :valeur WHERE Joueur_ID = :IDjoueur AND type_usine_ID = :ID",
+						array(':valeur'=>$valeur, ':IDjoueur'=>$_SESSION['IDjoueur'],':ID'=>$_SESSION['id']), 'traitement formulaire usine');
 	}
-}
 }
 
 class PageMine extends PageTableau {
 
-public function FeuilleDeStyle() { parent::CSSTableau('mines'); }
+	public function FeuilleDeStyle() { parent::CSSTableau('mines'); }
 
-public function Afficher_tete() { parent::Afficher_thead(array('Mines', '&Eacute;tat','Nombre', 'Production', 'Production max')); }
+	public function Afficher_tete() { parent::Afficher_thead(array('Mines', '&Eacute;tat','Nombre', 'Production', 'Production max')); }
 
-public function Afficher_corps() { parent::Afficher_tboby('Vue_mine', 'Mine'); }
+	public function Afficher_corps() { parent::Afficher_tboby('Vue_mine', 'Mine'); }
 
-public function TraiterFormulaire() {}
+	public function TraiterFormulaire() {
+		$T = array('nombre', 'etat', 'prod_max');
+		if (isset($T[$_SESSION['champ']])) {
+			$champ = $T[$_SESSION['champ']];
+			$valeur = intval($_POST['champ']);
+			ExecuterRequete("UPDATE mine SET {$champ} = :valeur WHERE Joueur_ID = :IDjoueur AND type_mine_ID = :ID",
+							array(':valeur'=>$valeur, ':IDjoueur'=>$_SESSION['IDjoueur'],':ID'=>$_SESSION['id']), 'traitement formulaire mine');
+		} else header('location:/?erreur=404');
+	}
 }
 
 class PageEntrepot extends PageTableau {
 
-public function FeuilleDeStyle() { parent::CSSTableau('entrepots'); }
+	public function FeuilleDeStyle() { parent::CSSTableau('entrepots'); }
 
-public function Afficher_tete() { parent::Afficher_thead(array('Entrep&ocirc;t', 'Niveau', 'Capacit&eacute;', 'Stock', 'Valeur')); }
+	public function Afficher_tete() { parent::Afficher_thead(array('Entrep&ocirc;t', 'Niveau', 'Capacit&eacute;', 'Stock', 'Valeur')); }
 
-public function Afficher_corps() { parent::Afficher_tboby('Vue_entrepot', 'Entrepot'); }
+	public function Afficher_corps() { parent::Afficher_tboby('Vue_entrepot', 'Entrepot'); }
 
-public function TraiterFormulaire() {}
+	public function TraiterFormulaire() {
+		$T = array('niveau', 'stock');
+		if (isset($T[$_SESSION['champ']])) {
+			$champ = $T[$_SESSION['champ']];
+			$valeur = intval($_POST['champ']);
+			ExecuterRequete("UPDATE entrepot SET {$champ} = :valeur WHERE Joueur_ID = :IDjoueur AND marchandise_ID = :ID",
+							array(':valeur'=>$valeur, ':IDjoueur'=>$_SESSION['IDjoueur'],':ID'=>$_SESSION['id']), 'traitement formulaire mine');
+		} else header('location:/?erreur=404');
+	}
 }
 
 class PageCommerce extends PageTableau {
-protected $date_MAJ;
+	protected $date_MAJ;
 
-public function __construct() {
-	$this->date_MAJ = 'ind&eacute;termin&eacute;e'; // il va falloir trouver cette date lors de la MAJ des prix des marchandises
-}
+	public function __construct() {
+		$this->date_MAJ = 'ind&eacute;termin&eacute;e'; // il va falloir trouver cette date lors de la MAJ des prix des marchandises
+	}
 
-public function FeuilleDeStyle() { parent::CSSTableau('commerce'); }
+	public function FeuilleDeStyle() { parent::CSSTableau('commerce'); }
 
-public function Afficher_tete() {
-?>
-	<p align="right">Derni&egrave;re mise à jour le: <?=$this->date_MAJ?></p>
-<?php
-	parent::Afficher_thead(array('Marchandise', 'cours Ki-market',	'cours max'));
-}
+	public function Afficher_tete() {
+	?>
+		<p align="right">Derni&egrave;re mise à jour le: <?=$this->date_MAJ?></p>
+	<?php
+		parent::Afficher_thead(array('Marchandise', 'cours Ki-market',	'cours max'));
+	}
 
-public function Afficher_corps() { parent::Afficher_tboby('Vue_commerce', 'Commerce'); }
+	public function Afficher_corps() { parent::Afficher_tboby('Vue_commerce', 'Commerce'); }
 
-public function TraiterFormulaire() {}
+	public function TraiterFormulaire() {}
 }

@@ -55,5 +55,6 @@ if (empty($_POST)) {
 
 	include 'Vue/doctype.html';
 } else {
+	$O_PAGE->TraiterFormulaire();
 	header("location:{$O_PAGE->PageRetour()}");
 }
