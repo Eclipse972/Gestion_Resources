@@ -16,7 +16,7 @@ SELECT
 		#-- fonction générant le lien pour le rapport
 		(SELECT Rapport_balise_a(3,(SELECT marchandise_ID))),
 		#-- fonction téléchargeant l'image officielle
-		CAST((SELECT ImageOfficielle((SELECT marchandise.IDimage),(SELECT marchandise.nom))) AS CHAR),
+		(SELECT ImageOfficielle((SELECT marchandise.IDimage),(SELECT marchandise.nom))),
 		#-- fonction de mise en valeur du texte
 		(SELECT MiseEnValeur(marchandise.nom)),
 		'</a>',

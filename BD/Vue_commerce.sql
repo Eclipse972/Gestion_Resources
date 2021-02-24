@@ -7,7 +7,7 @@ SELECT
 		#-- fonction créant la balise a pour afficher le rapport
 		(SELECT Rapport_balise_a(4,(SELECT marchandise.ID))),
 		#-- fonction recherchant l'image officielle
-		CAST((SELECT ImageOfficielle((SELECT marchandise.IDimage),(SELECT marchandise.nom))) AS CHAR),
+		(SELECT ImageOfficielle((SELECT marchandise.IDimage),(SELECT marchandise.nom))),
 		#-- fonction de mise en valeur du texte
 		(SELECT MiseEnValeur(marchandise.nom)),
 		'</a></td>\n',

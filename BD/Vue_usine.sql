@@ -21,7 +21,7 @@ SELECT
 		(SELECT Rapport_balise_a(1,(SELECT type_usine.ID))),
 		'<span class="gauche">',
 		#-- fonction téléchargeant l'image officielle
-		CAST((SELECT ImageOfficielle((SELECT type_usine.IDimage),(SELECT type_usine.nom))) AS CHAR),
+		(SELECT ImageOfficielle((SELECT type_usine.IDimage),(SELECT type_usine.nom))),
 		'</span>',
 		#-- fonction de mise en valeur du texte
 		(SELECT MiseEnValeur(type_usine.nom)),

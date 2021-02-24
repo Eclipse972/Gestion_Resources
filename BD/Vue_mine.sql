@@ -14,7 +14,7 @@ SELECT
 		#-- fonction générant le lien pour le rapport
 		(SELECT Rapport_balise_a(1,(SELECT type_mine.ID))),
 		#-- fonction téléchargeant l'image officielle
-		CAST((SELECT ImageOfficielle((SELECT marchandise.IDimage),(SELECT type_mine.nom))) AS CHAR),
+		(SELECT ImageOfficielle((SELECT marchandise.IDimage),(SELECT type_mine.nom))),
 		#-- fonction de mise en valeur du texte
 		(SELECT MiseEnValeur(type_mine.nom)),
 		'</a></td>\n\t\t<td>',
