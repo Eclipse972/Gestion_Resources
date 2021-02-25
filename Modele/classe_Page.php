@@ -216,6 +216,7 @@ class PageCommerce extends PageTableau {
 
 	public function __construct() {
 		$this->date_MAJ = 'ind&eacute;termin&eacute;e'; // il va falloir trouver cette date lors de la MAJ des prix des marchandises
+		parent::__construct();
 	}
 
 	public function FeuilleDeStyle() { parent::CSSTableau('commerce'); }
