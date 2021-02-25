@@ -5,9 +5,9 @@ abstract class Page {
 	abstract public function TraiterFormulaire();
 
 	protected function CSS($nom) {
-	?>
+?>
 		<link rel="stylesheet" href="Vue/<?=$nom?>.css" />
-	<?php
+<?php
 	}
 /* Fichiers à créer pour un développement d'un futur onglet nommé X. Ex: batiment spéciaux, missions...
  * nom de la page	: créer une nouvelle classe X fille de la classe Page. Si l'onglet est de type tableau étendre la classe PageTableau
@@ -110,36 +110,33 @@ abstract class PageTableau extends Page {
 
 	protected function Afficher_thead($T_en_tete) {
 		$this->nb_col_tableau = count($T_en_tete);
-	?>
-		<table>
+?>
+	<table>
 		<thead><tr>
-	<?php	foreach($T_en_tete as $valeur) echo "\t\t\t<th>$valeur</th>\n";?>
+<?php	foreach($T_en_tete as $valeur) echo "\t\t\t<th>$valeur</th>\n";?>
 		</tr></thead>
-	<?php
+<?php
 	}
 
 	protected function Afficher_tboby($vueBD, $nomClasseLigne) {
 		require'classe_LigneTableau.php';
-		require"Modele/classe_{$nomClasseLigne}.php";		// ligne associée à la page
+		require"Modele/classe_{$nomClasseLigne}.php";	// ligne associée à la page
 		$ligne = new $nomClasseLigne;
 
-		$IDjoueur = $_SESSION['IDjoueur'];
-		$Tvue = ExecuterRequete("SELECT * FROM {$vueBD} WHERE IDjoueur = :ID", array(':ID' => $IDjoueur), 'construction du tableau d\'objets');
-	?>
+		$Tvue = ExecuterRequete("SELECT * FROM {$vueBD} WHERE IDjoueur = :ID", array(':ID' => $_SESSION['IDjoueur']), 'construction du tableau d\'objets');
+?>
 		<tbody>
-	<?php
+<?php
 		foreach($Tvue as $réponseBD) {
 			$ligne->Hydrater($réponseBD);
-			echo $ligne->Afficher();
-			// affichage du formulaire
+			$ligne->Afficher();
 			if ($réponseBD['ID'] == $_SESSION['id'])	$ligne->AfficherFormulaireMAJ();
-			// affichage du rapport
 			if ($réponseBD['ID'] == $_SESSION['ligne'])	$ligne->AfficherRapport($this->nb_col_tableau);
 		}
-	?>
+?>
 		</tbody>
-		</table>
-	<?php
+	</table>
+<?php
 	}
 }
 
@@ -224,9 +221,9 @@ class PageCommerce extends PageTableau {
 	public function FeuilleDeStyle() { parent::CSSTableau('commerce'); }
 
 	public function Afficher_tete() {
-	?>
+?>
 		<p align="right">Derni&egrave;re mise à jour le: <?=$this->date_MAJ?></p>
-	<?php
+<?php
 		parent::Afficher_thead(array('Marchandise', 'cours Ki-market',	'cours max'));
 	}
 

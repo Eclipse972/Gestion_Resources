@@ -5,11 +5,8 @@ class Entrepot extends LigneTableau {
 	protected $stock;
 
 public function __construct() {
-	$this->table = 'entrepot';
-	$this->nomChampID = 'marchandise_ID';
 	$this->IDmin = 2;
 	$this->IDmax = 60;
-	$this->T_paramètres = array('niveau', 'stock');
 	parent::__construct();
 }
 

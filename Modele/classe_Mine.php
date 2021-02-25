@@ -6,8 +6,6 @@ class Mine extends LigneTableau {
 	protected $productionMaximale;
 
 public function __construct() {
-	$this->table = 'mine';
-	$this->nomChampID = 'type_mine_ID';
 	$this->IDmin = 0;
 	$this->IDmax = 14;
 	parent::__construct();

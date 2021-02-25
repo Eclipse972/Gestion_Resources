@@ -6,8 +6,6 @@ class Usine extends LigneTableau {
 	private $duréeProduction;
 
 public function __construct() {
-	$this->table = 'usine';
-	$this->nomChampID = 'type_usine_ID';
 	$this->IDmin = 0;
 	$this->IDmax = 22;
 	parent::__construct();

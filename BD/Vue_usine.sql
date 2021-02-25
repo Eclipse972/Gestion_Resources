@@ -27,13 +27,13 @@ SELECT
 					'<span style="background-color:red"> Probl&egrave;me avec un des param&egrave;tres </span>',#--avertissement
 					REPLACE((SELECT avancement),',',' ')	#--sinon on affiche la quantité déjà produite
 				),' / ',
-				LienMAJ(1, type_usine.ID, 1, 'modifier production en cours'),	#-- lien pour production en cours
+				LienMAJ(1, type_usine.ID, 1, 'production en cours'),	#-- lien pour production en cours
 				(SELECT prodEnCours),'</a></p>\n'
 			)
 		),
 		#-- temps restant de production enlien avec la date de fin de production
 		'\t\t\t',
-		LienMAJ(1, type_usine.ID, 2, 'modifier le temps de production restant'),	#-- lien pour MAJ
+		LienMAJ(1, type_usine.ID, 2, 'le temps de production restant'),	#-- lien pour MAJ
 		IF ((SELECT dureeProd) > 0, 'Temps de production restant: ', '<br>Production termin&eacute;e'),
 		CASE (SELECT jour)
 			WHEN 0 THEN ''
@@ -51,7 +51,7 @@ SELECT
 			ELSE CONCAT((SELECT minutes),' minutes')
 		END,
 		'</a>\n\t\t</td>\n\t\t<td>',
-		LienMAJ(1, type_usine.ID, 0, 'modifier niveau de l&apos;usine'),	#-- lien pour maj
+		LienMAJ(1, type_usine.ID, 0, 'niveau de l&apos;usine'),	#-- lien pour maj
 		usine.niveau,'</a></td>\n',
 		#-- capacité de production
 		'\t\t<td>',REPLACE(CAST(FORMAT(type_usine.prod_niveau1*usine.niveau,0) AS CHAR),',',' '),' ',unites.nom,'/h</td>\n'

@@ -29,10 +29,6 @@ public function IDvalide($valeur) {
 
 protected function InterrogerBD($sql, $Tparametres) { return ExecuterRequete($sql, $Tparametres); }
 
-public function MiseAjour($listeDchamps, $T_paramètres) { // les paramètres sont des chaines transmises par javascript
-	ExecuterRequete("UPDATE {$this->table} SET {$listeDchamps} WHERE {$this->table}.joueur_ID = :IDjoueur AND {$this->table}.{$this->nomChampID} = :ID", $T_paramètres, 'mise à jour');
-}
-
 protected function DébutRapport($nbColonne) {
 ?>
 	<tr>

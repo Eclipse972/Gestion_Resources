@@ -17,10 +17,10 @@ SELECT
 		'</a>',
 		IF((SELECT capacité) >= entrepot.stock, '', '<span style="background-color:red"> Niveau (capacit&eacute;) et stock incoh&eacute;rents </span>'),
 		'</td>\n\t\t<td>',
-		LienMAJ(3, marchandise_ID, 0, 'modifier niveau'),	#-- niveau
+		LienMAJ(3, marchandise_ID, 0, 'niveau'),	#-- niveau
 		CAST(entrepot.niveau AS CHAR),'</a></td>\n\t\t<td>',
 		REPLACE(CAST(FORMAT(entrepot.niveau * entrepot.niveau * 5000,0) AS CHAR),',',' '),' ',unites.nom,'</td>\n\t\t<td>',	#-- capacité
-		LienMAJ(3, marchandise_ID, 1, 'modifier quantit&eacute; stock&eacute;e'),	#-- stock
+		LienMAJ(3, marchandise_ID, 1, 'quantit&eacute; stock&eacute;e'),	#-- stock
 		REPLACE(CAST(FORMAT(entrepot.stock,0) AS CHAR),',',' '),' ',unites.nom,'</a></td>\n\t\t<td>',
 		REPLACE(CAST(FORMAT(entrepot.stock * (SELECT PU),0) AS CHAR),',',' '),'</td>\n'
 	) AS code
