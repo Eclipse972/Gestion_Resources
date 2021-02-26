@@ -10,6 +10,7 @@ SELECT
 #-- valeurs par défaut pour le fomulaire
 	usine.niveau,
 	usine.prod_en_cours,
+	usine.prod_souhaitee,
 #-- création du code HTML
 	CONCAT('<td>',
 		Rapport_balise_a(1,type_usine.ID),					#-- fonction générant le lien pour le rapport

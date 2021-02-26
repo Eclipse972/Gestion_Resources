@@ -4,6 +4,7 @@ class Usine extends LigneTableau {
 	private $niveau;
 	private $prod_en_cours;
 	private $duréeProduction;
+	private $productionSouhaitée;
 
 public function __construct() {
 	$this->IDmin = 0;
@@ -17,12 +18,13 @@ public function Hydrater($Tparam) {
 	$this->niveau = $Tparam['niveau'];
 	$this->prod_en_cours = $Tparam['prod_en_cours'];
 	$this->duréeProduction = $Tparam['dureeProd'];
+	$this->productionSouhaitée = $Tparam['prod_souhaitee'];
 }
 
 public function AfficherFormulaireMAJ() {
-	parent::AfficherFormulaire(	array('MAJEntier',	'MAJEntier',			'MAJDurée'),
-								array('Niveau',		'Production en cours',	'Temps de production'),
-								array($this->niveau,$this->prod_en_cours,	$this->duréeProduction)
+	parent::AfficherFormulaire(	array('MAJEntier',	'MAJEntier',			'MAJDurée',				'MAJEntier'),
+								array('Niveau',		'Production en cours',	'Temps de production',	'Production souhait&eacute;e'),
+								array($this->niveau,$this->prod_en_cours,	$this->duréeProduction,	$this->productionSouhaitée)
 							);
 }
 

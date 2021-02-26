@@ -1,9 +1,11 @@
 DROP VIEW Vue_usine_prochaineProduction;
 CREATE VIEW Vue_usine_prochaineProduction AS
 SELECT
-	type_usine.ID, usine.joueur_ID AS IDjoueur
+	type_usine.ID
+	, usine.joueur_ID AS IDjoueur
 	,CONCAT(
-		REPLACE(CAST(FORMAT(usine.prod_souhaitee,0) AS CHAR),',',' '),' ',unites.nom
+		LienMAJ(1, type_usine_ID, 3, 'la production souhait&eacute;e'),	REPLACE(CAST(FORMAT(usine.prod_souhaitee,0) AS CHAR),',',' '),'</a>'
+		,' ',unites.nom
 		,' pour une dur&eacute;e: ',ConvertirEnJhm(usine.prod_souhaitee * 3600 DIV (usine.niveau * type_usine.prod_niveau1))
 	) AS prochaineProd
 FROM usine
