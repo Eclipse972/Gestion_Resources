@@ -106,6 +106,14 @@ abstract class PageTableau extends Page {
 
 	public function TraiterFormulaire() {}
 
+	protected function MAJ_BD($tableBD, $Tableau, $champWhere, $décalage = '0') {
+		if (isset($Tableau[$_SESSION['champ']])) {
+			$champ = $Tableau[$_SESSION['champ']];
+			ExecuterRequete("UPDATE {$tableBD} SET {$champ} = :valeur + {$décalage} WHERE Joueur_ID = :IDjoueur AND {$champWhere} = :ID",
+								array(':valeur'=>intval($_POST['champ']), ':IDjoueur'=>$_SESSION['IDjoueur'],':ID'=>$_SESSION['id']), 'traitement formulaire mine');
+		} else header('location:/?erreur=404');
+	}
+
 	public function PageRetour() { return "?onglet={$_SESSION['onglet']}".((isset($_SESSION['ligne'])) ? "&ligne={$_SESSION['ligne']}#{$_SESSION['ligne']}" : "#{$_SESSION['id']}"); }
 
 	protected function Afficher_thead($T_en_tete) {
@@ -152,24 +160,8 @@ class PageUsine extends PageTableau {
 	public function Afficher_corps() { parent::Afficher_tboby('Vue_usine', 'Usine'); }
 
 	public function TraiterFormulaire() {
-		switch ($_SESSION['champ']) {
-		case 0: // niveau
-			$valeur = intval($_POST['champ']);
-			break;
-		case 1: // production en cours
-			$valeur = intval($_POST['champ']);
-			break;
-		case 2: // durée de production
-			$valeur = intval($_POST['jour'])*86400 + intval($_POST['heure'])*3600 + intval($_POST['minute'])*60;
-			break;
-		default:
-			header('location:/?erreur=404');
-		}
-		$T = array('niveau', 'prod_en_cours', 'date_fin_production');
-		$champ = $T[$_SESSION['champ']];
-		$formule = ($_SESSION['champ'] == 2) ? 'UNIX_TIMESTAMP()' : '0';
-		ExecuterRequete("UPDATE usine SET {$champ} = :valeur + {$formule} WHERE Joueur_ID = :IDjoueur AND type_usine_ID = :ID",
-						array(':valeur'=>$valeur, ':IDjoueur'=>$_SESSION['IDjoueur'],':ID'=>$_SESSION['id']), 'traitement formulaire usine');
+		if ($_SESSION['champ'] == 2) $_POST['champ'] = intval($_POST['jour'])*86400 + intval($_POST['heure'])*3600 + intval($_POST['minute'])*60;
+		parent::MAJ_BD('usine', array('niveau', 'prod_en_cours', 'date_fin_production'), 'type_usine_ID', ($_SESSION['champ'] == 2) ? 'UNIX_TIMESTAMP()' : '0');
 	}
 }
 
@@ -182,13 +174,7 @@ class PageMine extends PageTableau {
 	public function Afficher_corps() { parent::Afficher_tboby('Vue_mine', 'Mine'); }
 
 	public function TraiterFormulaire() {
-		$T = array('nombre', 'etat', 'prod_max');
-		if (isset($T[$_SESSION['champ']])) {
-			$champ = $T[$_SESSION['champ']];
-			$valeur = intval($_POST['champ']);
-			ExecuterRequete("UPDATE mine SET {$champ} = :valeur WHERE Joueur_ID = :IDjoueur AND type_mine_ID = :ID",
-							array(':valeur'=>$valeur, ':IDjoueur'=>$_SESSION['IDjoueur'],':ID'=>$_SESSION['id']), 'traitement formulaire mine');
-		} else header('location:/?erreur=404');
+		parent::MAJ_BD('mine', array('nombre', 'etat', 'prod_max'), 'type_mine_ID');
 	}
 }
 
@@ -201,13 +187,7 @@ class PageEntrepot extends PageTableau {
 	public function Afficher_corps() { parent::Afficher_tboby('Vue_entrepot', 'Entrepot'); }
 
 	public function TraiterFormulaire() {
-		$T = array('niveau', 'stock');
-		if (isset($T[$_SESSION['champ']])) {
-			$champ = $T[$_SESSION['champ']];
-			$valeur = intval($_POST['champ']);
-			ExecuterRequete("UPDATE entrepot SET {$champ} = :valeur WHERE Joueur_ID = :IDjoueur AND marchandise_ID = :ID",
-							array(':valeur'=>$valeur, ':IDjoueur'=>$_SESSION['IDjoueur'],':ID'=>$_SESSION['id']), 'traitement formulaire mine');
-		} else header('location:/?erreur=404');
+		parent::MAJ_BD('entrepot', array('niveau', 'stock'), 'marchandise_ID');
 	}
 }
 
