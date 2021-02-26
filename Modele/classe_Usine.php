@@ -72,7 +72,7 @@ protected function ProchaineProduction() {
 	$production = $this->InterrogerBD("SELECT * FROM Vue_usine_prochaineProduction WHERE IDjoueur = :IDjoueur AND ID = :ID", array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
 ?>
 		<h1>Prochaine production</h1>
-		<p>Besoins pour la production de <?=$production[0]['prochaineProd']?> (dur&eacute;e <?=$production[0]['duréeProductinoSouhaitée']?>) :</p>
+		<p>Besoins pour la production de <?=$production[0]['prochaineProd']?> :</p>
 		<?=$this->Tableau1('Vue_usine_prochaineProduction_ingredients', 'Vue_usine_prochaineProduction_coutFixe');	?>
 		<p>En construction: formulaire avec durée/Quantité + date de début + bouton de validation</p>
 <?php
