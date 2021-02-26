@@ -153,22 +153,22 @@ class PageUsine extends PageTableau {
 
 	public function TraiterFormulaire() {
 		switch ($_SESSION['champ']) {
-			case 0: // niveau
-				$valeur = intval($_POST['champ']);
-				$formule = 'niveau =';
-				break;
-			case 1: // production en cours
-				$valeur = intval($_POST['champ']);
-				$formule = 'prod_en_cours =';
-				break;
-			case 2: // durée de production
-				$valeur = intval($_POST['jour'])*86400 + intval($_POST['heure'])*3600 + intval($_POST['minute'])*60;
-				$formule = 'date_fin_production = UNIX_TIMESTAMP() +'; // permet d'utiliser le temps du serveur et pas celui de la machine
-				break;
-			default:
-				header('location:/?erreur=404');
+		case 0: // niveau
+			$valeur = intval($_POST['champ']);
+			break;
+		case 1: // production en cours
+			$valeur = intval($_POST['champ']);
+			break;
+		case 2: // durée de production
+			$valeur = intval($_POST['jour'])*86400 + intval($_POST['heure'])*3600 + intval($_POST['minute'])*60;
+			break;
+		default:
+			header('location:/?erreur=404');
 		}
-		ExecuterRequete("UPDATE usine SET {$formule} :valeur WHERE Joueur_ID = :IDjoueur AND type_usine_ID = :ID",
+		$T = array('niveau', 'prod_en_cours', 'date_fin_production');
+		$champ = $T[$_SESSION['champ']];
+		$formule = ($_SESSION['champ'] == 2) ? 'UNIX_TIMESTAMP()' : '0';
+		ExecuterRequete("UPDATE usine SET {$champ} = :valeur + {$formule} WHERE Joueur_ID = :IDjoueur AND type_usine_ID = :ID",
 						array(':valeur'=>$valeur, ':IDjoueur'=>$_SESSION['IDjoueur'],':ID'=>$_SESSION['id']), 'traitement formulaire usine');
 	}
 }
