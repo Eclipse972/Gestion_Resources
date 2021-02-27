@@ -8,8 +8,8 @@ SELECT
 		ImageOfficielle(IDimage, nom),		#-- fonction recherchant l'image officielle
 		MiseEnValeur(nom),					#-- fonction de mise en valeur du texte
 		'</a></td>\n',
-		'\t\t<td>',REPLACE(FORMAT(cours_ki ,0),',', ' '),'&euro;</td>\n',
-		'\t\t<td>',REPLACE(FORMAT(cours_max,0),',', ' '),'&euro;</td>\n'
+		'\t\t<td>',SeparateurMilliers(cours_ki),'&euro;</td>\n',
+		'\t\t<td>',SeparateurMilliers(cours_max),'&euro;</td>\n'
 	) AS code,
 	nom AS nom_ligne
 FROM commerce

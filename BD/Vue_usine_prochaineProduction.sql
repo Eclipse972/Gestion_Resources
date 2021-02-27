@@ -4,7 +4,7 @@ SELECT
 	type_usine.ID
 	, usine.joueur_ID AS IDjoueur
 	,CONCAT(
-		LienMAJ(1, type_usine_ID, 3, 'la production souhait&eacute;e'),	REPLACE(CAST(FORMAT(usine.prod_souhaitee,0) AS CHAR),',',' '),'</a>'
+		LienMAJ(1, type_usine_ID, 3, 'la production souhait&eacute;e'),	SeparateurMilliers(usine.prod_souhaitee),'</a>'
 		,' ',unites.nom
 		,' pour une dur&eacute;e: ',ConvertirEnJhm(usine.prod_souhaitee * 3600 DIV (usine.niveau * type_usine.prod_niveau1))
 	) AS prochaineProd

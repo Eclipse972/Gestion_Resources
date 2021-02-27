@@ -1,3 +1,4 @@
+DROP VIEW Vue_usine_production_ingredients;
 CREATE VIEW Vue_usine_production_ingredients AS
 SELECT
 	usine.joueur_ID
@@ -6,7 +7,7 @@ SELECT
 	,usine.prod_en_cours / résultat.quantité AS coef #-- coefficient multiplicateur pour la recette de production
 	,ROUND(-ingredient.quantité * (SELECT coef)) AS Qte #consommation est négative
 	,CONCAT('\t\t<tr><td>',marchandise.nom
-			,'</td><td>',REPLACE(CAST(FORMAT((SELECT Qte) ,0) AS CHAR),',',' '),' ',unites.nom
+			,'</td><td>',SeparateurMilliers((SELECT Qte) ),' ',unites.nom
 			,'</td></tr>\n') AS code
 FROM usine
 INNER JOIN type_usine ON usine.type_usine_ID = type_usine.ID

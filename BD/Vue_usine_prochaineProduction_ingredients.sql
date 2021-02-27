@@ -1,3 +1,4 @@
+DROP VIEW Vue_usine_prochaineProduction_ingredients;
 CREATE VIEW Vue_usine_prochaineProduction_ingredients AS
 SELECT
 	usine.joueur_ID
@@ -7,11 +8,11 @@ SELECT
 	,IF (marchandise.cours_max = 0, marchandise.cours_ki, marchandise.cours_max) AS PU
 	,(SELECT manque) * (SELECT PU) AS achat
 	,CONCAT('\t\t\t<tr><td>',marchandise.nom
-			,'</td><td>',REPLACE(CAST(FORMAT((SELECT Qte) ,0) AS CHAR),',',' ')
-			,'</td><td>',REPLACE(CAST(FORMAT(entrepot.stock ,0) AS CHAR),',',' ')
-			,'</td><td>',REPLACE(CAST(FORMAT((SELECT manque) ,0) AS CHAR),',',' ')
-			,'</td><td>',REPLACE(CAST(FORMAT((SELECT PU) ,0) AS CHAR),',',' ')
-			,'</td><td>',REPLACE(CAST(FORMAT((SELECT achat) ,0) AS CHAR),',',' ')
+			,'</td><td>',SeparateurMilliers((SELECT Qte) )
+			,'</td><td>',SeparateurMilliers(entrepot.stock )
+			,'</td><td>',SeparateurMilliers((SELECT manque) )
+			,'</td><td>',SeparateurMilliers((SELECT PU) )
+			,'</td><td>',SeparateurMilliers((SELECT achat) )
 			,'</td></tr>\n') AS code
 FROM usine
 INNER JOIN type_usine ON usine.type_usine_ID = type_usine.ID
