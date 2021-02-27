@@ -5,8 +5,6 @@ class Entrepot extends LigneTableau {
 	protected $stock;
 
 public function __construct() {
-	$this->IDmin = 2;
-	$this->IDmax = 60;
 	$this->T_formulaireMAJ['classe']	= array('MAJEntier','MAJEntier');
 	$this->T_formulaireMAJ['texte']		= array('Niveau',	'Stock');
 	$this->T_formulaireMAJ['champBD']	= array('niveau',	'stock');

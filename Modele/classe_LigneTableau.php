@@ -1,8 +1,6 @@
 <?php
 abstract class LigneTableau {
 	protected $ID;	// ligne courante
-	protected $IDmin;
-	protected $IDmax;
 	protected $code; // HTML de la ligne
 	protected $fraisTransport;
 	// tableau associatif contenant les données pour contruire et traiter les formullaires
@@ -19,11 +17,6 @@ public function __construct() {
 public function Hydrater($Tparam) { // récupère les paramètres communs à toutes les classes filles
 	$this->ID = $Tparam['ID'];
 	$this->code = $Tparam['code'];
-}
-
-public function IDvalide($valeur) {
-	$valeur = (int)$valeur;
-	return (($valeur > $this->IDmin) && ($valeur <= $this->IDmax));
 }
 
 protected function InterrogerBD($sql, $Tparametres) { return ExecuterRequete($sql, $Tparametres); }

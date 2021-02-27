@@ -1,11 +1,7 @@
 <?php
 class Commerce extends LigneTableau {
 
-public function __construct() {
-	$this->IDmin = 3;
-	$this->IDmax = 60;
-	parent::__construct();
-}
+// ne pas oublier le constructeur si cette page contient des formulaire MAJ
 
 public function Besoins() {
 ?>

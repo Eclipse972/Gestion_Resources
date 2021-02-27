@@ -2,8 +2,6 @@
 class Usine extends LigneTableau {
 
 public function __construct() {
-	$this->IDmin = 0;
-	$this->IDmax = 22;
 	$this->T_formulaireMAJ['classe']	= array('MAJEntier','MAJEntier',			'MAJDurée',				'MAJEntier');
 	$this->T_formulaireMAJ['texte']		= array('Niveau',	'Production en cours',	'Temps de production',	'Production souhait&eacute;e');
 	$this->T_formulaireMAJ['champBD']	= array('niveau',	'prod_en_cours',		'date_fin_production',	'prod_souhaitee');

@@ -2,8 +2,6 @@
 class Mine extends LigneTableau {
 
 public function __construct() {
-	$this->IDmin = 0;
-	$this->IDmax = 14;
 	$this->T_formulaireMAJ['classe']	= array('MAJEntier',		'MAJEntier',	'MAJEntier');
 	$this->T_formulaireMAJ['texte']		= array('Nombre de mine',	'&Eacute;tat',	'Production maxi');
 	$this->T_formulaireMAJ['champBD']	= array('nombre',			'etat',			'prod_max');
