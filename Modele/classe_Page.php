@@ -60,6 +60,7 @@ class PageErreur extends Page {
 abstract class PageTableau extends Page {
 	protected $nb_col_tableau;
 	protected $nomCSS;
+	protected $T_enTete;
 
 	abstract public function Afficher_tete();
 	abstract public function Afficher_corps();
@@ -109,12 +110,12 @@ abstract class PageTableau extends Page {
 
 	public function PageRetour() { return "?onglet={$_SESSION['onglet']}".((isset($_SESSION['ligne'])) ? "&ligne={$_SESSION['ligne']}#{$_SESSION['ligne']}" : "#{$_SESSION['id']}"); }
 
-	protected function Afficher_thead($T_en_tete) {
-		$this->nb_col_tableau = count($T_en_tete);
+	protected function Afficher_thead() {
+		$this->nb_col_tableau = count($this->T_enTete);
 ?>
 	<table>
 		<thead><tr>
-<?php	foreach($T_en_tete as $valeur) echo "\t\t\t<th>$valeur</th>\n";?>
+<?php	foreach($this->T_enTete as $valeur) echo "\t\t\t<th>$valeur</th>\n";?>
 		</tr></thead>
 <?php
 	}
@@ -148,11 +149,12 @@ class PageUsine extends PageTableau {
 	public function __construct() {
 		parent::__construct();
 		$this->nomCSS = 'usines';
+		$this->T_enTete = array('Usine', 'Niveau', 'Production');
 	}
 
 	public function FeuilleDeStyle() {	parent::FeuilleDeStyle();	}	// obligatoire car méthode abstraite
 
-	public function Afficher_tete() { parent::Afficher_thead(array('Usine', 'Niveau', 'Production')); }
+	public function Afficher_tete() { parent::Afficher_thead(); }
 
 	public function Afficher_corps() { parent::Afficher_tboby('Vue_usine', 'Usine'); }
 
@@ -170,11 +172,12 @@ class PageMine extends PageTableau {
 	public function __construct() {
 		parent::__construct();
 		$this->nomCSS = 'mines';
+		$this->T_enTete = array('Mines', '&Eacute;tat','Nombre', 'Production', 'Production max');
 	}
 
 	public function FeuilleDeStyle() {	parent::FeuilleDeStyle();	}	// obligatoire car méthode abstraite
 
-	public function Afficher_tete() { parent::Afficher_thead(array('Mines', '&Eacute;tat','Nombre', 'Production', 'Production max')); }
+	public function Afficher_tete() { parent::Afficher_thead(); }
 
 	public function Afficher_corps() { parent::Afficher_tboby('Vue_mine', 'Mine'); }
 
@@ -187,11 +190,12 @@ class PageEntrepot extends PageTableau {
 	public function __construct() {
 		parent::__construct();
 		$this->nomCSS = 'entrepots';
+		$this->T_enTete = array('Entrep&ocirc;t', 'Niveau', 'Capacit&eacute;', 'Stock', 'Valeur');
 	}
 
 	public function FeuilleDeStyle() {	parent::FeuilleDeStyle();	}	// obligatoire car méthode abstraite
 
-	public function Afficher_tete() { parent::Afficher_thead(array('Entrep&ocirc;t', 'Niveau', 'Capacit&eacute;', 'Stock', 'Valeur')); }
+	public function Afficher_tete() { parent::Afficher_thead(); }
 
 	public function Afficher_corps() { parent::Afficher_tboby('Vue_entrepot', 'Entrepot'); }
 
@@ -206,6 +210,7 @@ class PageCommerce extends PageTableau {
 	public function __construct() {
 		parent::__construct();
 		$this->nomCSS = 'commerce';
+		$this->T_enTete = array('Marchandise', 'cours Ki-market',	'cours max');
 		$this->date_MAJ = 'ind&eacute;termin&eacute;e'; // il va falloir trouver cette date lors de la MAJ des prix des marchandises
 	}
 
@@ -215,7 +220,7 @@ class PageCommerce extends PageTableau {
 ?>
 		<p align="right">Derni&egrave;re mise à jour le: <?=$this->date_MAJ?></p>
 <?php
-		parent::Afficher_thead(array('Marchandise', 'cours Ki-market',	'cours max'));
+		parent::Afficher_thead();
 	}
 
 	public function Afficher_corps() { parent::Afficher_tboby('Vue_commerce', 'Commerce'); }
