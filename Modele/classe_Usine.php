@@ -17,10 +17,12 @@ public function Hydrater($Tparam) {
 	// valeurs par défaut pour les champs de formulaire
 	$this->T_formulaireMAJ['valeur'] = array($Tparam['niveau'], $Tparam['prod_en_cours'], $Tparam['dureeProd'], $Tparam['prod_souhaitee']);
 }
-/*
-		if ($_SESSION['champ'] == 2) $_POST['champ'] = intval($_POST['jour'])*86400 + intval($_POST['heure'])*3600 + intval($_POST['minute'])*60;
-		parent::MAJ_BD('usine', array('niveau', 'prod_en_cours', 'date_fin_production', 'prod_souhaitee'), 'type_usine_ID', ($_SESSION['champ'] == 2) ? 'UNIX_TIMESTAMP()' : '0');
-*/
+
+public function MAJ_BD() {
+	if ($_SESSION['champ'] == 2) $_POST['champ'] = intval($_POST['jour'])*86400 + intval($_POST['heure'])*3600 + intval($_POST['minute'])*60;
+	parent::MAJ_BD(($_SESSION['champ'] == 2) ? 'UNIX_TIMESTAMP()' : '0');
+}
+
 protected function ProductionActuelle() {
 	$production = $this->InterrogerBD("SELECT prodEnCours, dureeProd FROM Vue_usine WHERE IDjoueur = :IDjoueur AND ID = :ID"
 											, array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));

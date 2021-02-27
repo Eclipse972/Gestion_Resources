@@ -62,11 +62,13 @@ public function AfficherFormulaireMAJ() {
 	} else header('location:/?erreur=404');
 }
 
-protected function MAJ_BD($vueBD, $nomClasseLigne) {
-	if (isset($Tableau[$_SESSION['champ']])) {
-		$champ = $Tableau[$_SESSION['champ']];
-		ExecuterRequete("UPDATE {$tableBD} SET {$champ} = :valeur + {$décalage} WHERE Joueur_ID = :IDjoueur AND {$champWhere} = :ID",
-							array(':valeur'=>intval($_POST['champ']), ':IDjoueur'=>$_SESSION['IDjoueur'],':ID'=>$_SESSION['id']), 'traitement formulaire mine');
+public function MAJ_BD($décalage = '0') {
+	if (isset($this->T_formulaireMAJ['champBD'][$_SESSION['champ']])) {
+		$table = $this->tableUPDATE;
+		$champ = $this->T_formulaireMAJ['champBD'][$_SESSION['champ']];
+		$champWhere = $this->champWHERE;
+		ExecuterRequete("UPDATE {$table} SET {$champ} = :valeur + {$décalage} WHERE Joueur_ID = :IDjoueur AND {$champWhere} = :ID",
+						array(':valeur'=>intval($_POST['champ']), ':IDjoueur'=>$_SESSION['IDjoueur'],':ID'=>$_SESSION['id']), 'traitement formulaire ligne de tableau');
 	} else header('location:/?erreur=404');
 }
 

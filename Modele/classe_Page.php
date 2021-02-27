@@ -117,6 +117,7 @@ class PageTableau extends Page {
 		$ligne = new $this->nomClasseLigne;
 		$ligne->Hydrater($réponseBD[0]);
 		// MAJ  de la BD
+		$ligne->MAJ_BD();
 	}
 
 	public function PageRetour() { return "?onglet={$_SESSION['onglet']}".((isset($_SESSION['ligne'])) ? "&ligne={$_SESSION['ligne']}#{$_SESSION['ligne']}" : "#{$_SESSION['id']}"); }
