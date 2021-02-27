@@ -25,9 +25,9 @@ public function MAJ_BD() {
 
 protected function ProductionActuelle() {
 	$production = $this->InterrogerBD("SELECT prodEnCours, dureeProd FROM Vue_usine WHERE IDjoueur = :IDjoueur AND ID = :ID"
-											, array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
+											, array(':IDjoueur'=>$_SESSION['IDjoueur'], ':ID'=>$this->ID));
 	$T_ligneBD = $this->InterrogerBD("SELECT code FROM Vue_usine_production_ingredients WHERE joueur_ID = :IDjoueur AND ID = :ID"
-										,array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
+										,array(':IDjoueur'=>$_SESSION['IDjoueur'], ':ID'=>$this->ID));
 	if ($production[0]['dureeProd'] > 0) {
 ?>
 		<h1>Production actuelle</h1>
@@ -43,13 +43,13 @@ protected function ProductionActuelle() {
 }
 
 protected function Tableau1($vueIngrédients, $vueCoutFixe) {
-	$T_ligneBD = $this->InterrogerBD("SELECT code FROM {$vueIngrédients} WHERE joueur_ID = :IDjoueur AND ID = :ID", array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
+	$T_ligneBD = $this->InterrogerBD("SELECT code FROM {$vueIngrédients} WHERE joueur_ID = :IDjoueur AND ID = :ID", array(':IDjoueur'=>$_SESSION['IDjoueur'], ':ID'=>$this->ID));
 	// coût des marchandises
-	$rechercheCout = $this->InterrogerBD("SELECT SUM(achat) AS somme FROM {$vueIngrédients} WHERE joueur_ID = :IDjoueur AND ID = :ID", array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
+	$rechercheCout = $this->InterrogerBD("SELECT SUM(achat) AS somme FROM {$vueIngrédients} WHERE joueur_ID = :IDjoueur AND ID = :ID", array(':IDjoueur'=>$_SESSION['IDjoueur'], ':ID'=>$this->ID));
 	$coutIngrédients = $rechercheCout[0]['somme'];
 	$taux = $this->fraisTransport; // taux en % des frais de transport à rechercher dans la BD
 	// coût fixe
-	$rechercheCoutFixe = $this->InterrogerBD("SELECT somme FROM {$vueCoutFixe} WHERE joueur_ID = :IDjoueur AND ID = :ID", array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
+	$rechercheCoutFixe = $this->InterrogerBD("SELECT somme FROM {$vueCoutFixe} WHERE joueur_ID = :IDjoueur AND ID = :ID", array(':IDjoueur'=>$_SESSION['IDjoueur'], ':ID'=>$this->ID));
 	$coutFixe = $rechercheCoutFixe[0]['somme'];
 ?>
 <table class="tableau1">
@@ -66,7 +66,7 @@ protected function Tableau1($vueIngrédients, $vueCoutFixe) {
 }
 
 protected function ProchaineProduction() {
-	$production = $this->InterrogerBD("SELECT * FROM Vue_usine_prochaineProduction WHERE IDjoueur = :IDjoueur AND ID = :ID", array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
+	$production = $this->InterrogerBD("SELECT * FROM Vue_usine_prochaineProduction WHERE IDjoueur = :IDjoueur AND ID = :ID", array(':IDjoueur'=>$_SESSION['IDjoueur'], ':ID'=>$this->ID));
 ?>
 		<h1>Prochaine production</h1>
 		<p>Besoins pour la production de <?=$production[0]['prochaineProd']?> :</p>
