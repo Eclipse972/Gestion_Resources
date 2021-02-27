@@ -24,6 +24,9 @@ public function AfficherFormulaireMAJ() {
 							);
 }
 
+		//parent::MAJ_BD('entrepot', array('niveau', 'stock'), 'marchandise_ID');
+
+
 public function AfficherRapport($nbColonne) {
 	$this->DébutRapport($nbColonne);
 ?>

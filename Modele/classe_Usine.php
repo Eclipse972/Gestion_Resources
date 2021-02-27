@@ -22,12 +22,19 @@ public function Hydrater($Tparam) {
 }
 
 public function AfficherFormulaireMAJ() {
-	parent::AfficherFormulaire(	array('MAJEntier',	'MAJEntier',			'MAJDurée',				'MAJEntier'),
-								array('Niveau',		'Production en cours',	'Temps de production',	'Production souhait&eacute;e'),
-								array($this->niveau,$this->prod_en_cours,	$this->duréeProduction,	$this->productionSouhaitée)
-							);
+	parent::AfficherFormulaire(
+				array('MAJEntier',	'MAJEntier',			'MAJDurée',				'MAJEntier'),
+				array('Niveau',		'Production en cours',	'Temps de production',	'Production souhait&eacute;e'),
+				array($this->niveau,$this->prod_en_cours,	$this->duréeProduction,	$this->productionSouhaitée)
+			);
 }
+/*		$réponseBD = ExecuterRequete("SELECT * FROM {$vueBD} WHERE IDjoueur = :IDjoueur AND ID = :ID",
+									array(':IDjoueur' => $_SESSION['IDjoueur'], ':ID' => $_SESSION['ID']), 'construction due l\'objet pout MAJ formulaire');
+		$this->Hydrater($réponseBD[0]);
 
+		if ($_SESSION['champ'] == 2) $_POST['champ'] = intval($_POST['jour'])*86400 + intval($_POST['heure'])*3600 + intval($_POST['minute'])*60;
+		parent::MAJ_BD('usine', array('niveau', 'prod_en_cours', 'date_fin_production', 'prod_souhaitee'), 'type_usine_ID', ($_SESSION['champ'] == 2) ? 'UNIX_TIMESTAMP()' : '0');
+*/
 protected function ProductionActuelle() {
 	$production = $this->InterrogerBD("SELECT prodEnCours, dureeProd FROM Vue_usine WHERE IDjoueur = :IDjoueur AND ID = :ID"
 											, array(':IDjoueur'=>$this->IDjoueur, ':ID'=>$this->ID));
@@ -76,7 +83,7 @@ protected function ProchaineProduction() {
 		<h1>Prochaine production</h1>
 		<p>Besoins pour la production de <?=$production[0]['prochaineProd']?> :</p>
 		<?=$this->Tableau1('Vue_usine_prochaineProduction_ingredients', 'Vue_usine_prochaineProduction_coutFixe');	?>
-		<p>En construction: formulaire avec durée/Quantité + date de début + bouton de validation</p>
+		<p>En construction: date de début souhait&eacute;e</p>
 <?php
 }
 

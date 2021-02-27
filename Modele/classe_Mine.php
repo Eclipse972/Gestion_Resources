@@ -25,6 +25,7 @@ public function AfficherFormulaireMAJ() {
 								array($this->nombre,	$this->état,		$this->productionMaximale)
 							);
 }
+		//parent::MAJ_BD('mine', array('nombre', 'etat', 'prod_max'), 'type_mine_ID');
 
 public function AfficherRapport($nbColonne) {
 	$this->DébutRapport($nbColonne);

@@ -16,7 +16,7 @@ public function __construct() {
 	$this->fraisTransport = 5;	// il faudra rechercher le taux suivant le joueur
 }
 
-public function Hydrater($Tparam) { // récupère les paramètres communs à toutes les classe filles
+public function Hydrater($Tparam) { // récupère les paramètres communs à toutes les classes filles
 	$this->ID = $Tparam['ID'];
 	$this->IDjoueur = $Tparam['IDjoueur'];
 	$this->code = $Tparam['code'];
@@ -60,6 +60,14 @@ protected function AfficherFormulaire($T_classe, $T_texte, $T_valeur) {
 		$classe= $T_classe[$_SESSION['champ']];
 		$O_champ = new $classe($texte, $valeur);
 		$O_champ->Afficher();
+	} else header('location:/?erreur=404');
+}
+
+protected function MAJ_BD($vueBD, $nomClasseLigne) {
+	if (isset($Tableau[$_SESSION['champ']])) {
+		$champ = $Tableau[$_SESSION['champ']];
+		ExecuterRequete("UPDATE {$tableBD} SET {$champ} = :valeur + {$décalage} WHERE Joueur_ID = :IDjoueur AND {$champWhere} = :ID",
+							array(':valeur'=>intval($_POST['champ']), ':IDjoueur'=>$_SESSION['IDjoueur'],':ID'=>$_SESSION['id']), 'traitement formulaire mine');
 	} else header('location:/?erreur=404');
 }
 

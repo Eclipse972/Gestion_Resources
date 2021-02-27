@@ -1,10 +1,12 @@
 <?php
 abstract class Page {
-	abstract public function FeuilleDeStyle();
 	abstract public function Section();
-	abstract public function TraiterFormulaire();
+/* Méthode à implémenter dans les classe filles
+ * public function FeuilleDeStyle();
+ * public function TraiterFormulaire();
+ * */
 
-	protected function CSS($nom) {
+	protected function FeuilleDeStyle($nom) {
 ?>
 		<link rel="stylesheet" href="Vue/<?=$nom?>.css" />
 <?php
@@ -53,17 +55,14 @@ class PageErreur extends Page {
 		<p>Si le probl&egrave;me persiste envoyez-moi un courriel en <a href="gestion.resources@free.fr">cliquant ici</a>.</p>
 	<?php
 	}
-
-	public function TraiterFormulaire() {}
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
-abstract class PageTableau extends Page {
+class PageTableau extends Page {
 	protected $nb_col_tableau;
 	protected $nomCSS;
 	protected $T_enTete;
-
-	abstract public function Afficher_tete();
-	abstract public function Afficher_corps();
+	protected $vueBD;
+	protected $nomClasseLigne;
 
 	public function __construct() {
 		// la session contient déjà le numéro de l'onglet
@@ -96,7 +95,10 @@ abstract class PageTableau extends Page {
 		}
 	}
 
-	public function FeuilleDeStyle() {	$this->CSS('table');	$this->CSS($this->nomCSS);	}
+	public function FeuilleDeStyle() {
+		parent::FeuilleDeStyle('table');
+		parent::FeuilleDeStyle($this->nomCSS);
+	}
 
 	public function Section() {
 	?>
@@ -110,7 +112,7 @@ abstract class PageTableau extends Page {
 
 	public function PageRetour() { return "?onglet={$_SESSION['onglet']}".((isset($_SESSION['ligne'])) ? "&ligne={$_SESSION['ligne']}#{$_SESSION['ligne']}" : "#{$_SESSION['id']}"); }
 
-	protected function Afficher_thead() {
+	protected function Afficher_tete() {
 		$this->nb_col_tableau = count($this->T_enTete);
 ?>
 	<table>
@@ -120,12 +122,12 @@ abstract class PageTableau extends Page {
 <?php
 	}
 
-	protected function Afficher_tboby($vueBD, $nomClasseLigne) {
+	protected function Afficher_corps() {
 		require'classe_LigneTableau.php';
-		require"classe_{$nomClasseLigne}.php";	// ligne associée à la page
-		$ligne = new $nomClasseLigne;
+		require"classe_{$this->nomClasseLigne}.php";	// ligne associée à la page
+		$ligne = new $this->nomClasseLigne;
 
-		$Tvue = ExecuterRequete("SELECT * FROM {$vueBD} WHERE IDjoueur = :ID", array(':ID' => $_SESSION['IDjoueur']), 'construction du tableau d\'objets');
+		$Tvue = ExecuterRequete("SELECT * FROM {$this->vueBD} WHERE IDjoueur = :ID", array(':ID' => $_SESSION['IDjoueur']), 'construction du tableau d\'objets');
 ?>
 		<tbody>
 <?php
@@ -150,22 +152,9 @@ class PageUsine extends PageTableau {
 		parent::__construct();
 		$this->nomCSS = 'usines';
 		$this->T_enTete = array('Usine', 'Niveau', 'Production');
+		$this->vueBD = 'Vue_usine';
+		$this->nomClasseLigne = 'Usine';
 	}
-
-	public function FeuilleDeStyle() {	parent::FeuilleDeStyle();	}	// obligatoire car méthode abstraite
-
-	public function Afficher_tete() { parent::Afficher_thead(); }
-
-	public function Afficher_corps() { parent::Afficher_tboby('Vue_usine', 'Usine'); }
-
-	public function TraiterFormulaire() {
-/*		$réponseBD = ExecuterRequete("SELECT * FROM {$vueBD} WHERE IDjoueur = :IDjoueur AND ID = :ID",
-									array(':IDjoueur' => $_SESSION['IDjoueur'], ':ID' => $_SESSION['ID']), 'construction due l\'objet pout MAJ formulaire');
-		$this->Hydrater($réponseBD[0]);
-
-		if ($_SESSION['champ'] == 2) $_POST['champ'] = intval($_POST['jour'])*86400 + intval($_POST['heure'])*3600 + intval($_POST['minute'])*60;
-		parent::MAJ_BD('usine', array('niveau', 'prod_en_cours', 'date_fin_production', 'prod_souhaitee'), 'type_usine_ID', ($_SESSION['champ'] == 2) ? 'UNIX_TIMESTAMP()' : '0');
-*/	}
 }
 
 class PageMine extends PageTableau {
@@ -173,16 +162,8 @@ class PageMine extends PageTableau {
 		parent::__construct();
 		$this->nomCSS = 'mines';
 		$this->T_enTete = array('Mines', '&Eacute;tat','Nombre', 'Production', 'Production max');
-	}
-
-	public function FeuilleDeStyle() {	parent::FeuilleDeStyle();	}	// obligatoire car méthode abstraite
-
-	public function Afficher_tete() { parent::Afficher_thead(); }
-
-	public function Afficher_corps() { parent::Afficher_tboby('Vue_mine', 'Mine'); }
-
-	public function TraiterFormulaire() {
-		//parent::MAJ_BD('mine', array('nombre', 'etat', 'prod_max'), 'type_mine_ID');
+		$this->vueBD = 'Vue_mine';
+		$this->nomClasseLigne = 'Mine';
 	}
 }
 
@@ -191,16 +172,8 @@ class PageEntrepot extends PageTableau {
 		parent::__construct();
 		$this->nomCSS = 'entrepots';
 		$this->T_enTete = array('Entrep&ocirc;t', 'Niveau', 'Capacit&eacute;', 'Stock', 'Valeur');
-	}
-
-	public function FeuilleDeStyle() {	parent::FeuilleDeStyle();	}	// obligatoire car méthode abstraite
-
-	public function Afficher_tete() { parent::Afficher_thead(); }
-
-	public function Afficher_corps() { parent::Afficher_tboby('Vue_entrepot', 'Entrepot'); }
-
-	public function TraiterFormulaire() {
-		//parent::MAJ_BD('entrepot', array('niveau', 'stock'), 'marchandise_ID');
+		$this->vueBD = 'Vue_entrepot';
+		$this->nomClasseLigne = 'Entrepot';
 	}
 }
 
@@ -211,19 +184,15 @@ class PageCommerce extends PageTableau {
 		parent::__construct();
 		$this->nomCSS = 'commerce';
 		$this->T_enTete = array('Marchandise', 'cours Ki-market',	'cours max');
+		$this->vueBD = 'Vue_commerce';
+		$this->nomClasseLigne = 'Commerce';
 		$this->date_MAJ = 'ind&eacute;termin&eacute;e'; // il va falloir trouver cette date lors de la MAJ des prix des marchandises
 	}
 
-	public function FeuilleDeStyle() {	parent::FeuilleDeStyle();	}	// obligatoire car méthode abstraite
-
 	public function Afficher_tete() {
-?>
+		?>
 		<p align="right">Derni&egrave;re mise à jour le: <?=$this->date_MAJ?></p>
-<?php
-		parent::Afficher_thead();
+		<?php
+		parent::Afficher_tete();
 	}
-
-	public function Afficher_corps() { parent::Afficher_tboby('Vue_commerce', 'Commerce'); }
-
-	public function TraiterFormulaire() {}
 }
