@@ -113,7 +113,7 @@ class PageTableau extends Page {
 		require"classe_{$this->nomClasseLigne}.php";
 		// construction de l'objet ligne
 		$réponseBD = ExecuterRequete("SELECT * FROM {$this->vueBD} WHERE IDjoueur = :IDjoueur AND ID = :ID",
-									array(':IDjoueur' => $_SESSION['IDjoueur'], ':ID' => $_SESSION['ID']), 'construction due l\'objet pout MAJ formulaire');
+									array(':IDjoueur' => $_SESSION['IDjoueur'], ':ID' => $_SESSION['id']), 'construction due l\'objet pout MAJ formulaire');
 		$ligne = new $this->nomClasseLigne;
 		$ligne->Hydrater($réponseBD[0]);
 		// MAJ  de la BD

@@ -1,31 +1,22 @@
 <?php
 class Mine extends LigneTableau {
-	// valeur par défaut pour les formulaires
-	protected $état;
-	protected $nombre;
-	protected $productionMaximale;
 
 public function __construct() {
 	$this->IDmin = 0;
 	$this->IDmax = 14;
+	$this->T_formulaireMAJ['classe']	= array('MAJEntier',		'MAJEntier',	'MAJEntier');
+	$this->T_formulaireMAJ['texte']		= array('nombre de mine',	'&Eacute;tat',	'production maxi');
+	$this->T_formulaireMAJ['champBD']	= array('nombre',			'etat',			'prod_max');
+	$this->tableUPDATE ='mine';
+	$this->champWHERE = 'type_mine_ID';
 	parent::__construct();
 }
 
 public function Hydrater($Tparam) {
 	parent::Hydrater($Tparam);
 	// valeurs par défaut pour les champs de formulaire
-	$this->état = $Tparam['etat'];
-	$this->nombre = $Tparam['nombre'];
-	$this->productionMaximale = $Tparam['prod_max'];
+	$this->T_formulaireMAJ['valeur'] = array($Tparam['nombre'], $Tparam['etat'], $Tparam['prod_max']);
 }
-
-public function AfficherFormulaireMAJ() {
-	parent::AfficherFormulaire(	array('MAJEntier',		'MAJPourcentage',	'MAJEntier'),
-								array('nombre de mine', 'état',				'production maxi'),
-								array($this->nombre,	$this->état,		$this->productionMaximale)
-							);
-}
-		//parent::MAJ_BD('mine', array('nombre', 'etat', 'prod_max'), 'type_mine_ID');
 
 public function AfficherRapport($nbColonne) {
 	$this->DébutRapport($nbColonne);

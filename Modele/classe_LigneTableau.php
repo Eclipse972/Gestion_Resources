@@ -8,9 +8,12 @@ abstract class LigneTableau {
 	protected $IDmax;
 	protected $code; // HTML de la ligne
 	protected $fraisTransport;
+	// tableau associatif contenant les données pour contruire et traiter les formullaires
+	protected $T_formulaireMAJ;	// classe, texte (à afficher), valeur( par défaut) , champBD champ à MAJ
+	protected $tableUPDATE;		// table MAJ
+	protected $champWHERE;		// champ de la clause where de la requête UPDATE
 
 abstract public function AfficherRapport($nbColonne);
-abstract public function AfficherFormulaireMAJ();
 
 public function __construct() {
 	$this->fraisTransport = 5;	// il faudra rechercher le taux suivant le joueur
@@ -53,11 +56,11 @@ public function Afficher() {
 <?php
 }
 
-protected function AfficherFormulaire($T_classe, $T_texte, $T_valeur) {
-	if (isset($T_texte[$_SESSION['champ']])) {
-		$texte = $T_texte[$_SESSION['champ']];
-		$valeur= $T_valeur[$_SESSION['champ']];
-		$classe= $T_classe[$_SESSION['champ']];
+public function AfficherFormulaireMAJ() {
+	if (isset($this->T_formulaireMAJ['texte'][$_SESSION['champ']])) {
+		$texte = $this->T_formulaireMAJ['texte'][$_SESSION['champ']];
+		$valeur= $this->T_formulaireMAJ['valeur'][$_SESSION['champ']];
+		$classe= $this->T_formulaireMAJ['classe'][$_SESSION['champ']];
 		$O_champ = new $classe($texte, $valeur);
 		$O_champ->Afficher();
 	} else header('location:/?erreur=404');

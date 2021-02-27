@@ -7,8 +7,6 @@ public function __construct() {
 	parent::__construct();
 }
 
-public function AfficherFormulaireMAJ() {}
-
 public function Besoins() {
 ?>
 	<h1>Liste des besoins avec achats et ventes &agrave; pr&eacute;voir</h1>

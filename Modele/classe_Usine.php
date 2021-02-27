@@ -1,32 +1,21 @@
 <?php
 class Usine extends LigneTableau {
-	// valeur par défaut pour les formulaires
-	private $niveau;
-	private $prod_en_cours;
-	private $duréeProduction;
-	private $productionSouhaitée;
 
 public function __construct() {
 	$this->IDmin = 0;
 	$this->IDmax = 22;
+	$this->T_formulaireMAJ['classe']	= array('MAJEntier','MAJEntier',			'MAJDurée',				'MAJEntier');
+	$this->T_formulaireMAJ['texte']		= array('Niveau',	'Production en cours',	'Temps de production',	'Production souhait&eacute;e');
+	$this->T_formulaireMAJ['champBD']	= array('niveau',	'prod_en_cours',		'date_fin_production',	'prod_souhaitee');
+	$this->tableUPDATE ='usine';
+	$this->champWHERE = 'type_usine_ID';
 	parent::__construct();
 }
 
 public function Hydrater($Tparam) {
 	parent::Hydrater($Tparam);
 	// valeurs par défaut pour les champs de formulaire
-	$this->niveau = $Tparam['niveau'];
-	$this->prod_en_cours = $Tparam['prod_en_cours'];
-	$this->duréeProduction = $Tparam['dureeProd'];
-	$this->productionSouhaitée = $Tparam['prod_souhaitee'];
-}
-
-public function AfficherFormulaireMAJ() {
-	parent::AfficherFormulaire(
-				array('MAJEntier',	'MAJEntier',			'MAJDurée',				'MAJEntier'),
-				array('Niveau',		'Production en cours',	'Temps de production',	'Production souhait&eacute;e'),
-				array($this->niveau,$this->prod_en_cours,	$this->duréeProduction,	$this->productionSouhaitée)
-			);
+	$this->T_formulaireMAJ['valeur'] = array($Tparam['niveau'], $Tparam['prod_en_cours'], $Tparam['dureeProd'], $Tparam['prod_souhaitee']);
 }
 /*
 		if ($_SESSION['champ'] == 2) $_POST['champ'] = intval($_POST['jour'])*86400 + intval($_POST['heure'])*3600 + intval($_POST['minute'])*60;

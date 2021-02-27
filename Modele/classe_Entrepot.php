@@ -7,25 +7,19 @@ class Entrepot extends LigneTableau {
 public function __construct() {
 	$this->IDmin = 2;
 	$this->IDmax = 60;
+	$this->T_formulaireMAJ['classe']	= array('MAJEntier','MAJEntier');
+	$this->T_formulaireMAJ['texte']		= array('Niveau',	'Stock');
+	$this->T_formulaireMAJ['champBD']	= array('niveau',	'pstock');
+	$this->tableUPDATE ='entrepot';
+	$this->champWHERE = 'marchandise_ID';
 	parent::__construct();
 }
 
 public function Hydrater($Tparam) {
 	parent::Hydrater($Tparam);
 	// valeurs par défaut pour les champs de formulaire
-	$this->niveau = $Tparam['niveau'];
-	$this->stock = $Tparam['stock'];
+	$this->T_formulaireMAJ['valeur'] = array($Tparam['niveau'], $Tparam['stock']);
 }
-
-public function AfficherFormulaireMAJ() {
-	parent::AfficherFormulaire(	array('MAJEntier',	'MAJEntier'),
-								array('Niveau',		'Stock'),
-								array($this->niveau,$this->stock)
-							);
-}
-
-		//parent::MAJ_BD('entrepot', array('niveau', 'stock'), 'marchandise_ID');
-
 
 public function AfficherRapport($nbColonne) {
 	$this->DébutRapport($nbColonne);
