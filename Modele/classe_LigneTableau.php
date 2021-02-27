@@ -1,8 +1,5 @@
 <?php
 abstract class LigneTableau {
-	protected $table;
-	protected $nomChampID;	// nom du champ permettant d'identifier le type d'objet
-	protected $IDjoueur;	// le joueur doit être connu lors de la construction
 	protected $ID;	// ligne courante
 	protected $IDmin;
 	protected $IDmax;
@@ -21,7 +18,6 @@ public function __construct() {
 
 public function Hydrater($Tparam) { // récupère les paramètres communs à toutes les classes filles
 	$this->ID = $Tparam['ID'];
-	$this->IDjoueur = $Tparam['IDjoueur'];
 	$this->code = $Tparam['code'];
 }
 

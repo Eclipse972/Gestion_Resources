@@ -9,7 +9,7 @@ public function __construct() {
 	$this->IDmax = 60;
 	$this->T_formulaireMAJ['classe']	= array('MAJEntier','MAJEntier');
 	$this->T_formulaireMAJ['texte']		= array('Niveau',	'Stock');
-	$this->T_formulaireMAJ['champBD']	= array('niveau',	'pstock');
+	$this->T_formulaireMAJ['champBD']	= array('niveau',	'stock');
 	$this->tableUPDATE ='entrepot';
 	$this->champWHERE = 'marchandise_ID';
 	parent::__construct();
