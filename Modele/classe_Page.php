@@ -19,7 +19,7 @@ abstract class Page {
 }
 
 class PageJoueur extends Page {
-	public function FeuilleDeStyle()	{	$this->CSS('joueur');	}
+	public function FeuilleDeStyle()	{	parent::FeuilleDeStyle('joueur');	}
 
 	public function Section() {
 ?>
@@ -31,7 +31,7 @@ class PageJoueur extends Page {
 }
 
 class PageErreur extends Page {
-	public function FeuilleDeStyle()	{	$this->CSS('erreur');	}
+	public function FeuilleDeStyle()	{	parent::FeuilleDeStyle('erreur');	}
 
 	public function Section() {
 		$DICO = array(	// dictionnaire
