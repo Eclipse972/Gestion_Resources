@@ -28,10 +28,7 @@ public function AfficherFormulaireMAJ() {
 				array($this->niveau,$this->prod_en_cours,	$this->duréeProduction,	$this->productionSouhaitée)
 			);
 }
-/*		$réponseBD = ExecuterRequete("SELECT * FROM {$vueBD} WHERE IDjoueur = :IDjoueur AND ID = :ID",
-									array(':IDjoueur' => $_SESSION['IDjoueur'], ':ID' => $_SESSION['ID']), 'construction due l\'objet pout MAJ formulaire');
-		$this->Hydrater($réponseBD[0]);
-
+/*
 		if ($_SESSION['champ'] == 2) $_POST['champ'] = intval($_POST['jour'])*86400 + intval($_POST['heure'])*3600 + intval($_POST['minute'])*60;
 		parent::MAJ_BD('usine', array('niveau', 'prod_en_cours', 'date_fin_production', 'prod_souhaitee'), 'type_usine_ID', ($_SESSION['champ'] == 2) ? 'UNIX_TIMESTAMP()' : '0');
 */

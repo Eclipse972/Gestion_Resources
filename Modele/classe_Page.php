@@ -104,11 +104,20 @@ class PageTableau extends Page {
 	?>
 		<div id="vers_le_haut"><a href="#"><img src="Vue/images/fleche_haut.png" alt="Retourner en haut" /></a></div>
 	<?php
-		$this->Afficher_tete();	// méthode définie par les classes filles
+		$this->Afficher_tete();
 		$this->Afficher_corps();
 	}
 
-	public function TraiterFormulaire() {}
+	public function TraiterFormulaire() {
+		require'classe_LigneTableau.php';
+		require"classe_{$this->nomClasseLigne}.php";
+		// construction de l'objet ligne
+		$réponseBD = ExecuterRequete("SELECT * FROM {$this->vueBD} WHERE IDjoueur = :IDjoueur AND ID = :ID",
+									array(':IDjoueur' => $_SESSION['IDjoueur'], ':ID' => $_SESSION['ID']), 'construction due l\'objet pout MAJ formulaire');
+		$ligne = new $this->nomClasseLigne;
+		$ligne->Hydrater($réponseBD[0]);
+		// MAJ  de la BD
+	}
 
 	public function PageRetour() { return "?onglet={$_SESSION['onglet']}".((isset($_SESSION['ligne'])) ? "&ligne={$_SESSION['ligne']}#{$_SESSION['ligne']}" : "#{$_SESSION['id']}"); }
 
